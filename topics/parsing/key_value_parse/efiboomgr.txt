@@ -1,0 +1,8 @@
+BootCurrent: 0005
+Timeout: 3 seconds
+BootOrder: 0005,0003,0004,0002,0001
+Boot0001* UEFI: Built-in EFI Shell
+Boot0002* UEFI: PXE IPv4 Intel(R) I210 Gigabit  Network Connection
+Boot0003* UEFI: KingstonDataTraveler 3.0PMAP
+Boot0004* UEFI: KingstonDataTraveler 3.0PMAP, Partition 2
+Boot0005* UEFI: INTEL SSDPE2KX010T8, Partition 1

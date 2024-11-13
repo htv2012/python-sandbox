@@ -1,0 +1,4 @@
+name = John Doe
+alias = johnd
+user_id = 501
+shell = bash

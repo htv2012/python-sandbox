@@ -1,0 +1,9 @@
+It works on my machine
+%
+Clear sky: code name for "cloud server down"
+%
+This app will run infinite loop twice
+%
+Keyboard not found: press any key to continue
+%
+To error is human; to lots of errors is human with a computer.

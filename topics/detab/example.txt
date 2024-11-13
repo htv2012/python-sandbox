@@ -1,0 +1,8 @@
+def print_dict(dd):
+    li = dd.items()
+    li.sort() # sort so that the keys are in alphabetical order
+    print '\n'.join(['\t%s: %s' % (k,v) for (k,v) in li])
+    
+    if (a > 3):
+        print "a    is greater than 3"
+    

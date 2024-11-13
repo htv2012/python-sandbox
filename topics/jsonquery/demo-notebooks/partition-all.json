@@ -1,0 +1,3201 @@
+{
+    "SNMP-COMMUNITY-MIB:SNMP-COMMUNITY-MIB": {
+      "snmpCommunityTable": {
+        "snmpCommunityEntry": [
+          {
+            "snmpCommunityIndex": "public",
+            "snmpCommunityName": "public",
+            "snmpCommunitySecurityName": "public",
+            "snmpCommunityContextEngineID": "80:00:61:81:05:01",
+            "snmpCommunityContextName": "",
+            "snmpCommunityTransportTag": "",
+            "snmpCommunityStorageType": "permanent"
+          }
+        ]
+      }
+    },
+    "SNMP-VIEW-BASED-ACM-MIB:SNMP-VIEW-BASED-ACM-MIB": {
+      "vacmSecurityToGroupTable": {
+        "vacmSecurityToGroupEntry": [
+          {
+            "vacmSecurityModel": 1,
+            "vacmSecurityName": "public",
+            "vacmGroupName": "all-rights",
+            "vacmSecurityToGroupStorageType": "nonVolatile"
+          },
+          {
+            "vacmSecurityModel": 2,
+            "vacmSecurityName": "public",
+            "vacmGroupName": "all-rights",
+            "vacmSecurityToGroupStorageType": "nonVolatile"
+          }
+        ]
+      },
+      "vacmAccessTable": {
+        "vacmAccessEntry": [
+          {
+            "vacmGroupName": "all-rights",
+            "vacmAccessContextPrefix": "",
+            "vacmAccessSecurityModel": 0,
+            "vacmAccessSecurityLevel": "noAuthNoPriv",
+            "vacmAccessContextMatch": "exact",
+            "vacmAccessReadViewName": "internet",
+            "vacmAccessWriteViewName": "internet",
+            "vacmAccessNotifyViewName": "internet",
+            "vacmAccessStorageType": "nonVolatile"
+          }
+        ]
+      },
+      "vacmViewTreeFamilyTable": {
+        "vacmViewTreeFamilyEntry": [
+          {
+            "vacmViewTreeFamilyViewName": "internet",
+            "vacmViewTreeFamilySubtree": "1.3.6.1",
+            "vacmViewTreeFamilyMask": "",
+            "vacmViewTreeFamilyType": "included",
+            "vacmViewTreeFamilyStorageType": "nonVolatile"
+          }
+        ]
+      }
+    },
+    "SNMPv2-MIB:SNMPv2-MIB": {
+      "system": {
+        "sysContact": "",
+        "sysName": "",
+        "sysLocation": ""
+      },
+      "snmp": {
+        "snmpEnableAuthenTraps": "disabled"
+      }
+    },
+    "f5-authentication:authentication": {
+      "password-policy": {
+        "strict": true,
+        "min-days": 0,
+        "max-days": 99999,
+        "warn-age": 7,
+        "min-length": 6,
+        "remember": 0,
+        "required-numeric": 0,
+        "required-uppercase": 0,
+        "required-lowercase": 0,
+        "required-special": 0,
+        "max-login-failures": 0,
+        "unlock-time": 0,
+        "admin-lockout": false,
+        "manual-lockout": false
+      },
+      "ldap-config": {
+        "port": 389,
+        "search-timeout": 30,
+        "bind-timeout": 30,
+        "idle-timeout": 3600,
+        "version": 3,
+        "ssl": "off",
+        "tls-reqcert": "demand"
+      },
+      "radius-config": {
+        "port": 1812,
+        "timeout": 3
+      }
+    },
+    "f5-tpob:nodes": {
+      "node": {
+        "node_info": [
+          {
+            "node_num": 1,
+            "name": "osnode-1.mydomain.com",
+            "creation_time": "2019-10-24T09:32:11Z",
+            "cpu": 28,
+            "pods": 250,
+            "memory": "131565752Ki"
+          }
+        ],
+        "node_disk_ready_info": [
+          {
+            "node_num": 1,
+            "name": "osnode-1.mydomain.com",
+            "NodeReady": "True",
+            "last_transition_time": "2019-10-24T13:12:25Z",
+            "message": "kubelet is posting ready status"
+          }
+        ],
+        "node_out_of_disk_info": [
+          {
+            "node_num": 1,
+            "name": "osnode-1.mydomain.com",
+            "NodeOutOfDisk": "False",
+            "last_transition_time": "2019-10-24T13:11:32Z",
+            "message": "kubelet has sufficient disk space available"
+          }
+        ],
+        "node_disk_pressure_info": [
+          {
+            "node_num": 1,
+            "name": "osnode-1.mydomain.com",
+            "NodeDiskPressure": "False",
+            "last_transition_time": "2019-10-24T13:11:32Z",
+            "message": "kubelet has no disk pressure"
+          }
+        ]
+      }
+    },
+    "ietf-netconf-acm:nacm": {
+      "enable-nacm": true,
+      "read-default": "permit",
+      "write-default": "permit",
+      "exec-default": "permit",
+      "enable-external-groups": true,
+      "denied-operations": 0,
+      "denied-data-writes": 0,
+      "denied-notifications": 0,
+      "groups": {
+        "group": [
+          {
+            "name": "admin",
+            "user-name": ["admin", "private"]
+          },
+          {
+            "name": "oper",
+            "user-name": ["oper", "public"]
+          }
+        ]
+      },
+      "rule-list": [
+        {
+          "name": "admin",
+          "group": ["admin"],
+          "rule": [
+            {
+              "name": "any-access",
+              "module-name": "*",
+              "access-operations": "*",
+              "action": "permit",
+              "tailf-acm:context": "*"
+            }
+          ]
+        },
+        {
+          "name": "any-group",
+          "group": ["*"],
+          "rule": [
+            {
+              "name": "tailf-aaa-authentication",
+              "module-name": "tailf-aaa",
+              "path": "/aaa/authentication/users/user[name='$USER']",
+              "access-operations": "read update",
+              "action": "permit",
+              "tailf-acm:context": "*"
+            },
+            {
+              "name": "tailf-aaa-user",
+              "module-name": "tailf-aaa",
+              "path": "/user[name='$USER']",
+              "access-operations": "create read update delete",
+              "action": "permit",
+              "tailf-acm:context": "*"
+            },
+            {
+              "name": "tailf-webui-user",
+              "module-name": "tailf-webui",
+              "path": "/webui/data-stores/user-profile[username='$USER']",
+              "access-operations": "create read update delete",
+              "action": "permit",
+              "tailf-acm:context": "*"
+            }
+          ]
+        }
+      ],
+      "tailf-acm:cmd-read-default": "permit",
+      "tailf-acm:cmd-exec-default": "permit"
+    },
+    "ietf-netconf-monitoring:netconf-state": {
+      "capabilities": {
+        "capability": ["urn:ietf:params:netconf:base:1.0", "urn:ietf:params:netconf:base:1.1", "urn:ietf:params:netconf:capability:writable-running:1.0", "urn:ietf:params:netconf:capability:xpath:1.0", "urn:ietf:params:netconf:capability:url:1.0?scheme=ftp,sftp", "urn:ietf:params:netconf:capability:validate:1.0", "urn:ietf:params:netconf:capability:validate:1.1", "urn:ietf:params:netconf:capability:rollback-on-error:1.0", "urn:ietf:params:netconf:capability:with-defaults:1.0?basic-mode=report-all", "urn:ietf:params:netconf:capability:yang-library:1.0?revision=2016-06-21&module-set-id=70d1c790e7187eb3f04fc7e238ee683a", "http://tail-f.com/ns/netconf/extensions", "http://f5.com/ns/f5-alarm-types?module=f5-alarm-types&revision=2019-08-14", "http://f5.com/ns/f5-l2fdb?module=f5-l2fdb", "http://f5.com/ns/f5-openconfig-alarms?module=f5-openconfig-alarms&revision=2019-08-23", "http://f5.com/ns/f5-tenant-images?module=f5-tenant-images", "http://f5.com/ns/f5-tenant-types?module=f5-tenant-types", "http://f5.com/ns/ndi?module=f5-ndi&revision=2019-03-25", "http://f5.com/ns/partition?module=partition_manager", "http://f5.com/ns/portgroup?module=f5-portgroup&revision=2018-07-20", "http://f5.com/ns/reset-counters?module=f5-reset-counters", "http://f5.com/ns/services?module=f5-services", "http://f5.com/ns/tenant-service-instances?module=f5-tenant-service-instances", "http://f5.com/ns/tpob?module=f5-tpob&revision=2019-03-21", "http://f5.com/ns/voq-state?module=f5-voq-state&revision=2019-09-30", "http://f5.com/velocity/authentication?module=f5-authentication&revision=2019-04-01", "http://openconfig.net/yang/aaa?module=openconfig-aaa&revision=2018-11-21", "http://openconfig.net/yang/aaa/types?module=openconfig-aaa-types&revision=2018-11-21", "http://openconfig.net/yang/alarms?module=openconfig-alarms&revision=2018-11-21", "http://openconfig.net/yang/alarms/types?module=openconfig-alarm-types&revision=2018-01-16", "http://openconfig.net/yang/f5-openconfig-aaa-ldap?module=f5-openconfig-aaa-ldap", "http://openconfig.net/yang/interfaces?module=openconfig-interfaces&revision=2018-04-24&deviations=f5-openconfig-interfaces-deviations", "http://openconfig.net/yang/interfaces/aggregate?module=openconfig-if-aggregate&revision=2018-03-23&deviations=f5-openconfig-if-aggregate-deviations", "http://openconfig.net/yang/interfaces/ethernet?module=openconfig-if-ethernet&revision=2018-04-10&deviations=f5-openconfig-if-ethernet-deviations", "http://openconfig.net/yang/lacp?module=openconfig-lacp&revision=2017-05-05", "http://openconfig.net/yang/messages?module=openconfig-messages&revision=2018-08-13", "http://openconfig.net/yang/openconfig-ext?module=openconfig-extensions&revision=2017-04-11", "http://openconfig.net/yang/openconfig-if-types?module=openconfig-if-types&revision=2018-01-05", "http://openconfig.net/yang/openconfig-types?module=openconfig-types&revision=2018-05-05", "http://openconfig.net/yang/platform?module=openconfig-platform&revision=2018-06-03&deviations=f5-openconfig-platform-deviations", "http://openconfig.net/yang/platform-types?module=openconfig-platform-types&revision=2018-05-05", "http://openconfig.net/yang/spanning-tree?module=openconfig-spanning-tree&revision=2017-07-14&deviations=f5-openconfig-spanning-tree-deviations", "http://openconfig.net/yang/spanning-tree/types?module=openconfig-spanning-tree-types&revision=2017-07-14", "http://openconfig.net/yang/system?module=openconfig-system&revision=2019-01-29&deviations=f5-openconfig-aaa-deviations,f5-openconfig-system-deviations,f5-openconfig-system-logging-deviations", "http://openconfig.net/yang/system/logging?module=openconfig-system-logging&revision=2017-09-18", "http://openconfig.net/yang/system/management?module=openconfig-system-management&revision=2018-11-21", "http://openconfig.net/yang/system/procmon?module=openconfig-procmon&revision=2018-11-21", "http://openconfig.net/yang/system/terminal?module=openconfig-system-terminal&revision=2018-11-21", "http://openconfig.net/yang/types/inet?module=openconfig-inet-types&revision=2017-08-24", "http://openconfig.net/yang/types/yang?module=openconfig-yang-types&revision=2018-04-24", "http://openconfig.net/yang/vlan?module=openconfig-vlan&revision=2018-02-14&deviations=f5-openconfig-vlan-deviations", "http://openconfig.net/yang/vlan-types?module=openconfig-vlan-types&revision=2018-02-14", "http://tail-f.com/ns/aaa/1.1?module=tailf-aaa&revision=2015-06-16", "http://tail-f.com/ns/common/query?module=tailf-common-query&revision=2017-12-15", "http://tail-f.com/ns/kicker?module=tailf-kicker&revision=2017-09-28", "http://tail-f.com/ns/mibs/F5-ALERT-DEF-MIB/201908010941Z?module=F5-ALERT-DEF-MIB&revision=2019-08-01", "http://tail-f.com/ns/mibs/F5-COMMON-SMI-MIB/1.0?module=F5-COMMON-SMI-MIB", "http://tail-f.com/ns/mibs/IANAifType-MIB/201902080000Z?module=IANAifType-MIB&revision=2019-02-08", "http://tail-f.com/ns/mibs/IPV6-TC/199812010000Z?module=IPV6-TC&revision=1998-12-01", "http://tail-f.com/ns/mibs/SNMP-COMMUNITY-MIB/200308060000Z?module=SNMP-COMMUNITY-MIB&revision=2003-08-06", "http://tail-f.com/ns/mibs/SNMP-FRAMEWORK-MIB/200210140000Z?module=SNMP-FRAMEWORK-MIB&revision=2002-10-14", "http://tail-f.com/ns/mibs/SNMP-MPD-MIB/200210140000Z?module=SNMP-MPD-MIB&revision=2002-10-14", "http://tail-f.com/ns/mibs/SNMP-NOTIFICATION-MIB/200210140000Z?module=SNMP-NOTIFICATION-MIB&revision=2002-10-14", "http://tail-f.com/ns/mibs/SNMP-TARGET-MIB/200210140000Z?module=SNMP-TARGET-MIB&revision=2002-10-14", "http://tail-f.com/ns/mibs/SNMP-USER-BASED-SM-MIB/200210160000Z?module=SNMP-USER-BASED-SM-MIB&revision=2002-10-16", "http://tail-f.com/ns/mibs/SNMP-VIEW-BASED-ACM-MIB/200210160000Z?module=SNMP-VIEW-BASED-ACM-MIB&revision=2002-10-16", "http://tail-f.com/ns/mibs/SNMPv2-MIB/200210160000Z?module=SNMPv2-MIB&revision=2002-10-16", "http://tail-f.com/ns/mibs/SNMPv2-SMI/1.0?module=SNMPv2-SMI", "http://tail-f.com/ns/mibs/SNMPv2-TC/1.0?module=SNMPv2-TC", "http://tail-f.com/ns/mibs/TRANSPORT-ADDRESS-MIB/200211010000Z?module=TRANSPORT-ADDRESS-MIB&revision=2002-11-01", "http://tail-f.com/ns/progress?module=tailf-progress&revision=2018-06-21", "http://tail-f.com/ns/webui?module=tailf-webui&revision=2013-03-07", "http://tail-f.com/yang/acm?module=tailf-acm&revision=2013-03-07", "http://tail-f.com/yang/common?module=tailf-common&revision=2018-04-19", "http://tail-f.com/yang/common-monitoring?module=tailf-common-monitoring&revision=2013-06-14", "http://tail-f.com/yang/confd-monitoring?module=tailf-confd-monitoring&revision=2013-06-14", "http://tail-f.com/yang/netconf-monitoring?module=tailf-netconf-monitoring&revision=2016-11-24", "http://tail-f.com/yang/xsd-types?module=tailf-xsd-types&revision=2017-11-20", "http://velocity.f5.com/ns/f5-logging-component-authd?module=f5-logging-component-authd", "http://velocity.f5.com/ns/f5-logging-component-velocity_rsyslogd?module=f5-logging-component-velocity_rsyslogd", "http://velocity.f5.com/ns/platform?module=f5-platform&revision=2018-10-09", "urn:ietf:params:xml:ns:yang:f5-if-aggregate?module=f5-if-aggregate", "urn:ietf:params:xml:ns:yang:f5-if-ethernet?module=f5-if-ethernet", "urn:ietf:params:xml:ns:yang:f5-interface2-stats?module=f5-interface", "urn:ietf:params:xml:ns:yang:f5-lacp?module=f5-lacp", "urn:ietf:params:xml:ns:yang:f5-vlan-types?module=f5-vlan-types", "urn:ietf:params:xml:ns:yang:iana-crypt-hash?module=iana-crypt-hash&revision=2014-08-06&features=crypt-hash-sha-512,crypt-hash-sha-256,crypt-hash-md5", "urn:ietf:params:xml:ns:yang:iana-if-type?module=iana-if-type&revision=2014-05-19", "urn:ietf:params:xml:ns:yang:ietf-inet-types?module=ietf-inet-types&revision=2013-07-15", "urn:ietf:params:xml:ns:yang:ietf-netconf-acm?module=ietf-netconf-acm&revision=2012-02-22", "urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring?module=ietf-netconf-monitoring&revision=2010-10-04", "urn:ietf:params:xml:ns:yang:ietf-netconf-notifications?module=ietf-netconf-notifications&revision=2012-02-06", "urn:ietf:params:xml:ns:yang:ietf-restconf-monitoring?module=ietf-restconf-monitoring&revision=2017-01-26", "urn:ietf:params:xml:ns:yang:ietf-yang-library?module=ietf-yang-library&revision=2016-06-21", "urn:ietf:params:xml:ns:yang:ietf-yang-smiv2?module=ietf-yang-smiv2&revision=2012-06-22", "urn:ietf:params:xml:ns:yang:ietf-yang-types?module=ietf-yang-types&revision=2013-07-15", "urn:ietf:params:xml:ns:netconf:base:1.0?module=ietf-netconf&revision=2011-06-01", "urn:ietf:params:xml:ns:yang:ietf-netconf-with-defaults?module=ietf-netconf-with-defaults&revision=2011-06-01"]
+      },
+      "datastores": {
+        "datastore": [
+          {
+            "name": "running",
+            "tailf-netconf-monitoring:transaction-id": "1571-909189-875623@controller-1"
+          }
+        ]
+      },
+      "schemas": {
+        "schema": [
+          {
+            "identifier": "F5-ALERT-DEF-MIB",
+            "version": "2019-08-01",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/F5-ALERT-DEF-MIB/201908010941Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "F5-COMMON-SMI-MIB",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/F5-COMMON-SMI-MIB/1.0",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "IANAifType-MIB",
+            "version": "2019-02-08",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/IANAifType-MIB/201902080000Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "IPV6-TC",
+            "version": "1998-12-01",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/IPV6-TC/199812010000Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "SNMP-COMMUNITY-MIB",
+            "version": "2003-08-06",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-COMMUNITY-MIB/200308060000Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "SNMP-FRAMEWORK-MIB",
+            "version": "2002-10-14",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-FRAMEWORK-MIB/200210140000Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "SNMP-MPD-MIB",
+            "version": "2002-10-14",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-MPD-MIB/200210140000Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "SNMP-NOTIFICATION-MIB",
+            "version": "2002-10-14",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-NOTIFICATION-MIB/200210140000Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "SNMP-TARGET-MIB",
+            "version": "2002-10-14",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-TARGET-MIB/200210140000Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "SNMP-USER-BASED-SM-MIB",
+            "version": "2002-10-16",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-USER-BASED-SM-MIB/200210160000Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "SNMP-VIEW-BASED-ACM-MIB",
+            "version": "2002-10-16",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-VIEW-BASED-ACM-MIB/200210160000Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "SNMPv2-MIB",
+            "version": "2002-10-16",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/SNMPv2-MIB/200210160000Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "SNMPv2-SMI",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/SNMPv2-SMI/1.0",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "SNMPv2-TC",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/SNMPv2-TC/1.0",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "TRANSPORT-ADDRESS-MIB",
+            "version": "2002-11-01",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/mibs/TRANSPORT-ADDRESS-MIB/200211010000Z",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-alarm-types",
+            "version": "2019-08-14",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/f5-alarm-types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-authentication",
+            "version": "2019-04-01",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/velocity/authentication",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-if-aggregate",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:f5-if-aggregate",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-if-ethernet",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:f5-if-ethernet",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-interface",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:f5-interface2-stats",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-l2fdb",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/f5-l2fdb",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-lacp",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:f5-lacp",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-logging-component-authd",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://velocity.f5.com/ns/f5-logging-component-authd",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-logging-component-velocity_rsyslogd",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://velocity.f5.com/ns/f5-logging-component-velocity_rsyslogd",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-ndi",
+            "version": "2019-03-25",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/ndi",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-openconfig-aaa-ldap",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/f5-openconfig-aaa-ldap",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-openconfig-alarms",
+            "version": "2019-08-23",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/f5-openconfig-alarms",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-openconfig-system-logging",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://velocity.f5.com/ns/logging",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-platform",
+            "version": "2018-10-09",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://velocity.f5.com/ns/platform",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-portgroup",
+            "version": "2018-07-20",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/portgroup",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-reset-counters",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/reset-counters",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-services",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/services",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-tenant-images",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/f5-tenant-images",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-tenant-service-instances",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/tenant-service-instances",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-tenant-types",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/f5-tenant-types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-tpob",
+            "version": "2019-03-21",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/tpob",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-vlan-types",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:f5-vlan-types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "f5-voq-state",
+            "version": "2019-09-30",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/voq-state",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "iana-crypt-hash",
+            "version": "2014-08-06",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:iana-crypt-hash",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "iana-if-type",
+            "version": "2014-05-19",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "ietf-inet-types",
+            "version": "2013-07-15",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "ietf-interfaces",
+            "version": "2018-02-20",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "ietf-netconf",
+            "version": "2011-06-01",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:netconf:base:1.0",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "ietf-netconf-acm",
+            "version": "2012-02-22",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-acm",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "ietf-netconf-monitoring",
+            "version": "2010-10-04",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "ietf-netconf-notifications",
+            "version": "2012-02-06",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-notifications",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "ietf-netconf-with-defaults",
+            "version": "2011-06-01",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-with-defaults",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "ietf-restconf-monitoring",
+            "version": "2017-01-26",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-restconf-monitoring",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "ietf-yang-library",
+            "version": "2016-06-21",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "ietf-yang-smiv2",
+            "version": "2012-06-22",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-smiv2",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "ietf-yang-types",
+            "version": "2013-07-15",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-aaa",
+            "version": "2018-11-21",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/aaa",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-aaa-radius",
+            "version": "2018-11-21",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/aaa",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-aaa-tacacs",
+            "version": "2018-11-21",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/aaa",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-aaa-types",
+            "version": "2018-11-21",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/aaa/types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-alarm-types",
+            "version": "2018-01-16",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/alarms/types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-alarms",
+            "version": "2018-11-21",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/alarms",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-extensions",
+            "version": "2017-04-11",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/openconfig-ext",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-if-aggregate",
+            "version": "2018-03-23",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/interfaces/aggregate",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-if-ethernet",
+            "version": "2018-04-10",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/interfaces/ethernet",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-if-types",
+            "version": "2018-01-05",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/openconfig-if-types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-inet-types",
+            "version": "2017-08-24",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/types/inet",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-interfaces",
+            "version": "2018-04-24",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/interfaces",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-lacp",
+            "version": "2017-05-05",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/lacp",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-messages",
+            "version": "2018-08-13",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/messages",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-platform",
+            "version": "2018-06-03",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/platform",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-platform-types",
+            "version": "2018-05-05",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/platform-types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-procmon",
+            "version": "2018-11-21",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/system/procmon",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-spanning-tree",
+            "version": "2017-07-14",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/spanning-tree",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-spanning-tree-types",
+            "version": "2017-07-14",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/spanning-tree/types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-system",
+            "version": "2019-01-29",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/system",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-system-logging",
+            "version": "2017-09-18",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/system/logging",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-system-management",
+            "version": "2018-11-21",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/system/management",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-system-terminal",
+            "version": "2018-11-21",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/system/terminal",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-types",
+            "version": "2018-05-05",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/openconfig-types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-vlan",
+            "version": "2018-02-14",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/vlan",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-vlan-types",
+            "version": "2018-02-14",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/vlan-types",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "openconfig-yang-types",
+            "version": "2018-04-24",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://openconfig.net/yang/types/yang",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "partition_manager",
+            "version": "",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://f5.com/ns/partition",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-aaa",
+            "version": "2015-06-16",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/aaa/1.1",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-acm",
+            "version": "2013-03-07",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/yang/acm",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-cli-extensions",
+            "version": "2018-04-19",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/yang/common",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-common",
+            "version": "2018-04-19",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/yang/common",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-common-monitoring",
+            "version": "2013-06-14",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/yang/common-monitoring",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-common-query",
+            "version": "2017-12-15",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/common/query",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-confd-monitoring",
+            "version": "2013-06-14",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/yang/confd-monitoring",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-kicker",
+            "version": "2017-09-28",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/kicker",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-meta-extensions",
+            "version": "2017-03-08",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/yang/common",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-netconf-monitoring",
+            "version": "2016-11-24",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/yang/netconf-monitoring",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-progress",
+            "version": "2018-06-21",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/progress",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-rollback",
+            "version": "2018-01-12",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/rollback",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-webui",
+            "version": "2013-03-07",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/ns/webui",
+            "location": ["NETCONF"]
+          },
+          {
+            "identifier": "tailf-xsd-types",
+            "version": "2017-11-20",
+            "format": "ietf-netconf-monitoring:yang",
+            "namespace": "http://tail-f.com/yang/xsd-types",
+            "location": ["NETCONF"]
+          }
+        ]
+      },
+      "sessions": {
+        "session": [
+          {
+            "session-id": 251,
+            "transport": "tailf-netconf-monitoring:rest-http",
+            "username": "admin",
+            "source-host": "172.27.134.121",
+            "login-time": "2019-10-24T17:11:10+00:00"
+          }
+        ]
+      },
+      "statistics": {
+        "netconf-start-time": "2019-10-24T10:17:15+00:00",
+        "in-bad-hellos": 0,
+        "in-sessions": 0,
+        "dropped-sessions": 0,
+        "in-rpcs": 0,
+        "in-bad-rpcs": 0,
+        "out-rpc-errors": 0,
+        "out-notifications": 0
+      }
+    },
+    "ietf-restconf-monitoring:restconf-state": {
+      "capabilities": {
+        "capability": ["urn:ietf:params:restconf:capability:defaults:1.0?basic-mode=report-all", "urn:ietf:params:restconf:capability:depth:1.0", "urn:ietf:params:restconf:capability:fields:1.0", "urn:ietf:params:restconf:capability:with-defaults:1.0", "urn:ietf:params:restconf:capability:filter:1.0", "urn:ietf:params:restconf:capability:replay:1.0", "urn:ietf:params:restconf:capability:yang-patch:1.0", "http://tail-f.com/ns/restconf/collection/1.0", "http://tail-f.com/ns/restconf/query-api/1.0"]
+      }
+    },
+    "ietf-yang-library:modules-state": {
+      "module-set-id": "bb2487b3906c8c269cd2b7edf77ad2dd",
+      "module": [
+        {
+          "name": "F5-ALERT-DEF-MIB",
+          "revision": "2019-08-01",
+          "schema": "http://localhost:8008/restconf/tailf/modules/F5-ALERT-DEF-MIB/2019-08-01",
+          "namespace": "http://tail-f.com/ns/mibs/F5-ALERT-DEF-MIB/201908010941Z",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "F5-COMMON-SMI-MIB",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/F5-COMMON-SMI-MIB",
+          "namespace": "http://tail-f.com/ns/mibs/F5-COMMON-SMI-MIB/1.0",
+          "conformance-type": "import"
+        },
+        {
+          "name": "IANAifType-MIB",
+          "revision": "2019-02-08",
+          "schema": "http://localhost:8008/restconf/tailf/modules/IANAifType-MIB/2019-02-08",
+          "namespace": "http://tail-f.com/ns/mibs/IANAifType-MIB/201902080000Z",
+          "conformance-type": "import"
+        },
+        {
+          "name": "IPV6-TC",
+          "revision": "1998-12-01",
+          "schema": "http://localhost:8008/restconf/tailf/modules/IPV6-TC/1998-12-01",
+          "namespace": "http://tail-f.com/ns/mibs/IPV6-TC/199812010000Z",
+          "conformance-type": "import"
+        },
+        {
+          "name": "SNMP-COMMUNITY-MIB",
+          "revision": "2003-08-06",
+          "schema": "http://localhost:8008/restconf/tailf/modules/SNMP-COMMUNITY-MIB/2003-08-06",
+          "namespace": "http://tail-f.com/ns/mibs/SNMP-COMMUNITY-MIB/200308060000Z",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "SNMP-FRAMEWORK-MIB",
+          "revision": "2002-10-14",
+          "schema": "http://localhost:8008/restconf/tailf/modules/SNMP-FRAMEWORK-MIB/2002-10-14",
+          "namespace": "http://tail-f.com/ns/mibs/SNMP-FRAMEWORK-MIB/200210140000Z",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "SNMP-MPD-MIB",
+          "revision": "2002-10-14",
+          "schema": "http://localhost:8008/restconf/tailf/modules/SNMP-MPD-MIB/2002-10-14",
+          "namespace": "http://tail-f.com/ns/mibs/SNMP-MPD-MIB/200210140000Z",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "SNMP-NOTIFICATION-MIB",
+          "revision": "2002-10-14",
+          "schema": "http://localhost:8008/restconf/tailf/modules/SNMP-NOTIFICATION-MIB/2002-10-14",
+          "namespace": "http://tail-f.com/ns/mibs/SNMP-NOTIFICATION-MIB/200210140000Z",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "SNMP-TARGET-MIB",
+          "revision": "2002-10-14",
+          "schema": "http://localhost:8008/restconf/tailf/modules/SNMP-TARGET-MIB/2002-10-14",
+          "namespace": "http://tail-f.com/ns/mibs/SNMP-TARGET-MIB/200210140000Z",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "SNMP-USER-BASED-SM-MIB",
+          "revision": "2002-10-16",
+          "schema": "http://localhost:8008/restconf/tailf/modules/SNMP-USER-BASED-SM-MIB/2002-10-16",
+          "namespace": "http://tail-f.com/ns/mibs/SNMP-USER-BASED-SM-MIB/200210160000Z",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "SNMP-VIEW-BASED-ACM-MIB",
+          "revision": "2002-10-16",
+          "schema": "http://localhost:8008/restconf/tailf/modules/SNMP-VIEW-BASED-ACM-MIB/2002-10-16",
+          "namespace": "http://tail-f.com/ns/mibs/SNMP-VIEW-BASED-ACM-MIB/200210160000Z",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "SNMPv2-MIB",
+          "revision": "2002-10-16",
+          "schema": "http://localhost:8008/restconf/tailf/modules/SNMPv2-MIB/2002-10-16",
+          "namespace": "http://tail-f.com/ns/mibs/SNMPv2-MIB/200210160000Z",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "SNMPv2-SMI",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/SNMPv2-SMI",
+          "namespace": "http://tail-f.com/ns/mibs/SNMPv2-SMI/1.0",
+          "conformance-type": "import"
+        },
+        {
+          "name": "SNMPv2-TC",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/SNMPv2-TC",
+          "namespace": "http://tail-f.com/ns/mibs/SNMPv2-TC/1.0",
+          "conformance-type": "import"
+        },
+        {
+          "name": "TRANSPORT-ADDRESS-MIB",
+          "revision": "2002-11-01",
+          "schema": "http://localhost:8008/restconf/tailf/modules/TRANSPORT-ADDRESS-MIB/2002-11-01",
+          "namespace": "http://tail-f.com/ns/mibs/TRANSPORT-ADDRESS-MIB/200211010000Z",
+          "conformance-type": "import"
+        },
+        {
+          "name": "f5-alarm-types",
+          "revision": "2019-08-14",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-alarm-types/2019-08-14",
+          "namespace": "http://f5.com/ns/f5-alarm-types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "f5-authentication",
+          "revision": "2019-04-01",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-authentication/2019-04-01",
+          "namespace": "http://f5.com/velocity/authentication",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-if-aggregate",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-if-aggregate",
+          "namespace": "urn:ietf:params:xml:ns:yang:f5-if-aggregate",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-if-ethernet",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-if-ethernet",
+          "namespace": "urn:ietf:params:xml:ns:yang:f5-if-ethernet",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-interface",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-interface",
+          "namespace": "urn:ietf:params:xml:ns:yang:f5-interface2-stats",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-l2fdb",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-l2fdb",
+          "namespace": "http://f5.com/ns/f5-l2fdb",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-lacp",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-lacp",
+          "namespace": "urn:ietf:params:xml:ns:yang:f5-lacp",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-logging-component-authd",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-logging-component-authd",
+          "namespace": "http://velocity.f5.com/ns/f5-logging-component-authd",
+          "conformance-type": "import"
+        },
+        {
+          "name": "f5-ndi",
+          "revision": "2019-03-25",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-ndi/2019-03-25",
+          "namespace": "http://f5.com/ns/ndi",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-openconfig-aaa-ldap",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-openconfig-aaa-ldap",
+          "namespace": "http://openconfig.net/yang/f5-openconfig-aaa-ldap",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-openconfig-alarms",
+          "revision": "2019-08-23",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-openconfig-alarms/2019-08-23",
+          "namespace": "http://f5.com/ns/f5-openconfig-alarms",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-openconfig-system-logging",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-openconfig-system-logging",
+          "namespace": "http://velocity.f5.com/ns/logging",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-platform",
+          "revision": "2018-10-09",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-platform/2018-10-09",
+          "namespace": "http://velocity.f5.com/ns/platform",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-portgroup",
+          "revision": "2018-07-20",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-portgroup/2018-07-20",
+          "namespace": "http://f5.com/ns/portgroup",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-reset-counters",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-reset-counters",
+          "namespace": "http://f5.com/ns/reset-counters",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-services",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-services",
+          "namespace": "http://f5.com/ns/services",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-tenant-images",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-tenant-images",
+          "namespace": "http://f5.com/ns/f5-tenant-images",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-tenant-service-instances",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-tenant-service-instances",
+          "namespace": "http://f5.com/ns/tenant-service-instances",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-tenant-types",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-tenant-types",
+          "namespace": "http://f5.com/ns/f5-tenant-types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "f5-tpob",
+          "revision": "2019-03-21",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-tpob/2019-03-21",
+          "namespace": "http://f5.com/ns/tpob",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "f5-vlan-types",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-vlan-types",
+          "namespace": "urn:ietf:params:xml:ns:yang:f5-vlan-types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "f5-voq-state",
+          "revision": "2019-09-30",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-voq-state/2019-09-30",
+          "namespace": "http://f5.com/ns/voq-state",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "iana-crypt-hash",
+          "revision": "2014-08-06",
+          "schema": "http://localhost:8008/restconf/tailf/modules/iana-crypt-hash/2014-08-06",
+          "namespace": "urn:ietf:params:xml:ns:yang:iana-crypt-hash",
+          "feature": ["crypt-hash-md5", "crypt-hash-sha-256", "crypt-hash-sha-512"],
+          "conformance-type": "import"
+        },
+        {
+          "name": "iana-if-type",
+          "revision": "2014-05-19",
+          "schema": "http://localhost:8008/restconf/tailf/modules/iana-if-type/2014-05-19",
+          "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
+          "conformance-type": "import"
+        },
+        {
+          "name": "ietf-inet-types",
+          "revision": "2013-07-15",
+          "schema": "http://localhost:8008/restconf/tailf/modules/ietf-inet-types/2013-07-15",
+          "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "ietf-interfaces",
+          "revision": "2018-02-20",
+          "schema": "http://localhost:8008/restconf/tailf/modules/ietf-interfaces/2018-02-20",
+          "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+          "feature": ["arbitrary-names", "if-mib", "pre-provisioning"],
+          "conformance-type": "import"
+        },
+        {
+          "name": "ietf-netconf-acm",
+          "revision": "2012-02-22",
+          "schema": "http://localhost:8008/restconf/tailf/modules/ietf-netconf-acm/2012-02-22",
+          "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-acm",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "ietf-netconf-monitoring",
+          "revision": "2010-10-04",
+          "schema": "http://localhost:8008/restconf/tailf/modules/ietf-netconf-monitoring/2010-10-04",
+          "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "ietf-netconf-notifications",
+          "revision": "2012-02-06",
+          "schema": "http://localhost:8008/restconf/tailf/modules/ietf-netconf-notifications/2012-02-06",
+          "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-notifications",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "ietf-restconf",
+          "revision": "2017-01-26",
+          "schema": "http://localhost:8008/restconf/tailf/modules/ietf-restconf/2017-01-26",
+          "namespace": "urn:ietf:params:xml:ns:yang:ietf-restconf",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "ietf-restconf-monitoring",
+          "revision": "2017-01-26",
+          "schema": "http://localhost:8008/restconf/tailf/modules/ietf-restconf-monitoring/2017-01-26",
+          "namespace": "urn:ietf:params:xml:ns:yang:ietf-restconf-monitoring",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "ietf-yang-library",
+          "revision": "2016-06-21",
+          "schema": "http://localhost:8008/restconf/tailf/modules/ietf-yang-library/2016-06-21",
+          "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "ietf-yang-patch",
+          "revision": "2017-02-22",
+          "schema": "http://localhost:8008/restconf/tailf/modules/ietf-yang-patch/2017-02-22",
+          "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-patch",
+          "conformance-type": "import"
+        },
+        {
+          "name": "ietf-yang-smiv2",
+          "revision": "2012-06-22",
+          "schema": "http://localhost:8008/restconf/tailf/modules/ietf-yang-smiv2/2012-06-22",
+          "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-smiv2",
+          "conformance-type": "import"
+        },
+        {
+          "name": "ietf-yang-types",
+          "revision": "2013-07-15",
+          "schema": "http://localhost:8008/restconf/tailf/modules/ietf-yang-types/2013-07-15",
+          "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-aaa",
+          "revision": "2018-11-21",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-aaa/2018-11-21",
+          "namespace": "http://openconfig.net/yang/aaa",
+          "conformance-type": "import",
+          "submodule": [
+            {
+              "name": "openconfig-aaa-radius",
+              "revision": "2018-11-21",
+              "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-aaa-radius/2018-11-21"
+            },
+            {
+              "name": "openconfig-aaa-tacacs",
+              "revision": "2018-11-21",
+              "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-aaa-tacacs/2018-11-21"
+            }
+          ]
+        },
+        {
+          "name": "openconfig-aaa-types",
+          "revision": "2018-11-21",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-aaa-types/2018-11-21",
+          "namespace": "http://openconfig.net/yang/aaa/types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-alarm-types",
+          "revision": "2018-01-16",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-alarm-types/2018-01-16",
+          "namespace": "http://openconfig.net/yang/alarms/types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-alarms",
+          "revision": "2018-11-21",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-alarms/2018-11-21",
+          "namespace": "http://openconfig.net/yang/alarms",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "openconfig-extensions",
+          "revision": "2017-04-11",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-extensions/2017-04-11",
+          "namespace": "http://openconfig.net/yang/openconfig-ext",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-if-aggregate",
+          "revision": "2018-03-23",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-if-aggregate/2018-03-23",
+          "namespace": "http://openconfig.net/yang/interfaces/aggregate",
+          "deviation": [
+            {
+              "name": "f5-openconfig-if-aggregate-deviations",
+              "revision": ""
+            }
+          ],
+          "conformance-type": "implement"
+        },
+        {
+          "name": "openconfig-if-ethernet",
+          "revision": "2018-04-10",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-if-ethernet/2018-04-10",
+          "namespace": "http://openconfig.net/yang/interfaces/ethernet",
+          "deviation": [
+            {
+              "name": "f5-openconfig-if-ethernet-deviations",
+              "revision": ""
+            }
+          ],
+          "conformance-type": "implement"
+        },
+        {
+          "name": "openconfig-if-types",
+          "revision": "2018-01-05",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-if-types/2018-01-05",
+          "namespace": "http://openconfig.net/yang/openconfig-if-types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-inet-types",
+          "revision": "2017-08-24",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-inet-types/2017-08-24",
+          "namespace": "http://openconfig.net/yang/types/inet",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-interfaces",
+          "revision": "2018-04-24",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-interfaces/2018-04-24",
+          "namespace": "http://openconfig.net/yang/interfaces",
+          "deviation": [
+            {
+              "name": "f5-openconfig-interfaces-deviations",
+              "revision": ""
+            }
+          ],
+          "conformance-type": "implement"
+        },
+        {
+          "name": "openconfig-lacp",
+          "revision": "2017-05-05",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-lacp/2017-05-05",
+          "namespace": "http://openconfig.net/yang/lacp",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "openconfig-messages",
+          "revision": "2018-08-13",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-messages/2018-08-13",
+          "namespace": "http://openconfig.net/yang/messages",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "openconfig-platform",
+          "revision": "2018-06-03",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-platform/2018-06-03",
+          "namespace": "http://openconfig.net/yang/platform",
+          "deviation": [
+            {
+              "name": "f5-openconfig-platform-deviations",
+              "revision": ""
+            }
+          ],
+          "conformance-type": "implement"
+        },
+        {
+          "name": "openconfig-platform-types",
+          "revision": "2018-05-05",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-platform-types/2018-05-05",
+          "namespace": "http://openconfig.net/yang/platform-types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-procmon",
+          "revision": "2018-11-21",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-procmon/2018-11-21",
+          "namespace": "http://openconfig.net/yang/system/procmon",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-spanning-tree",
+          "revision": "2017-07-14",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-spanning-tree/2017-07-14",
+          "namespace": "http://openconfig.net/yang/spanning-tree",
+          "deviation": [
+            {
+              "name": "f5-openconfig-spanning-tree-deviations",
+              "revision": ""
+            }
+          ],
+          "conformance-type": "implement"
+        },
+        {
+          "name": "openconfig-spanning-tree-types",
+          "revision": "2017-07-14",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-spanning-tree-types/2017-07-14",
+          "namespace": "http://openconfig.net/yang/spanning-tree/types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-system",
+          "revision": "2019-01-29",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-system/2019-01-29",
+          "namespace": "http://openconfig.net/yang/system",
+          "deviation": [
+            {
+              "name": "f5-openconfig-aaa-deviations",
+              "revision": ""
+            },
+            {
+              "name": "f5-openconfig-system-deviations",
+              "revision": "2019-08-23"
+            },
+            {
+              "name": "f5-openconfig-system-logging-deviations",
+              "revision": ""
+            }
+          ],
+          "conformance-type": "implement"
+        },
+        {
+          "name": "openconfig-system-logging",
+          "revision": "2017-09-18",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-system-logging/2017-09-18",
+          "namespace": "http://openconfig.net/yang/system/logging",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "openconfig-system-management",
+          "revision": "2018-11-21",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-system-management/2018-11-21",
+          "namespace": "http://openconfig.net/yang/system/management",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-system-terminal",
+          "revision": "2018-11-21",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-system-terminal/2018-11-21",
+          "namespace": "http://openconfig.net/yang/system/terminal",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-types",
+          "revision": "2018-05-05",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-types/2018-05-05",
+          "namespace": "http://openconfig.net/yang/openconfig-types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-vlan",
+          "revision": "2018-02-14",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-vlan/2018-02-14",
+          "namespace": "http://openconfig.net/yang/vlan",
+          "deviation": [
+            {
+              "name": "f5-openconfig-vlan-deviations",
+              "revision": ""
+            }
+          ],
+          "conformance-type": "implement"
+        },
+        {
+          "name": "openconfig-vlan-types",
+          "revision": "2018-02-14",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-vlan-types/2018-02-14",
+          "namespace": "http://openconfig.net/yang/vlan-types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "openconfig-yang-types",
+          "revision": "2018-04-24",
+          "schema": "http://localhost:8008/restconf/tailf/modules/openconfig-yang-types/2018-04-24",
+          "namespace": "http://openconfig.net/yang/types/yang",
+          "conformance-type": "import"
+        },
+        {
+          "name": "partition_manager",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/partition_manager",
+          "namespace": "http://f5.com/ns/partition",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "tailf-aaa",
+          "revision": "2015-06-16",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-aaa/2015-06-16",
+          "namespace": "http://tail-f.com/ns/aaa/1.1",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "tailf-acm",
+          "revision": "2013-03-07",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-acm/2013-03-07",
+          "namespace": "http://tail-f.com/yang/acm",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "tailf-common",
+          "revision": "2018-04-19",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-common/2018-04-19",
+          "namespace": "http://tail-f.com/yang/common",
+          "conformance-type": "import",
+          "submodule": [
+            {
+              "name": "tailf-cli-extensions",
+              "revision": "2018-04-19",
+              "schema": "http://localhost:8008/restconf/tailf/modules/tailf-cli-extensions/2018-04-19"
+            },
+            {
+              "name": "tailf-meta-extensions",
+              "revision": "2017-03-08",
+              "schema": "http://localhost:8008/restconf/tailf/modules/tailf-meta-extensions/2017-03-08"
+            }
+          ]
+        },
+        {
+          "name": "tailf-common-monitoring",
+          "revision": "2013-06-14",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-common-monitoring/2013-06-14",
+          "namespace": "http://tail-f.com/yang/common-monitoring",
+          "conformance-type": "import"
+        },
+        {
+          "name": "tailf-common-query",
+          "revision": "2017-12-15",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-common-query/2017-12-15",
+          "namespace": "http://tail-f.com/ns/common/query",
+          "conformance-type": "import"
+        },
+        {
+          "name": "tailf-confd-monitoring",
+          "revision": "2013-06-14",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-confd-monitoring/2013-06-14",
+          "namespace": "http://tail-f.com/yang/confd-monitoring",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "tailf-kicker",
+          "revision": "2017-09-28",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-kicker/2017-09-28",
+          "namespace": "http://tail-f.com/ns/kicker",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "tailf-netconf-monitoring",
+          "revision": "2016-11-24",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-netconf-monitoring/2016-11-24",
+          "namespace": "http://tail-f.com/yang/netconf-monitoring",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "tailf-progress",
+          "revision": "2018-06-21",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-progress/2018-06-21",
+          "namespace": "http://tail-f.com/ns/progress",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "tailf-rollback",
+          "revision": "2018-01-12",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-rollback/2018-01-12",
+          "namespace": "http://tail-f.com/ns/rollback",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "tailf-webui",
+          "revision": "2013-03-07",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-webui/2013-03-07",
+          "namespace": "http://tail-f.com/ns/webui",
+          "conformance-type": "implement"
+        },
+        {
+          "name": "tailf-xsd-types",
+          "revision": "2017-11-20",
+          "schema": "http://localhost:8008/restconf/tailf/modules/tailf-xsd-types/2017-11-20",
+          "namespace": "http://tail-f.com/yang/xsd-types",
+          "conformance-type": "import"
+        },
+        {
+          "name": "f5-logging-component-velocity_rsyslogd",
+          "revision": "",
+          "schema": "http://localhost:8008/restconf/tailf/modules/f5-logging-component-velocity_rsyslogd",
+          "namespace": "http://velocity.f5.com/ns/f5-logging-component-velocity_rsyslogd",
+          "conformance-type": "import"
+        }
+      ]
+    },
+    "openconfig-platform:components": {
+      "component": [
+        {
+          "name": "blade-1",
+          "config": {
+            "name": "blade-1"
+          },
+          "state": {
+            "serial-no": "bld424210s",
+            "part-no": "400-0086-00 REV 2",
+            "empty": false,
+            "memory": {
+              "available": "137438953472"
+            },
+            "openconfig-alarms:equipment-failure": false,
+            "openconfig-alarms:equipment-mismatch": false
+          },
+          "properties": {
+            "property": [
+              {
+                "name": "QAT0",
+                "config": {
+                  "name": "QAT0"
+                },
+                "state": {
+                  "value": "Lewisburg C62X Crypto/Compression",
+                  "configurable": false
+                }
+              },
+              {
+                "name": "QAT1",
+                "config": {
+                  "name": "QAT1"
+                },
+                "state": {
+                  "value": "Lewisburg C62X Crypto/Compression",
+                  "configurable": false
+                }
+              },
+              {
+                "name": "QAT2",
+                "config": {
+                  "name": "QAT2"
+                },
+                "state": {
+                  "value": "Lewisburg C62X Crypto/Compression",
+                  "configurable": false
+                }
+              },
+              {
+                "name": "fw-version-bios",
+                "config": {
+                  "name": "fw-version-bios"
+                },
+                "state": {
+                  "value": "1.17.151.0",
+                  "configurable": false
+                }
+              },
+              {
+                "name": "fw-version-bios-me",
+                "config": {
+                  "name": "fw-version-bios-me"
+                },
+                "state": {
+                  "value": "4.0.4.106",
+                  "configurable": false
+                }
+              },
+              {
+                "name": "fw-version-cpld",
+                "config": {
+                  "name": "fw-version-cpld"
+                },
+                "state": {
+                  "value": "04.01.05",
+                  "configurable": false
+                }
+              },
+              {
+                "name": "fw-version-lop-app",
+                "config": {
+                  "name": "fw-version-lop-app"
+                },
+                "state": {
+                  "value": "1.00.767.0.2",
+                  "configurable": false
+                }
+              },
+              {
+                "name": "fw-version-lop-bootloader",
+                "config": {
+                  "name": "fw-version-lop-bootloader"
+                },
+                "state": {
+                  "value": "1.00.335.0.0",
+                  "configurable": false
+                }
+              }
+            ]
+          },
+          "storage": {
+            "state": {
+              "f5-platform:disks": {
+                "disk": [
+                  {
+                    "disk-name": "nvme0n1",
+                    "state": {
+                      "model": "INTEL SSDPELKX010T8",
+                      "vendor": "Intel",
+                      "version": "VCV10301",
+                      "serial-no": "BTLJ83040JA61P0I",
+                      "size": "1000.00GB",
+                      "type": "nvme"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "cpu": {
+            "state": {
+              "f5-platform:processors": {
+                "processor": [
+                  {
+                    "cpu-index": 0,
+                    "state": {
+                      "cachesize": "19712(KB)",
+                      "core-cnt": "14",
+                      "freq": "2046.813(MHz)",
+                      "stepping": "4",
+                      "thread-cnt": "28",
+                      "modelname": "Intel(R) Xeon(R) D-2177NT CPU @ 1.90GHz"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "openconfig-spanning-tree:stp": {
+      "rstp": {
+        "config": {
+          "hold-count": 6
+        },
+        "state": {
+          "hold-count": 6
+        }
+      },
+      "mstp": {
+        "config": {
+          "hold-count": 6
+        },
+        "state": {
+          "hold-count": 6
+        }
+      }
+    },
+    "openconfig-system:system": {
+      "ntp": {
+        "config": {
+          "enabled": false,
+          "enable-ntp-auth": false
+        },
+        "state": {
+          "enabled": false,
+          "enable-ntp-auth": false
+        }
+      },
+      "grpc-server": {
+        "config": {
+          "enable": true
+        },
+        "state": {
+          "enable": true
+        }
+      },
+      "ssh-server": {
+        "config": {
+          "enable": true,
+          "protocol-version": "V2"
+        },
+        "state": {
+          "enable": true,
+          "protocol-version": "V2"
+        }
+      },
+      "telnet-server": {
+        "config": {
+          "enable": false
+        },
+        "state": {
+          "enable": false
+        }
+      },
+      "logging": {
+        "f5-openconfig-system-logging:sw-components": {
+          "sw-component": [
+            {
+              "name": "f5-logging-component-velocity_rsyslogd:velocity_rsyslogd",
+              "config": {
+                "name": "f5-logging-component-velocity_rsyslogd:velocity_rsyslogd",
+                "levels": ["EMERGENCY", "ALERT", "CRITICAL", "ERROR"]
+              }
+            },
+            {
+              "name": "f5-logging-component-authd:authd",
+              "config": {
+                "name": "f5-logging-component-authd:authd",
+                "levels": ["EMERGENCY", "ALERT", "CRITICAL", "ERROR"]
+              }
+            }
+          ]
+        }
+      },
+      "aaa": {
+        "authentication": {
+          "f5-openconfig-aaa-ldap:ldap": {
+            "bind_timelimit": 10,
+            "timelimit": 0,
+            "idle_timelimit": 0,
+            "version": 3
+          }
+        }
+      }
+    },
+    "partition_manager:partition": {
+      "name": "default",
+      "mgmt": "10.0.0.1",
+      "chassis-base-mac": "00:0a:49:ff:44:00",
+      "slots": {
+        "slot": [
+          {
+            "slot_num": 1,
+            "config": {
+              "enabled_status": "enabled"
+            },
+            "state": {
+              "status": "ready",
+              "admin_status": "enabled",
+              "name": "osnode-1.mydomain.com",
+              "fpga_state": "FPGA_INIT",
+              "dma_agent_state": "DMA_AGENT_INIT"
+            },
+            "disk-data": {
+              "state": {
+                "stats": [
+                  {
+                    "disk-data-name": "capacity",
+                    "disk-data-value": "979105116160"
+                  },
+                  {
+                  },
+                  {
+                    "disk-data-name": "images",
+                    "disk-data-value": "4"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "slot_num": 2,
+            "config": {
+              "enabled_status": "enabled"
+            },
+            "state": {
+              "status": "empty",
+              "admin_status": "enabled",
+              "name": "unknown",
+              "fpga_state": "FPGA_INIT",
+              "dma_agent_state": "DMA_AGENT_INIT"
+            }
+          },
+          {
+            "slot_num": 3,
+            "config": {
+              "enabled_status": "enabled"
+            },
+            "state": {
+              "status": "empty",
+              "admin_status": "enabled",
+              "name": "unknown",
+              "fpga_state": "FPGA_INIT",
+              "dma_agent_state": "DMA_AGENT_INIT"
+            }
+          },
+          {
+            "slot_num": 4,
+            "config": {
+              "enabled_status": "enabled"
+            },
+            "state": {
+              "status": "empty",
+              "admin_status": "enabled",
+              "name": "unknown",
+              "fpga_state": "FPGA_INIT",
+              "dma_agent_state": "DMA_AGENT_INIT"
+            }
+          },
+          {
+            "slot_num": 5,
+            "config": {
+              "enabled_status": "enabled"
+            },
+            "state": {
+              "status": "empty",
+              "admin_status": "enabled",
+              "name": "unknown",
+              "fpga_state": "FPGA_INIT",
+              "dma_agent_state": "DMA_AGENT_INIT"
+            }
+          },
+          {
+            "slot_num": 6,
+            "config": {
+              "enabled_status": "enabled"
+            },
+            "state": {
+              "status": "empty",
+              "admin_status": "enabled",
+              "name": "unknown",
+              "fpga_state": "FPGA_INIT",
+              "dma_agent_state": "DMA_AGENT_INIT"
+            }
+          },
+          {
+            "slot_num": 7,
+            "config": {
+              "enabled_status": "enabled"
+            },
+            "state": {
+              "status": "empty",
+              "admin_status": "enabled",
+              "name": "unknown",
+              "fpga_state": "FPGA_INIT",
+              "dma_agent_state": "DMA_AGENT_INIT"
+            }
+          },
+          {
+            "slot_num": 8,
+            "config": {
+              "enabled_status": "enabled"
+            },
+            "state": {
+              "status": "empty",
+              "admin_status": "enabled",
+              "name": "unknown",
+              "fpga_state": "FPGA_INIT",
+              "dma_agent_state": "DMA_AGENT_INIT"
+            }
+          }
+        ]
+      }
+    },
+    "partition_manager:users": {
+      "user": [
+        {
+          "username": "admin",
+          "password": "$1$dGhrYMqv$bv6Aybw0BKEqwPrfm2AMj1"
+        },
+        {
+          "username": "root",
+          "password": "$1$P091YbXN$swKTe9StkpjAA1wtc3dB8."
+        }
+      ]
+    },
+    "tailf-aaa:aaa": {
+      "authentication": {
+        "users": {
+          "user": [
+            {
+              "name": "admin",
+              "uid": 1000,
+              "gid": 1000,
+              "password": "$6$9VYUlp8b$mNq0rpngu/Tkh8oK1W.P3OiDuVv58XfcijmZwOeqN18Qs2E/u2havCxnBrhQS8JOW4i.J1pLCCVmwtOev/Zhu1",
+              "ssh_keydir": "./ssh-keydir",
+              "homedir": "/var/F5/partition"
+            }
+          ]
+        }
+      },
+      "ios": {
+        "level": [
+          {
+            "nr": 0,
+            "prompt": "\\h> "
+          },
+          {
+            "nr": 15,
+            "prompt": "\\h# "
+          }
+        ],
+        "privilege": [
+          {
+            "mode": "exec",
+            "level": [
+              {
+                "nr": 0,
+                "command": [
+                  {
+                    "name": "action"
+                  },
+                  {
+                    "name": "autowizard"
+                  },
+                  {
+                    "name": "enable"
+                  },
+                  {
+                    "name": "exit"
+                  },
+                  {
+                    "name": "help"
+                  },
+                  {
+                    "name": "startup"
+                  }
+                ]
+              },
+              {
+                "nr": 15,
+                "command": [
+                  {
+                    "name": "configure"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "tailf-confd-monitoring:confd-state": {
+      "version": "6.7",
+      "epoll": false,
+      "daemon-status": "started",
+      "ha": {
+        "mode": "master",
+        "node-id": "controller-1",
+        "connected-slave": ["blade-1"]
+      },
+      "loaded-data-models": {
+        "data-model": [
+          {
+            "name": "F5-ALERT-DEF-MIB",
+            "revision": "2019-08-01",
+            "namespace": "http://tail-f.com/ns/mibs/F5-ALERT-DEF-MIB/201908010941Z",
+            "prefix": "F5_ALERT_DEF_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "F5-COMMON-SMI-MIB",
+            "namespace": "http://tail-f.com/ns/mibs/F5-COMMON-SMI-MIB/1.0",
+            "prefix": "F5_COMMON_SMI_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "IANAifType-MIB",
+            "revision": "2019-02-08",
+            "namespace": "http://tail-f.com/ns/mibs/IANAifType-MIB/201902080000Z",
+            "prefix": "IANAifType_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "IF-MIB",
+            "revision": "2000-06-14",
+            "namespace": "http://tail-f.com/ns/mibs/IF-MIB/200006140000Z",
+            "prefix": "IF_MIB"
+          },
+          {
+            "name": "IPV6-TC",
+            "revision": "1998-12-01",
+            "namespace": "http://tail-f.com/ns/mibs/IPV6-TC/199812010000Z",
+            "prefix": "IPV6_TC",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "SNMP-COMMUNITY-MIB",
+            "revision": "2003-08-06",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-COMMUNITY-MIB/200308060000Z",
+            "prefix": "SNMP_COMMUNITY_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "SNMP-FRAMEWORK-MIB",
+            "revision": "2002-10-14",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-FRAMEWORK-MIB/200210140000Z",
+            "prefix": "SNMP_FRAMEWORK_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "SNMP-MPD-MIB",
+            "revision": "2002-10-14",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-MPD-MIB/200210140000Z",
+            "prefix": "SNMP_MPD_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "SNMP-NOTIFICATION-MIB",
+            "revision": "2002-10-14",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-NOTIFICATION-MIB/200210140000Z",
+            "prefix": "SNMP_NOTIFICATION_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "SNMP-TARGET-MIB",
+            "revision": "2002-10-14",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-TARGET-MIB/200210140000Z",
+            "prefix": "SNMP_TARGET_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "SNMP-USER-BASED-SM-MIB",
+            "revision": "2002-10-16",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-USER-BASED-SM-MIB/200210160000Z",
+            "prefix": "SNMP_USER_BASED_SM_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "SNMP-VIEW-BASED-ACM-MIB",
+            "revision": "2002-10-16",
+            "namespace": "http://tail-f.com/ns/mibs/SNMP-VIEW-BASED-ACM-MIB/200210160000Z",
+            "prefix": "SNMP_VIEW_BASED_ACM_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "SNMPv2-MIB",
+            "revision": "2002-10-16",
+            "namespace": "http://tail-f.com/ns/mibs/SNMPv2-MIB/200210160000Z",
+            "prefix": "SNMPv2_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "SNMPv2-SMI",
+            "namespace": "http://tail-f.com/ns/mibs/SNMPv2-SMI/1.0",
+            "prefix": "SNMPv2_SMI",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "SNMPv2-TC",
+            "namespace": "http://tail-f.com/ns/mibs/SNMPv2-TC/1.0",
+            "prefix": "SNMPv2_TC",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "TRANSPORT-ADDRESS-MIB",
+            "revision": "2002-11-01",
+            "namespace": "http://tail-f.com/ns/mibs/TRANSPORT-ADDRESS-MIB/200211010000Z",
+            "prefix": "TRANSPORT_ADDRESS_MIB",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-alarm-types",
+            "revision": "2019-08-14",
+            "namespace": "http://f5.com/ns/f5-alarm-types",
+            "prefix": "f5_alarm_types",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-authentication",
+            "revision": "2019-04-01",
+            "namespace": "http://f5.com/velocity/authentication",
+            "prefix": "authentication",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-if-aggregate",
+            "namespace": "urn:ietf:params:xml:ns:yang:f5-if-aggregate",
+            "prefix": "f5-if-lag",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-if-ethernet",
+            "namespace": "urn:ietf:params:xml:ns:yang:f5-if-ethernet",
+            "prefix": "f5-if-eth",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-interface",
+            "namespace": "urn:ietf:params:xml:ns:yang:f5-interface2-stats",
+            "prefix": "f5-if",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-l2fdb",
+            "namespace": "http://f5.com/ns/f5-l2fdb",
+            "prefix": "f5-l2fdb",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-lacp",
+            "namespace": "urn:ietf:params:xml:ns:yang:f5-lacp",
+            "prefix": "f5-lacp",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-logging-component-authd",
+            "namespace": "http://velocity.f5.com/ns/f5-logging-component-authd",
+            "prefix": "f5-lc-authd",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-logging-component-velocity_rsyslogd",
+            "namespace": "http://velocity.f5.com/ns/f5-logging-component-velocity_rsyslogd",
+            "prefix": "f5-lc-velocity_rsyslogd",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-ndi",
+            "revision": "2019-03-25",
+            "namespace": "http://f5.com/ns/ndi",
+            "prefix": "ndi",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-openconfig-aaa-ldap",
+            "namespace": "http://openconfig.net/yang/f5-openconfig-aaa-ldap",
+            "prefix": "oc-aaa-f5-ldap",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-openconfig-alarms",
+            "revision": "2019-08-23",
+            "namespace": "http://f5.com/ns/f5-openconfig-alarms",
+            "prefix": "f5-alarms",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-openconfig-system-logging",
+            "namespace": "http://velocity.f5.com/ns/logging",
+            "prefix": "f5-logging",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-platform",
+            "revision": "2018-10-09",
+            "namespace": "http://velocity.f5.com/ns/platform",
+            "prefix": "f5-platform",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-portgroup",
+            "revision": "2018-07-20",
+            "namespace": "http://f5.com/ns/portgroup",
+            "prefix": "pg",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-reset-counters",
+            "namespace": "http://f5.com/ns/reset-counters",
+            "prefix": "f5resetcounters",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-services",
+            "namespace": "http://f5.com/ns/services",
+            "prefix": "services",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-tenant-images",
+            "namespace": "http://f5.com/ns/f5-tenant-images",
+            "prefix": "f5timg",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-tenant-service-instances",
+            "namespace": "http://f5.com/ns/tenant-service-instances",
+            "prefix": "service-instances",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-tenant-types",
+            "namespace": "http://f5.com/ns/f5-tenant-types",
+            "prefix": "tentypes",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-tpob",
+            "revision": "2019-03-21",
+            "namespace": "http://f5.com/ns/tpob",
+            "prefix": "tpob",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-vlan-types",
+            "namespace": "urn:ietf:params:xml:ns:yang:f5-vlan-types",
+            "prefix": "f5-vlan-types",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "f5-voq-state",
+            "revision": "2019-09-30",
+            "namespace": "http://f5.com/ns/voq-state",
+            "prefix": "f5voq",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "iana-crypt-hash",
+            "revision": "2014-08-06",
+            "namespace": "urn:ietf:params:xml:ns:yang:iana-crypt-hash",
+            "prefix": "ianach",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "iana-if-type",
+            "revision": "2014-05-19",
+            "namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
+            "prefix": "ianaift",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "ietf-inet-types",
+            "revision": "2013-07-15",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+            "prefix": "inet",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "ietf-interfaces",
+            "revision": "2018-02-20",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+            "prefix": "if",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "ietf-netconf-acm",
+            "revision": "2012-02-22",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-acm",
+            "prefix": "nacm",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "ietf-netconf-monitoring",
+            "revision": "2010-10-04",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring",
+            "prefix": "ncm",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "ietf-netconf-notifications",
+            "revision": "2012-02-06",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-notifications",
+            "prefix": "ncn",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "ietf-restconf",
+            "revision": "2017-01-26",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-restconf",
+            "prefix": "rc",
+            "exported-to": ["rest"]
+          },
+          {
+            "name": "ietf-restconf-monitoring",
+            "revision": "2017-01-26",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-restconf-monitoring",
+            "prefix": "rcmon",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "ietf-yang-library",
+            "revision": "2016-06-21",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library",
+            "prefix": "yanglib",
+            "exported-to": ["netconf", "rest"]
+          },
+          {
+            "name": "ietf-yang-patch",
+            "revision": "2017-02-22",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-patch",
+            "prefix": "ypatch",
+            "exported-to": ["rest"]
+          },
+          {
+            "name": "ietf-yang-smiv2",
+            "revision": "2012-06-22",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-smiv2",
+            "prefix": "smiv2",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "ietf-yang-types",
+            "revision": "2013-07-15",
+            "namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+            "prefix": "yang",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-aaa",
+            "revision": "2018-11-21",
+            "namespace": "http://openconfig.net/yang/aaa",
+            "prefix": "oc-aaa",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-aaa-types",
+            "revision": "2018-11-21",
+            "namespace": "http://openconfig.net/yang/aaa/types",
+            "prefix": "oc-aaa-types",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-alarm-types",
+            "revision": "2018-01-16",
+            "namespace": "http://openconfig.net/yang/alarms/types",
+            "prefix": "oc-alarm-types",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-alarms",
+            "revision": "2018-11-21",
+            "namespace": "http://openconfig.net/yang/alarms",
+            "prefix": "oc-alarms",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-extensions",
+            "revision": "2017-04-11",
+            "namespace": "http://openconfig.net/yang/openconfig-ext",
+            "prefix": "oc-ext",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-if-aggregate",
+            "revision": "2018-03-23",
+            "namespace": "http://openconfig.net/yang/interfaces/aggregate",
+            "prefix": "oc-lag",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-if-ethernet",
+            "revision": "2018-04-10",
+            "namespace": "http://openconfig.net/yang/interfaces/ethernet",
+            "prefix": "oc-eth",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-if-types",
+            "revision": "2018-01-05",
+            "namespace": "http://openconfig.net/yang/openconfig-if-types",
+            "prefix": "oc-ift",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-inet-types",
+            "revision": "2017-08-24",
+            "namespace": "http://openconfig.net/yang/types/inet",
+            "prefix": "oc-inet",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-interfaces",
+            "revision": "2018-04-24",
+            "namespace": "http://openconfig.net/yang/interfaces",
+            "prefix": "oc-if",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-lacp",
+            "revision": "2017-05-05",
+            "namespace": "http://openconfig.net/yang/lacp",
+            "prefix": "oc-lacp",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-messages",
+            "revision": "2018-08-13",
+            "namespace": "http://openconfig.net/yang/messages",
+            "prefix": "oc-messages",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-platform",
+            "revision": "2018-06-03",
+            "namespace": "http://openconfig.net/yang/platform",
+            "prefix": "oc-platform",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-platform-types",
+            "revision": "2018-05-05",
+            "namespace": "http://openconfig.net/yang/platform-types",
+            "prefix": "oc-platform-types",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-procmon",
+            "revision": "2018-11-21",
+            "namespace": "http://openconfig.net/yang/system/procmon",
+            "prefix": "oc-proc",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-spanning-tree",
+            "revision": "2017-07-14",
+            "namespace": "http://openconfig.net/yang/spanning-tree",
+            "prefix": "oc-stp",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-spanning-tree-types",
+            "revision": "2017-07-14",
+            "namespace": "http://openconfig.net/yang/spanning-tree/types",
+            "prefix": "oc-stp-types",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-system",
+            "revision": "2019-01-29",
+            "namespace": "http://openconfig.net/yang/system",
+            "prefix": "oc-sys",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-system-logging",
+            "revision": "2017-09-18",
+            "namespace": "http://openconfig.net/yang/system/logging",
+            "prefix": "oc-log",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-system-management",
+            "revision": "2018-11-21",
+            "namespace": "http://openconfig.net/yang/system/management",
+            "prefix": "oc-sys-mgmt",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-system-terminal",
+            "revision": "2018-11-21",
+            "namespace": "http://openconfig.net/yang/system/terminal",
+            "prefix": "oc-sys-term",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-types",
+            "revision": "2018-05-05",
+            "namespace": "http://openconfig.net/yang/openconfig-types",
+            "prefix": "oc-types",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-vlan",
+            "revision": "2018-02-14",
+            "namespace": "http://openconfig.net/yang/vlan",
+            "prefix": "oc-vlan",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-vlan-types",
+            "revision": "2018-02-14",
+            "namespace": "http://openconfig.net/yang/vlan-types",
+            "prefix": "oc-vlan-types",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "openconfig-yang-types",
+            "revision": "2018-04-24",
+            "namespace": "http://openconfig.net/yang/types/yang",
+            "prefix": "oc-yang",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "partition_manager",
+            "namespace": "http://f5.com/ns/partition",
+            "prefix": "f5_part",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "tailf-aaa",
+            "revision": "2015-06-16",
+            "namespace": "http://tail-f.com/ns/aaa/1.1",
+            "prefix": "aaa",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "tailf-acm",
+            "revision": "2013-03-07",
+            "namespace": "http://tail-f.com/yang/acm",
+            "prefix": "tacm",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "tailf-common",
+            "revision": "2018-04-19",
+            "namespace": "http://tail-f.com/yang/common",
+            "prefix": "tailf",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "tailf-common-monitoring",
+            "revision": "2013-06-14",
+            "namespace": "http://tail-f.com/yang/common-monitoring",
+            "prefix": "tfcg",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "tailf-common-query",
+            "revision": "2017-12-15",
+            "namespace": "http://tail-f.com/ns/common/query",
+            "prefix": "tfcq",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "tailf-confd-monitoring",
+            "revision": "2013-06-14",
+            "namespace": "http://tail-f.com/yang/confd-monitoring",
+            "prefix": "tfcm",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "tailf-kicker",
+            "revision": "2017-09-28",
+            "namespace": "http://tail-f.com/ns/kicker",
+            "prefix": "kicker",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "tailf-netconf-monitoring",
+            "revision": "2016-11-24",
+            "namespace": "http://tail-f.com/yang/netconf-monitoring",
+            "prefix": "tncm",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "tailf-progress",
+            "revision": "2018-06-21",
+            "namespace": "http://tail-f.com/ns/progress",
+            "prefix": "progress",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "tailf-rollback",
+            "revision": "2018-01-12",
+            "namespace": "http://tail-f.com/ns/rollback",
+            "prefix": "rollback",
+            "exported-to": ["rest", "netconf", "maapi"]
+          },
+          {
+            "name": "tailf-webui",
+            "revision": "2013-03-07",
+            "namespace": "http://tail-f.com/ns/webui",
+            "prefix": "webui",
+            "exported-to-all": [null]
+          },
+          {
+            "name": "tailf-xsd-types",
+            "revision": "2017-11-20",
+            "namespace": "http://tail-f.com/yang/xsd-types",
+            "prefix": "xs",
+            "exported-to-all": [null]
+          }
+        ]
+      },
+      "netconf": {
+      },
+      "cli": {
+      },
+      "webui": {
+        "listen": {
+          "tcp": [
+            {
+              "ip": "0.0.0.0",
+              "port": 8008
+            }
+          ]
+        }
+      },
+      "rest": {
+        "listen": {
+          "tcp": [
+            {
+              "ip": "0.0.0.0",
+              "port": 8008
+            }
+          ]
+        }
+      },
+      "snmp": {
+        "listen": {
+          "udp": [
+            {
+              "ip": "0.0.0.0",
+              "port": 161
+            }
+          ]
+        },
+        "mib": ["SNMP-MPD-MIB", "SNMPv2-MIB", "IF-MIB", "F5-ALERT-DEF-MIB", "IANAifType-MIB", "F5-COMMON-SMI-MIB", "SNMP-FRAMEWORK-MIB"],
+        "version": {
+          "v1": [null],
+          "v2c": [null],
+          "v3": [null]
+        }
+      },
+      "internal": {
+        "callpoints": {
+          "callpoint": [
+            {
+              "id": "config_mac_set_hook",
+              "daemon": {
+                "id": 11,
+                "name": "MacSetHookHandler"
+              }
+            },
+            {
+              "id": "config_name_set_hook",
+              "daemon": {
+                "id": 15,
+                "name": "IfSetHookHandler"
+              }
+            },
+            {
+              "id": "config_vlan_set_hook",
+              "daemon": {
+                "id": 16,
+                "name": "VlanSetHookHandler"
+              }
+            },
+            {
+              "id": "create_vlans",
+              "daemon": {
+                "id": 14,
+                "name": "IfVlanSetHookHandler"
+              }
+            },
+            {
+              "id": "eth_if_stats",
+              "daemon": {
+                "id": 9,
+                "name": "IfOperCallpointHdlr"
+              }
+            },
+            {
+              "id": "ifNumber",
+              "daemon": {
+                "id": 10,
+                "name": "SnmpIfMibHandler"
+              }
+            },
+            {
+              "id": "ifTable",
+              "daemon": {
+                "id": 10,
+                "name": "SnmpIfMibHandler"
+              }
+            },
+            {
+              "id": "if_stats2",
+              "daemon": {
+                "id": 9,
+                "name": "IfOperCallpointHdlr"
+              }
+            },
+            {
+              "id": "lag_if_oper",
+              "daemon": {
+                "id": 17,
+                "name": "LagOperCallpointHdlr"
+              }
+            },
+            {
+              "id": "lag_mac_hook",
+              "daemon": {
+                "id": 21,
+                "name": "LagMacHook"
+              }
+            },
+            {
+              "id": "list_images_on_disk",
+              "daemon": {
+                "id": 20,
+                "name": "ImageAgentCallpointHandler"
+              }
+            },
+            {
+              "id": "show_disk_usage",
+              "daemon": {
+                "id": 18,
+                "name": "DiskUsageOperHandler"
+              }
+            },
+            {
+              "id": "tenant_hugepages_hook",
+              "daemon": {
+                "id": 8,
+                "name": "TenantHugePageHook"
+              }
+            },
+            {
+              "id": "tenant_id",
+              "daemon": {
+                "id": 3,
+                "name": "TPOBSetHookHandler"
+              }
+            },
+            {
+              "id": "tenant_mac_hook",
+              "daemon": {
+                "id": 22,
+                "name": "TenantVlanHook"
+              }
+            },
+            {
+              "id": "tenant_vlan_hook",
+              "daemon": {
+                "id": 22,
+                "name": "TenantVlanHook"
+              }
+            },
+            {
+              "id": "vlan_mbr",
+              "daemon": {
+                "id": 6,
+                "name": "VlanMbrCallpointHdlr"
+              }
+            }
+          ],
+          "actionpoint": [
+            {
+              "id": "by_type_handler",
+              "daemon": {
+                "id": 4,
+                "name": "TPOBbyTypeHandler"
+              }
+            },
+            {
+              "id": "comp_if_type",
+              "daemon": {
+                "id": 7,
+                "name": "IfActionpointHdlr"
+              }
+            },
+            {
+              "id": "comp_lag_only",
+              "daemon": {
+                "id": 13,
+                "name": "IfAggregateHandler"
+              }
+            },
+            {
+              "id": "countersaction",
+              "daemon": {
+                "id": 12,
+                "name": "IfResetStatsHandler"
+              }
+            },
+            {
+              "id": "imageaction",
+              "daemon": {
+                "id": 19,
+                "name": "ImageAgentActionpointHandler"
+              }
+            }
+          ]
+        },
+        "cdb": {
+          "datastore": [
+            {
+              "name": "running",
+              "transaction-id": "1571-909189-875623@controller-1",
+              "filename": "./cdb/A.cdb",
+              "disk-size": "2455",
+              "ram-size": "17613",
+              "read-locks": 0,
+              "write-lock-set": false,
+              "waiting-for-replication-sync": false
+            },
+            {
+              "name": "operational",
+              "transaction-id": "1571-926602-79129@controller-1",
+              "filename": "./cdb/O.cdb",
+              "disk-size": "3300",
+              "ram-size": "14561",
+              "subscription-lock-set": false
+            }
+          ],
+          "client": [
+            {
+              "name": "DiskAgent",
+              "info": "7/15",
+              "type": "subscriber",
+              "subscription": [
+                {
+                  "datastore": "operational",
+                  "id": 22,
+                  "path": "/partition/slots/slot"
+                }
+              ]
+            },
+            {
+              "name": "DiskAgent",
+              "info": "7/14",
+              "type": "inactive"
+            },
+            {
+              "name": "ImageAgent",
+              "info": "8/20",
+              "type": "subscriber",
+              "subscription": [
+                {
+                  "datastore": "running",
+                  "priority": 4,
+                  "id": 23,
+                  "path": "/tenant-configs/tenant"
+                }
+              ]
+            },
+            {
+              "name": "ImageAgent",
+              "info": "8/18",
+              "type": "inactive"
+            },
+            {
+              "name": "L2Agent",
+              "info": "7/83",
+              "type": "inactive"
+            },
+            {
+              "name": "L2Agent",
+              "info": "7/65",
+              "type": "subscriber",
+              "subscription": [
+                {
+                  "datastore": "running",
+                  "priority": 3,
+                  "id": 21,
+                  "path": "/fdb/mac-table/entries/entry"
+                }
+              ]
+            },
+            {
+              "name": "L2Agent",
+              "info": "7/59",
+              "type": "inactive"
+            },
+            {
+              "name": "L2Agent",
+              "info": "7/57",
+              "type": "subscriber",
+              "subscription": [
+                {
+                  "datastore": "operational",
+                  "id": 20,
+                  "path": "/interfaces/interface/ethernet/state"
+                },
+                {
+                  "datastore": "operational",
+                  "id": 19,
+                  "path": "/interfaces/interface/state"
+                }
+              ]
+            },
+            {
+              "name": "L2Agent",
+              "info": "7/52",
+              "type": "inactive"
+            },
+            {
+              "name": "L2Agent",
+              "info": "7/47",
+              "type": "subscriber",
+              "subscription": [
+                {
+                  "datastore": "running",
+                  "priority": 3,
+                  "id": 17,
+                  "path": "/portgroups/portgroup"
+                }
+              ]
+            },
+            {
+              "name": "L2Agent",
+              "info": "7/46",
+              "type": "subscriber",
+              "subscription": [
+                {
+                  "datastore": "running",
+                  "priority": 4,
+                  "id": 16,
+                  "path": "/interfaces/interface"
+                }
+              ]
+            },
+            {
+              "name": "L2Agent",
+              "info": "7/43",
+              "type": "inactive"
+            },
+            {
+              "name": "L2Agent",
+              "info": "7/41",
+              "type": "inactive"
+            },
+            {
+              "name": "authentication-mgr",
+              "info": "6/13",
+              "type": "subscriber",
+              "subscription": [
+                {
+                  "datastore": "running",
+                  "priority": 3,
+                  "id": 14,
+                  "path": "/authentication"
+                }
+              ]
+            },
+            {
+              "name": "authentication-mgr",
+              "info": "6/12",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "cpproxy",
+              "info": "1/10",
+              "type": "inactive"
+            },
+            {
+              "name": "network_manager",
+              "info": "1/37",
+              "type": "subscriber",
+              "subscription": [
+                {
+                  "datastore": "running",
+                  "priority": 3,
+                  "id": 24,
+                  "path": "/tenant-configs/tenant"
+                }
+              ]
+            },
+            {
+              "name": "network_manager",
+              "info": "1/35",
+              "type": "inactive"
+            },
+            {
+              "name": "network_manager",
+              "info": "1/29",
+              "type": "inactive"
+            },
+            {
+              "name": "network_manager",
+              "info": "1/28",
+              "type": "inactive"
+            },
+            {
+              "name": "network_manager",
+              "info": "1/19",
+              "type": "inactive"
+            },
+            {
+              "name": "network_manager",
+              "info": "1/18",
+              "type": "inactive"
+            },
+            {
+              "name": "orchestration_agent",
+              "info": "8/45",
+              "type": "subscriber",
+              "subscription": [
+                {
+                  "datastore": "operational",
+                  "id": 18,
+                  "path": "/partition/slots/slot"
+                }
+              ]
+            },
+            {
+              "name": "orchestration_agent",
+              "info": "8/44",
+              "type": "inactive"
+            },
+            {
+              "name": "orchestration_agent",
+              "info": "8/41",
+              "type": "subscriber",
+              "subscription": [
+                {
+                  "datastore": "running",
+                  "priority": 3,
+                  "id": 15,
+                  "path": "/tenant-configs/tenant"
+                }
+              ]
+            },
+            {
+              "name": "orchestration_agent",
+              "info": "8/38",
+              "type": "inactive"
+            },
+            {
+              "name": "orchestration_agent",
+              "info": "8/28",
+              "type": "inactive"
+            },
+            {
+              "name": "velocity_rsyslogd",
+              "info": "9/16",
+              "type": "subscriber",
+              "subscription": [
+                {
+                  "datastore": "running",
+                  "priority": 3,
+                  "id": 2,
+                  "path": "/system/logging/sw-components"
+                },
+                {
+                  "datastore": "running",
+                  "priority": 3,
+                  "id": 1,
+                  "path": "/system/logging/remote-servers"
+                }
+              ]
+            },
+            {
+              "name": "velocity_rsyslogd",
+              "info": "9/15",
+              "type": "inactive"
+            }
+          ]
+        }
+      }
+    }
+}

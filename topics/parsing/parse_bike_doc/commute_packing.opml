@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml>
+  <head>
+    <meta charset="utf-8"/>
+  </head>
+  <body id="HB6hprnq">
+    <outline id="zG" text="Sling bag">
+      <outline id="c7" text="Epipen"/>
+      <outline id="f6" text="Phone"/>
+      <outline id="e6" text="Medicine"/>
+      <outline id="Qt" text="Yubikey"/>
+      <outline id="H0" text="USB Key"/>
+    </outline>
+    <outline id="cZ" text="Laptop">
+      <outline id="9v" text="Mouse"/>
+      <outline id="3y" text="USB-C cable"/>
+      <outline id="pW" text="USB-C power adapter"/>
+    </outline>
+    <outline id="Vd" text="Extra">
+      <outline id="Xu" text="Notebook"/>
+      <outline id="hw" text="Pens"/>
+      <outline id="6hQ" text="Kindle"/>
+    </outline>
+  </body>
+</opml>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- This is a mako template -->
+
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>${pagetitle}</title>
+</head>
+<body>
+
+<div class="header">
+    <h1>${pagetitle}</h1>
+</div>
+
+<div class="searchbox">
+    <a href="/">Home</a>
+    <!-- | <a href="/favorites">Favorites</a> -->
+    | <a href="/help">Help</a> 
+</div>
+
+<div class="main">
+    <p>Below are examples of how to use the search box:</p>
+    <table>
+        <tr>
+            <th>Search Text</th>
+            <th>Explanation</th>
+        </tr>
+        <tr>
+            <td>huong lan</td>
+            <td>Searchs for song titles or singer names containing "huong lan"</td>
+        </tr>
+        <tr>
+            <td>ao anh</td>
+            <td>Searchs for song titles or singer names containing "ao anh"</td>
+        </tr>
+        <tr>
+            <td>s=le thu</td>
+            <td>Singer search, will return Le Thu, Ho Le Thu, ...</td>
+        </tr>
+        <tr>
+            <td>t=anh trang</td>
+            <td>Title search only, will return Anh Trang Le Loi, Anh
+                Trang Tan...</td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>

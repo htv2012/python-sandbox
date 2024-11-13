@@ -1,0 +1,4 @@
+uid,alias,shell,is_admin
+501,adam,bash,True
+502,shelley,tcsh,False
+503,jake,default,False

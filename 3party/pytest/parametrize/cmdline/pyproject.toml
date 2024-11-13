@@ -1,0 +1,6 @@
+# pyproject.toml
+[tool.pytest.ini_options]
+log_cli = "true"
+log_level = "DEBUG"
+log_format = "%(levelname)s | %(filename)s(%(lineno)d) | %(funcName)s | %(message)s"
+markers = ["slow"]

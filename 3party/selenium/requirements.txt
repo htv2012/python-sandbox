@@ -1,0 +1,8 @@
+black
+ipython
+pytest
+pytest-pythonpath
+pytest-watch
+selenium
+seleniumwire
+

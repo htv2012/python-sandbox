@@ -1,0 +1,4 @@
+server: localhost
+port: 5544
+user: global_user
+password: globalPassword2

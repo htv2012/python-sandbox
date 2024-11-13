@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- This is a mako template -->
+
+<html>
+<head>
+	<!--
+    TODO: Select a different stylesheet for mobile device
+    -->
+
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>${pagetitle}</title>
+</head>
+<body>
+
+<div class="header">
+    <h1>${pagetitle}</h1>
+</div>
+
+<div class="searchbox">
+    <a href="/">Home</a>
+    <!-- | <a href="/favorites">Favorites</a> -->
+    | <a href="/help">Help</a> 
+
+    <form>
+        <input type="text" name="searchterm">
+        <input type="submit" value="Search">
+    </form>
+</div>
+
+<div class="main">
+<table>
+    <span id="status">
+        <% count = len(data) %>
+        %if count > 1:
+        ${count} songs
+        %elif count == 1:
+        ${count} song
+        %else:
+        not found
+        %endif
+    </span>
+
+    <tr>
+        %for header in headers:
+        	%if header == "Key":
+        		<th class="key">${header}</th>
+        	%else:
+	            <th>${header}</th>
+	        %endif
+        %endfor
+    </tr>
+	<% rowNumber = 0 %>
+    %for row in data:
+	    <% rowNumber += 1 %>
+        %if rowNumber % 2 == 0:
+			<tr class="alt">
+	    %else:
+	    	<tr>
+	    %endif
+ 
+ 		%for i in range(len(row)):
+ 			%if headers[i] == 'Key':
+ 				<td class="key">
+ 			%else:
+ 				<td>
+ 			%endif
+ 			${row[i]}</td>
+ 		%endfor
+        </tr>
+    %endfor
+</table>
+</div>
+
+</body>
+</html>

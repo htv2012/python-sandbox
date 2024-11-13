@@ -1,0 +1,6 @@
+pytest
+pytest-pythonpath
+pytest-watch
+setuptools
+wheel
+

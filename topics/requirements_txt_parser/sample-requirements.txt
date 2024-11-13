@@ -1,0 +1,29 @@
+--index-url https://pypi.python.org/simple/
+--trusted-host pypi.python.org
+
+# pipeline
+pylint==2.4.4
+pycodestyle==2.5.0
+diff-cover==2.5.2
+
+# other 3rd party
+artifactory==0.1.17
+PyNaCL==1.2.1
+paramiko==2.4.1
+paramiko-expect==0.2.8
+docker-py==1.10.5
+scp==0.13.2
+prettytable==0.7.2
+jsonpatch==1.21
+guzzle_sphinx_theme==0.7.11
+Sphinx==2.0.1
+PyJWT==2.0.1
+artifactory==0.1.17
+
+# for parsing html response
+bs4 == 0.0.1
+
+# An extensible YANG (RFC 6020/7950) validator
+pyang==2.1
+six==1.12
+dependency-injector==4.2.0

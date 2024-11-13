@@ -1,0 +1,15 @@
+speed: 7
+lines:
+- prompt: $
+  in: ls
+- out: file1.txt file2.txt
+- out: ' '
+- prompt: $
+  in: rm file1.txt
+- out: ' '
+- prompt: $
+  in: ls
+- out: file2.txt
+- out: ' '
+- prompt: $
+

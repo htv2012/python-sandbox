@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Addresses total="3">
+  <Address>
+    <ObjectId>722a77d0-a892-4b8b-81ad-b7f6181988a6</ObjectId>
+    <Type>SUBSCRIBER</Type>
+    <DisplayName>dirsearch_user_0501</DisplayName>
+    <SmtpAddress>dirsearch_user_0501@qa-ks-vm-7.cisco.com</SmtpAddress>
+    <DtmfAccessId>1501</DtmfAccessId>
+  </Address>
+  <Address>
+    <ObjectId>7d22ac0a-7a58-4ace-ad8e-f572f36ef93d</ObjectId>
+    <Type>SUBSCRIBER</Type>
+    <DisplayName>dirsearch_user_0502</DisplayName>
+    <SmtpAddress>dirsearch_user_0502@qa-ks-vm-7.cisco.com</SmtpAddress>
+    <DtmfAccessId>1502</DtmfAccessId>
+  </Address>
+  <Address>
+    <ObjectId>da598fab-f007-42e8-982e-3b18c3871fbe</ObjectId>
+    <Type>SUBSCRIBER</Type>
+    <DisplayName>dirsearch_user_0503</DisplayName>
+    <SmtpAddress>dirsearch_user_0503@qa-ks-vm-7.cisco.com</SmtpAddress>
+    <DtmfAccessId>150</DtmfAccessId>
+  </Address>
+</Addresses>

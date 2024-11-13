@@ -1,0 +1,10 @@
+# pyproject.toml
+[tool.pytest.ini_options]
+log_cli = false
+log_cli_level = "WARNING"
+markers = ["long"]
+
+[tool.ruff.lint]
+# pyflakes, pycodestyle, isort
+select = ["F", "E", "W", "I001"]
+

@@ -1,0 +1,7 @@
+ipython
+jupyter >= 1.0
+pudb > 2019.1
+pycodestyle
+pylint
+pyqt5
+pysnooper

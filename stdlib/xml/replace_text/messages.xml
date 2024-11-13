@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Messages xmlns="URL/sampleMessages-v1">
+    <Header>
+        <TransactionId>0</TransactionId>
+        <RequestNo>41194812</RequestNo>
+        <VNo>6789</VNo>
+        <Source></Source>
+    </Header>
+</Messages>

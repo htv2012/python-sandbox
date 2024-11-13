@@ -1,0 +1,117 @@
+{
+  "Message": "Ok", 
+  "Code": 200, 
+  "Response": {
+    "ResponseLevel": "Public", 
+    "UriDescription": "User By Nickname", 
+    "Uri": "/api/v2/user/haivu", 
+    "LocatorType": "Object", 
+    "Locator": "User", 
+    "User": {
+      "ViewPassHint": "", 
+      "Name": "Hai Vu", 
+      "ResponseLevel": "Public", 
+      "UriDescription": "User By Nickname", 
+      "Uri": "/api/v2/user/haivu", 
+      "WebUri": "https://haivu.smugmug.com", 
+      "RefTag": "a4zstUvSUQc6s", 
+      "QuickShare": true, 
+      "NickName": "haivu", 
+      "Uris": {
+        "Node": {
+          "Locator": "Node", 
+          "UriDescription": "Node with the given id.", 
+          "Uri": "/api/v2/node/k5kBC", 
+          "LocatorType": "Object", 
+          "EndpointType": "Node"
+        }, 
+        "BioImage": {
+          "Locator": "BioImage", 
+          "UriDescription": "User BioImage", 
+          "Uri": "/api/v2/user/haivu!bioimage", 
+          "LocatorType": "Object", 
+          "EndpointType": "BioImage"
+        }, 
+        "UserAlbums": {
+          "Locator": "Album", 
+          "UriDescription": "All of user's albums", 
+          "Uri": "/api/v2/user/haivu!albums", 
+          "LocatorType": "Objects", 
+          "EndpointType": "UserAlbums"
+        }, 
+        "UrlPathLookup": {
+          "Locator": "Folder,Album,Page", 
+          "UriDescription": "Lookup user's folder, album, or page by path", 
+          "Uri": "/api/v2/user/haivu!urlpathlookup", 
+          "LocatorType": "Object", 
+          "EndpointType": "UrlPathLookup"
+        }, 
+        "CoverImage": {
+          "Locator": "CoverImage", 
+          "UriDescription": "User CoverImage", 
+          "Uri": "/api/v2/user/haivu!coverimage", 
+          "LocatorType": "Object", 
+          "EndpointType": "CoverImage"
+        }, 
+        "UserGeoMedia": {
+          "Locator": "Image", 
+          "UriDescription": "Geotagged images for user", 
+          "Uri": "/api/v2/user/haivu!geomedia", 
+          "LocatorType": "Objects", 
+          "EndpointType": "UserGeoMedia"
+        }, 
+        "UserFeaturedAlbums": {
+          "Locator": "Album", 
+          "UriDescription": "User's featured albums", 
+          "Uri": "/api/v2/user/haivu!featuredalbums", 
+          "LocatorType": "Objects", 
+          "EndpointType": "UserFeaturedAlbums"
+        }, 
+        "UserImageSearch": {
+          "Locator": "Image", 
+          "UriDescription": "Search for user images", 
+          "Uri": "/api/v2/user/haivu!imagesearch", 
+          "LocatorType": "Objects", 
+          "EndpointType": "UserImageSearch"
+        }, 
+        "UserPopularMedia": {
+          "Locator": "Image", 
+          "UriDescription": "User's popular images", 
+          "Uri": "/api/v2/user/haivu!popularmedia", 
+          "LocatorType": "Objects", 
+          "EndpointType": "UserPopularMedia"
+        }, 
+        "Folder": {
+          "Locator": "Folder", 
+          "UriDescription": "A folder or legacy (sub)category by UrlPath", 
+          "Uri": "/api/v2/folder/user/haivu", 
+          "LocatorType": "Object", 
+          "EndpointType": "Folder"
+        }, 
+        "UserTopKeywords": {
+          "Locator": "UserTopKeywords", 
+          "UriDescription": "User's top keywords", 
+          "Uri": "/api/v2/user/haivu!topkeywords", 
+          "LocatorType": "Object", 
+          "EndpointType": "UserTopKeywords"
+        }, 
+        "UserRecentImages": {
+          "Locator": "Image", 
+          "UriDescription": "User's recent images", 
+          "Uri": "/api/v2/user/haivu!recentimages", 
+          "LocatorType": "Objects", 
+          "EndpointType": "UserRecentImages"
+        }, 
+        "UserProfile": {
+          "Locator": "UserProfile", 
+          "UriDescription": "User's profile information", 
+          "Uri": "/api/v2/user/haivu!profile", 
+          "LocatorType": "Object", 
+          "EndpointType": "UserProfile"
+        }
+      }
+    }, 
+    "DocUri": "https://api.smugmug.com/api/v2/doc/reference/user.html", 
+    "EndpointType": "User"
+  }
+}

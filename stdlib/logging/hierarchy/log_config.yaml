@@ -1,0 +1,28 @@
+version: 1
+formatters:
+    mylib_console:
+        format: '%(name)s %(levelname)s: %(message)s'
+    mylib_file:
+        format: '%(name)s,%(levelname)s,%(filename)s,%(funcName)s,%(lineno)d,%(message)s'
+handlers:
+    console:
+        class: logging.StreamHandler
+        formatter: mylib_console
+        level: INFO
+        stream: ext://sys.stdout
+    file:
+        class: logging.FileHandler
+        filename: mylib.log
+        formatter: mylib_file
+        level: DEBUG
+loggers:
+    app:
+        handlers:
+        - console
+        - file
+        level: DEBUG
+    mylib:
+        handlers:
+        - console
+        - file
+        level: DEBUG

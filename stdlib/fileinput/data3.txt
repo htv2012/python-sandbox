@@ -1,0 +1,4 @@
+this is data3.txt
+    the end
+    is here
+    end of data3.txt

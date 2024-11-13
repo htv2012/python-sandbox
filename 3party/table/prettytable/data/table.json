@@ -1,0 +1,17 @@
+[
+    {
+        "uid": null,
+        "alias": null,
+        "shell": null
+    },
+    {
+        "uid": 501,
+        "alias": "john",
+        "shell": "zsh"
+    },
+    {
+        "uid": 502,
+        "alias": "karen",
+        "shell": "bash"
+    }
+]

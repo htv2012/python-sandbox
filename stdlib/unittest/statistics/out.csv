@@ -1,0 +1,127 @@
+Path,File Name,Class,Test Method,Decorator,Skip Reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testBentleyCase,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testAllNegativesExpectFirstElement,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testAllNegativesExpectMiddleElement,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testAllNegativesExpectLastElement,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testNegativesAndZeroInMiddle,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testNegativesAndZeroInFirst,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testNegativesAndZeroInLast,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testAllZero,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testMixedInput01,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testMixedInput02,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testMixedInput03,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testMixedInput04,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testMixedInput05,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testMixedInput06,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testMixedInput07,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,testConsecutiveNegatives,No decorator,No reason
+/Users/haiv/Dropbox/src/python/interview/largestsum,largest_sum_test.py,Testlargest,test1,No decorator,No reason
+/Users/haiv/Dropbox/src/python/lookuptool,test_lookup_tool.py,LookupToolTest,test_simple_dict,No decorator,No reason
+/Users/haiv/Dropbox/src/python/lookuptool,test_lookup_tool.py,LookupToolTest,test_nested_dict,No decorator,No reason
+/Users/haiv/Dropbox/src/python/lookuptool,test_lookup_tool.py,LookupToolTest,test_simple_object,No decorator,No reason
+/Users/haiv/Dropbox/src/python/lookuptool,test_lookup_tool.py,LookupToolTest,test_nested_object,No decorator,No reason
+/Users/haiv/Dropbox/src/python/lookuptool,test_lookup_tool.py,LookupToolTest,test_nested_list,No decorator,No reason
+/Users/haiv/Dropbox/src/python/lookuptool,test_lookup_tool.py,LookupToolTest,test_simple_list,No decorator,No reason
+/Users/haiv/Dropbox/src/python/p4,p4_tests.py,AddTest,test_add,No decorator,No reason
+/Users/haiv/Dropbox/src/python/p4,p4_tests.py,AddTest,test_add_existing,No decorator,No reason
+/Users/haiv/Dropbox/src/python/p4,p4_tests.py,CreateChangeListTests,test_create_simple_change_list,No decorator,No reason
+/Users/haiv/Dropbox/src/python/p4,p4_tests.py,EditTests,test_single_file,No decorator,No reason
+/Users/haiv/Dropbox/src/python/p4,p4_tests.py,EditTests,test_multiple_files,No decorator,No reason
+/Users/haiv/Dropbox/src/python/p4,p4_tests.py,EditTests,test_non_existing_file,No decorator,No reason
+/Users/haiv/Dropbox/src/python/p4,p4_tests.py,OpenedTests,test_check_out_single_file,No decorator,No reason
+/Users/haiv/Dropbox/src/python/p4,p4_tests.py,OpenedTests,test_check_out_multiple_files,No decorator,No reason
+/Users/haiv/Dropbox/src/python/p4,p4_tests.py,OpenedTests,test_opened_without_filenames,No decorator,No reason
+/Users/haiv/Dropbox/src/python/p4,p4_tests.py,ScenarioTests,test_edit_change_revert,No decorator,No reason
+/Users/haiv/Dropbox/src/python/p4,p4_tests.py,ScenarioTests,test_revert_unchanged,No decorator,No reason
+/Users/haiv/Dropbox/src/python/path,rename_dir_tests.py,RenameDirTest,test_regular,data,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsTest,test_keys_count,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsTest,test_string,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsTest,test_int,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsTest,test_float,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsTest,test_list,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsTest,test_dict,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsTest,test_file_not_found,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsObjectTest,test_keys_count,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsObjectTest,test_string,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsObjectTest,test_int,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsObjectTest,test_float,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsObjectTest,test_list,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsObjectTest,test_dict,No decorator,No reason
+/Users/haiv/Dropbox/src/python/settings,settings_test.py,SettingsObjectTest,test_file_not_found,No decorator,No reason
+/Users/haiv/Dropbox/src/python/test_driven_development_book/superlists,functional_tests.py,NewVisitorTest,test_can_start_a_list_and_retrieve_it_later,No decorator,No reason
+/Users/haiv/Dropbox/src/python/test_driven_development_book/superlists/lists,tests.py,HomePageTest,test_root_url_resolve_to_home_page_view,No decorator,No reason
+/Users/haiv/Dropbox/src/python/test_driven_development_book/superlists/lists,tests.py,HomePageTest,test_home_page_returns_correct_html,No decorator,No reason
+/Users/haiv/Dropbox/src/python/test_driven_development_book/superlists/lists,tests.py,HomePageTest,test_home_page_can_save_a_POST_request,No decorator,No reason
+/Users/haiv/Dropbox/src/python/themoviedb/tests,generic_tests.py,GenericTests,test_vars,No decorator,No reason
+/Users/haiv/Dropbox/src/python/themoviedb/tests,generic_tests.py,GenericTests,test_call_tmdb_api,No decorator,No reason
+/Users/haiv/Dropbox/src/python/themoviedb/tests,generic_tests.py,TitleSearch,test_return_empty_list,No decorator,No reason
+/Users/haiv/Dropbox/src/python/themoviedb/tests,generic_tests.py,TitleSearch,test_return_one_movie,No decorator,No reason
+/Users/haiv/Dropbox/src/python/themoviedb/tests,generic_tests.py,TitleSearch,test_return_many_movies,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,asserts_tests.py,KindsOfAsserts,test_list_equal,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,asserts_tests.py,KindsOfAsserts,test_sets_equal,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,asserts_tests.py,KindsOfAsserts,test_set_against_list,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,asserts_tests.py,KindsOfAsserts,test_items_equal,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,asserts_tests.py,KindsOfAsserts,test_belong,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,class_var_tests.py,MyTest,test_name_var,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,exception_test.py,AssertionTest,test_that_raise_exception,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,fail_test.py,WaysToFail,test_using_fail,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,fail_test.py,WaysToFail,test_subclass_of_failure_exception,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,fail_test.py,WaysToFail,test_subclass_of_assertion_error,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,fail_test.py,WaysToFail,test_assert_exception,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,fail_test.py,WaysToFail,test_failure_exception,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,fail_test.py,WaysToFail,test_assert,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,fail_test.py,WaysToFail,test_error,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,long_message_tests.py,MyTestCase,test_use_long_message,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,long_message_tests.py,MyTestCase,test_long_message_string_comparison,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,long_message_tests.py,MyTestCase,test_long_message_object_attribute,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,long_message_tests.py,MyTestCase,test_not_use_long_message,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,name_of_tests.py,NameOfTests,test_get_name_using_inspect,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,name_of_tests.py,NameOfTests,test_get_name_using_id,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,path_test.py,MyTestCase,test_something,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,path_test.py,MyTestCase,test2,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,skip_tests.py,ManyOutcomes,test_failed,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,skip_tests.py,ManyOutcomes,test_skipped,skip,Out of coffee
+/Users/haiv/Dropbox/src/python/unittest,skip_tests.py,ManyOutcomes,test_pass,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,string_vs_unicode_tests.py,StringVsUnicodeTest,test_something,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,test_fail_hook.py,MyTest,test1,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest,test_fail_hook2.py,MyTest,test1,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/ddt,asserts_tests.py,AssertsTest,test_list_all_asserts,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/ddt,class_as_data_tests.py,MyTest,test1,data,No reason
+/Users/haiv/Dropbox/src/python/unittest/ddt,file_data_tests.py,UserTest,test_shell,file_data,No reason
+/Users/haiv/Dropbox/src/python/unittest/ddt,file_data_tests.py,UserTest,test_uid,file_data,No reason
+/Users/haiv/Dropbox/src/python/unittest/ddt,generic_class_data_tests.py,MyTest,test3,data,No reason
+/Users/haiv/Dropbox/src/python/unittest/ddt,namedtuple_for_test_case.py,NamedTupleAsTestData,test1,data,No reason
+/Users/haiv/Dropbox/src/python/unittest/ddt,test_name_tests.py,MyTest,test2,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/ddt,test_name_tests.py,MyTest,test_user,data,No reason
+/Users/haiv/Dropbox/src/python/unittest/ddt,test_name_tests.py,MyTest,test_uid,data,No reason
+/Users/haiv/Dropbox/src/python/unittest/ddt,unpack_tests.py,UnpackTest,test1,data,No reason
+/Users/haiv/Dropbox/src/python/unittest/ddt,unpack_tests.py,UnpackTest,test1,unpack,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,base_class_setup_tests.py,MyTestCase,test_something,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,mixin_tests.py,UseMixin,test1,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,retrospection_tests.py,RetrospectionTest,test_get_test_name,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,retrospection_tests.py,RetrospectionTest,test_get_class_name,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,retrospection_tests.py,RetrospectionTest,test_get_module_name,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,retrospection_tests.py,RetrospectionTest,test_aimless,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,retrospection_tests.py,UseBaseTest,test1,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,sandbox_tests.py,SandboxTest,test1,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,sandbox_tests.py,SandboxTest,test_get_test_name,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,sandbox_tests.py,EqualityTest,test_almost_equal,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,sandbox_tests.py,EqualityTest,test_equal,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/sandbox,sandbox_tests.py,EqualityTest,test_list_almost_equal,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/statistics,test_something.py,TestSomething,test_water,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/statistics,test_something.py,TestSomething,test_ice,expectedFailure,No reason
+/Users/haiv/Dropbox/src/python/unittest/statistics,test_something.py,TestSomething,test_sugar,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/statistics,test_something.py,TestSomething,test_coffee,skip,Out of coffee
+/Users/haiv/Dropbox/src/python/unittest/statistics,test_something.py,TestSomething,test_cream,skipIf,Out of cream
+/Users/haiv/Dropbox/src/python/unittest/statistics,test_something.py,TestOtherThings,test_other_coffee,No decorator,No reason
+/Users/haiv/Dropbox/src/python/unittest/statistics,test_something.py,TestMoreStuff,test1,No decorator,No reason
+/Users/haiv/Dropbox/src/python/xml/compare,compare_tests.py,TestPrimitive,test_differentTagsExpectNotVerify,No decorator,No reason
+/Users/haiv/Dropbox/src/python/xml/compare,compare_tests.py,TestPrimitive,test_differentTextExpectNotVerify,No decorator,No reason
+/Users/haiv/Dropbox/src/python/xml/compare,compare_tests.py,TestPrimitive,test_sameAttributesExpectVerify,No decorator,No reason
+/Users/haiv/Dropbox/src/python/xml/compare,compare_tests.py,TestPrimitive,test_differentNumberOfAttributesExpectNotVerify,No decorator,No reason
+/Users/haiv/Dropbox/src/python/xml/compare,compare_tests.py,TestComplex,test_indenticalExpectVerified,No decorator,No reason
+/Users/haiv/Dropbox/src/python/xml/compare,compare_tests.py,TestComplex,test_ignoreTagsExpectVerified,No decorator,No reason
+/Users/haiv/Dropbox/src/python/xml/compare,compare_tests.py,TestComplex,test_ignoreTagsExpectNotVerify,No decorator,No reason
+/Users/haiv/Dropbox/src/python/xml/compare,compare_tests.py,TestComplex,test_childrenOutOfOrderExpectVerified,No decorator,No reason
+/Users/haiv/Dropbox/src/python/xml/compare,compare_tests.py,TestComplex,test_childrenCountNotMatchedExpectNotVerified,No decorator,No reason
+/Users/haiv/Dropbox/src/python/xml/compare,compare_tests.py,TestComplex,test_actualChildDifferentExpectNotVerified,No decorator,No reason

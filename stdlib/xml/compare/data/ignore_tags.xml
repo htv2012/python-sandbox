@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Addresses total="3">
+  <Address>
+    <ObjectId>foobar</ObjectId>
+    <Type>SUBSCRIBER</Type>
+    <DisplayName>dirsearch_user_0501</DisplayName>
+    <SmtpAddress>dontcare1</SmtpAddress>
+    <DtmfAccessId>1501</DtmfAccessId>
+  </Address>
+  <Address>
+    <ObjectId>bar</ObjectId>
+    <Type>SUBSCRIBER</Type>
+    <DisplayName>dirsearch_user_0502</DisplayName>
+    <SmtpAddress>dontcare2</SmtpAddress>
+    <DtmfAccessId>1502</DtmfAccessId>
+  </Address>
+  <Address>
+    <ObjectId>foo</ObjectId>
+    <Type>SUBSCRIBER</Type>
+    <DisplayName>dirsearch_user_0503</DisplayName>
+    <SmtpAddress>dontcare3</SmtpAddress>
+    <DtmfAccessId>1503</DtmfAccessId>
+  </Address>
+</Addresses>

@@ -1,0 +1,18 @@
+Report title:ABC
+Created Date:Jul-15-2019
+
+Model
+Model Name,Number
+abc,1
+abc,2
+
+Device
+Device Name,Number
+efg,1
+efg,2
+efg,3
+
+Missing Device
+Device Name,Number
+xyz,3
+xyz,4

@@ -1,0 +1,6 @@
+ipython
+paramiko
+pysnooper
+jupyter
+pyqt5
+

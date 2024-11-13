@@ -1,0 +1,17 @@
+{
+    "bin": {
+        "foo": null,
+        "bar": null,
+        "moo": null
+    },
+    "etc": {
+        "servicex": {
+            "settings.conf": null,
+            "authorized.txt": null
+        },
+        "file1.txt": null,
+        "file2.txt": null,
+        "file3.txt": null
+    }
+}
+

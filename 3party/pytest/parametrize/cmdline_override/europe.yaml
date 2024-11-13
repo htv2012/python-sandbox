@@ -1,0 +1,7 @@
+Germany:
+  ip: "95.95.0.1"
+  port: 9995
+
+Hungary:
+  ip: "43.43.53.17"
+  port: 9791

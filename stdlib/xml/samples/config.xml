@@ -1,0 +1,13 @@
+<config>
+	<server>
+		<host>cuc2.cisco.com</host>
+		<port>8888</port>
+	</server>
+	
+	<users>
+		<user_prefix>user_</user_prefix>
+		<user_start>1001</user_start>
+		<user_count>100</user_count>
+		<user_password>iforgot</user_password>
+	</users>
+</config>

@@ -1,0 +1,27 @@
+{
+    "store": "The Book Worms",
+    "phones": {
+        "main": "234-567-8901",
+        "fax": "345-678-9012"
+    },
+    "inventory": [
+        {
+            "title": "Nobody's Boy",
+            "author": "Hector Malot",
+            "isbn": "978-1481270328",
+            "count": 15
+        },
+        {
+            "title": "Nobody's Girl",
+            "author": "Hector Malot",
+            "isbn": "978-1539977124",
+            "count": 5
+        },
+        {
+            "title": "The Surgeon",
+            "author": "Tess Gerritsen",
+            "isbn": "978-0345447838",
+            "count": 5
+        }
+    ]
+}

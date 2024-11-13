@@ -1,0 +1,10 @@
+# pyproject.toml
+[tool.pytest.ini_options]
+markers = [
+    "app_kind",
+    "smoke",
+]
+
+# Logging
+log_cli = true
+log_cli_level = "DEBUG"

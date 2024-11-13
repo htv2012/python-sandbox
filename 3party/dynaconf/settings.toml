@@ -1,0 +1,4 @@
+server = "default.nx.org"
+port = 9999
+
+ex_factor = 1.8

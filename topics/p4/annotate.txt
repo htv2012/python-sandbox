@@ -1,0 +1,747 @@
+470487: # -----------------------------------------------------------------------------
+470487: #
+470487: # This file is the copyrighted property of Tableau Software and is protected
+470487: # by registered patents and other applicable U.S. and international laws and
+470487: # regulations.
+470487: #
+470487: # Unlicensed use of the contents of this file is prohibited. Please refer to
+470487: # the NOTICES.txt file for further details.
+470487: #
+470487: # -----------------------------------------------------------------------------
+470487: """
+470487: Workbook used in this module is hierarchical_quickfilter_cube.twb, a live workbook connecting to a
+470487: cube data source. It contains the following tabs:
+470487: - multi_value_worksheet
+470487: - single_value_worksheet
+470487: - no_filter_worksheet
+470487: - multi_value_dashboard
+470487: - single_value_dashboard
+470487: - multi_value_story
+470487: - single_value_story
+470487: 
+470487: The name of each tab reflect the mode (single-value vs multiple-value) and the kind of sheet
+470487: (worksheet, dashboard, story).
+470487: """
+470487: 
+470487: import logging
+470487: import os
+470487: import unittest
+470487: import ddt
+470487: 
+470487: from nose.plugins.attrib import attr
+470487: 
+470487: from atom.atom_logger import Logger
+470487: from atom.atom_scenarios.storytelling_scenarios import StoryTellingScenario
+470487: from atom.desktop_quickfilter import HierarchicalQuickFilter
+470487: from atom.product_enums.QuickFilterCategoricalMode import QuickFilterCategoricalMode
+470487: from atom.field_builder import FieldBuilder
+470487: from atom.test_utilities.test_case_info import TestCaseInfo
+470487: from quickfilter_test_base import QuickFilterTestBase
+470487: from tabsysutils import local_machine
+470487: 
+470487: 
+470487: logger = Logger.getLogger(__name__, level=logging.DEBUG)
+470487: 
+470487: # Test Case Description
+470487: # - First two fields: suffix to test name and description
+470487: # - field_path: path to a field used in the quick filter
+470487: # - worksheet: name of the worksheet, applicable if sheet is a worksheet or dashboard
+470487: # - dashboard: name of the dashboard
+470487: # - visual_id_pres_model: a dictionary describing a story. If this is not None, then worksheet and
+470487: #   dashboard must be None
+470487: # - selection_path & selection_value: selection (check box or radio button) to add to the quick filter
+470487: # - selection_label: the label for the check box or radio button above
+470487: # - level_to_select: Which level button (0, 1, 2, ...) to select in a test. Only applicable to multi-value list QF
+470487: # - multi_selections: A list of tuples, whereas each tuple consists of a field path, value, and label (for logging).
+470487: #   Each tuple represents a check box within a QF to select. Only applicable to multi-value list QF
+470487: # - initial_data: data from the viz from the sheet before test begins
+470487: # - data_after_clear_filter: what data looks like after clearing the filter from the sheet
+470487: # - data_after_change_selection: what data looks like after changing the selection
+470487: data_for_all_but_multi_value_list_on_worksheet = [
+470487:     TestCaseInfo('single_value_list_on_worksheet',
+470487:                  'A worksheet with a single-value list hierarchical quick filter',
+470487:                  field_path=['Return Reason', 'Hierarchy'],
+470487:                  worksheet='single_value_worksheet',
+470487:                  dashboard=None,
+470487:                  visual_id_pres_model=None,
+470487:                  selection_path=['Return Reason', 'Hierarchy', 'Rt RETURN REASON'],
+470487:                  selection_value='5',
+470487:                  selection_label='OtherSaleable',
+470487:                  initial_data=[3727, 3048, 1544, 3066, 493, 7011, 1628, 3520],
+470487:                  data_after_clear_filter=[7761, 5941, 3105, 6020, 1009, 13235, 3469, 6834],
+470487:                  data_after_change_selection=[1478, 997, 443, 1054, 139, 2058, 550, 1052]),
+470487:     TestCaseInfo('multi_value_list_on_dashboard',
+470487:                  'A dashboard with multi-value list hierarchical quick filter',
+470487:                  field_path=['Product', 'ByCategory'],
+470487:                  worksheet='multi_value_worksheet',
+470487:                  dashboard='multi_value_dashboard',
+470487:                  visual_id_pres_model=None,
+470487:                  selection_path=["Product", "ByCategory", "Brand"],
+470487:                  selection_value='949',
+470487:                  selection_label='bora',
+470487:                  level_to_select=3,
+470487:                  multi_selections=[(['Product', 'ByCategory', 'Category'], '3', 'Auto Electronics'),
+470487:                                    (['Product', 'ByCategory', 'Subcategory'], '98', 'Bath Gift Sets'),
+470487:                                    (['Product', 'ByCategory', 'Sku'], '408', 'Defender Policies Accessories 408')],
+470487:                  data_after_multi_selections=[5960, 4136, 2383, 5025, 905, 8159, 3062, 4593],
+470487:                  initial_data=[5378, 3963, 2335, 4787, 640, 7811, 3015, 4378],
+470487:                  data_after_clear_filter=[25627, 19705, 10708, 22274, 6617, 41628, 13390, 26000],
+470487:                  data_after_change_selection=[5380, 3981, 2335, 4800, 640, 7833, 3031, 4378],
+470487:                  data_after_select_level=[25627, 19705, 10708, 22274, 6617, 41628, 13390, 26000]),
+470487:     TestCaseInfo('single_value_list_on_dashboard',
+470487:                  'A dashboard with single-value-list hierarchical quick filter',
+470487:                  field_path=['Return Reason', 'Hierarchy'],
+470487:                  worksheet='single_value_worksheet',
+470487:                  dashboard='single_value_dashboard',
+470487:                  visual_id_pres_model=None,
+470487:                  selection_path=['Return Reason', 'Hierarchy', 'Rt RETURN REASON'],
+470487:                  selection_value='5',
+470487:                  selection_label='OtherSaleable',
+470487:                  initial_data=[3727, 3048, 1544, 3066, 493, 7011, 1628, 3520],
+470487:                  data_after_clear_filter=[7761, 5941, 3105, 6020, 1009, 13235, 3469, 6834],
+470487:                  data_after_change_selection=[1478, 997, 443, 1054, 139, 2058, 550, 1052]),
+470487:     TestCaseInfo('multi_value_list_on_story',
+470487:                  'A story with multi-value list hierarchical quick filter',
+470487:                  field_path=['Product', 'ByCategory'],
+470487:                  worksheet=None,
+470487:                  dashboard=None,
+470487:                  visual_id_pres_model={"worksheet": "multi_value_worksheet",
+470487:                                        "dashboard": "multi_value_worksheet",
+470487:                                        "storyboard": "multi_value_story",
+470487:                                        "flipboard-zone-id": 5,
+470487:                                        "story-point-id": 1},
+470487:                  selection_path=["Product", "ByCategory", "Brand"],
+470487:                  selection_value='949',
+470487:                  selection_label='bora',
+470487:                  level_to_select=2,
+470487:                  multi_selections=[(['Product', 'ByCategory', 'Category'], '3', 'Auto Electronics'),
+470487:                                    (['Product', 'ByCategory', 'Subcategory'], '98', 'Bath Gift Sets'),
+470487:                                    (['Product', 'ByCategory', 'Sku'], '408', 'Defender Policies Accessories 408')],
+470487:                  data_after_multi_selections=[5960, 4136, 2383, 5025, 905, 8159, 3062, 4593],
+470487:                  initial_data=[5378, 3963, 2335, 4787, 640, 7811, 3015, 4378],
+470487:                  data_after_clear_filter=[25627, 19705, 10708, 22274, 6617, 41628, 13390, 26000],
+470487:                  data_after_change_selection=[5380, 3981, 2335, 4800, 640, 7833, 3031, 4378],
+470487:                  data_after_select_level=[25627, 19705, 10708, 22274, 6617, 41628, 13390, 26000]),
+470487:     TestCaseInfo('single_value_list_on_story',
+470487:                  'A story with single-value list hierarchical quick filter',
+470487:                  field_path=['Return Reason', 'Hierarchy'],
+470487:                  worksheet=None,
+470487:                  dashboard=None,
+470487:                  visual_id_pres_model={"worksheet": "single_value_worksheet",
+470487:                                        "dashboard": "single_value_worksheet",
+470487:                                        "storyboard": "single_value_story",
+470487:                                        "flipboard-zone-id": 5,
+470487:                                        "story-point-id": 1},
+470487:                  selection_path=['Return Reason', 'Hierarchy', 'Rt RETURN REASON'],
+470487:                  selection_value='5',
+470487:                  selection_label='OtherSaleable',
+470487:                  initial_data=[3727, 3048, 1544, 3066, 493, 7011, 1628, 3520],
+470487:                  data_after_clear_filter=[7761, 5941, 3105, 6020, 1009, 13235, 3469, 6834],
+470487:                  data_after_change_selection=[1478, 997, 443, 1054, 139, 2058, 550, 1052])
+470487: ]
+470487: 
+470487: # Separate case for BVT
+470487: multi_value_list_on_worksheet = \
+470487:     TestCaseInfo('multi_value_list_on_worksheet',
+470487:                  'A worksheet with a multi-value list hierarchical quick filter',
+470487:                  field_path=['Product', 'ByCategory'],
+470487:                  worksheet='multi_value_worksheet',
+470487:                  dashboard=None,
+470487:                  visual_id_pres_model=None,
+470487:                  selection_path=['Product', 'ByCategory', 'Brand'],
+470487:                  selection_value='949',
+470487:                  selection_label='bora',
+470487:                  level_to_select=1,
+470487:                  multi_selections=[(['Product', 'ByCategory', 'Category'], '3', 'Auto Electronics'),
+470487:                                    (['Product', 'ByCategory', 'Subcategory'], '98', 'Bath Gift Sets'),
+470487:                                    (['Product', 'ByCategory', 'Sku'], '408', 'Defender Policies Accessories 408')],
+470487:                  data_after_multi_selections=[5960, 4136, 2383, 5025, 905, 8159, 3062, 4593],
+470487:                  initial_data=[5378, 3963, 2335, 4787, 640, 7811, 3015, 4378],
+470487:                  data_after_clear_filter=[25627, 19705, 10708, 22274, 6617, 41628, 13390, 26000],
+470487:                  data_after_change_selection=[5380, 3981, 2335, 4800, 640, 7833, 3031, 4378],
+470487:                  data_after_select_level=[25627, 19705, 10708, 22274, 6617, 41628, 13390, 26000])
+470487: 
+470487: data_for_all_sheets = data_for_all_but_multi_value_list_on_worksheet + [multi_value_list_on_worksheet]
+470487: 
+470487: # Hide/show does not work in a story
+470487: data_for_all_but_stories = [t for t in data_for_all_sheets if t.visual_id_pres_model is None]
+470487: 
+470487: data_for_multi_value_list = [t for t in data_for_all_sheets if 'multi_value_list' in t.name]
+470487: 
+470487: # Test Case Description
+470487: # - field_path: The path to a field used in the quick filter
+470487: # - story_sheet: tThe name of the story tab
+470487: # - base_sheet: The worksheet or dashboard that is embedded in the story
+470487: # - worksheet: The name of the worksheet that is embedded in a story or a dashboard
+470487: # - dashboard: The name of the dashboard embedded in a story. None means the embedded sheet is a worksheet, not a
+470487: #   dashboard
+470487: data_for_test_story_follow_update_on = [
+470487:     TestCaseInfo('worksheet',
+470487:                  'A story which contains a worksheet',
+470487:                  field_path=['Return Reason', 'Hierarchy'],
+470487:                  story_sheet='single_value_story',
+470487:                  base_sheet='single_value_worksheet',
+470487:                  worksheet='single_value_worksheet',
+470487:                  dashboard=None,
+470487:                  story_point_id=1),
+470487:     TestCaseInfo('dashboard',
+470487:                  'A story which contains a dashboard',
+470487:                  field_path=['Return Reason', 'Hierarchy'],
+470487:                  story_sheet='single_value_story',
+470487:                  base_sheet='single_value_dashboard',
+470487:                  worksheet='single_value_worksheet',
+470487:                  dashboard='single_value_dashboard',
+470487:                  story_point_id=2)
+470487: ]
+470487: 
+470487: 
+470487: @unittest.skipIf(local_machine.is_mac, 'Data source not supported on Mac')
+470487: @ddt.ddt
+470487: class HierarchicalQuickFilterTests(QuickFilterTestBase):
+470487:     WORKBOOK = "hierarchical_quickfilter_cube.twb"
+470487:     SHEET_WITH_MULTI_VALUE_LIST = "multi_value_worksheet"
+470487:     SHEET_WITHOUT_QUICK_FILTER = "no_filter_worksheet"
+470487: 
+470487:     @classmethod
+470487:     def setUpClass(cls):
+470487:         """ Pre-tests preparation by loading up configuration files """
+470487:         test_config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "quickfilter_config.yml")
+470487:         super(HierarchicalQuickFilterTests, cls).setUpClass(test_config_file)
+470487: 
+470487:     def setUp(self):
+470487:         """ Open a workbook for testing, log a test's prologue """
+470487:         super(HierarchicalQuickFilterTests, self).setUp()
+470487: 
+470487:         logger.info("Open workbook")
+470487:         workbook_path = os.path.join(self.workbook_path, self.WORKBOOK)
+470487:         self.desktop_lib.prepare_desktop_client(workbook_path=workbook_path,
+470487:                                                 sheet_name=self.SHEET_WITH_MULTI_VALUE_LIST)
+470487: 
+470487:         # Get the data source (AKA database) from the workbook, build a couple of global field names
+470487:         data_source = self.desktop_under_test.get_schema().get_data_source().name
+470487:         self.field_builder = FieldBuilder(data_source)
+470487:         self.FIELD_BYCATEGORY = self.field_builder.hierarchical_global_field_name(
+470487:             ['Product', 'ByCategory'])
+470487:         self.FIELD_HIERARCHY = self.field_builder.hierarchical_global_field_name(
+470487:             ['Promotion', 'Hierarchy'])
+470487: 
+470487:         # Log the beginning of a test
+470487:         self._test_case_id = self.id()
+470487:         logger.info("Enter %s", self._test_case_id)
+470487: 
+470487:     def tearDown(self):
+470487:         """ Log the test case's epilogue """
+470487:         super(HierarchicalQuickFilterTests, self).tearDown()
+470487:         logger.info("Exit %s", self._test_case_id)
+470487: 
+470487:     @attr(owner='hvu')
+470487:     @attr(id='52944')
+470487:     def test_selection_multi_value_list_on_worksheet(self):
+470487:         """ Starts with a worksheet containing a Hierarchical Quick Filter "ByCategory". Verify the
+470487:         data points in the viz data, click to select a checkbox to change the filter, verify the
+470487:         data points again.
+470487:         :see: http://fogbugz.tsi.lan/default.asp?144689
+470487:         """
+470487:         self.change_selection_and_verify(multi_value_list_on_worksheet)
+470487: 
+470487:     @attr(owner='hvu')
+470487:     @attr(priority='1')
+470487:     @ddt.data(*data_for_all_but_multi_value_list_on_worksheet)
+470487:     def test_selection(self, test_case_info):
+470487:         """ Starts with a sheet (worksheet, dashboard, or story) containing a Hierarchical Quick
+470487:         Filter, change the selection then verify. This test shares the same steps with
+470487:         test_selection_multi_value_list_on_worksheet (the BVT)
+470487:         :see: http://fogbugz.tsi.lan/default.asp?142509
+470487:         """
+470487:         self.change_selection_and_verify(test_case_info)
+470487: 
+470487:     @attr(owner='hvu')
+470487:     @attr(id='53082')
+470487:     def test_create_quick_filter(self):
+470487:         """ Starts with a worksheet without a quick filter. Create a quick filter and verify against
+470487:         the viz.
+470487:         """
+470487:         logger.info('Verify the lack of quick filter initially')
+470487:         self.desktop_under_test.goto(self.SHEET_WITHOUT_QUICK_FILTER)
+470487:         self.desktop_under_test.wait_for_render_end()
+470487:         filters = self.desktop_under_test.get_quick_filters(worksheet=self.SHEET_WITHOUT_QUICK_FILTER)
+470487:         self.assertEqual([], filters,
+470487:                          'Sheet {} should not have filter initially.'.format(self.SHEET_WITHOUT_QUICK_FILTER))
+470487: 
+470487:         logger.info('Create the quick filter')
+470487:         self.desktop_under_test.show_quickfilter_ui([self.FIELD_HIERARCHY],
+470487:                                                     worksheet=self.SHEET_WITHOUT_QUICK_FILTER)
+470487: 
+470487:         logger.info('Verify the existence of the newly created quick filter')
+470487:         filters = self.desktop_under_test.get_quick_filters(worksheet=self.SHEET_WITHOUT_QUICK_FILTER)
+470487:         self.assertEqual([self.FIELD_HIERARCHY], filters, 'Failed to create quick filter')
+470487: 
+470487:         quick_filter = self.desktop_under_test.get_desktop_quick_filter(self.FIELD_HIERARCHY,
+470487:                                                                         self.SHEET_WITHOUT_QUICK_FILTER)
+470487:         self.assertIsNotNone(quick_filter, 'Failed to create quick filter')
+470487:         self.assertIsInstance(quick_filter, HierarchicalQuickFilter,
+470487:                               'Quick filter must be of type HierarchicalQuickFilter')
+470487:         quick_filter.validate_categorical_mode(QuickFilterCategoricalMode.CHECK_LIST,
+470487:                                                'Quick filter must be check-list mode after creation')
+470487: 
+470487:     @attr(owner='hvu')
+470487:     @attr(priority='1')
+470487:     @attr(id='52079')
+470487:     def test_toggle_search_button(self):
+470487:         """ Starts with a Hierarchical Quick Filter with the search button visible by default.
+470487:         Hide the search button and verify. Show the and verify
+470487:         :see: http://fogbugz.tsi.lan/default.asp?143357
+470487:         """
+470487:         logger.info("Verify the initial state: search button should be visible")
+470487:         quick_filter = self.desktop_under_test.get_desktop_quick_filter(self.FIELD_BYCATEGORY,
+470487:                                                                         worksheet=self.SHEET_WITH_MULTI_VALUE_LIST)
+470487:         quick_filter.validate_search_button(True, "Search button should be visible initially")
+470487: 
+470487:         logger.info("Turn off the search button")
+470487:         quick_filter.toggle_search_visibility()
+470487:         quick_filter.validate_search_button(False, "Search button should be invisible")
+470487: 
+470487:         logger.info("Turn on the search button again")
+470487:         quick_filter.toggle_search_visibility()
+470487:         quick_filter.validate_search_button(True, "Search button should be visible again")
+470487: 
+470487:     @attr(owner='hvu')
+470487:     @attr(priority='1')
+470487:     @attr(id='51995')
+470487:     def test_modify_mode(self):
+470487:         """ Change mode from multiple values to single, then back to multiple and verify
+470487:         :see: http://fogbugz.tsi.lan/default.asp?142577
+470487:         """
+470487:         logger.info("Verify initial state of category mode")
+470487:         quick_filter = self.desktop_under_test.get_desktop_quick_filter(self.FIELD_BYCATEGORY,
+470487:                                                                         worksheet=self.SHEET_WITH_MULTI_VALUE_LIST)
+470487:         quick_filter.validate_categorical_mode(QuickFilterCategoricalMode.CHECK_LIST, "Initial state")
+470487: 
+470487:         logger.info("Change categorical mode to single-value list and verify")
+470487:         quick_filter.change_categorical_mode(QuickFilterCategoricalMode.RADIO_LIST)
+470487:         quick_filter.validate_categorical_mode(QuickFilterCategoricalMode.RADIO_LIST)
+470487: 
+470487:         logger.info("Change categorical mode to multiple-value list and verify")
+470487:         quick_filter.change_categorical_mode(QuickFilterCategoricalMode.CHECK_LIST)
+470487:         quick_filter.validate_categorical_mode(QuickFilterCategoricalMode.CHECK_LIST)
+470487: 
+470487:     @attr(owner='hvu')
+470487:     @attr(priority='1')
+470487:     @attr(id='52038')
+470487:     def test_modify_levels(self):
+470487:         """ Starts with a worksheet with Hierarchical Quick Filter and levels turned on. Turn off
+470487:         level and verify. Turn on level and verify.
+470487:         :see: http://fogbugz.tsi.lan/default.asp?143239
+470487:         """
+470487:         logger.info("Verify initial level")
+470487:         quick_filter = self.desktop_under_test.get_desktop_quick_filter(self.FIELD_BYCATEGORY,
+470487:                                                                         worksheet=self.SHEET_WITH_MULTI_VALUE_LIST)
+470487:         quick_filter.validate_hierarchy_levels(True, 'Level should be on initially')
+470487: 
+470487:         logger.info("Toggle levels: it should be off now")
+470487:         quick_filter.toggle_hierarchy_levels()
+470487:         quick_filter.validate_hierarchy_levels(False, 'Level should be off after toggling')
+470487: 
+470487:         logger.info("Toggle levels again: it should be back on")
+470487:         quick_filter.toggle_hierarchy_levels()
+470487:         quick_filter.validate_hierarchy_levels(True, 'Level should be on again')
+470487: 
+470487:     @attr(owner='hvu')
+470487:     @attr(priority='1')
+470487:     @attr(id='52087')
+470487:     def test_toggle_show_filter_types(self):
+470487:         """ Starts with a worksheet with Hierarchical Quick Filter. Turn off "Show Filter Types"
+470487:         from the customize menu of the quick filter and verify. Turn back on and verify.
+470487:         Note: the internal setting for "Show Filter Types" is "mode"
+470487:         :see: http://fogbugz.tsi.lan/default.asp?143623
+470487:         """
+470487:         logger.info("Verify initial mode")
+470487:         quick_filter = self.desktop_under_test.get_desktop_quick_filter(self.FIELD_BYCATEGORY,
+470487:                                                                         worksheet=self.SHEET_WITH_MULTI_VALUE_LIST)
+470487:         quick_filter.validate_filter_types_display(True, "Show Filter Types should be on initially")
+470487: 
+470487:         logger.info("Turn off Show Filter Types")
+470487:         quick_filter.toggle_filter_types_display()
+470487:         quick_filter.validate_filter_types_display(False, "Show Filter Types should be off after toggling")
+470487: 
+470487:         logger.info("Turn back on Show Filter Types")
+470487:         quick_filter.toggle_filter_types_display()
+470487:         quick_filter.validate_filter_types_display(True, "Show Filter Types should be back on")
+470487: 
+470487:     @attr(owner='hvu')
+470487:     @ddt.data(*data_for_all_sheets)
+470487:     def test_clear(self, test_case_info):
+470487:         """ Clear a quick filter from a worksheet, dashboard, or story
+470487:         :see: http://fogbugz.tsi.lan/default.asp?144919
+470487:         """
+470487:         self.go_to_active_sheet(test_case_info)
+470487:         quick_filter = self.get_desktop_quick_filter(test_case_info)
+470487: 
+470487:         logger.info('Clear the quick filter')
+470487:         quick_filter.clear_filter()
+470487: 
+470487:         logger.info('Verify data after clearing')
+470487:         quick_filter.validate_integer_data_values(test_case_info.data_after_clear_filter)
+470487: 
+470487:     @attr(owner='hvu')
+470487:     @ddt.data(*data_for_all_but_stories)
+470487:     def test_hide_show(self, test_case_info):
+470487:         """ Starts with a sheet which has one quick filter. Hide the quick filter and verify. Show it again and verify.
+470487:         :see: http://fogbugz.tsi.lan/default.asp?147395
+470487:         """
+470487:         self.go_to_active_sheet(test_case_info)
+470487: 
+470487:         logger.info('Verify data before hiding quick filter')
+470487:         quick_filter = self.get_desktop_quick_filter(test_case_info)
+470487:         quick_filter.validate_integer_data_values(test_case_info.initial_data)
+470487: 
+470487:         logger.info('Hide the quick filter')
+470487:         self.toggle_quick_filter(test_case_info, expected_filters_count=0)
+470487: 
+470487:         logger.info('Show the quick filter')
+470487:         self.toggle_quick_filter(test_case_info, expected_filters_count=1)
+470487: 
+470487:         logger.info('Verify data after showing quick filter')
+470487:         quick_filter = self.get_desktop_quick_filter(test_case_info)
+470487:         quick_filter.validate_integer_data_values(test_case_info.initial_data)
+470487: 
+470487:     @attr(owner='hvu')
+470487:     @ddt.data(*data_for_test_story_follow_update_on)
+470487:     def test_story_follow_update_on(self, test_case_info):
+470487:         """ Starts with a base sheet (worksheet or dashboard) and a story containing the base sheet. Change the QF mode
+470487:         on the base sheet and verify the same change on the story.
+470487:         :see: http://fogbugz.tsi.lan/default.asp?147892
+470487:         """
+470487:         field_name = self.field_builder.hierarchical_global_field_name(test_case_info.field_path)
+470487:         self.desktop_under_test.goto(test_case_info.story_sheet)
+470487:         story = StoryTellingScenario(desktop=self.desktop_under_test)
+470487:         story.set_active_story_point(test_case_info.story_point_id)
+470487:         visual_id_pres_model = story.get_visual_id_pres_model(story_point_id=test_case_info.story_point_id,
+470487:                                                               dashboard=test_case_info.dashboard,
+470487:                                                               worksheet=test_case_info.worksheet)
+470487: 
+470487:         logger.info('Verify the initial state of the story to be in radio-list')
+470487:         self.validate_categorical_mode_on_story(field_name, visual_id_pres_model, QuickFilterCategoricalMode.RADIO_LIST)
+470487: 
+470487:         logger.info('In base sheet, change filter mode to check-list')
+470487:         self.change_categorical_mode(field_name, QuickFilterCategoricalMode.CHECK_LIST,
+470487:                                      worksheet=test_case_info.worksheet,
+470487:                                      dashboard=test_case_info.dashboard)
+470487: 
+470487:         logger.info('Verify the change to check-list on the story')
+470487:         self.validate_categorical_mode_on_story(field_name, visual_id_pres_model, QuickFilterCategoricalMode.CHECK_LIST)
+470487: 
+470487:         logger.info('In base sheet, change filter mode to radio-mode')
+470487:         self.change_categorical_mode(field_name, QuickFilterCategoricalMode.RADIO_LIST,
+470487:                                      worksheet=test_case_info.worksheet,
+470487:                                      dashboard=test_case_info.dashboard)
+470487: 
+470487:         logger.info('Verify the change to radio-mode on the story')
+470487:         self.validate_categorical_mode_on_story(field_name, visual_id_pres_model, QuickFilterCategoricalMode.RADIO_LIST)
+470487: 
+470487:     @attr(owner='hvu', priority=2)
+470487:     @ddt.data(*data_for_all_sheets)
+470487:     def test_undo_changes(self, test_case_info):
+470487:         """ Make changes to a quick filter and verify; then undo and verify
+470487:         :see: http://fogbugz/default.asp?148416
+470487:         """
+470487:         self.go_to_active_sheet(test_case_info)
+470487:         quick_filter = self.get_desktop_quick_filter(test_case_info)
+470487: 
+470487:         logger.info('Verify initial data in the viz')
+470487:         quick_filter.validate_integer_data_values(test_case_info.initial_data)
+470487: 
+470487:         logger.info('Change the selection, click on %s', test_case_info.selection_label)
+470487:         quick_filter.add_selection(field_path=test_case_info.selection_path, value=test_case_info.selection_value)
+470487:         quick_filter.validate_integer_data_values(test_case_info.data_after_change_selection)
+470487: 
+470487:         logger.info('Undo change selection and verify')
+470487:         self.desktop_under_test.undo()
+470487:         quick_filter.validate_integer_data_values(test_case_info.initial_data)
+470487: 
+470487:     @attr(owner='hvu', priority=1)
+470487:     @ddt.data(*data_for_all_sheets)
+470487:     def test_save_selection_and_reopen(self, test_case_info):
+470487:         """ Change a quick filter selection, save, close, reopen and verify
+470487:         :see: http://fogbugz/default.asp?148448
+470487:         """
+470487:         self.go_to_active_sheet(test_case_info)
+470487:         quick_filter = self.get_desktop_quick_filter(test_case_info)
+470487: 
+470487:         logger.info('Verify initial data in the viz')
+470487:         quick_filter.validate_integer_data_values(test_case_info.initial_data)
+470487: 
+470487:         logger.info('Change the selection, click on %s', test_case_info.selection_label)
+470487:         quick_filter.add_selection(field_path=test_case_info.selection_path, value=test_case_info.selection_value)
+470487:         quick_filter.validate_integer_data_values(test_case_info.data_after_change_selection)
+470487: 
+470487:         logger.info('Save a copy, close, and reopen that copy')
+470487:         temp_dir = self.create_method_temp_dir()
+470487:         new_filename = os.path.join(temp_dir, 'copy_of_' + self.WORKBOOK)
+470487:         self.desktop_lib.save_as_close_reopen(new_filename)
+470487:         self.addCleanup(os.remove, new_filename)
+470487: 
+470487:         logger.info('Verify the selection change after reopen')
+470487:         # Do not need to go to active sheet: It is saved with the copy of the workbook
+470487:         quick_filter = self.get_desktop_quick_filter(test_case_info)
+470487:         quick_filter.validate_integer_data_values(test_case_info.data_after_change_selection)
+470487: 
+470487:     @attr(owner='hvu', suite='Functional', priority=1)
+470487:     @ddt.data(*data_for_multi_value_list)
+470487:     def test_click_level(self, test_case_info):
+470487:         """ Click on a level number and verify the changes in the viz
+470487:         :see: http://fogbugz.tsi.lan/default.asp?148919
+470487:         """
+470487:         self.go_to_active_sheet(test_case_info)
+470487:         quick_filter = self.get_desktop_quick_filter(test_case_info)
+470487: 
+470487:         logger.info('Verify initial data in the viz')
+470487:         quick_filter.validate_integer_data_values(test_case_info.initial_data)
+470487: 
+470487:         logger.info('Select level %d', test_case_info.level_to_select)
+470487:         quick_filter.level_select(test_case_info.level_to_select)
+470487:         quick_filter.validate_integer_data_values(test_case_info.data_after_select_level)
+470487: 
+470487:         logger.info('Deselect level %d', test_case_info.level_to_select)
+470487:         quick_filter.level_clear(test_case_info.level_to_select)
+470487:         quick_filter.validate_integer_data_values(test_case_info.initial_data)
+470487: 
+470487:     # =========================================================================
+470487:     @attr(owner='hvu')
+470487:     @ddt.data(*data_for_multi_value_list)
+470487:     def test_multi_level_selections(self, test_case_info):
+470487:         """ Select many check boxes from different levels from a multi-value list quick filter on a sheet and verify the
+470487:         changes in the viz.
+470487:         :see: http://fogbugz.tsi.lan/default.asp?149123
+470487:         """
+470487:         self.go_to_active_sheet(test_case_info)
+470487:         quick_filter = self.get_desktop_quick_filter(test_case_info)
+470487: 
+470487:         logger.info('Verify initial data in the viz')
+470487:         quick_filter.validate_integer_data_values(test_case_info.initial_data)
+470487: 
+470487:         for field_path, field_value, label in test_case_info.multi_selections:
+470487:             logger.info('Add selection %r', label)
+470487:             quick_filter.add_selection(field_path, field_value)
+470487: 
+470487:         logger.info('Verify data after adding the selections')
+470487:         quick_filter.validate_integer_data_values(test_case_info.data_after_multi_selections)
+470487: 
+470487:         for field_path, field_value, label in test_case_info.multi_selections:
+470487:             logger.info('Remove selection %r', label)
+470487:             quick_filter.remove_selection(field_path, field_value)
+470487: 
+470487:         logger.info('Verify data after removing the selections')
+470487:         quick_filter.validate_integer_data_values(test_case_info.initial_data)
+470487: 
+470487:     @attr(owner='hvu', suite='Regression', priority='1')
+470487:     def test_add_sheet_to_dashboard(self):
+470487:         """ Create a new dashboard, then add a sheet which contains a quick filter. Verify that Tableau does
+470487:         not crash.
+470487:         :see: http://fogbugz.tsi.lan/default.asp?150367 (task)
+470487:         :see: http://fogbugz.tsi.lan/default.asp?146033 (bug)
+470487:         """
+470487:         logger.info('Prepare test data')
+470487:         desktop = self.desktop_under_test  # Shortcut
+470487:         dashboard = 'my dash'
+470487:         dashboard = 'multi_value_dashboard'
+470487:         worksheet = 'multi_value_worksheet'
+470487:         expected_filters = ['[msolap.41984.477764641204].[Product].[ByCategory]']
+470487: 
+470487:         logger.info('Verify initial quick filters on worksheet %r', worksheet)
+470487:         desktop.goto(worksheet)
+470487:         actual_filters = desktop.get_quick_filters(worksheet=worksheet)
+470487:         self.longMessage = True
+470487:         self.assertEqual(expected_filters, actual_filters, 'Initial filters mismatched')
+470487: 
+470487:         logger.info('Create a new dashboard %s, add sheet %s', dashboard, worksheet)
+470487:         desktop.new_dashboard(dashboard)
+470487:         desktop.add_sheet_to_dashboard(dashboard, worksheet)
+470487: 
+470487:         logger.info('Verify the quick filter presence: %r', expected_filters)
+470487:         actual_filters = desktop.get_quick_filters(worksheet, dashboard)
+470487:         self.assertEqual(expected_filters, actual_filters, 'Mismatched filters')
+470487: 
+470487:     @attr(owner='hvu', suite='Regression', priority='1')
+470487:     def test_add_sheet_to_story(self):
+470487:         """ Create a new story, then add a sheet which contains a quick filter. Verify that Tableau does
+470487:         not crash.
+470487:         :see: http://fogbugz.tsi.lan/default.asp?150367 (task)
+470487:         :see: http://fogbugz.tsi.lan/default.asp?146033 (bug)
+470487:         """
+470487:         logger.info('Prepare test data')
+470487:         desktop = self.desktop_under_test  # Shortcut
+470487:         storyboard = 'my story'
+470487:         story_point_id = 1
+470487:         worksheet = 'single_value_worksheet'
+470487:         expected_filters = ['[msolap.41984.477764641204].[Return Reason].[Hierarchy]']
+470487: 
+470487:         logger.info('Verify initial quick filters on worksheet %r', worksheet)
+470487:         desktop.goto(worksheet)
+470487:         actual_filters = desktop.get_quick_filters(worksheet=worksheet)
+470487:         self.longMessage = True
+470487:         self.assertEqual(expected_filters, actual_filters, 'Initial filters mismatched')
+470487: 
+470487:         logger.info('Create a new story %r, add sheet %r', storyboard, worksheet)
+470487:         story = StoryTellingScenario(desktop)
+470487:         story.create_new_story(storyboard)
+470487:         story.replace_story_point(worksheet, story_point_id)
+470487: 
+470487:         logger.info('Verify the quick filter presence: %r', expected_filters)
+470487:         actual_filters = story.get_quick_filters(worksheet=worksheet, story_point_id=story_point_id)
+470487:         self.assertEqual(expected_filters, actual_filters, 'Filters mismatched')
+470487: 
+470487:     @attr(suite='Functional')
+470487:     def test_edit_filter_with_action(self):
+470487:         """
+470487:         REGRESSION: http://fogbugz/default.asp?156329
+470487:         Confirm that changing the filter on an item with a filter action works
+470487:         """
+470487:         workbook_path = os.path.join(self.workbook_path, "150426_hierarchical.twbx")
+470487:         sheet_name = "Sheet 1"
+470487:         dashboard_name = "Dashboard 1"
+470487:         field_name = "[msolap.41984.477764641204].[Customer].[Customer]"
+470487: 
+470487:         self.desktop_lib.prepare_desktop_client(workbook_path=workbook_path, sheet_name=dashboard_name)
+470487: 
+470487:         #assert pres model contains the expected values
+470487:         quick_filter = self.desktop_under_test.get_desktop_quick_filter(field_name=field_name, worksheet=sheet_name,
+470487:                                                                 force_browser_rendering=True, dashboard=dashboard_name)
+470487: 
+470487:         self.assertEqual(quick_filter.pres_model.cat_mode, QuickFilterCategoricalMode.CHECK_LIST,
+470487:                         "Expected check-list but got: {0}".format(quick_filter.pres_model.cat_mode))
+470487:         self.desktop_under_test.validate_viz_string_data(in_list=['cust631300', 'cust589500', 'cust651750', 'cust385150', 'cust399500'],
+470487:                                        worksheet=sheet_name, dashboard=dashboard_name, message_prefix="Before removal")
+470487: 
+470487:         # Remove the Mountains check box
+470487:         field_path = ['Customer', 'Customer', 'Region']
+470487:         field_value = "R7"
+470487:         quick_filter.remove_selection(field_path, field_value)
+470487: 
+470487:         # Save/Close/Reopen
+470487:         temp_dir = self.create_method_temp_dir()
+470487:         new_filename = os.path.join(temp_dir, 'copy_of_' + self.config.categorical_mode_workbook)
+470487:         self.desktop_lib.save_as_close_reopen(new_filename)
+470487:         self.addCleanup(os.remove, new_filename)
+470487: 
+470487:         self.desktop_under_test.goto(dashboard_name)
+470487: 
+470487:         self.desktop_under_test.validate_viz_string_data(in_list=['cust631300', 'cust589500', 'cust651750'],
+470487:                                        not_in_list=['cust385150', 'cust399500'], worksheet=sheet_name,
+470487:                                        dashboard=dashboard_name ,message_prefix="After removal")
+470487: 
+470487:     # =========================================================================
+470487:     # Helpers
+470487:     # =========================================================================
+470487:     def change_categorical_mode(self, field_name, cat_mode, worksheet, dashboard):
+470487:         """ Go to a dashboard or a worksheet and change the categorical mode
+470487:         :param field_name: The global field name
+470487:         :param cat_mode: A QuickFilterCategoricalMode constant
+470487:         :param worksheet: The name of the worksheet
+470487:         :param dashboard: The name of the dashboard. None if the base sheet is not a dashboard
+470487:         :raise: AssertionError if failed to locate the quick filter, or if change failed
+470487:         """
+470487:         base_sheet = dashboard or worksheet
+470487:         self.desktop_under_test.goto(base_sheet)
+470487:         self.desktop_under_test.wait_for_render_end()
+470487:         quick_filter = self.desktop_under_test.get_desktop_quick_filter(field_name=field_name,
+470487:                                                                         worksheet=worksheet,
+470487:                                                                         dashboard=dashboard)
+470487:         self.assertIsNotNone(quick_filter, 'Cannot find quick filter {} on {}'.format(field_name, base_sheet))
+470487: 
+470487:         quick_filter.change_filter_mode(cat_mode)
+470487:         quick_filter.validate_categorical_mode(cat_mode)
+470487: 
+470487:     def validate_categorical_mode_on_story(self, field_name, visual_id_pres_model, expected_cat_mode):
+470487:         """
+470487:         :param field_name: The global field name
+470487:         :param visual_id_pres_model: A VisualIDPresModel object
+470487:         :param expected_cat_mode: A QuickFilterCategoricalMode constant
+470487:         :raise: AssertionError if categorical mode mismatched
+470487:         """
+470487:         story_sheet = visual_id_pres_model.storyboard
+470487:         self.desktop_under_test.goto(story_sheet)
+470487:         self.desktop_under_test.wait_for_render_end()
+470487:         quick_filter = self.desktop_under_test.get_desktop_quick_filter(field_name=field_name,
+470487:                                                                         visual_id_pres_model=visual_id_pres_model.model)
+470487:         error_message = 'Expect {} for story {}'.format(expected_cat_mode, story_sheet)
+470487:         quick_filter.validate_categorical_mode(expected_cat_mode, error_message)
+470487: 
+470487:     def toggle_quick_filter(self, test_case_info, expected_filters_count):
+470487:         """ Hide/show the quick filters on a sheet
+470487:         :param test_case_info: a TestCaseInfo object with the following fields:
+470487:         - dashboard
+470487:         - worksheet
+470487:         - visual_id_pres_model
+470487:         - field_path
+470487:         :param expected_filters_count: Number of quick filter expected after toggling
+470487:         :raise AssertionError: if the number of quick filters don't match
+470487:         """
+470487:         field_name = self.field_builder.hierarchical_global_field_name(test_case_info.field_path)
+470487: 
+470487:         sheet_parameters = dict(dashboard=test_case_info.dashboard,
+470487:                                 worksheet=test_case_info.worksheet,
+470487:                                 visual_id_pres_model=test_case_info.visual_id_pres_model)
+470487:         self.desktop_under_test.show_hide_quick_filter(field_name=field_name, **sheet_parameters)
+470487: 
+470487:         # Verify by the number of quick filters on the sheet
+470487:         quick_filters = self.desktop_under_test.get_quick_filters(**sheet_parameters)
+470487:         actual_filters_count = len(quick_filters)
+470487:         error_message = 'Hide/Show quick filter failed. ' \
+470487:                         'Expected filter count after toggle: {}. Actual: {}'.format(expected_filters_count,
+470487:                                                                                     actual_filters_count)
+470487:         self.assertEqual(expected_filters_count, actual_filters_count, error_message)
+470487: 
+470487:     def change_selection_and_verify(self, test_case_info):
+470487:         """ Change the selection on a sheet and verify the changes in the viz
+470487:         :param test_case_info:
+470487:         """
+470487:         self.go_to_active_sheet(test_case_info)
+470487:         quick_filter = self.get_desktop_quick_filter(test_case_info)
+470487: 
+470487:         logger.info('Verify initial data in the viz')
+470487:         quick_filter.validate_integer_data_values(test_case_info.initial_data)
+470487: 
+470487:         logger.info('Change the selection, click on %s', test_case_info.selection_label)
+470487:         quick_filter.add_selection(field_path=test_case_info.selection_path, value=test_case_info.selection_value)
+470487: 
+470487:         logger.info('Verify data after changing the selection')
+470487:         quick_filter.validate_integer_data_values(test_case_info.data_after_change_selection)
+470487: 
+470487:     def get_desktop_quick_filter(self, test_case_info):
+470487:         """ Retrieve a desktop quick filter based on the information in the test case info. This
+470487:         method assume the presence of the quick filter, thus raise AssertionError if it could not
+470487:         find one.
+470487:         :param test_case_info: A TestCaseInfo with the following attributes:
+470487:         - field_path: path to the field used by the quick filter
+470487:         - worksheet: name of worksheet or None
+470487:         - dashboard: name of dashboard or None
+470487:         - visual_id_pres_model: for story, obtained by means of recording or None
+470487:         :return: a DesktopQuickFilterBase or any of its sub-classes
+470487:         :raise AssertionError: If the quick filter is not found
+470487:         """
+470487:         field_name = self.field_builder.hierarchical_global_field_name(test_case_info.field_path)
+470487:         quick_filter = self.desktop_under_test.get_desktop_quick_filter(
+470487:             field_name,
+470487:             worksheet=test_case_info.worksheet,
+470487:             dashboard=test_case_info.dashboard,
+470487:             visual_id_pres_model=test_case_info.visual_id_pres_model)
+470487:         self.assertIsNotNone(quick_filter, 'No quick filter found for {}'.format(field_name))
+470487:         return quick_filter
+470487: 
+470487:     def go_to_active_sheet(self, test_case_info):
+470487:         """ Go to the active sheet, base on the settings in the test case info
+470487:         :param test_case_info: A TestCaseInfo with the following attributes:
+470487:         - dashboard: name of dashboard or None (sheet is not a dashboard)
+470487:         - worksheet: name of worksheet or None (sheet is a story)
+470487:         - visual_id_pres_model: a dictionary to describe a story or None (sheet is not a story)
+470487:         """
+470487:         active_sheet = test_case_info.dashboard or test_case_info.worksheet or \
+470487:             test_case_info.visual_id_pres_model['storyboard']
+470487: 
+470487:         self.desktop_under_test.goto(active_sheet)
+470487:         self.desktop_under_test.wait_for_render_end()
+470487: 
+470487: 
+470487: if __name__ == '__main__':
+470487:     unittest.main(verbosity=2)

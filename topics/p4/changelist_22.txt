@@ -1,0 +1,9 @@
+Change 22 by haiv@haimac on 2014/10/30 20:46:29
+
+	Delete some file, edit some other
+
+Affected files ...
+
+... //sandbox/basetest.py#5 edit
+... //sandbox/deleteme.txt#2 delete
+

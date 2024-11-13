@@ -1,0 +1,7 @@
+hypothesis
+hypothesis[cli]
+pytest
+pytest-pythonpath
+pytest-watch
+pyyaml
+ruff

@@ -1,0 +1,10 @@
+Change 398962 by hvu@hvu-native-dev on 2014/10/21 13:03:26
+
+        BUGZID 135066 Drop fields with large number of items then close
+        Related to BUGZID 130301, 134088
+
+Affected files ...
+
+... //depot/teams/native-dev/product-tests/libraries/python/atom/atom/atom_libs/field_lib.py#2 delete
+... //depot/teams/native-dev/product-tests/libraries/python/atom/atom/presentation_models_ext/shelf_pres_model_ext.py#3 edit
+... //depot/teams/native-dev/product-tests/tests/tab_platform/drop_field_tests.py#4 edit

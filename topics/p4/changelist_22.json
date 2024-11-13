@@ -1,0 +1,21 @@
+{
+ "status": "submitted",
+ "code": "stat",
+ "depotFile0": "//sandbox/basetest.py",
+ "depotFile1": "//sandbox/deleteme.txt",
+ "rev0": "5",
+ "changeType": "public",
+ "action1": "delete",
+ "action0": "edit",
+ "fileSize0": "272",
+ "client": "haimac",
+ "user": "haiv",
+ "time": "1414727189",
+ "rev1": "2",
+ "path": "//sandbox/*",
+ "digest0": "FB889A95001DFFA4574481393E616FE2",
+ "type1": "text",
+ "type0": "text",
+ "change": "22",
+ "desc": "Delete some file, edit some other\n"
+}

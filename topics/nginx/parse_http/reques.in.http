@@ -1,0 +1,17 @@
+@api = https://reqres.in/api
+@users = {{api}}/users
+
+
+# ===================================================
+### Create user
+# ===================================================
+# @name user1
+POST {{users}}
+Content-Type: application/json
+
+{
+    "name": "karen",
+    "job": "lead singer"
+}
+
+@user1_id = {{user1.response.body.id}}

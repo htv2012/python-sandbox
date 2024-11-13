@@ -1,0 +1,2 @@
+TAB: complete
+set editing-mode emacs

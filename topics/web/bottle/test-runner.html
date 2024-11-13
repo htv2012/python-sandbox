@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>TestRunner</title>
+<style>
+
+label, .input, span {
+    display: inline-block;
+}
+
+label {
+    padding-right: 10px;
+    width: 300px;
+    text-align: right;
+}
+
+input[type=text] {
+    width: 100%;
+}
+
+.input-field {
+    width: 300px;
+}
+
+.short_help {
+    padding-left: 10px;
+    font-size: 80%;
+    color: cornflowerblue;
+}
+
+div.multicolumns {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+}
+</style>
+</head>
+
+<body onload="javascript:onLoad()">
+<h1>TestRunner</h1>
+<form onsubmit="javascript:onSubmit()">
+<div class="multicolumns">
+
+    <div>
+        <label for="--tcmActiveOnly">-active, --tcmActiveOnly:</label>
+        <span class="input-field">
+            <input type="checkbox"name="--tcmActiveOnly"id="--tcmActiveOnly"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify whether to filter out tests with state other than</span>
+    </div>
+
+<br/>    <div>
+        <label for="--writeToAtomDB">-atom, --writeToAtomDB:</label>
+        <span class="input-field">
+            <input type="checkbox"name="--writeToAtomDB"id="--writeToAtomDB"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify whether to push run results to UnifiedTest SQL database</span>
+    </div>
+
+<br/>    <div>
+        <label for="--buildNumFilePath">-bnf, --buildNumFilePath:</label>
+        <span class="input-field">
+            <input type="text" name="--buildNumFilePath" id="--buildNumFilePath"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">path&gt; Specify path of file where server's build number (build string)</span>
+    </div>
+
+<br/>    <div>
+        <label for="-branch">-branch:</label>
+        <span class="input-field">
+            <input type="text" name="-branch" id="-branch"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">name&gt; Specify the name of the branch (optional)</span>
+    </div>
+
+<br/>    <div>
+        <label for="-browsername">-browsername:</label>
+        <span class="input-field">
+            <input type="text" name="-browsername" id="-browsername"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify the name of the browser to use for the run (optional).</span>
+    </div>
+
+<br/>    <div>
+        <label for="-bs_accessKey">-bs_accessKey:</label>
+        <span class="input-field">
+            <input type="text" name="-bs_accessKey" id="-bs_accessKey"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify the browserstack access key (optional)</span>
+    </div>
+
+<br/>    <div>
+        <label for="-bs_capabilities">-bs_capabilities:</label>
+        <span class="input-field">
+            <input type="text" name="-bs_capabilities" id="-bs_capabilities"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">capabilities&gt; Specify the browserstack capabilities (Optional). For more</span>
+    </div>
+
+<br/>    <div>
+        <label for="-bs_localIdentifier">-bs_localIdentifier:</label>
+        <span class="input-field">
+            <input type="text" name="-bs_localIdentifier" id="-bs_localIdentifier"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">identifier&gt; Specify the browserstack local identifier (Optional). Used when</span>
+    </div>
+
+<br/>    <div>
+        <label for="-bs_username">-bs_username:</label>
+        <span class="input-field">
+            <input type="text" name="-bs_username" id="-bs_username"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify the browserstack username (optional)</span>
+    </div>
+
+<br/>    <div>
+        <label for="-buildNum">-buildNum:</label>
+        <span class="input-field">
+            <input type="text" name="-buildNum" id="-buildNum"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify the build number in format 'yy.MMDD.hhmm' (optional)</span>
+    </div>
+
+<br/>    <div>
+        <label for="--testClasses">-c, --testClasses:</label>
+        <span class="input-field">
+            <input type="text" name="--testClasses" id="--testClasses"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Test classes to be ran by the command line test runner. Use</span>
+    </div>
+
+<br/>    <div>
+        <label for="-context">-context:</label>
+        <span class="input-field">
+            <input type="text" name="-context" id="-context"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify the context for the browser: local or cloud</span>
+    </div>
+
+<br/>    <div>
+        <label for="--testRunDescription">-desc, --testRunDescription:</label>
+        <span class="input-field">
+            <input type="text" name="--testRunDescription" id="--testRunDescription"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Test run description to record in ATOM db</span>
+    </div>
+
+<br/>    <div>
+        <label for="-email">-email:</label>
+        <span class="input-field">
+            <input type="text" name="-email" id="-email"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">address2 ...&gt; Specify email addresses to send results emails to.</span>
+    </div>
+
+<br/>    <div>
+        <label for="--excludedAttributes">-exclattrib, --excludedAttributes:</label>
+        <span class="input-field">
+            <input type="text" name="--excludedAttributes" id="--excludedAttributes"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">TCM test Attributes column to filter test run on: only tests</span>
+    </div>
+
+<br/>    <div>
+        <label for="--tcmFeatureTeams">-featureTeams, --tcmFeatureTeams:</label>
+        <span class="input-field">
+            <input type="text" name="--tcmFeatureTeams" id="--tcmFeatureTeams"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify whether to run only tests of ANY of the given feature</span>
+    </div>
+
+<br/>    <div>
+        <label for="--help">-h, --help:</label>
+        <span class="input-field">
+            <input type="checkbox"name="--help"id="--help"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Help- prints out the command line options</span>
+    </div>
+
+<br/>    <div>
+        <label for="--logDir">-l, --logDir:</label>
+        <span class="input-field">
+            <input type="text" name="--logDir" id="--logDir"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Directory to save logs to</span>
+    </div>
+
+<br/>    <div>
+        <label for="--language">-lang, --language:</label>
+        <span class="input-field">
+            <input type="text" name="--language" id="--language"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify server language (optional) such as en or fr</span>
+    </div>
+
+<br/>    <div>
+        <label for="--locale">-loc, --locale:</label>
+        <span class="input-field">
+            <input type="text" name="--locale" id="--locale"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify server locale (optional) such as en_US or de_DE</span>
+    </div>
+
+<br/>    <div>
+        <label for="--locScreenshots">-ls, --locScreenshots:</label>
+        <span class="input-field">
+            <input type="checkbox"name="--locScreenshots"id="--locScreenshots"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify whether to enable capturing localization screenshots</span>
+    </div>
+
+<br/>    <div>
+        <label for="--locScreenshotsPath">-ls_path, --locScreenshotsPath:</label>
+        <span class="input-field">
+            <input type="text" name="--locScreenshotsPath" id="--locScreenshotsPath"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">path&gt; Specify localization screenshots destination directory path</span>
+    </div>
+
+<br/>    <div>
+        <label for="--configOverride">-o, --configOverride:</label>
+        <span class="input-field">
+            <input type="text" name="--configOverride" id="--configOverride"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">The name of the ServerTestConfig override config to use. This</span>
+    </div>
+
+<br/>    <div>
+        <label for="--isOfficial">-official, --isOfficial:</label>
+        <span class="input-field">
+            <input type="checkbox"name="--isOfficial"id="--isOfficial"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify whether to mark TestRun as Official</span>
+    </div>
+
+<br/>    <div>
+        <label for="--tcmMinPriority">-priority, --tcmMinPriority:</label>
+        <span class="input-field">
+            <input type="text" name="--tcmMinPriority" id="--tcmMinPriority"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Test cases to be run by the command line test runner. e.g.</span>
+    </div>
+
+<br/>    <div>
+        <label for="--runCorrID">-r, --runCorrID:</label>
+        <span class="input-field">
+            <input type="text" name="--runCorrID" id="--runCorrID"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify run correlation ID</span>
+    </div>
+
+<br/>    <div>
+        <label for="--requiredAttributes">-reqattrib, --requiredAttributes:</label>
+        <span class="input-field">
+            <input type="text" name="--requiredAttributes" id="--requiredAttributes"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">TCM test Attributes column to filter test run on: only tests</span>
+    </div>
+
+<br/>    <div>
+        <label for="--runPurpose">-rp, --runPurpose:</label>
+        <span class="input-field">
+            <input type="text" name="--runPurpose" id="--runPurpose"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Run purpose to record in ATOM db</span>
+    </div>
+
+<br/>    <div>
+        <label for="--server">-s, --server:</label>
+        <span class="input-field">
+            <input type="text" name="--server" id="--server"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">The server URI ("http://[hostname]") of the target Server</span>
+    </div>
+
+<br/>    <div>
+        <label for="--copyScreenshotsTo">-screenshots, --copyScreenshotsTo:</label>
+        <span class="input-field">
+            <input type="text" name="--copyScreenshotsTo" id="--copyScreenshotsTo"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">path&gt; Directory to copy failure screenshots to (optional). After</span>
+    </div>
+
+<br/>    <div>
+        <label for="-a/-writeToAtomDB">-a/-writeToAtomDB:</label>
+        <span class="input-field">
+            <input type="checkbox"name="-a/-writeToAtomDB"id="-a/-writeToAtomDB"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">option.</span>
+    </div>
+
+<br/>    <div>
+        <label for="--testCases">-t, --testCases:</label>
+        <span class="input-field">
+            <input type="text" name="--testCases" id="--testCases"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Test cases to be ran by the command line test runner. Use fully</span>
+    </div>
+
+<br/>    <div>
+        <label for="--xmlDirPath">-x, --xmlDirPath:</label>
+        <span class="input-field">
+            <input type="text" name="--xmlDirPath" id="--xmlDirPath"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify path of directory where a results XML file will be</span>
+    </div>
+
+<br/>    <div>
+        <label for="--xmlFileName">-xf, --xmlFileName:</label>
+        <span class="input-field">
+            <input type="text" name="--xmlFileName" id="--xmlFileName"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Specify file name for results XML file (optional)</span>
+    </div>
+
+
+</div>
+<input type="submit" value="Copy" />
+</form>
+<hr/>
+<textarea id="cmd" rows="8" cols="100">
+</textarea>
+
+<hr>
+<h1>Help</h1>
+<pre>
+    08:25:28 - Starting TestRunner with args: [-h]
+usage: java -jar TestRunner.jar [-active] [-atom] [-bnf &lt;file path&gt;] [-branch &lt;branch name&gt;] [-browsername
+       &lt;browsername&gt;] [-bs_accessKey &lt;accessKey&gt;] [-bs_capabilities &lt;browser capabilities&gt;] [-bs_localIdentifier &lt;local
+       identifier&gt;] [-bs_username &lt;username&gt;] [-buildNum &lt;yy.MMDD.hhmm&gt;] [-c &lt;testClasses&gt;] [-context &lt;arg&gt;] [-desc
+       &lt;description&gt;] [-email &lt;address1 address2 ...&gt;] [-exclattrib &lt;excludedAttributes&gt;] [-featureTeams
+       &lt;tcmFeatureTeams&gt;] [-h] [-l &lt;dir&gt;] [-lang &lt;language&gt;] [-loc &lt;locale&gt;] [-ls] [-ls_path &lt;directory path&gt;] [-o
+       &lt;configOverride&gt;] [-official] [-priority &lt;tcmMinPriority&gt;] [-r &lt;runCorrID&gt;] [-reqattrib &lt;requiredAttributes&gt;]
+       [-rp &lt;purpose&gt;] [-s &lt;serverURI&gt;] [-screenshots &lt;directory path&gt;] [-t &lt;testCases&gt;] [-x &lt;dir&gt;] [-xf &lt;file&gt;]
+Tool to run product-tests, optionally saving results to ATOM DB
+ -active,--tcmActiveOnly                                 Specify whether to filter out tests with state other than
+                                                         Active in TCM
+ -atom,--writeToAtomDB                                   Specify whether to push run results to UnifiedTest SQL database
+ -bnf,--buildNumFilePath &lt;file path&gt;                     Specify path of file where server's build number (build string)
+                                                         will be saved (optional)
+ -branch &lt;branch name&gt;                                   Specify the name of the branch (optional)
+ -browsername &lt;browsername&gt;                              Specify the name of the browser to use for the run (optional).
+                                                         Use browser_stack to use BrowserStack for the run. Also needed
+                                                         with the browser_stack option are bs_username, bs_accessKey and
+                                                         bs_capabilities
+ -bs_accessKey &lt;accessKey&gt;                               Specify the browserstack access key (optional)
+ -bs_capabilities &lt;browser capabilities&gt;                 Specify the browserstack capabilities (Optional). For more
+                                                         information visit:
+                                                         https://www.browserstack.com/automate/java#configure-capabiliti
+                                                         es
+ -bs_localIdentifier &lt;local identifier&gt;                  Specify the browserstack local identifier (Optional). Used when
+                                                         multiple instances of BrowserStackLocal.exe running at the same
+                                                         time use the same key.
+ -bs_username &lt;username&gt;                                 Specify the browserstack username (optional)
+ -buildNum &lt;yy.MMDD.hhmm&gt;                                Specify the build number in format 'yy.MMDD.hhmm' (optional)
+ -c,--testClasses &lt;testClasses&gt;                          Test classes to be ran by the command line test runner. Use
+                                                         fully qualifed test class name (i.e.
+                                                         com.tableausoftware.test.server.vizportalUItests.content.viewin
+                                                         g).
+ -context &lt;arg&gt;                                          Specify the context for the browser: local or cloud
+ -desc,--testRunDescription &lt;description&gt;                Test run description to record in ATOM db
+ -email &lt;address1 address2 ...&gt;                          Specify email addresses to send results emails to.
+ -exclattrib,--excludedAttributes &lt;excludedAttributes&gt;   TCM test Attributes column to filter test run on: only tests
+                                                         that have NONE of the specified attributes will run
+ -featureTeams,--tcmFeatureTeams &lt;tcmFeatureTeams&gt;       Specify whether to run only tests of ANY of the given feature
+                                                         teams (if a feature team name has spaces, replace them with
+                                                         underscores)
+ -h,--help                                               Help- prints out the command line options
+ -l,--logDir &lt;dir&gt;                                       Directory to save logs to
+ -lang,--language &lt;language&gt;                             Specify server language (optional) such as en or fr
+ -loc,--locale &lt;locale&gt;                                  Specify server locale (optional) such as en_US or de_DE
+ -ls,--locScreenshots                                    Specify whether to enable capturing localization screenshots
+                                                         during test execution
+ -ls_path,--locScreenshotsPath &lt;directory path&gt;          Specify localization screenshots destination directory path
+                                                         (optional)
+ -o,--configOverride &lt;configOverride&gt;                    The name of the ServerTestConfig override config to use. This
+                                                         is the recommended way to set ServerTestConfig values for test
+                                                         runs. CAUTION: When used with the -s/-server option, that value
+                                                         will override any hostURI value set in this override config.
+ -official,--isOfficial                                  Specify whether to mark TestRun as Official
+ -priority,--tcmMinPriority &lt;tcmMinPriority&gt;             Test cases to be run by the command line test runner. e.g.
+                                                         setting minimum priority as 1 will execute both Priority 1 and
+                                                         Priority 0 test cases
+ -r,--runCorrID &lt;runCorrID&gt;                              Specify run correlation ID
+ -reqattrib,--requiredAttributes &lt;requiredAttributes&gt;    TCM test Attributes column to filter test run on: only tests
+                                                         that have ALL of the specified attributes will run
+ -rp,--runPurpose &lt;purpose&gt;                              Run purpose to record in ATOM db
+ -s,--server &lt;serverURI&gt;                                 The server URI ("http://[hostname]") of the target Server
+                                                         instance. This over-writes the hostURI value in
+                                                         ServerTestConfig.yml. CAUTION: Be very careful using this
+                                                         option, it will not set any other config values for your test
+                                                         run. It is strongly recommended to instead set a
+                                                         ServerTestConfig override via
+                                                         "-Djava.test.config.override=[override name]". DO NOT USE the
+                                                         serverURI value if testing against online or public, only use
+                                                         config overrides.
+ -screenshots,--copyScreenshotsTo &lt;directory path&gt;       Directory to copy failure screenshots to (optional). After
+                                                         reporting a failure to UnifiedTest db, screenshot taken by
+                                                         ScreenshotTestRule is named using test case id / test result id
+                                                         from the db and copied to the specified directory. Needs the
+                                                         -a/-writeToAtomDB option.
+ -t,--testCases &lt;testCases&gt;                              Test cases to be ran by the command line test runner. Use fully
+                                                         qualifed test case name (i.e.
+                                                         com.tableausoftware.test.server.vizportalUItests.content.viewin
+                                                         g.viewVizFromViewsPage).
+ -x,--xmlDirPath &lt;dir&gt;                                   Specify path of directory where a results XML file will be
+                                                         saved (optional)
+ -xf,--xmlFileName &lt;file&gt;                                Specify file name for results XML file (optional)
+</pre>
+
+<script>
+function onChange() {
+    var fields = document.getElementsByTagName('input');
+    var out = "java -jar D:\\near\\product-tests\\java\\tools\\TestRunner\\build\\libs\\TestRunner.jar -h";
+    for (var i = 0; i < fields.length; i++) {
+        field = fields[i];
+        if (field.type == "text" && field.value != "") {
+            field.value = unescape(field.value);
+            out += (" " + field.name + " " + field.value);
+        }
+
+        if (field.type == "checkbox" && field.checked) {
+            out += (" " + field.name);
+        }
+    }
+    var cmd = document.getElementById('cmd');
+    cmd.value = out;
+}
+
+function onSubmit() {
+    var cmd = document.getElementById('cmd');
+    cmd.select();
+    document.execCommand('copy');
+}
+
+function onLoad() {
+    var url = decodeURI(window.location.href).split("?");
+    params = url[1].split("&");
+
+    for(var i = 0; i < params.length; i++){
+        var p = params[i].split("=");
+        var key = p[0];
+        var value = p[1].replace(new RegExp("\\+", "g"), " ");
+        var field = document.getElementById(key);
+        if (field.type == "text") {
+            field.value = value;
+        } else if (field.type == "checkbox" && value == "on") {
+            field.checked = true;
+        }
+    }
+    onChange();
+}
+</script>
+</body>
+</html>
+

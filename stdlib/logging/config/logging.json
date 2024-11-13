@@ -1,0 +1,23 @@
+{
+    "formatters": {
+        "brief": {
+            "format": "%(levelname)8s %(message)s"
+        }
+    },
+    "handlers": {
+        "consoleHandler": {
+            "class": "logging.StreamHandler",
+            "formatter": "brief",
+            "level": "DEBUG"
+        }
+    },
+    "loggers": {
+        "default_logger": {
+            "handlers": [
+                "consoleHandler"
+            ],
+            "level": "DEBUG"
+        }
+    },
+    "version": 1
+}

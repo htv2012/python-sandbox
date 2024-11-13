@@ -1,0 +1,56 @@
+*   Trying 54.83.187.171:443...
+* Connected to httpbin.org (54.83.187.171) port 443 (#0)
+* ALPN: offers h2,http/1.1
+* (304) (OUT), TLS handshake, Client hello (1):
+*  CAfile: /etc/ssl/cert.pem
+*  CApath: none
+* (304) (IN), TLS handshake, Server hello (2):
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+* TLSv1.2 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+* TLSv1.2 (IN), TLS change cipher, Change cipher spec (1):
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+* SSL connection using TLSv1.2 / ECDHE-RSA-AES128-GCM-SHA256
+* ALPN: server accepted h2
+* Server certificate:
+*  subject: CN=httpbin.org
+*  start date: Sep 21 00:00:00 2023 GMT
+*  expire date: Oct 18 23:59:59 2024 GMT
+*  subjectAltName: host "httpbin.org" matched cert's "httpbin.org"
+*  issuer: C=US; O=Amazon; CN=Amazon RSA 2048 M02
+*  SSL certificate verify ok.
+* using HTTP/2
+* h2 [:method: GET]
+* h2 [:scheme: https]
+* h2 [:authority: httpbin.org]
+* h2 [:path: /get]
+* h2 [user-agent: curl/8.1.2]
+* h2 [accept: */*]
+* Using Stream ID: 1 (easy handle 0x7fda21013400)
+> GET /get HTTP/2
+> Host: httpbin.org
+> User-Agent: curl/8.1.2
+> Accept: */*
+>
+< HTTP/2 200
+< date: Mon, 23 Oct 2023 16:27:27 GMT
+< content-type: application/json
+< content-length: 256
+< server: gunicorn/19.9.0
+< access-control-allow-origin: *
+< access-control-allow-credentials: true
+<
+{
+  "args": {},
+  "headers": {
+    "Accept": "*/*",
+    "Host": "httpbin.org",
+    "User-Agent": "curl/8.1.2",
+    "X-Amzn-Trace-Id": "Root=1-65369eef-15f404cf15117e0644059710"
+  },
+  "origin": "204.134.187.144",
+  "url": "https://httpbin.org/get"
+}

@@ -1,0 +1,44 @@
+<config testid="5512" platforms="linux">
+	<server>
+		<host>cuc2.cisco.com</host>
+		<port>8888</port>
+	</server>
+	
+	<users>
+		<prefix></prefix>
+		<start>1001</start>
+		<count>100</count>
+		<password>iforgot</password>
+	</users>
+	
+	<scenarios>
+		<scenario id="TC0001" src="http://testcases/simple1">
+			<max_users_count>5</max_users_count>
+			<secured_login>0</secured_login>
+			<use_smtp>0</use_smtp>
+			<exit_on_first_error>1</exit_on_first_error>
+		</scenario>
+		
+		<scenario id="TC0002" src="http://testcases/typical_usage">
+			<max_users_count>100</max_users_count>
+			<secured_login>1</secured_login>
+			<use_smtp>1</use_smtp>
+			<exit_on_first_error>0</exit_on_first_error>
+		</scenario>
+		
+		<scenario id="TC0003" src="http://testcases/moderate_load">
+			<max_users_count>500</max_users_count>
+			<secured_login>1</secured_login>
+			<use_smtp>1</use_smtp>
+			<exit_on_first_error>0</exit_on_first_error>
+		</scenario>
+		
+		<scenario id="TC0004" src="http://testcases/high_load">
+			<max_users_count>2000</max_users_count>
+			<secured_login>1</secured_login>
+			<use_smtp>0</use_smtp>
+			<exit_on_first_error>0</exit_on_first_error>
+		</scenario>
+	</scenarios>
+		
+</config>

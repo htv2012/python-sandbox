@@ -1,0 +1,25 @@
+<config>
+	<servers>
+		<Exchange>
+			<Happy>
+				<host>happy</host>
+				<imap>1</imap>
+			</Happy>
+			<Grumpy>
+				<host>grumpy</host>
+				<imap>0</imap>
+			</Grumpy>
+		</Exchange>
+		
+		<CM>
+			<cm1>
+				<host>cm1</host>
+				<version>7.0</version>
+			</cm1>				
+			<cm2>
+				<host>cm2</host>
+				<version>7.1</version>
+			</cm2>			
+		</CM>
+	</servers>
+</config>

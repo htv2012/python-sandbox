@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<query xmlns:yahoo="http://www.yahooapis.com/v1/base.rng"
+    yahoo:count="4" yahoo:created="2013-11-15T00:00:40Z" yahoo:lang="en-US">
+    <diagnostics>
+        <url execution-start-time="1" execution-stop-time="4"
+            execution-time="3" id="fe484c39-57f5-4b33-9c99-83ce2adbd2aa"><![CDATA[http://sherpa/YDHTWebService/V1/get/yql.global/store%3A%2F%2Fdatatables.org%2Falltableswithkeys]]></url>
+        <url execution-start-time="8" execution-stop-time="19"
+            execution-time="11" id="69860115-800f-4035-a45a-62efec37fe71"><![CDATA[http://sherpa/YDHTWebService/V1/get/yql.global/store%3A%2F%2FRjdEzitN2Hceujh3tGHPj6]]></url>
+        <url execution-start-time="44" execution-stop-time="48"
+            execution-time="4" id="a50da967-1694-448f-9924-039a5d9199b0"><![CDATA[http://sherpa/YDHTWebService/V1/get/yql.global/store%3A%2F%2FfYusf1Z1oRv5LAo4DWLQgo]]></url>
+        <url execution-start-time="56" execution-stop-time="68"
+            execution-time="12" id="8f5e5e35-3ecd-4e93-9b49-ec0ca27d8a5e"><![CDATA[http://sherpa/YDHTWebService/V1/get/yql.global/store%3A%2F%2FRjdEzitN2Hceujh3tGHPj6]]></url>
+        <url execution-start-time="92" execution-stop-time="96"
+            execution-time="4" id="c9da9029-0cd0-41af-82a1-9ea71f01122a"><![CDATA[http://www.datatables.org/yahoo/finance/quote/yahoo.finance.quote.xml]]></url>
+        <publiclyCallable>true</publiclyCallable>
+        <cache execution-start-time="99" execution-stop-time="99"
+            execution-time="0" method="GET" type="MEMCACHED"><![CDATA[c7570b39f80748ad6afbbe8112eb8a8d]]></cache>
+        <url execution-start-time="101" execution-stop-time="105"
+            execution-time="4" id="0e1f97d3-4d6c-4fe0-b6d4-9c9b5fc8ca5d"><![CDATA[http://sherpa/YDHTWebService/V1/get/yql.global/store%3A%2F%2FfYusf1Z1oRv5LAo4DWLQgo]]></url>
+        <url execution-start-time="112" execution-stop-time="232"
+            execution-time="120" id="a346a4a9-9f3e-4418-a785-15f77827abe1"><![CDATA[http://download.finance.yahoo.com/d/quotes.csv?f=aa2bb2b3b4cc1c3c6c8dd1d2ee1e7e8e9ghjkg1g3g4g5g6ii5j1j3j4j5j6k1k2k4k5ll1l2l3mm2m3m4m5m6m7m8nn4opp1p2p5p6qrr1r2r5r6r7ss1s7t1t7t8vv1v7ww1w4xy&s=YHOO,AAPL,GOOG,MSFT]]></url>
+        <query execution-start-time="100" execution-stop-time="232"
+            execution-time="132" params="{url=[http://download.finance.yahoo.com/d/quotes.csv?f=aa2bb2b3b4cc1c3c6c8dd1d2ee1e7e8e9ghjkg1g3g4g5g6ii5j1j3j4j5j6k1k2k4k5ll1l2l3mm2m3m4m5m6m7m8nn4opp1p2p5p6qrr1r2r5r6r7ss1s7t1t7t8vv1v7ww1w4xy&amp;s=YHOO,AAPL,GOOG,MSFT]}"><![CDATA[select * from csv where url=@url and columns='Ask,AverageDailyVolume,Bid,AskRealtime,BidRealtime,BookValue,Change&PercentChange,Change,Commission,ChangeRealtime,AfterHoursChangeRealtime,DividendShare,LastTradeDate,TradeDate,EarningsShare,ErrorIndicationreturnedforsymbolchangedinvalid,EPSEstimateCurrentYear,EPSEstimateNextYear,EPSEstimateNextQuarter,DaysLow,DaysHigh,YearLow,YearHigh,HoldingsGainPercent,AnnualizedGain,HoldingsGain,HoldingsGainPercentRealtime,HoldingsGainRealtime,MoreInfo,OrderBookRealtime,MarketCapitalization,MarketCapRealtime,EBITDA,ChangeFromYearLow,PercentChangeFromYearLow,LastTradeRealtimeWithTime,ChangePercentRealtime,ChangeFromYearHigh,PercebtChangeFromYearHigh,LastTradeWithTime,LastTradePriceOnly,HighLimit,LowLimit,DaysRange,DaysRangeRealtime,FiftydayMovingAverage,TwoHundreddayMovingAverage,ChangeFromTwoHundreddayMovingAverage,PercentChangeFromTwoHundreddayMovingAverage,ChangeFromFiftydayMovingAverage,PercentChangeFromFiftydayMovingAverage,Name,Notes,Open,PreviousClose,PricePaid,ChangeinPercent,PriceSales,PriceBook,ExDividendDate,PERatio,DividendPayDate,PERatioRealtime,PEGRatio,PriceEPSEstimateCurrentYear,PriceEPSEstimateNextYear,Symbol,SharesOwned,ShortRatio,LastTradeTime,TickerTrend,OneyrTargetPrice,Volume,HoldingsValue,HoldingsValueRealtime,YearRange,DaysValueChange,DaysValueChangeRealtime,StockExchange,DividendYield']]></query>
+        <javascript execution-start-time="98" execution-stop-time="254"
+            execution-time="155" instructions-used="198342" table-name="yahoo.finance.quote"/>
+        <user-time>254</user-time>
+        <service-time>158</service-time>
+        <build-version>0.2.1997</build-version>
+    </diagnostics> 
+    <results>
+        <quote symbol="YHOO">
+            <AverageDailyVolume>18645200</AverageDailyVolume>
+            <Change>+0.585</Change>
+            <DaysLow>34.76</DaysLow>
+            <DaysHigh>35.89</DaysHigh>
+            <YearLow>17.74</YearLow>
+            <YearHigh>35.12</YearHigh>
+            <MarketCapitalization>37.178B</MarketCapitalization>
+            <LastTradePriceOnly>35.69</LastTradePriceOnly>
+            <DaysRange>34.76 - 35.89</DaysRange>
+            <Name>Yahoo! Inc.</Name>
+            <Symbol>YHOO</Symbol>
+            <Volume>21384496</Volume>
+            <StockExchange>NasdaqNM</StockExchange>
+        </quote>
+        <quote symbol="AAPL">
+            <AverageDailyVolume>12913700</AverageDailyVolume>
+            <Change>+7.526</Change>
+            <DaysLow>521.87</DaysLow>
+            <DaysHigh>529.28</DaysHigh>
+            <YearLow>385.10</YearLow>
+            <YearHigh>594.59</YearHigh>
+            <MarketCapitalization>475.2B</MarketCapitalization>
+            <LastTradePriceOnly>528.16</LastTradePriceOnly>
+            <DaysRange>521.87 - 529.28</DaysRange>
+            <Name>Apple Inc.</Name>
+            <Symbol>AAPL</Symbol>
+            <Volume>10081757</Volume>
+            <StockExchange>NasdaqNM</StockExchange>
+        </quote>
+        <quote symbol="GOOG">
+            <AverageDailyVolume>1839270</AverageDailyVolume>
+            <Change>+2.76</Change>
+            <DaysLow>1030.35</DaysLow>
+            <DaysHigh>1039.75</DaysHigh>
+            <YearLow>636.00</YearLow>
+            <YearHigh>1041.52</YearHigh>
+            <MarketCapitalization>345.9B</MarketCapitalization>
+            <LastTradePriceOnly>1035.23</LastTradePriceOnly>
+            <DaysRange>1030.35 - 1039.75</DaysRange>
+            <Name>Google Inc.</Name>
+            <Symbol>GOOG</Symbol>
+            <Volume>1166850</Volume>
+            <StockExchange>NasdaqNM</StockExchange>
+        </quote>
+        <quote symbol="MSFT">
+            <AverageDailyVolume>51403200</AverageDailyVolume>
+            <Change>-0.134</Change>
+            <DaysLow>37.72</DaysLow>
+            <DaysHigh>38.13</DaysHigh>
+            <YearLow>26.26</YearLow>
+            <YearHigh>38.22</YearHigh>
+            <MarketCapitalization>317.4B</MarketCapitalization>
+            <LastTradePriceOnly>38.021</LastTradePriceOnly>
+            <DaysRange>37.72 - 38.13</DaysRange>
+            <Name>Microsoft Corpora</Name>
+            <Symbol>MSFT</Symbol>
+            <Volume>46183876</Volume>
+            <StockExchange>NasdaqNM</StockExchange>
+        </quote>
+    </results>
+</query>
+ 

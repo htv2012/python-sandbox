@@ -1,0 +1,19 @@
+version: 1
+loggers:
+    default_logger:
+        handlers: [consoleHandler, fileHandler]
+        level: DEBUG
+handlers:
+    consoleHandler:
+        class: logging.StreamHandler
+        level: DEBUG
+        formatter: brief
+    fileHandler:
+        class: logging.FileHandler
+        formatter: brief
+        filename: '/tmp/daily_log_file.log'
+        level: DEBUG
+formatters:
+    brief:
+        format: '%(levelname)8s %(message)s'
+

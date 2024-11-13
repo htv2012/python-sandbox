@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<autostart version="2.0">
+  <FileState>0</FileState>
+  <FileTemplate clsid="{6F6FBFC1-3F14-46CA-A269}">
+    <properties>
+      <obj name="TypeSettings" clsid="{6F6FBFC1-3F14-46CA-A269}">
+        <properties>
+          <prop name="Enumerator" type="8">en0</prop>
+          <prop name="Name" type="8">en0</prop>
+          <prop name="Type" type="3">1</prop>
+        </properties>
+      </obj>
+      <obj name="GeneralSettings" clsid="{6F6FBFC1-3F14-46CA-A269}">
+        <properties>
+          <prop name="BufferSize" type="21">524288000</prop>
+          <prop name="FilePattern" type="8">auto_eth0</prop>
+          <prop name="FileSize" type="21">1048576</prop>
+          <prop name="MaxFileAge" type="11">-1</prop>
+          <prop name="MaxTotalFileSize" type="11">0</prop>
+          <prop name="Name" type="8">auto-en0</prop>
+          <prop name="Owner" type="8">root</prop>
+        </properties>
+      </obj>
+    </properties>
+  </FileTemplate>
+</autostart>

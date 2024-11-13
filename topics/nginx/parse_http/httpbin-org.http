@@ -1,0 +1,31 @@
+@hostname = httpbin.org
+@url = https://{{hostname}}
+
+###
+GET {{url}}/get
+
+###
+# @name env1
+post {{url}}/post
+Accept: application/json
+
+{
+    "metadata": {
+        "name": "env1",
+        "uid": "env1-uid"
+    }
+}
+
+###
+
+# @name gw1
+post {{url}}/post
+Accept: application/json
+
+{
+    "metadata": {
+        "name": "gw1",
+        "uid": "gw1-uid"
+    }
+}
+

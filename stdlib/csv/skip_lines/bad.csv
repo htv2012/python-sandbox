@@ -1,0 +1,10 @@
+Name,Phone
+
+one field
+"Nguyen, John",555-1234
+
+"Vu, Hai",555-4321
+"Le, Dat",555-1111
+
+bad,line,with,more,than,2,fields
+John,555-2233

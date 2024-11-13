@@ -1,0 +1,17 @@
+three_steps:
+    edges:
+        A2: [B2, D2]
+        B2: [C3]
+    expected_path: [A2, B2, C3]
+    a: A2
+    b: C3
+four_steps:
+    edges:
+        A2: [B2, D2]
+        B2: [C3]
+        C3: [B2]
+    expected_path: [A2, B2, C3]
+    a: A2
+    b:
+
+

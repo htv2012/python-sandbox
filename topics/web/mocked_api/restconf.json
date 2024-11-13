@@ -1,0 +1,7632 @@
+{
+	"ietf-restconf:data": {
+		"ietf-yang-library:modules-state": {
+			"module-set-id": "1e835531abdbd9604c932650dd973d33",
+			"module": [
+				{
+					"name": "IPV6-TC",
+					"revision": "1998-12-01",
+					"schema": "http://localhost:8008/restconf/tailf/modules/IPV6-TC/1998-12-01",
+					"namespace": "http://tail-f.com/ns/mibs/IPV6-TC/199812010000Z",
+					"conformance-type": "import"
+				},
+				{
+					"name": "SNMP-COMMUNITY-MIB",
+					"revision": "2003-08-06",
+					"schema": "http://localhost:8008/restconf/tailf/modules/SNMP-COMMUNITY-MIB/2003-08-06",
+					"namespace": "http://tail-f.com/ns/mibs/SNMP-COMMUNITY-MIB/200308060000Z",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "SNMP-FRAMEWORK-MIB",
+					"revision": "2002-10-14",
+					"schema": "http://localhost:8008/restconf/tailf/modules/SNMP-FRAMEWORK-MIB/2002-10-14",
+					"namespace": "http://tail-f.com/ns/mibs/SNMP-FRAMEWORK-MIB/200210140000Z",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "SNMP-MPD-MIB",
+					"revision": "2002-10-14",
+					"schema": "http://localhost:8008/restconf/tailf/modules/SNMP-MPD-MIB/2002-10-14",
+					"namespace": "http://tail-f.com/ns/mibs/SNMP-MPD-MIB/200210140000Z",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "SNMP-NOTIFICATION-MIB",
+					"revision": "2002-10-14",
+					"schema": "http://localhost:8008/restconf/tailf/modules/SNMP-NOTIFICATION-MIB/2002-10-14",
+					"namespace": "http://tail-f.com/ns/mibs/SNMP-NOTIFICATION-MIB/200210140000Z",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "SNMP-TARGET-MIB",
+					"revision": "2002-10-14",
+					"schema": "http://localhost:8008/restconf/tailf/modules/SNMP-TARGET-MIB/2002-10-14",
+					"namespace": "http://tail-f.com/ns/mibs/SNMP-TARGET-MIB/200210140000Z",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "SNMP-USER-BASED-SM-MIB",
+					"revision": "2002-10-16",
+					"schema": "http://localhost:8008/restconf/tailf/modules/SNMP-USER-BASED-SM-MIB/2002-10-16",
+					"namespace": "http://tail-f.com/ns/mibs/SNMP-USER-BASED-SM-MIB/200210160000Z",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "SNMP-VIEW-BASED-ACM-MIB",
+					"revision": "2002-10-16",
+					"schema": "http://localhost:8008/restconf/tailf/modules/SNMP-VIEW-BASED-ACM-MIB/2002-10-16",
+					"namespace": "http://tail-f.com/ns/mibs/SNMP-VIEW-BASED-ACM-MIB/200210160000Z",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "SNMPv2-MIB",
+					"revision": "2002-10-16",
+					"schema": "http://localhost:8008/restconf/tailf/modules/SNMPv2-MIB/2002-10-16",
+					"namespace": "http://tail-f.com/ns/mibs/SNMPv2-MIB/200210160000Z",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "SNMPv2-SMI",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/SNMPv2-SMI",
+					"namespace": "http://tail-f.com/ns/mibs/SNMPv2-SMI/1.0",
+					"conformance-type": "import"
+				},
+				{
+					"name": "SNMPv2-TC",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/SNMPv2-TC",
+					"namespace": "http://tail-f.com/ns/mibs/SNMPv2-TC/1.0",
+					"conformance-type": "import"
+				},
+				{
+					"name": "TRANSPORT-ADDRESS-MIB",
+					"revision": "2002-11-01",
+					"schema": "http://localhost:8008/restconf/tailf/modules/TRANSPORT-ADDRESS-MIB/2002-11-01",
+					"namespace": "http://tail-f.com/ns/mibs/TRANSPORT-ADDRESS-MIB/200211010000Z",
+					"conformance-type": "import"
+				},
+				{
+					"name": "f5-alarm-types",
+					"revision": "2019-12-23",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-alarm-types/2019-12-23",
+					"namespace": "http://f5.com/yang/alarm-types",
+					"conformance-type": "import"
+				},
+				{
+					"name": "f5-authentication",
+					"revision": "2019-04-01",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-authentication/2019-04-01",
+					"namespace": "http://f5.com/velocity/authentication",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-event-log",
+					"revision": "2019-12-23",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-event-log/2019-12-23",
+					"namespace": "http://f5.com/yang/event-log",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-if-aggregate",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-if-aggregate",
+					"namespace": "urn:ietf:params:xml:ns:yang:f5-if-aggregate",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-if-ethernet",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-if-ethernet",
+					"namespace": "urn:ietf:params:xml:ns:yang:f5-if-ethernet",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-lacp",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-lacp",
+					"namespace": "urn:ietf:params:xml:ns:yang:f5-lacp",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-logging-component-authd",
+					"revision": "2019-12-09",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-logging-component-authd/2019-12-09",
+					"namespace": "http://f5.com/yang/logging-component-authd",
+					"conformance-type": "import"
+				},
+				{
+					"name": "f5-logging-component-velocity_rsyslogd",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-logging-component-velocity_rsyslogd",
+					"namespace": "http://velocity.f5.com/ns/f5-logging-component-velocity_rsyslogd",
+					"conformance-type": "import"
+				},
+				{
+					"name": "f5-openconfig-aaa-ldap",
+					"revision": "2019-12-09",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-openconfig-aaa-ldap/2019-12-09",
+					"namespace": "http://f5.com/yang/openconfig-aaa-ldap",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-openconfig-aaa-radius",
+					"revision": "2019-12-09",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-openconfig-aaa-radius/2019-12-09",
+					"namespace": "http://f5.com/yang/openconfig-aaa-radius",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-openconfig-alarms",
+					"revision": "2019-12-23",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-openconfig-alarms/2019-12-23",
+					"namespace": "http://f5.com/yang/openconfig-alarms",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-openconfig-system-logging",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-openconfig-system-logging",
+					"namespace": "http://velocity.f5.com/ns/logging",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-platform",
+					"revision": "2018-12-10",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-platform/2018-12-10",
+					"namespace": "http://velocity.f5.com/ns/platform",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-system-blade-power",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-system-blade-power",
+					"namespace": "http://f5.com/ns/f5-system-blade-power",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-system-controller-image",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-system-controller-image",
+					"namespace": "http://f5.com/ns/f5-system-controller-image",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-system-diags",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-system-diags",
+					"namespace": "http://f5.com/ns/f5-system-diags",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-system-image",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-system-image",
+					"namespace": "http://f5.com/ns/f5-system-image",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-system-partition",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-system-partition",
+					"namespace": "http://f5.com/ns/f5-system-partition",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-system-redundancy",
+					"revision": "2019-11-24",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-system-redundancy/2019-11-24",
+					"namespace": "http://f5.com/ns/system/redundancy",
+					"deviation": [
+						{
+							"name": "f5-system-redundancy-deviations",
+							"revision": ""
+						}
+					],
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-system-redundancy-ann",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-system-redundancy-ann",
+					"namespace": "http://f5.com/ns/system/redundancy-ann",
+					"conformance-type": "import"
+				},
+				{
+					"name": "f5-system-redundancy-details",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-system-redundancy-details",
+					"namespace": "http://f5.com/ns/f5-system-redundancy-details",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-system-redundancy-deviations",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-system-redundancy-deviations",
+					"namespace": "http://f5.com/ns/system/redundancy-deviations",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "f5-system-slot",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/f5-system-slot",
+					"namespace": "http://f5.com/ns/f5-system-slot",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "iana-crypt-hash",
+					"revision": "2014-08-06",
+					"schema": "http://localhost:8008/restconf/tailf/modules/iana-crypt-hash/2014-08-06",
+					"namespace": "urn:ietf:params:xml:ns:yang:iana-crypt-hash",
+					"feature": [
+						"crypt-hash-md5",
+						"crypt-hash-sha-256",
+						"crypt-hash-sha-512"
+					],
+					"conformance-type": "import"
+				},
+				{
+					"name": "iana-if-type",
+					"revision": "2017-01-19",
+					"schema": "http://localhost:8008/restconf/tailf/modules/iana-if-type/2017-01-19",
+					"namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
+					"conformance-type": "import"
+				},
+				{
+					"name": "ietf-inet-types",
+					"revision": "2013-07-15",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-inet-types/2013-07-15",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+					"conformance-type": "import"
+				},
+				{
+					"name": "ietf-interfaces",
+					"revision": "2018-02-20",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-interfaces/2018-02-20",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+					"feature": [
+						"arbitrary-names",
+						"if-mib",
+						"pre-provisioning"
+					],
+					"conformance-type": "implement"
+				},
+				{
+					"name": "ietf-netconf-acm",
+					"revision": "2018-02-14",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-netconf-acm/2018-02-14",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-acm",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "ietf-netconf-monitoring",
+					"revision": "2010-10-04",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-netconf-monitoring/2010-10-04",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "ietf-netconf-notifications",
+					"revision": "2012-02-06",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-netconf-notifications/2012-02-06",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-notifications",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "ietf-restconf",
+					"revision": "2017-01-26",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-restconf/2017-01-26",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-restconf",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "ietf-restconf-monitoring",
+					"revision": "2017-01-26",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-restconf-monitoring/2017-01-26",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-restconf-monitoring",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "ietf-x509-cert-to-name",
+					"revision": "2014-12-10",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-x509-cert-to-name/2014-12-10",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-x509-cert-to-name",
+					"conformance-type": "import"
+				},
+				{
+					"name": "ietf-yang-library",
+					"revision": "2016-06-21",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-yang-library/2016-06-21",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "ietf-yang-patch",
+					"revision": "2017-02-22",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-yang-patch/2017-02-22",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-patch",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "ietf-yang-smiv2",
+					"revision": "2012-06-22",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-yang-smiv2/2012-06-22",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-smiv2",
+					"conformance-type": "import"
+				},
+				{
+					"name": "ietf-yang-types",
+					"revision": "2013-07-15",
+					"schema": "http://localhost:8008/restconf/tailf/modules/ietf-yang-types/2013-07-15",
+					"namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-aaa",
+					"revision": "2018-04-12",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-aaa/2018-04-12",
+					"namespace": "http://openconfig.net/yang/aaa",
+					"conformance-type": "import",
+					"submodule": [
+						{
+							"name": "openconfig-aaa-radius",
+							"revision": "2017-09-18",
+							"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-aaa-radius/2017-09-18"
+						},
+						{
+							"name": "openconfig-aaa-tacacs",
+							"revision": "2017-09-18",
+							"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-aaa-tacacs/2017-09-18"
+						}
+					]
+				},
+				{
+					"name": "openconfig-aaa-types",
+					"revision": "2018-04-12",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-aaa-types/2018-04-12",
+					"namespace": "http://openconfig.net/yang/aaa/types",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-alarm-types",
+					"revision": "2018-01-16",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-alarm-types/2018-01-16",
+					"namespace": "http://openconfig.net/yang/alarms/types",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-alarms",
+					"revision": "2018-01-16",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-alarms/2018-01-16",
+					"namespace": "http://openconfig.net/yang/alarms",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "openconfig-extensions",
+					"revision": "2017-04-11",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-extensions/2017-04-11",
+					"namespace": "http://openconfig.net/yang/openconfig-ext",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-if-aggregate",
+					"revision": "2018-03-23",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-if-aggregate/2018-03-23",
+					"namespace": "http://openconfig.net/yang/interfaces/aggregate",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "openconfig-if-ethernet",
+					"revision": "2018-09-04",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-if-ethernet/2018-09-04",
+					"namespace": "http://openconfig.net/yang/interfaces/ethernet",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "openconfig-if-types",
+					"revision": "2018-01-05",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-if-types/2018-01-05",
+					"namespace": "http://openconfig.net/yang/openconfig-if-types",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-inet-types",
+					"revision": "2017-08-24",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-inet-types/2017-08-24",
+					"namespace": "http://openconfig.net/yang/types/inet",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-interfaces",
+					"revision": "2018-08-07",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-interfaces/2018-08-07",
+					"namespace": "http://openconfig.net/yang/interfaces",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "openconfig-lacp",
+					"revision": "2017-05-05",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-lacp/2017-05-05",
+					"namespace": "http://openconfig.net/yang/lacp",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "openconfig-platform",
+					"revision": "2018-06-29",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-platform/2018-06-29",
+					"namespace": "http://openconfig.net/yang/platform",
+					"deviation": [
+						{
+							"name": "f5-openconfig-platform-deviations",
+							"revision": ""
+						}
+					],
+					"conformance-type": "implement"
+				},
+				{
+					"name": "openconfig-platform-types",
+					"revision": "2018-05-05",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-platform-types/2018-05-05",
+					"namespace": "http://openconfig.net/yang/platform-types",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-procmon",
+					"revision": "2017-09-18",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-procmon/2017-09-18",
+					"namespace": "http://openconfig.net/yang/system/procmon",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-system",
+					"revision": "2018-07-17",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-system/2018-07-17",
+					"namespace": "http://openconfig.net/yang/system",
+					"deviation": [
+						{
+							"name": "f5-openconfig-aaa-deviations",
+							"revision": ""
+						},
+						{
+							"name": "f5-openconfig-alarms-deviations",
+							"revision": "2019-12-23"
+						},
+						{
+							"name": "f5-openconfig-system-logging-deviations",
+							"revision": ""
+						}
+					],
+					"conformance-type": "implement"
+				},
+				{
+					"name": "openconfig-system-logging",
+					"revision": "2017-09-18",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-system-logging/2017-09-18",
+					"namespace": "http://openconfig.net/yang/system/logging",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-system-management",
+					"revision": "2018-08-28",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-system-management/2018-08-28",
+					"namespace": "http://openconfig.net/yang/system/management",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-system-terminal",
+					"revision": "2017-09-18",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-system-terminal/2017-09-18",
+					"namespace": "http://openconfig.net/yang/system/terminal",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-types",
+					"revision": "2018-05-05",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-types/2018-05-05",
+					"namespace": "http://openconfig.net/yang/openconfig-types",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openconfig-yang-types",
+					"revision": "2018-04-24",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openconfig-yang-types/2018-04-24",
+					"namespace": "http://openconfig.net/yang/types/yang",
+					"conformance-type": "import"
+				},
+				{
+					"name": "openshift-cluster",
+					"revision": "2019-11-08",
+					"schema": "http://localhost:8008/restconf/tailf/modules/openshift-cluster/2019-11-08",
+					"namespace": "http://f5.com/ns/openshift-cluster",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "tailf-aaa",
+					"revision": "2018-09-12",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-aaa/2018-09-12",
+					"namespace": "http://tail-f.com/ns/aaa/1.1",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "tailf-acm",
+					"revision": "2013-03-07",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-acm/2013-03-07",
+					"namespace": "http://tail-f.com/yang/acm",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "tailf-common",
+					"revision": "2019-05-16",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-common/2019-05-16",
+					"namespace": "http://tail-f.com/yang/common",
+					"conformance-type": "import",
+					"submodule": [
+						{
+							"name": "tailf-cli-extensions",
+							"revision": "2019-05-16",
+							"schema": "http://localhost:8008/restconf/tailf/modules/tailf-cli-extensions/2019-05-16"
+						},
+						{
+							"name": "tailf-meta-extensions",
+							"revision": "2017-03-08",
+							"schema": "http://localhost:8008/restconf/tailf/modules/tailf-meta-extensions/2017-03-08"
+						}
+					]
+				},
+				{
+					"name": "tailf-common-monitoring",
+					"revision": "2019-04-09",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-common-monitoring/2019-04-09",
+					"namespace": "http://tail-f.com/yang/common-monitoring",
+					"conformance-type": "import"
+				},
+				{
+					"name": "tailf-common-query",
+					"revision": "2017-12-15",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-common-query/2017-12-15",
+					"namespace": "http://tail-f.com/ns/common/query",
+					"conformance-type": "import"
+				},
+				{
+					"name": "tailf-confd-monitoring",
+					"revision": "2019-04-09",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-confd-monitoring/2019-04-09",
+					"namespace": "http://tail-f.com/yang/confd-monitoring",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "tailf-kicker",
+					"revision": "2017-09-28",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-kicker/2017-09-28",
+					"namespace": "http://tail-f.com/ns/kicker",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "tailf-netconf-monitoring",
+					"revision": "2019-03-28",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-netconf-monitoring/2019-03-28",
+					"namespace": "http://tail-f.com/yang/netconf-monitoring",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "tailf-progress",
+					"revision": "2018-06-14",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-progress/2018-06-14",
+					"namespace": "http://tail-f.com/ns/progress",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "tailf-rollback",
+					"revision": "2018-01-12",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-rollback/2018-01-12",
+					"namespace": "http://tail-f.com/ns/rollback",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "tailf-tls",
+					"revision": "2019-06-13",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-tls/2019-06-13",
+					"namespace": "http://tail-f.com/ns/tls",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "tailf-webui",
+					"revision": "2013-03-07",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-webui/2013-03-07",
+					"namespace": "http://tail-f.com/ns/webui",
+					"conformance-type": "implement"
+				},
+				{
+					"name": "tailf-xsd-types",
+					"revision": "2017-11-20",
+					"schema": "http://localhost:8008/restconf/tailf/modules/tailf-xsd-types/2017-11-20",
+					"namespace": "http://tail-f.com/yang/xsd-types",
+					"conformance-type": "import"
+				},
+				{
+					"name": "velocity_ctrlr",
+					"revision": "",
+					"schema": "http://localhost:8008/restconf/tailf/modules/velocity_ctrlr",
+					"namespace": "http://velocity.f5.com/ns/velocity",
+					"conformance-type": "implement"
+				}
+			]
+		},
+		"SNMP-COMMUNITY-MIB:SNMP-COMMUNITY-MIB": {
+			"snmpCommunityTable": {
+				"snmpCommunityEntry": [
+					{
+						"snmpCommunityIndex": "public",
+						"snmpCommunityName": "public",
+						"snmpCommunitySecurityName": "public",
+						"snmpCommunityContextEngineID": "80:00:61:81:05:01"
+					}
+				]
+			}
+		},
+		"SNMP-VIEW-BASED-ACM-MIB:SNMP-VIEW-BASED-ACM-MIB": {
+			"vacmSecurityToGroupTable": {
+				"vacmSecurityToGroupEntry": [
+					{
+						"vacmSecurityModel": 1,
+						"vacmSecurityName": "public",
+						"vacmGroupName": "all-rights"
+					},
+					{
+						"vacmSecurityModel": 2,
+						"vacmSecurityName": "public",
+						"vacmGroupName": "all-rights"
+					}
+				]
+			},
+			"vacmAccessTable": {
+				"vacmAccessEntry": [
+					{
+						"vacmGroupName": "all-rights",
+						"vacmAccessContextPrefix": "",
+						"vacmAccessSecurityModel": 0,
+						"vacmAccessSecurityLevel": "noAuthNoPriv",
+						"vacmAccessContextMatch": "exact",
+						"vacmAccessReadViewName": "internet",
+						"vacmAccessWriteViewName": "internet",
+						"vacmAccessNotifyViewName": "internet"
+					}
+				]
+			},
+			"vacmViewTreeFamilyTable": {
+				"vacmViewTreeFamilyEntry": [
+					{
+						"vacmViewTreeFamilyViewName": "internet",
+						"vacmViewTreeFamilySubtree": "1.3.6.1",
+						"vacmViewTreeFamilyMask": "",
+						"vacmViewTreeFamilyType": "included"
+					}
+				]
+			}
+		},
+		"f5-authentication:authentication": {
+			"password-policy": {
+				"strict": true,
+				"min-days": 0,
+				"max-days": 99999,
+				"warn-age": 7,
+				"min-length": 6,
+				"remember": 0,
+				"required-numeric": 0,
+				"required-uppercase": 0,
+				"required-lowercase": 0,
+				"required-special": 0,
+				"max-login-failures": 0,
+				"unlock-time": 0,
+				"admin-lockout": false,
+				"manual-lockout": false
+			},
+			"ldap-config": {
+				"port": 389,
+				"search-timeout": 30,
+				"bind-timeout": 30,
+				"idle-timeout": 3600,
+				"version": 3,
+				"ssl": "off",
+				"tls-reqcert": "demand"
+			},
+			"radius-config": {
+				"port": 1812,
+				"timeout": 3
+			}
+		},
+		"f5-system-image:image": {
+			"partition": {
+				"config": {
+					"os": {
+						"os": [
+							{
+								"version": "7.4.2020-02-05-764"
+							}
+						]
+					},
+					"services": {
+						"service": [
+							{
+								"version": "1.0.0.2020-02-05-764"
+							}
+						]
+					},
+					"iso": {
+						"iso": [
+							{
+								"version": "7.4.2020-02-05-764",
+								"service": "1.0.0.2020-02-05-764",
+								"os": "7.4.2020-02-05-764"
+							}
+						]
+					}
+				},
+				"state": {
+					"controllers": {
+						"controller": [
+							{
+								"number": 1,
+								"os": {
+									"os": [
+										{
+											"version-os": "7.4.2020-02-05-764",
+											"status": "ready",
+											"date": "unknown",
+											"in-use": true,
+											"partitions": {
+												"partition": [
+													{
+														"name": "default",
+														"id": 1
+													},
+													{
+														"name": "partition1",
+														"id": 2
+													},
+													{
+														"name": "partition2",
+														"id": 3
+													},
+													{
+														"name": "partition3",
+														"id": 4
+													},
+													{
+														"name": "partition4",
+														"id": 5
+													},
+													{
+														"name": "partition5",
+														"id": 6
+													},
+													{
+														"name": "partition6",
+														"id": 7
+													},
+													{
+														"name": "partition7",
+														"id": 8
+													},
+													{
+														"name": "partition8",
+														"id": 9
+													},
+													{
+														"name": "partition9",
+														"id": 10
+													},
+													{
+														"name": "partition10",
+														"id": 11
+													},
+													{
+														"name": "partition11",
+														"id": 12
+													},
+													{
+														"name": "partition12",
+														"id": 13
+													},
+													{
+														"name": "partition13",
+														"id": 14
+													},
+													{
+														"name": "partition14",
+														"id": 15
+													},
+													{
+														"name": "partition15",
+														"id": 16
+													},
+													{
+														"name": "partition16",
+														"id": 17
+													},
+													{
+														"name": "partition17",
+														"id": 18
+													},
+													{
+														"name": "partition18",
+														"id": 19
+													},
+													{
+														"name": "partition19",
+														"id": 20
+													},
+													{
+														"name": "partition20",
+														"id": 21
+													},
+													{
+														"name": "partition21",
+														"id": 22
+													},
+													{
+														"name": "partition22",
+														"id": 23
+													},
+													{
+														"name": "partition23",
+														"id": 24
+													},
+													{
+														"name": "partition24",
+														"id": 25
+													},
+													{
+														"name": "partition25",
+														"id": 26
+													},
+													{
+														"name": "partition26",
+														"id": 27
+													}
+												]
+											}
+										}
+									]
+								},
+								"services": {
+									"service": [
+										{
+											"version-service": "1.0.0.2020-02-05-764",
+											"status": "ready",
+											"date": "unknown",
+											"in-use": true,
+											"partitions": {
+												"partition": [
+													{
+														"name": "default",
+														"id": 1
+													},
+													{
+														"name": "partition1",
+														"id": 2
+													},
+													{
+														"name": "partition2",
+														"id": 3
+													},
+													{
+														"name": "partition3",
+														"id": 4
+													},
+													{
+														"name": "partition4",
+														"id": 5
+													},
+													{
+														"name": "partition5",
+														"id": 6
+													},
+													{
+														"name": "partition6",
+														"id": 7
+													},
+													{
+														"name": "partition7",
+														"id": 8
+													},
+													{
+														"name": "partition8",
+														"id": 9
+													},
+													{
+														"name": "partition9",
+														"id": 10
+													},
+													{
+														"name": "partition10",
+														"id": 11
+													},
+													{
+														"name": "partition11",
+														"id": 12
+													},
+													{
+														"name": "partition12",
+														"id": 13
+													},
+													{
+														"name": "partition13",
+														"id": 14
+													},
+													{
+														"name": "partition14",
+														"id": 15
+													},
+													{
+														"name": "partition15",
+														"id": 16
+													},
+													{
+														"name": "partition16",
+														"id": 17
+													},
+													{
+														"name": "partition17",
+														"id": 18
+													},
+													{
+														"name": "partition18",
+														"id": 19
+													},
+													{
+														"name": "partition19",
+														"id": 20
+													},
+													{
+														"name": "partition20",
+														"id": 21
+													},
+													{
+														"name": "partition21",
+														"id": 22
+													},
+													{
+														"name": "partition22",
+														"id": 23
+													},
+													{
+														"name": "partition23",
+														"id": 24
+													},
+													{
+														"name": "partition24",
+														"id": 25
+													},
+													{
+														"name": "partition25",
+														"id": 26
+													},
+													{
+														"name": "partition26",
+														"id": 27
+													}
+												]
+											}
+										}
+									]
+								},
+								"iso": {
+									"iso": [
+										{
+											"version-iso": "7.4.2020-02-05-764",
+											"status": "ready",
+											"date": "unknown",
+											"in-use": false
+										}
+									]
+								}
+							},
+							{
+								"number": 2,
+								"os": {
+									"os": [
+										{
+											"version-os": "7.4.2020-02-05-764",
+											"status": "ready",
+											"date": "unknown",
+											"in-use": true,
+											"partitions": {
+												"partition": [
+													{
+														"name": "default",
+														"id": 1
+													},
+													{
+														"name": "partition1",
+														"id": 2
+													},
+													{
+														"name": "partition2",
+														"id": 3
+													},
+													{
+														"name": "partition3",
+														"id": 4
+													},
+													{
+														"name": "partition4",
+														"id": 5
+													},
+													{
+														"name": "partition5",
+														"id": 6
+													},
+													{
+														"name": "partition6",
+														"id": 7
+													},
+													{
+														"name": "partition7",
+														"id": 8
+													},
+													{
+														"name": "partition8",
+														"id": 9
+													},
+													{
+														"name": "partition9",
+														"id": 10
+													},
+													{
+														"name": "partition10",
+														"id": 11
+													},
+													{
+														"name": "partition11",
+														"id": 12
+													},
+													{
+														"name": "partition12",
+														"id": 13
+													},
+													{
+														"name": "partition13",
+														"id": 14
+													},
+													{
+														"name": "partition14",
+														"id": 15
+													},
+													{
+														"name": "partition15",
+														"id": 16
+													},
+													{
+														"name": "partition16",
+														"id": 17
+													},
+													{
+														"name": "partition17",
+														"id": 18
+													},
+													{
+														"name": "partition18",
+														"id": 19
+													},
+													{
+														"name": "partition19",
+														"id": 20
+													},
+													{
+														"name": "partition20",
+														"id": 21
+													},
+													{
+														"name": "partition21",
+														"id": 22
+													},
+													{
+														"name": "partition22",
+														"id": 23
+													},
+													{
+														"name": "partition23",
+														"id": 24
+													},
+													{
+														"name": "partition24",
+														"id": 25
+													},
+													{
+														"name": "partition25",
+														"id": 26
+													},
+													{
+														"name": "partition26",
+														"id": 27
+													}
+												]
+											}
+										}
+									]
+								},
+								"services": {
+									"service": [
+										{
+											"version-service": "1.0.0.2020-02-05-764",
+											"status": "ready",
+											"date": "unknown",
+											"in-use": true,
+											"partitions": {
+												"partition": [
+													{
+														"name": "default",
+														"id": 1
+													},
+													{
+														"name": "partition1",
+														"id": 2
+													},
+													{
+														"name": "partition2",
+														"id": 3
+													},
+													{
+														"name": "partition3",
+														"id": 4
+													},
+													{
+														"name": "partition4",
+														"id": 5
+													},
+													{
+														"name": "partition5",
+														"id": 6
+													},
+													{
+														"name": "partition6",
+														"id": 7
+													},
+													{
+														"name": "partition7",
+														"id": 8
+													},
+													{
+														"name": "partition8",
+														"id": 9
+													},
+													{
+														"name": "partition9",
+														"id": 10
+													},
+													{
+														"name": "partition10",
+														"id": 11
+													},
+													{
+														"name": "partition11",
+														"id": 12
+													},
+													{
+														"name": "partition12",
+														"id": 13
+													},
+													{
+														"name": "partition13",
+														"id": 14
+													},
+													{
+														"name": "partition14",
+														"id": 15
+													},
+													{
+														"name": "partition15",
+														"id": 16
+													},
+													{
+														"name": "partition16",
+														"id": 17
+													},
+													{
+														"name": "partition17",
+														"id": 18
+													},
+													{
+														"name": "partition18",
+														"id": 19
+													},
+													{
+														"name": "partition19",
+														"id": 20
+													},
+													{
+														"name": "partition20",
+														"id": 21
+													},
+													{
+														"name": "partition21",
+														"id": 22
+													},
+													{
+														"name": "partition22",
+														"id": 23
+													},
+													{
+														"name": "partition23",
+														"id": 24
+													},
+													{
+														"name": "partition24",
+														"id": 25
+													},
+													{
+														"name": "partition25",
+														"id": 26
+													},
+													{
+														"name": "partition26",
+														"id": 27
+													}
+												]
+											}
+										}
+									]
+								},
+								"iso": {
+									"iso": [
+										{
+											"version-iso": "7.4.2020-02-05-764",
+											"status": "ready",
+											"date": "unknown",
+											"in-use": false
+										}
+									]
+								}
+							}
+						]
+					}
+				}
+			}
+		},
+		"f5-system-partition:partitions": {
+			"partition": [
+				{
+					"name": "default",
+					"gid": 9011,
+					"id": 1,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764",
+					"pxe-server": "internal",
+					"mgmt-ip": {
+						"ipv4": {
+							"address-ipv4": "10.144.19.54",
+							"prefix-length-ipv4": 20,
+							"gateway-ipv4": "10.144.31.254"
+						}
+					}
+				},
+				{
+					"name": "none",
+					"gid": 9010,
+					"id": 0,
+					"enabled": false
+				},
+				{
+					"name": "partition1",
+					"gid": 9012,
+					"id": 2,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition10",
+					"gid": 9021,
+					"id": 11,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition11",
+					"gid": 9022,
+					"id": 12,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition12",
+					"gid": 9023,
+					"id": 13,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition13",
+					"gid": 9024,
+					"id": 14,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition14",
+					"gid": 9025,
+					"id": 15,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition15",
+					"gid": 9026,
+					"id": 16,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition16",
+					"gid": 9027,
+					"id": 17,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition17",
+					"gid": 9028,
+					"id": 18,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition18",
+					"gid": 9029,
+					"id": 19,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition19",
+					"gid": 9030,
+					"id": 20,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition2",
+					"gid": 9013,
+					"id": 3,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition20",
+					"gid": 9031,
+					"id": 21,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition21",
+					"gid": 9032,
+					"id": 22,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition22",
+					"gid": 9033,
+					"id": 23,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition23",
+					"gid": 9034,
+					"id": 24,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition24",
+					"gid": 9035,
+					"id": 25,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition25",
+					"gid": 9036,
+					"id": 26,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition26",
+					"gid": 9037,
+					"id": 27,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition27",
+					"gid": 9038,
+					"id": 28,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition28",
+					"gid": 9039,
+					"id": 29,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition29",
+					"gid": 9040,
+					"id": 30,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition3",
+					"gid": 9014,
+					"id": 4,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition30",
+					"gid": 9041,
+					"id": 31,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition4",
+					"gid": 9015,
+					"id": 5,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition5",
+					"gid": 9016,
+					"id": 6,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition6",
+					"gid": 9017,
+					"id": 7,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition7",
+					"gid": 9018,
+					"id": 8,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition8",
+					"gid": 9019,
+					"id": 9,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				},
+				{
+					"name": "partition9",
+					"gid": 9020,
+					"id": 10,
+					"enabled": true,
+					"os-version": "7.4.2020-02-05-764",
+					"service-version": "1.0.0.2020-02-05-764"
+				}
+			]
+		},
+		"f5-system-slot:slots": {
+			"slot": [
+				{
+					"slot-num": 1,
+					"partition": "default"
+				},
+				{
+					"slot-num": 2,
+					"partition": "default"
+				},
+				{
+					"slot-num": 3,
+					"partition": "default"
+				},
+				{
+					"slot-num": 4,
+					"partition": "default"
+				},
+				{
+					"slot-num": 5,
+					"partition": "default"
+				},
+				{
+					"slot-num": 6,
+					"partition": "default"
+				},
+				{
+					"slot-num": 7,
+					"partition": "default"
+				},
+				{
+					"slot-num": 8,
+					"partition": "default"
+				}
+			]
+		},
+		"ietf-netconf-acm:nacm": {
+			"write-default": "permit",
+			"denied-operations": 0,
+			"denied-data-writes": 0,
+			"denied-notifications": 0,
+			"groups": {
+				"group": [
+					{
+						"name": "admin",
+						"user-name": [
+							"admin",
+							"private"
+						]
+					},
+					{
+						"name": "oper",
+						"user-name": [
+							"oper",
+							"public"
+						]
+					}
+				]
+			},
+			"rule-list": [
+				{
+					"name": "admin",
+					"group": [
+						"admin"
+					],
+					"rule": [
+						{
+							"name": "any-access",
+							"action": "permit"
+						}
+					]
+				},
+				{
+					"name": "any-group",
+					"group": [
+						"*"
+					],
+					"rule": [
+						{
+							"name": "tailf-aaa-authentication",
+							"module-name": "tailf-aaa",
+							"path": "/aaa/authentication/users/user[name='$USER']",
+							"access-operations": "read update",
+							"action": "permit"
+						},
+						{
+							"name": "tailf-aaa-user",
+							"module-name": "tailf-aaa",
+							"path": "/user[name='$USER']",
+							"access-operations": "create read update delete",
+							"action": "permit"
+						},
+						{
+							"name": "tailf-webui-user",
+							"module-name": "tailf-webui",
+							"path": "/webui/data-stores/user-profile[username='$USER']",
+							"access-operations": "create read update delete",
+							"action": "permit"
+						}
+					]
+				}
+			]
+		},
+		"ietf-netconf-monitoring:netconf-state": {
+			"capabilities": {
+				"capability": [
+					"urn:ietf:params:netconf:base:1.0",
+					"urn:ietf:params:netconf:base:1.1",
+					"urn:ietf:params:netconf:capability:confirmed-commit:1.1",
+					"urn:ietf:params:netconf:capability:confirmed-commit:1.0",
+					"urn:ietf:params:netconf:capability:writable-running:1.0",
+					"urn:ietf:params:netconf:capability:candidate:1.0",
+					"urn:ietf:params:netconf:capability:rollback-on-error:1.0",
+					"urn:ietf:params:netconf:capability:url:1.0?scheme=ftp,sftp,file",
+					"urn:ietf:params:netconf:capability:validate:1.0",
+					"urn:ietf:params:netconf:capability:validate:1.1",
+					"urn:ietf:params:netconf:capability:xpath:1.0",
+					"urn:ietf:params:netconf:capability:partial-lock:1.0",
+					"urn:ietf:params:netconf:capability:with-defaults:1.0?basic-mode=explicit&also-supported=report-all-tagged,report-all",
+					"urn:ietf:params:netconf:capability:yang-library:1.0?revision=2016-06-21&module-set-id=aa23105284c8f018249776285d474aec",
+					"http://f5.com/ns/f5-system-blade-power?module=f5-system-blade-power",
+					"http://f5.com/ns/f5-system-controller-image?module=f5-system-controller-image",
+					"http://f5.com/ns/f5-system-diags?module=f5-system-diags",
+					"http://f5.com/ns/f5-system-image?module=f5-system-image",
+					"http://f5.com/ns/f5-system-partition?module=f5-system-partition",
+					"http://f5.com/ns/f5-system-redundancy-details?module=f5-system-redundancy-details",
+					"http://f5.com/ns/f5-system-slot?module=f5-system-slot",
+					"http://f5.com/ns/openshift-cluster?module=openshift-cluster&revision=2019-11-08",
+					"http://f5.com/ns/system/redundancy?module=f5-system-redundancy&revision=2019-11-24&deviations=f5-system-redundancy-deviations",
+					"http://f5.com/ns/system/redundancy-ann?module=f5-system-redundancy-ann",
+					"http://f5.com/ns/system/redundancy-deviations?module=f5-system-redundancy-deviations",
+					"http://f5.com/velocity/authentication?module=f5-authentication&revision=2019-04-01",
+					"http://f5.com/yang/alarm-types?module=f5-alarm-types&revision=2019-12-23",
+					"http://f5.com/yang/event-log?module=f5-event-log&revision=2019-12-23",
+					"http://f5.com/yang/logging-component-authd?module=f5-logging-component-authd&revision=2019-12-09",
+					"http://f5.com/yang/openconfig-aaa-ldap?module=f5-openconfig-aaa-ldap&revision=2019-12-09",
+					"http://f5.com/yang/openconfig-aaa-radius?module=f5-openconfig-aaa-radius&revision=2019-12-09",
+					"http://f5.com/yang/openconfig-alarms?module=f5-openconfig-alarms&revision=2019-12-23",
+					"http://openconfig.net/yang/aaa?module=openconfig-aaa&revision=2018-04-12",
+					"http://openconfig.net/yang/aaa/types?module=openconfig-aaa-types&revision=2018-04-12",
+					"http://openconfig.net/yang/alarms?module=openconfig-alarms&revision=2018-01-16",
+					"http://openconfig.net/yang/alarms/types?module=openconfig-alarm-types&revision=2018-01-16",
+					"http://openconfig.net/yang/interfaces?module=openconfig-interfaces&revision=2018-08-07",
+					"http://openconfig.net/yang/interfaces/aggregate?module=openconfig-if-aggregate&revision=2018-03-23",
+					"http://openconfig.net/yang/interfaces/ethernet?module=openconfig-if-ethernet&revision=2018-09-04",
+					"http://openconfig.net/yang/lacp?module=openconfig-lacp&revision=2017-05-05",
+					"http://openconfig.net/yang/openconfig-ext?module=openconfig-extensions&revision=2017-04-11",
+					"http://openconfig.net/yang/openconfig-if-types?module=openconfig-if-types&revision=2018-01-05",
+					"http://openconfig.net/yang/openconfig-types?module=openconfig-types&revision=2018-05-05",
+					"http://openconfig.net/yang/platform?module=openconfig-platform&revision=2018-06-29&deviations=f5-openconfig-platform-deviations",
+					"http://openconfig.net/yang/platform-types?module=openconfig-platform-types&revision=2018-05-05",
+					"http://openconfig.net/yang/system?module=openconfig-system&revision=2018-07-17&deviations=f5-openconfig-aaa-deviations,f5-openconfig-alarms-deviations,f5-openconfig-system-logging-deviations",
+					"http://openconfig.net/yang/system/logging?module=openconfig-system-logging&revision=2017-09-18",
+					"http://openconfig.net/yang/system/management?module=openconfig-system-management&revision=2018-08-28",
+					"http://openconfig.net/yang/system/procmon?module=openconfig-procmon&revision=2017-09-18",
+					"http://openconfig.net/yang/system/terminal?module=openconfig-system-terminal&revision=2017-09-18",
+					"http://openconfig.net/yang/types/inet?module=openconfig-inet-types&revision=2017-08-24",
+					"http://openconfig.net/yang/types/yang?module=openconfig-yang-types&revision=2018-04-24",
+					"http://tail-f.com/ns/aaa/1.1?module=tailf-aaa&revision=2018-09-12",
+					"http://tail-f.com/ns/common/query?module=tailf-common-query&revision=2017-12-15",
+					"http://tail-f.com/ns/kicker?module=tailf-kicker&revision=2017-09-28",
+					"http://tail-f.com/ns/mibs/IPV6-TC/199812010000Z?module=IPV6-TC&revision=1998-12-01",
+					"http://tail-f.com/ns/mibs/SNMP-COMMUNITY-MIB/200308060000Z?module=SNMP-COMMUNITY-MIB&revision=2003-08-06",
+					"http://tail-f.com/ns/mibs/SNMP-FRAMEWORK-MIB/200210140000Z?module=SNMP-FRAMEWORK-MIB&revision=2002-10-14",
+					"http://tail-f.com/ns/mibs/SNMP-MPD-MIB/200210140000Z?module=SNMP-MPD-MIB&revision=2002-10-14",
+					"http://tail-f.com/ns/mibs/SNMP-NOTIFICATION-MIB/200210140000Z?module=SNMP-NOTIFICATION-MIB&revision=2002-10-14",
+					"http://tail-f.com/ns/mibs/SNMP-TARGET-MIB/200210140000Z?module=SNMP-TARGET-MIB&revision=2002-10-14",
+					"http://tail-f.com/ns/mibs/SNMP-USER-BASED-SM-MIB/200210160000Z?module=SNMP-USER-BASED-SM-MIB&revision=2002-10-16",
+					"http://tail-f.com/ns/mibs/SNMP-VIEW-BASED-ACM-MIB/200210160000Z?module=SNMP-VIEW-BASED-ACM-MIB&revision=2002-10-16",
+					"http://tail-f.com/ns/mibs/SNMPv2-MIB/200210160000Z?module=SNMPv2-MIB&revision=2002-10-16",
+					"http://tail-f.com/ns/mibs/SNMPv2-SMI/1.0?module=SNMPv2-SMI",
+					"http://tail-f.com/ns/mibs/SNMPv2-TC/1.0?module=SNMPv2-TC",
+					"http://tail-f.com/ns/mibs/TRANSPORT-ADDRESS-MIB/200211010000Z?module=TRANSPORT-ADDRESS-MIB&revision=2002-11-01",
+					"http://tail-f.com/ns/netconf/query?module=tailf-netconf-query&revision=2017-01-06",
+					"http://tail-f.com/ns/progress?module=tailf-progress&revision=2018-06-14",
+					"http://tail-f.com/ns/webui?module=tailf-webui&revision=2013-03-07",
+					"http://tail-f.com/yang/acm?module=tailf-acm&revision=2013-03-07",
+					"http://tail-f.com/yang/common?module=tailf-common&revision=2019-05-16",
+					"http://tail-f.com/yang/common-monitoring?module=tailf-common-monitoring&revision=2019-04-09",
+					"http://tail-f.com/yang/confd-monitoring?module=tailf-confd-monitoring&revision=2019-04-09",
+					"http://tail-f.com/yang/netconf-monitoring?module=tailf-netconf-monitoring&revision=2019-03-28",
+					"http://tail-f.com/yang/xsd-types?module=tailf-xsd-types&revision=2017-11-20",
+					"http://velocity.f5.com/ns/f5-logging-component-velocity_rsyslogd?module=f5-logging-component-velocity_rsyslogd",
+					"http://velocity.f5.com/ns/platform?module=f5-platform&revision=2018-12-10",
+					"http://velocity.f5.com/ns/velocity?module=velocity_ctrlr",
+					"urn:ietf:params:xml:ns:netconf:base:1.0?module=ietf-netconf&revision=2011-06-01&features=writable-running,confirmed-commit,candidate,rollback-on-error,validate,xpath,url",
+					"urn:ietf:params:xml:ns:netconf:partial-lock:1.0?module=ietf-netconf-partial-lock&revision=2009-10-19",
+					"urn:ietf:params:xml:ns:yang:f5-if-aggregate?module=f5-if-aggregate",
+					"urn:ietf:params:xml:ns:yang:f5-if-ethernet?module=f5-if-ethernet",
+					"urn:ietf:params:xml:ns:yang:f5-lacp?module=f5-lacp",
+					"urn:ietf:params:xml:ns:yang:iana-crypt-hash?module=iana-crypt-hash&revision=2014-08-06&features=crypt-hash-sha-512,crypt-hash-sha-256,crypt-hash-md5",
+					"urn:ietf:params:xml:ns:yang:iana-if-type?module=iana-if-type&revision=2017-01-19",
+					"urn:ietf:params:xml:ns:yang:ietf-inet-types?module=ietf-inet-types&revision=2013-07-15",
+					"urn:ietf:params:xml:ns:yang:ietf-netconf-acm?module=ietf-netconf-acm&revision=2018-02-14",
+					"urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring?module=ietf-netconf-monitoring&revision=2010-10-04",
+					"urn:ietf:params:xml:ns:yang:ietf-netconf-notifications?module=ietf-netconf-notifications&revision=2012-02-06",
+					"urn:ietf:params:xml:ns:yang:ietf-netconf-with-defaults?module=ietf-netconf-with-defaults&revision=2011-06-01",
+					"urn:ietf:params:xml:ns:yang:ietf-restconf-monitoring?module=ietf-restconf-monitoring&revision=2017-01-26",
+					"urn:ietf:params:xml:ns:yang:ietf-x509-cert-to-name?module=ietf-x509-cert-to-name&revision=2014-12-10",
+					"urn:ietf:params:xml:ns:yang:ietf-yang-library?module=ietf-yang-library&revision=2016-06-21",
+					"urn:ietf:params:xml:ns:yang:ietf-yang-smiv2?module=ietf-yang-smiv2&revision=2012-06-22",
+					"urn:ietf:params:xml:ns:yang:ietf-yang-types?module=ietf-yang-types&revision=2013-07-15"
+				]
+			},
+			"datastores": {
+				"datastore": [
+					{
+						"name": "running",
+						"tailf-netconf-monitoring:transaction-id": "1582-657065-818309@master"
+					},
+					{
+						"name": "candidate"
+					}
+				]
+			},
+			"schemas": {
+				"schema": [
+					{
+						"identifier": "IPV6-TC",
+						"version": "1998-12-01",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/IPV6-TC/199812010000Z",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "SNMP-COMMUNITY-MIB",
+						"version": "2003-08-06",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-COMMUNITY-MIB/200308060000Z",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "SNMP-FRAMEWORK-MIB",
+						"version": "2002-10-14",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-FRAMEWORK-MIB/200210140000Z",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "SNMP-MPD-MIB",
+						"version": "2002-10-14",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-MPD-MIB/200210140000Z",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "SNMP-NOTIFICATION-MIB",
+						"version": "2002-10-14",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-NOTIFICATION-MIB/200210140000Z",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "SNMP-TARGET-MIB",
+						"version": "2002-10-14",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-TARGET-MIB/200210140000Z",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "SNMP-USER-BASED-SM-MIB",
+						"version": "2002-10-16",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-USER-BASED-SM-MIB/200210160000Z",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "SNMP-VIEW-BASED-ACM-MIB",
+						"version": "2002-10-16",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-VIEW-BASED-ACM-MIB/200210160000Z",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "SNMPv2-MIB",
+						"version": "2002-10-16",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/SNMPv2-MIB/200210160000Z",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "SNMPv2-SMI",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/SNMPv2-SMI/1.0",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "SNMPv2-TC",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/SNMPv2-TC/1.0",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "TRANSPORT-ADDRESS-MIB",
+						"version": "2002-11-01",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/mibs/TRANSPORT-ADDRESS-MIB/200211010000Z",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-alarm-types",
+						"version": "2019-12-23",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/yang/alarm-types",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-authentication",
+						"version": "2019-04-01",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/velocity/authentication",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-event-log",
+						"version": "2019-12-23",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/yang/event-log",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-if-aggregate",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:f5-if-aggregate",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-if-ethernet",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:f5-if-ethernet",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-lacp",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:f5-lacp",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-logging-component-authd",
+						"version": "2019-12-09",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/yang/logging-component-authd",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-logging-component-velocity_rsyslogd",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://velocity.f5.com/ns/f5-logging-component-velocity_rsyslogd",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-openconfig-aaa-ldap",
+						"version": "2019-12-09",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/yang/openconfig-aaa-ldap",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-openconfig-aaa-radius",
+						"version": "2019-12-09",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/yang/openconfig-aaa-radius",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-openconfig-alarms",
+						"version": "2019-12-23",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/yang/openconfig-alarms",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-openconfig-system-logging",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://velocity.f5.com/ns/logging",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-platform",
+						"version": "2018-12-10",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://velocity.f5.com/ns/platform",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-system-blade-power",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/ns/f5-system-blade-power",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-system-controller-image",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/ns/f5-system-controller-image",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-system-diags",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/ns/f5-system-diags",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-system-image",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/ns/f5-system-image",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-system-partition",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/ns/f5-system-partition",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-system-redundancy",
+						"version": "2019-11-24",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/ns/system/redundancy",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-system-redundancy-ann",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/ns/system/redundancy-ann",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-system-redundancy-details",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/ns/f5-system-redundancy-details",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-system-redundancy-deviations",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/ns/system/redundancy-deviations",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "f5-system-slot",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/ns/f5-system-slot",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "iana-crypt-hash",
+						"version": "2014-08-06",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:iana-crypt-hash",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "iana-if-type",
+						"version": "2017-01-19",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-inet-types",
+						"version": "2013-07-15",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-interfaces",
+						"version": "2018-02-20",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-netconf",
+						"version": "2011-06-01",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:netconf:base:1.0",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-netconf-acm",
+						"version": "2018-02-14",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-acm",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-netconf-monitoring",
+						"version": "2010-10-04",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-netconf-notifications",
+						"version": "2012-02-06",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-notifications",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-netconf-partial-lock",
+						"version": "2009-10-19",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:netconf:partial-lock:1.0",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-netconf-with-defaults",
+						"version": "2011-06-01",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-with-defaults",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-restconf-monitoring",
+						"version": "2017-01-26",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-restconf-monitoring",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-x509-cert-to-name",
+						"version": "2014-12-10",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-x509-cert-to-name",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-yang-library",
+						"version": "2016-06-21",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-yang-smiv2",
+						"version": "2012-06-22",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-smiv2",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "ietf-yang-types",
+						"version": "2013-07-15",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-aaa",
+						"version": "2018-04-12",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/aaa",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-aaa-radius",
+						"version": "2017-09-18",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/aaa",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-aaa-tacacs",
+						"version": "2017-09-18",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/aaa",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-aaa-types",
+						"version": "2018-04-12",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/aaa/types",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-alarm-types",
+						"version": "2018-01-16",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/alarms/types",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-alarms",
+						"version": "2018-01-16",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/alarms",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-extensions",
+						"version": "2017-04-11",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/openconfig-ext",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-if-aggregate",
+						"version": "2018-03-23",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/interfaces/aggregate",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-if-ethernet",
+						"version": "2018-09-04",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/interfaces/ethernet",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-if-types",
+						"version": "2018-01-05",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/openconfig-if-types",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-inet-types",
+						"version": "2017-08-24",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/types/inet",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-interfaces",
+						"version": "2018-08-07",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/interfaces",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-lacp",
+						"version": "2017-05-05",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/lacp",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-platform",
+						"version": "2018-06-29",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/platform",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-platform-types",
+						"version": "2018-05-05",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/platform-types",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-procmon",
+						"version": "2017-09-18",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/system/procmon",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-system",
+						"version": "2018-07-17",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/system",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-system-logging",
+						"version": "2017-09-18",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/system/logging",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-system-management",
+						"version": "2018-08-28",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/system/management",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-system-terminal",
+						"version": "2017-09-18",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/system/terminal",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-types",
+						"version": "2018-05-05",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/openconfig-types",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openconfig-yang-types",
+						"version": "2018-04-24",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://openconfig.net/yang/types/yang",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "openshift-cluster",
+						"version": "2019-11-08",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://f5.com/ns/openshift-cluster",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-aaa",
+						"version": "2018-09-12",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/aaa/1.1",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-acm",
+						"version": "2013-03-07",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/yang/acm",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-cli-extensions",
+						"version": "2019-05-16",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/yang/common",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-common",
+						"version": "2019-05-16",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/yang/common",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-common-monitoring",
+						"version": "2019-04-09",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/yang/common-monitoring",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-common-query",
+						"version": "2017-12-15",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/common/query",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-confd-monitoring",
+						"version": "2019-04-09",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/yang/confd-monitoring",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-kicker",
+						"version": "2017-09-28",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/kicker",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-meta-extensions",
+						"version": "2017-03-08",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/yang/common",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-netconf-extensions",
+						"version": "2019-04-09",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/netconf/extensions",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-netconf-forward",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/netconf/forward/1.0",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-netconf-inactive",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/netconf/inactive/1.0",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-netconf-monitoring",
+						"version": "2019-03-28",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/yang/netconf-monitoring",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-netconf-query",
+						"version": "2017-01-06",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/netconf/query",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-netconf-rollback",
+						"version": "2018-01-12",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/netconf/rollback",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-netconf-transactions",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/netconf/transactions/1.0",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-netconf-with-transaction-id",
+						"version": "2018-11-23",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/netconf/with-transaction-id",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-progress",
+						"version": "2018-06-14",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/progress",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-rollback",
+						"version": "2018-01-12",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/rollback",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-tls",
+						"version": "2019-06-13",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/tls",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-webui",
+						"version": "2013-03-07",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/ns/webui",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "tailf-xsd-types",
+						"version": "2017-11-20",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://tail-f.com/yang/xsd-types",
+						"location": [
+							"NETCONF"
+						]
+					},
+					{
+						"identifier": "velocity_ctrlr",
+						"version": "",
+						"format": "ietf-netconf-monitoring:yang",
+						"namespace": "http://velocity.f5.com/ns/velocity",
+						"location": [
+							"NETCONF"
+						]
+					}
+				]
+			},
+			"sessions": {
+				"session": [
+					{
+						"session-id": 29349,
+						"transport": "tailf-netconf-monitoring:rest-http",
+						"username": "admin",
+						"source-host": "172.18.69.63",
+						"login-time": "2020-02-25T21:29:10+00:00",
+						"tailf-netconf-monitoring:transaction": [
+							{
+								"id": 4352813,
+								"db": "running",
+								"mode": "read"
+							}
+						]
+					}
+				]
+			},
+			"statistics": {
+				"netconf-start-time": "2020-02-25T18:48:47+00:00",
+				"in-bad-hellos": 0,
+				"in-sessions": 0,
+				"dropped-sessions": 0,
+				"in-rpcs": 0,
+				"in-bad-rpcs": 0,
+				"out-rpc-errors": 0,
+				"out-notifications": 0
+			},
+			"tailf-netconf-monitoring:files": {
+				"file": [
+					{
+						"name": "/rollback0",
+						"creator": "admin",
+						"created": "2020-02-25T18:57:45-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback1",
+						"creator": "admin",
+						"created": "2020-02-25T18:57:22-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback2",
+						"creator": "admin",
+						"created": "2020-02-25T18:48:20-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback3",
+						"creator": "admin",
+						"created": "2020-02-25T18:48:07-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback4",
+						"creator": "admin",
+						"created": "2020-02-25T18:47:55-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback5",
+						"creator": "admin",
+						"created": "2020-02-25T18:47:42-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback6",
+						"creator": "admin",
+						"created": "2020-02-25T07:27:59-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback7",
+						"creator": "admin",
+						"created": "2020-02-25T07:27:51-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback8",
+						"creator": "admin",
+						"created": "2020-02-25T07:27:44-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback9",
+						"creator": "admin",
+						"created": "2020-02-25T07:27:36-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback10",
+						"creator": "admin",
+						"created": "2020-02-25T07:27:28-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback11",
+						"creator": "admin",
+						"created": "2020-02-25T07:27:00-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback12",
+						"creator": "admin",
+						"created": "2020-02-25T07:26:42-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback13",
+						"creator": "admin",
+						"created": "2020-02-25T07:26:30-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback14",
+						"creator": "admin",
+						"created": "2020-02-25T07:26:18-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback15",
+						"creator": "admin",
+						"created": "2020-02-25T07:26:06-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback16",
+						"creator": "admin",
+						"created": "2020-02-25T07:23:48-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback17",
+						"creator": "admin",
+						"created": "2020-02-25T07:23:16-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback18",
+						"creator": "admin",
+						"created": "2020-02-25T07:23:03-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback19",
+						"creator": "admin",
+						"created": "2020-02-25T07:13:58-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback20",
+						"creator": "admin",
+						"created": "2020-02-25T07:13:45-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback21",
+						"creator": "admin",
+						"created": "2020-02-25T07:13:03-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback22",
+						"creator": "admin",
+						"created": "2020-02-25T07:01:47-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback23",
+						"creator": "admin",
+						"created": "2020-02-25T07:01:33-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback24",
+						"creator": "admin",
+						"created": "2020-02-25T07:01:16-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback25",
+						"creator": "admin",
+						"created": "2020-02-25T07:01:03-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback26",
+						"creator": "admin",
+						"created": "2020-02-25T07:00:51-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback27",
+						"creator": "admin",
+						"created": "2020-02-25T03:32:22-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback28",
+						"creator": "admin",
+						"created": "2020-02-25T03:32:06-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback29",
+						"creator": "admin",
+						"created": "2020-02-25T03:31:51-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback30",
+						"creator": "admin",
+						"created": "2020-02-25T03:31:36-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback31",
+						"creator": "admin",
+						"created": "2020-02-25T03:31:21-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback32",
+						"creator": "admin",
+						"created": "2020-02-25T03:31:08-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback33",
+						"creator": "admin",
+						"created": "2020-02-25T03:30:56-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback34",
+						"creator": "admin",
+						"created": "2020-02-25T03:30:45-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback35",
+						"creator": "admin",
+						"created": "2020-02-25T03:30:33-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback36",
+						"creator": "admin",
+						"created": "2020-02-25T03:17:24-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback37",
+						"creator": "admin",
+						"created": "2020-02-25T03:17:22-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback38",
+						"creator": "admin",
+						"created": "2020-02-25T03:17:21-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback39",
+						"creator": "admin",
+						"created": "2020-02-25T03:17:20-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback40",
+						"creator": "admin",
+						"created": "2020-02-25T03:17:19-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback41",
+						"creator": "admin",
+						"created": "2020-02-25T03:17:18-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback42",
+						"creator": "admin",
+						"created": "2020-02-25T03:17:17-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback43",
+						"creator": "admin",
+						"created": "2020-02-25T03:17:16-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback44",
+						"creator": "admin",
+						"created": "2020-02-25T03:17:14-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback45",
+						"creator": "admin",
+						"created": "2020-02-25T03:16:57-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback46",
+						"creator": "admin",
+						"created": "2020-02-25T03:16:45-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback47",
+						"creator": "admin",
+						"created": "2020-02-25T03:16:43-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback48",
+						"creator": "admin",
+						"created": "2020-02-25T03:16:42-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback49",
+						"creator": "admin",
+						"created": "2020-02-25T03:16:11-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/rollback50",
+						"creator": "admin",
+						"created": "2020-02-25T03:05:50-00:00",
+						"context": "rest"
+					},
+					{
+						"name": "/cli-history/admin.hist"
+					},
+					{
+						"name": "/global.data"
+					},
+					{
+						"name": "/local.data"
+					}
+				]
+			}
+		},
+		"ietf-restconf-monitoring:restconf-state": {
+			"capabilities": {
+				"capability": [
+					"urn:ietf:params:restconf:capability:defaults:1.0?basic-mode=explicit",
+					"urn:ietf:params:restconf:capability:depth:1.0",
+					"urn:ietf:params:restconf:capability:fields:1.0",
+					"urn:ietf:params:restconf:capability:with-defaults:1.0",
+					"urn:ietf:params:restconf:capability:filter:1.0",
+					"urn:ietf:params:restconf:capability:replay:1.0",
+					"urn:ietf:params:restconf:capability:yang-patch:1.0",
+					"http://tail-f.com/ns/restconf/collection/1.0",
+					"http://tail-f.com/ns/restconf/query-api/1.0",
+					"http://tail-f.com/ns/restconf/unhide/1.0"
+				]
+			}
+		},
+		"openconfig-interfaces:interfaces": {
+			"interface": [
+				{
+					"name": "1/1.1",
+					"config": {
+						"name": "1/1.1",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/1.2",
+					"config": {
+						"name": "1/1.2",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/1.3",
+					"config": {
+						"name": "1/1.3",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/1.4",
+					"config": {
+						"name": "1/1.4",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/1.5",
+					"config": {
+						"name": "1/1.5",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/1.6",
+					"config": {
+						"name": "1/1.6",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/1.7",
+					"config": {
+						"name": "1/1.7",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/1.8",
+					"config": {
+						"name": "1/1.8",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/2.2",
+					"config": {
+						"name": "1/2.2",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/2.3",
+					"config": {
+						"name": "1/2.3",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/2.4",
+					"config": {
+						"name": "1/2.4",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/2.5",
+					"config": {
+						"name": "1/2.5",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/2.6",
+					"config": {
+						"name": "1/2.6",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "1/mgmt0",
+					"config": {
+						"name": "1/mgmt0",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/1.1",
+					"config": {
+						"name": "2/1.1",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/1.2",
+					"config": {
+						"name": "2/1.2",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/1.3",
+					"config": {
+						"name": "2/1.3",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/1.4",
+					"config": {
+						"name": "2/1.4",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/1.5",
+					"config": {
+						"name": "2/1.5",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/1.6",
+					"config": {
+						"name": "2/1.6",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/1.7",
+					"config": {
+						"name": "2/1.7",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/1.8",
+					"config": {
+						"name": "2/1.8",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/2.2",
+					"config": {
+						"name": "2/2.2",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/2.3",
+					"config": {
+						"name": "2/2.3",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/2.4",
+					"config": {
+						"name": "2/2.4",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/2.5",
+					"config": {
+						"name": "2/2.5",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/2.6",
+					"config": {
+						"name": "2/2.6",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				},
+				{
+					"name": "2/mgmt0",
+					"config": {
+						"name": "2/mgmt0",
+						"type": "iana-if-type:ethernetCsmacd"
+					},
+					"state": {
+						"loopback-mode": false,
+						"enabled": true
+					},
+					"hold-time": {
+						"state": {
+							"up": 0,
+							"down": 0
+						}
+					},
+					"openconfig-if-ethernet:ethernet": {
+						"config": {
+							"auto-negotiate": true,
+							"duplex-mode": "FULL"
+						},
+						"state": {
+							"auto-negotiate": true,
+							"enable-flow-control": false
+						}
+					}
+				}
+			]
+		},
+		"openconfig-platform:components": {
+			"component": [
+				{
+					"name": "blade-1",
+					"config": {
+						"name": "blade-1"
+					},
+					"state": {
+						"empty": false,
+						"openconfig-alarms:equipment-failure": false,
+						"openconfig-alarms:equipment-mismatch": false,
+						"f5-platform:tpm-integrity-status": "Unavailable"
+					}
+				},
+				{
+					"name": "blade-2",
+					"config": {
+						"name": "blade-2"
+					},
+					"state": {
+						"empty": false,
+						"openconfig-alarms:equipment-failure": false,
+						"openconfig-alarms:equipment-mismatch": false,
+						"f5-platform:tpm-integrity-status": "Unavailable"
+					}
+				},
+				{
+					"name": "blade-3",
+					"config": {
+						"name": "blade-3"
+					},
+					"state": {
+						"empty": false,
+						"openconfig-alarms:equipment-failure": false,
+						"openconfig-alarms:equipment-mismatch": false,
+						"f5-platform:tpm-integrity-status": "Unavailable"
+					}
+				},
+				{
+					"name": "blade-4",
+					"config": {
+						"name": "blade-4"
+					},
+					"state": {
+						"empty": false,
+						"openconfig-alarms:equipment-failure": false,
+						"openconfig-alarms:equipment-mismatch": false,
+						"f5-platform:tpm-integrity-status": "Unavailable"
+					}
+				},
+				{
+					"name": "blade-5",
+					"config": {
+						"name": "blade-5"
+					},
+					"state": {
+						"empty": false,
+						"openconfig-alarms:equipment-failure": false,
+						"openconfig-alarms:equipment-mismatch": false,
+						"f5-platform:tpm-integrity-status": "Unavailable"
+					}
+				},
+				{
+					"name": "blade-6",
+					"config": {
+						"name": "blade-6"
+					},
+					"state": {
+						"empty": false,
+						"openconfig-alarms:equipment-failure": false,
+						"openconfig-alarms:equipment-mismatch": false,
+						"f5-platform:tpm-integrity-status": "Unavailable"
+					}
+				},
+				{
+					"name": "blade-7",
+					"config": {
+						"name": "blade-7"
+					},
+					"state": {
+						"empty": false,
+						"openconfig-alarms:equipment-failure": false,
+						"openconfig-alarms:equipment-mismatch": false,
+						"f5-platform:tpm-integrity-status": "Unavailable"
+					}
+				},
+				{
+					"name": "blade-8",
+					"config": {
+						"name": "blade-8"
+					},
+					"state": {
+						"empty": false,
+						"openconfig-alarms:equipment-failure": false,
+						"openconfig-alarms:equipment-mismatch": false,
+						"f5-platform:tpm-integrity-status": "Unavailable"
+					}
+				},
+				{
+					"name": "controller-1",
+					"config": {
+						"name": "controller-1"
+					},
+					"state": {
+						"empty": false,
+						"openconfig-alarms:equipment-failure": false,
+						"openconfig-alarms:equipment-mismatch": false,
+						"f5-platform:tpm-integrity-status": "Unavailable"
+					},
+					"properties": {
+						"property": [
+							{
+								"name": "fw-version-bios",
+								"config": {
+									"name": "fw-version-bios"
+								}
+							},
+							{
+								"name": "fw-version-bios-me",
+								"config": {
+									"name": "fw-version-bios-me"
+								}
+							},
+							{
+								"name": "fw-version-cpld",
+								"config": {
+									"name": "fw-version-cpld"
+								}
+							},
+							{
+								"name": "fw-version-lcd-app",
+								"config": {
+									"name": "fw-version-lcd-app"
+								}
+							},
+							{
+								"name": "fw-version-lcd-bootloader",
+								"config": {
+									"name": "fw-version-lcd-bootloader"
+								}
+							},
+							{
+								"name": "fw-version-lop-app",
+								"config": {
+									"name": "fw-version-lop-app"
+								}
+							},
+							{
+								"name": "fw-version-lop-bootloader",
+								"config": {
+									"name": "fw-version-lop-bootloader"
+								}
+							},
+							{
+								"name": "fw-version-vfc-app-fanCtrl1",
+								"config": {
+									"name": "fw-version-vfc-app-fanCtrl1"
+								}
+							},
+							{
+								"name": "fw-version-vfc-bootloader-fanCtrl1",
+								"config": {
+									"name": "fw-version-vfc-bootloader-fanCtrl1"
+								}
+							},
+							{
+								"name": "fw-version-vpc-app-psuCtrl1",
+								"config": {
+									"name": "fw-version-vpc-app-psuCtrl1"
+								}
+							},
+							{
+								"name": "fw-version-vpc-app-psuCtrl2",
+								"config": {
+									"name": "fw-version-vpc-app-psuCtrl2"
+								}
+							},
+							{
+								"name": "fw-version-vpc-bootloader-psuCtrl1",
+								"config": {
+									"name": "fw-version-vpc-bootloader-psuCtrl1"
+								}
+							},
+							{
+								"name": "fw-version-vpc-bootloader-psuCtrl2",
+								"config": {
+									"name": "fw-version-vpc-bootloader-psuCtrl2"
+								}
+							}
+						]
+					}
+				},
+				{
+					"name": "controller-2",
+					"config": {
+						"name": "controller-2"
+					},
+					"state": {
+						"empty": false,
+						"openconfig-alarms:equipment-failure": false,
+						"openconfig-alarms:equipment-mismatch": false,
+						"f5-platform:tpm-integrity-status": "Unavailable"
+					},
+					"properties": {
+						"property": [
+							{
+								"name": "fw-version-bios",
+								"config": {
+									"name": "fw-version-bios"
+								}
+							},
+							{
+								"name": "fw-version-bios-me",
+								"config": {
+									"name": "fw-version-bios-me"
+								}
+							},
+							{
+								"name": "fw-version-cpld",
+								"config": {
+									"name": "fw-version-cpld"
+								}
+							},
+							{
+								"name": "fw-version-lcd-app",
+								"config": {
+									"name": "fw-version-lcd-app"
+								}
+							},
+							{
+								"name": "fw-version-lcd-bootloader",
+								"config": {
+									"name": "fw-version-lcd-bootloader"
+								}
+							},
+							{
+								"name": "fw-version-lop-app",
+								"config": {
+									"name": "fw-version-lop-app"
+								}
+							},
+							{
+								"name": "fw-version-lop-bootloader",
+								"config": {
+									"name": "fw-version-lop-bootloader"
+								}
+							},
+							{
+								"name": "fw-version-vfc-app-fanCtrl1",
+								"config": {
+									"name": "fw-version-vfc-app-fanCtrl1"
+								}
+							},
+							{
+								"name": "fw-version-vfc-bootloader-fanCtrl1",
+								"config": {
+									"name": "fw-version-vfc-bootloader-fanCtrl1"
+								}
+							},
+							{
+								"name": "fw-version-vpc-app-psuCtrl1",
+								"config": {
+									"name": "fw-version-vpc-app-psuCtrl1"
+								}
+							},
+							{
+								"name": "fw-version-vpc-app-psuCtrl2",
+								"config": {
+									"name": "fw-version-vpc-app-psuCtrl2"
+								}
+							},
+							{
+								"name": "fw-version-vpc-bootloader-psuCtrl1",
+								"config": {
+									"name": "fw-version-vpc-bootloader-psuCtrl1"
+								}
+							},
+							{
+								"name": "fw-version-vpc-bootloader-psuCtrl2",
+								"config": {
+									"name": "fw-version-vpc-bootloader-psuCtrl2"
+								}
+							}
+						]
+					}
+				}
+			]
+		},
+		"openconfig-system:system": {
+			"ntp": {
+				"state": {
+					"enabled": false,
+					"enable-ntp-auth": false
+				}
+			},
+			"grpc-server": {
+				"state": {
+					"enable": true
+				}
+			},
+			"ssh-server": {
+				"state": {
+					"enable": true,
+					"protocol-version": "V2"
+				}
+			},
+			"telnet-server": {
+				"state": {
+					"enable": false
+				}
+			},
+			"logging": {
+				"f5-openconfig-system-logging:sw-components": {
+					"sw-component": [
+						{
+							"name": "f5-logging-component-velocity_rsyslogd:velocity_rsyslogd",
+							"config": {
+								"name": "f5-logging-component-velocity_rsyslogd:velocity_rsyslogd",
+								"levels": [
+									"EMERGENCY",
+									"ALERT",
+									"CRITICAL",
+									"ERROR"
+								]
+							}
+						},
+						{
+							"name": "f5-logging-component-authd:authd",
+							"config": {
+								"name": "f5-logging-component-authd:authd",
+								"levels": [
+									"EMERGENCY",
+									"ALERT",
+									"CRITICAL",
+									"ERROR"
+								]
+							}
+						}
+					]
+				}
+			},
+			"f5-system-blade-power:blade-power": {
+				"total": {
+					"available": 0,
+					"requested": 0,
+					"allocated": 0
+				}
+			},
+			"f5-system-controller-image:image": {
+				"state": {
+					"controllers": {
+						"controller": [
+							{
+								"number": 1,
+								"os-version": "7.4.2020-02-05-764",
+								"service-version": "1.0.0.2020-02-05-764"
+							},
+							{
+								"number": 2,
+								"os-version": "7.4.2020-02-05-764",
+								"service-version": "1.0.0.2020-02-05-764"
+							}
+						]
+					}
+				}
+			},
+			"f5-system-redundancy-details:redundancy-details": {
+				"state": {
+					"software": {
+						"controllers": {
+							"controller": [
+								{
+									"controller-number": 1,
+									"tests": {
+										"test": [
+											{
+												"test-number": 1,
+												"description": "If local is configured active, request active",
+												"result": "be-active"
+											},
+											{
+												"test-number": 2,
+												"description": "If peer is configured active, do not request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 3,
+												"description": "If peer is MIA, request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 4,
+												"description": "If local is healthy & peer is unhealthy, request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 5,
+												"description": "If manual switchover, do not request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 6,
+												"description": "If remote manual switchover, request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 7,
+												"description": "If local is 1 & is healthy or active, & peer is not active, request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 8,
+												"description": "If local is already active, request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 9,
+												"description": "Fallback: all tests indeterminate, do not request active",
+												"result": "not-applicable"
+											}
+										]
+									}
+								},
+								{
+									"controller-number": 2,
+									"tests": {
+										"test": [
+											{
+												"test-number": 1,
+												"description": "If local is configured active, request active",
+												"result": "indeterminate"
+											},
+											{
+												"test-number": 2,
+												"description": "If peer is configured active, do not request active",
+												"result": "be-standby"
+											},
+											{
+												"test-number": 3,
+												"description": "If peer is MIA, request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 4,
+												"description": "If local is healthy & peer is unhealthy, request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 5,
+												"description": "If manual switchover, do not request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 6,
+												"description": "If remote manual switchover, request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 7,
+												"description": "If local is 1 & is healthy or active, & peer is not active, request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 8,
+												"description": "If local is already active, request active",
+												"result": "not-applicable"
+											},
+											{
+												"test-number": 9,
+												"description": "Fallback: all tests indeterminate, do not request active",
+												"result": "not-applicable"
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					"hardware": {
+						"controllers": {
+							"controller": [
+								{
+									"controller-number": 1,
+									"cpld": {
+										"local-active-desired": true,
+										"local-healthy": true,
+										"local-active-granted": true,
+										"peer-active-desired": false,
+										"peer-healthy": true,
+										"peer-active-granted": false
+									}
+								},
+								{
+									"controller-number": 2,
+									"cpld": {
+										"local-active-desired": false,
+										"local-healthy": true,
+										"local-active-granted": false,
+										"peer-active-desired": true,
+										"peer-healthy": true,
+										"peer-active-granted": true
+									}
+								}
+							]
+						}
+					}
+				}
+			},
+			"f5-system-redundancy:redundancy": {
+				"config": {
+					"mode": "prefer-1"
+				},
+				"state": {
+					"mode": "prefer-1",
+					"current-active": "controller-1"
+				},
+				"nodes": {
+					"node": [
+						{
+							"name": "controller-1",
+							"config": {
+								"name": "controller-1"
+							}
+						},
+						{
+							"name": "controller-2",
+							"config": {
+								"name": "controller-2"
+							}
+						}
+					]
+				}
+			}
+		},
+		"openshift-cluster:cluster": {
+			"nodes": {
+				"node": [
+					{
+						"node-name": "osmaster-1.mydomain.com",
+						"status": "Ready",
+						"time-created": "2020-02-12T23:30:15Z"
+					},
+					{
+						"node-name": "osmaster-2.mydomain.com",
+						"status": "Ready",
+						"time-created": "2020-02-12T23:30:15Z"
+					},
+					{
+						"node-name": "osnode-1.mydomain.com",
+						"status": "Ready",
+						"time-created": "2020-02-12T23:53:41Z"
+					},
+					{
+						"node-name": "osnode-2.mydomain.com",
+						"status": "Ready",
+						"time-created": "2020-02-12T23:53:41Z"
+					}
+				]
+			},
+			"status": {
+				"cluster-info": [
+					{
+						"node-name": "osnode-1.mydomain.com",
+						"cpu": 27500,
+						"pods": 250,
+						"memory": "26605360Ki",
+						"hugepages": "100Gi"
+					},
+					{
+						"node-name": "osnode-2.mydomain.com",
+						"cpu": 27500,
+						"pods": 250,
+						"memory": "26605360Ki",
+						"hugepages": "100Gi"
+					}
+				]
+			},
+			"install-progress": {
+				"install-progress": [
+					{
+						"stage-name": "AddingBlade",
+						"status": "Done"
+					},
+					{
+						"stage-name": "HealthCheck",
+						"status": "Done"
+					},
+					{
+						"stage-name": "HostedInstall",
+						"status": "Done"
+					},
+					{
+						"stage-name": "MasterAdditionalInstall",
+						"status": "Done"
+					},
+					{
+						"stage-name": "MasterInstall",
+						"status": "Done"
+					},
+					{
+						"stage-name": "NodeBootstrap",
+						"status": "Done"
+					},
+					{
+						"stage-name": "NodeJoin",
+						"status": "Done"
+					},
+					{
+						"stage-name": "Prerequisites",
+						"status": "Done"
+					},
+					{
+						"stage-name": "RemoveBlade",
+						"status": "Not Started"
+					},
+					{
+						"stage-name": "ServiceCatalogInstall",
+						"status": "Done"
+					},
+					{
+						"stage-name": "etcdInstall",
+						"status": "Done"
+					}
+				]
+			}
+		},
+		"tailf-aaa:aaa": {
+			"ios": {
+				"level": [
+					{
+						"nr": 0,
+						"prompt": "\\h> "
+					},
+					{
+						"nr": 15,
+						"prompt": "\\h# "
+					}
+				],
+				"privilege": [
+					{
+						"mode": "exec",
+						"level": [
+							{
+								"nr": 0,
+								"command": [
+									{
+										"name": "action"
+									},
+									{
+										"name": "autowizard"
+									},
+									{
+										"name": "enable"
+									},
+									{
+										"name": "exit"
+									},
+									{
+										"name": "help"
+									},
+									{
+										"name": "startup"
+									}
+								]
+							},
+							{
+								"nr": 15,
+								"command": [
+									{
+										"name": "configure"
+									}
+								]
+							}
+						]
+					}
+				]
+			}
+		},
+		"tailf-confd-monitoring:confd-state": {
+			"version": "7.2.1",
+			"epoll": false,
+			"daemon-status": "started",
+			"ha": {
+				"mode": "master",
+				"node-id": "master",
+				"connected-slave": [
+					"slave"
+				]
+			},
+			"loaded-data-models": {
+				"data-model": [
+					{
+						"name": "IPV6-TC",
+						"revision": "1998-12-01",
+						"namespace": "http://tail-f.com/ns/mibs/IPV6-TC/199812010000Z",
+						"prefix": "IPV6_TC",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "SNMP-COMMUNITY-MIB",
+						"revision": "2003-08-06",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-COMMUNITY-MIB/200308060000Z",
+						"prefix": "SNMP_COMMUNITY_MIB",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "SNMP-FRAMEWORK-MIB",
+						"revision": "2002-10-14",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-FRAMEWORK-MIB/200210140000Z",
+						"prefix": "SNMP_FRAMEWORK_MIB",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "SNMP-MPD-MIB",
+						"revision": "2002-10-14",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-MPD-MIB/200210140000Z",
+						"prefix": "SNMP_MPD_MIB",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "SNMP-NOTIFICATION-MIB",
+						"revision": "2002-10-14",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-NOTIFICATION-MIB/200210140000Z",
+						"prefix": "SNMP_NOTIFICATION_MIB",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "SNMP-TARGET-MIB",
+						"revision": "2002-10-14",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-TARGET-MIB/200210140000Z",
+						"prefix": "SNMP_TARGET_MIB",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "SNMP-USER-BASED-SM-MIB",
+						"revision": "2002-10-16",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-USER-BASED-SM-MIB/200210160000Z",
+						"prefix": "SNMP_USER_BASED_SM_MIB",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "SNMP-VIEW-BASED-ACM-MIB",
+						"revision": "2002-10-16",
+						"namespace": "http://tail-f.com/ns/mibs/SNMP-VIEW-BASED-ACM-MIB/200210160000Z",
+						"prefix": "SNMP_VIEW_BASED_ACM_MIB",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "SNMPv2-MIB",
+						"revision": "2002-10-16",
+						"namespace": "http://tail-f.com/ns/mibs/SNMPv2-MIB/200210160000Z",
+						"prefix": "SNMPv2_MIB",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "SNMPv2-SMI",
+						"namespace": "http://tail-f.com/ns/mibs/SNMPv2-SMI/1.0",
+						"prefix": "SNMPv2_SMI",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "SNMPv2-TC",
+						"namespace": "http://tail-f.com/ns/mibs/SNMPv2-TC/1.0",
+						"prefix": "SNMPv2_TC",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "TRANSPORT-ADDRESS-MIB",
+						"revision": "2002-11-01",
+						"namespace": "http://tail-f.com/ns/mibs/TRANSPORT-ADDRESS-MIB/200211010000Z",
+						"prefix": "TRANSPORT_ADDRESS_MIB",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-alarm-types",
+						"revision": "2019-12-23",
+						"namespace": "http://f5.com/yang/alarm-types",
+						"prefix": "f5-alarm-types",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-authentication",
+						"revision": "2019-04-01",
+						"namespace": "http://f5.com/velocity/authentication",
+						"prefix": "authentication",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-event-log",
+						"revision": "2019-12-23",
+						"namespace": "http://f5.com/yang/event-log",
+						"prefix": "f5-event-log",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-if-aggregate",
+						"namespace": "urn:ietf:params:xml:ns:yang:f5-if-aggregate",
+						"prefix": "f5-if-lag",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-if-ethernet",
+						"namespace": "urn:ietf:params:xml:ns:yang:f5-if-ethernet",
+						"prefix": "f5-if-eth",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-lacp",
+						"namespace": "urn:ietf:params:xml:ns:yang:f5-lacp",
+						"prefix": "f5-lacp",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-logging-component-authd",
+						"revision": "2019-12-09",
+						"namespace": "http://f5.com/yang/logging-component-authd",
+						"prefix": "f5-lc-authd",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-logging-component-velocity_rsyslogd",
+						"namespace": "http://velocity.f5.com/ns/f5-logging-component-velocity_rsyslogd",
+						"prefix": "f5-lc-velocity_rsyslogd",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-openconfig-aaa-ldap",
+						"revision": "2019-12-09",
+						"namespace": "http://f5.com/yang/openconfig-aaa-ldap",
+						"prefix": "f5-aaa-ldap",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-openconfig-aaa-radius",
+						"revision": "2019-12-09",
+						"namespace": "http://f5.com/yang/openconfig-aaa-radius",
+						"prefix": "f5-aaa-radius",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-openconfig-alarms",
+						"revision": "2019-12-23",
+						"namespace": "http://f5.com/yang/openconfig-alarms",
+						"prefix": "f5-alarms",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-openconfig-system-logging",
+						"namespace": "http://velocity.f5.com/ns/logging",
+						"prefix": "f5-logging",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-platform",
+						"revision": "2018-12-10",
+						"namespace": "http://velocity.f5.com/ns/platform",
+						"prefix": "f5-platform",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-system-blade-power",
+						"namespace": "http://f5.com/ns/f5-system-blade-power",
+						"prefix": "f5-system-blade-power",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-system-controller-image",
+						"namespace": "http://f5.com/ns/f5-system-controller-image",
+						"prefix": "f5-system-controller-image",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-system-diags",
+						"namespace": "http://f5.com/ns/f5-system-diags",
+						"prefix": "f5-system-diags",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-system-image",
+						"namespace": "http://f5.com/ns/f5-system-image",
+						"prefix": "f5-system-image",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-system-partition",
+						"namespace": "http://f5.com/ns/f5-system-partition",
+						"prefix": "f5-system-partition",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-system-redundancy",
+						"revision": "2019-11-24",
+						"namespace": "http://f5.com/ns/system/redundancy",
+						"prefix": "f5-ha",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-system-redundancy-ann",
+						"namespace": "http://f5.com/ns/system/redundancy-ann",
+						"prefix": "f5-ha-ann",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-system-redundancy-details",
+						"namespace": "http://f5.com/ns/f5-system-redundancy-details",
+						"prefix": "f5-had",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-system-redundancy-deviations",
+						"namespace": "http://f5.com/ns/system/redundancy-deviations",
+						"prefix": "f5-ha-dev",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "f5-system-slot",
+						"namespace": "http://f5.com/ns/f5-system-slot",
+						"prefix": "f5-system-slot",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "iana-crypt-hash",
+						"revision": "2014-08-06",
+						"namespace": "urn:ietf:params:xml:ns:yang:iana-crypt-hash",
+						"prefix": "ianach",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "iana-if-type",
+						"revision": "2017-01-19",
+						"namespace": "urn:ietf:params:xml:ns:yang:iana-if-type",
+						"prefix": "ianaift",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "ietf-inet-types",
+						"revision": "2013-07-15",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-inet-types",
+						"prefix": "inet",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "ietf-interfaces",
+						"revision": "2018-02-20",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-interfaces",
+						"prefix": "if",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "ietf-netconf",
+						"revision": "2011-06-01",
+						"namespace": "urn:ietf:params:xml:ns:netconf:base:1.0",
+						"prefix": "nc",
+						"exported-to": [
+							"netconf"
+						]
+					},
+					{
+						"name": "ietf-netconf-acm",
+						"revision": "2018-02-14",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-acm",
+						"prefix": "nacm",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "ietf-netconf-monitoring",
+						"revision": "2010-10-04",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-monitoring",
+						"prefix": "ncm",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "ietf-netconf-notifications",
+						"revision": "2012-02-06",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-notifications",
+						"prefix": "ncn",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "ietf-netconf-partial-lock",
+						"revision": "2009-10-19",
+						"namespace": "urn:ietf:params:xml:ns:netconf:partial-lock:1.0",
+						"prefix": "pl",
+						"exported-to": [
+							"netconf"
+						]
+					},
+					{
+						"name": "ietf-netconf-with-defaults",
+						"revision": "2011-06-01",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-netconf-with-defaults",
+						"prefix": "ncwd",
+						"exported-to": [
+							"netconf"
+						]
+					},
+					{
+						"name": "ietf-restconf",
+						"revision": "2017-01-26",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-restconf",
+						"prefix": "rc",
+						"exported-to": [
+							"rest"
+						]
+					},
+					{
+						"name": "ietf-restconf-monitoring",
+						"revision": "2017-01-26",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-restconf-monitoring",
+						"prefix": "rcmon",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "ietf-x509-cert-to-name",
+						"revision": "2014-12-10",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-x509-cert-to-name",
+						"prefix": "x509c2n",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "ietf-yang-library",
+						"revision": "2016-06-21",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-library",
+						"prefix": "yanglib",
+						"exported-to": [
+							"netconf",
+							"rest"
+						]
+					},
+					{
+						"name": "ietf-yang-patch",
+						"revision": "2017-02-22",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-patch",
+						"prefix": "ypatch",
+						"exported-to": [
+							"rest"
+						]
+					},
+					{
+						"name": "ietf-yang-smiv2",
+						"revision": "2012-06-22",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-smiv2",
+						"prefix": "smiv2",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "ietf-yang-types",
+						"revision": "2013-07-15",
+						"namespace": "urn:ietf:params:xml:ns:yang:ietf-yang-types",
+						"prefix": "yang",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "netconf_netmod",
+						"namespace": "urn:ietf:params:xml:ns:netmod:notification",
+						"prefix": "nm",
+						"exported-to": [
+							"netconf"
+						]
+					},
+					{
+						"name": "openconfig-aaa",
+						"revision": "2018-04-12",
+						"namespace": "http://openconfig.net/yang/aaa",
+						"prefix": "oc-aaa",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-aaa-types",
+						"revision": "2018-04-12",
+						"namespace": "http://openconfig.net/yang/aaa/types",
+						"prefix": "oc-aaa-types",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-alarm-types",
+						"revision": "2018-01-16",
+						"namespace": "http://openconfig.net/yang/alarms/types",
+						"prefix": "oc-alarm-types",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-alarms",
+						"revision": "2018-01-16",
+						"namespace": "http://openconfig.net/yang/alarms",
+						"prefix": "oc-alarms",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-extensions",
+						"revision": "2017-04-11",
+						"namespace": "http://openconfig.net/yang/openconfig-ext",
+						"prefix": "oc-ext",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-if-aggregate",
+						"revision": "2018-03-23",
+						"namespace": "http://openconfig.net/yang/interfaces/aggregate",
+						"prefix": "oc-lag",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-if-ethernet",
+						"revision": "2018-09-04",
+						"namespace": "http://openconfig.net/yang/interfaces/ethernet",
+						"prefix": "oc-eth",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-if-types",
+						"revision": "2018-01-05",
+						"namespace": "http://openconfig.net/yang/openconfig-if-types",
+						"prefix": "oc-ift",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-inet-types",
+						"revision": "2017-08-24",
+						"namespace": "http://openconfig.net/yang/types/inet",
+						"prefix": "oc-inet",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-interfaces",
+						"revision": "2018-08-07",
+						"namespace": "http://openconfig.net/yang/interfaces",
+						"prefix": "oc-if",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-lacp",
+						"revision": "2017-05-05",
+						"namespace": "http://openconfig.net/yang/lacp",
+						"prefix": "oc-lacp",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-platform",
+						"revision": "2018-06-29",
+						"namespace": "http://openconfig.net/yang/platform",
+						"prefix": "oc-platform",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-platform-types",
+						"revision": "2018-05-05",
+						"namespace": "http://openconfig.net/yang/platform-types",
+						"prefix": "oc-platform-types",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-procmon",
+						"revision": "2017-09-18",
+						"namespace": "http://openconfig.net/yang/system/procmon",
+						"prefix": "oc-proc",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-system",
+						"revision": "2018-07-17",
+						"namespace": "http://openconfig.net/yang/system",
+						"prefix": "oc-sys",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-system-logging",
+						"revision": "2017-09-18",
+						"namespace": "http://openconfig.net/yang/system/logging",
+						"prefix": "oc-log",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-system-management",
+						"revision": "2018-08-28",
+						"namespace": "http://openconfig.net/yang/system/management",
+						"prefix": "oc-sys-mgmt",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-system-terminal",
+						"revision": "2017-09-18",
+						"namespace": "http://openconfig.net/yang/system/terminal",
+						"prefix": "oc-sys-term",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-types",
+						"revision": "2018-05-05",
+						"namespace": "http://openconfig.net/yang/openconfig-types",
+						"prefix": "oc-types",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openconfig-yang-types",
+						"revision": "2018-04-24",
+						"namespace": "http://openconfig.net/yang/types/yang",
+						"prefix": "oc-yang",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "openshift-cluster",
+						"revision": "2019-11-08",
+						"namespace": "http://f5.com/ns/openshift-cluster",
+						"prefix": "openshift-cluster",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-aaa",
+						"revision": "2018-09-12",
+						"namespace": "http://tail-f.com/ns/aaa/1.1",
+						"prefix": "aaa",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-acm",
+						"revision": "2013-03-07",
+						"namespace": "http://tail-f.com/yang/acm",
+						"prefix": "tacm",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-common",
+						"revision": "2019-05-16",
+						"namespace": "http://tail-f.com/yang/common",
+						"prefix": "tailf",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-common-monitoring",
+						"revision": "2019-04-09",
+						"namespace": "http://tail-f.com/yang/common-monitoring",
+						"prefix": "tfcg",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-common-query",
+						"revision": "2017-12-15",
+						"namespace": "http://tail-f.com/ns/common/query",
+						"prefix": "tfcq",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-confd-monitoring",
+						"revision": "2019-04-09",
+						"namespace": "http://tail-f.com/yang/confd-monitoring",
+						"prefix": "tfcm",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-kicker",
+						"revision": "2017-09-28",
+						"namespace": "http://tail-f.com/ns/kicker",
+						"prefix": "kicker",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-netconf-extensions",
+						"revision": "2019-04-09",
+						"namespace": "http://tail-f.com/ns/netconf/extensions",
+						"prefix": "tfnce",
+						"exported-to": [
+							"netconf"
+						]
+					},
+					{
+						"name": "tailf-netconf-forward",
+						"namespace": "http://tail-f.com/ns/netconf/forward/1.0",
+						"prefix": "fwd",
+						"exported-to": [
+							"netconf"
+						]
+					},
+					{
+						"name": "tailf-netconf-inactive",
+						"namespace": "http://tail-f.com/ns/netconf/inactive/1.0",
+						"prefix": "in",
+						"exported-to": [
+							"netconf"
+						]
+					},
+					{
+						"name": "tailf-netconf-monitoring",
+						"revision": "2019-03-28",
+						"namespace": "http://tail-f.com/yang/netconf-monitoring",
+						"prefix": "tncm",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-netconf-query",
+						"revision": "2017-01-06",
+						"namespace": "http://tail-f.com/ns/netconf/query",
+						"prefix": "tfncq",
+						"exported-to": [
+							"netconf"
+						]
+					},
+					{
+						"name": "tailf-netconf-rollback",
+						"revision": "2018-01-12",
+						"namespace": "http://tail-f.com/ns/netconf/rollback",
+						"prefix": "netconf-rollback",
+						"exported-to": [
+							"netconf"
+						]
+					},
+					{
+						"name": "tailf-netconf-transactions",
+						"namespace": "http://tail-f.com/ns/netconf/transactions/1.0",
+						"prefix": "tr",
+						"exported-to": [
+							"netconf"
+						]
+					},
+					{
+						"name": "tailf-netconf-with-transaction-id",
+						"revision": "2018-11-23",
+						"namespace": "http://tail-f.com/ns/netconf/with-transaction-id",
+						"prefix": "wtxid",
+						"exported-to": [
+							"netconf"
+						]
+					},
+					{
+						"name": "tailf-progress",
+						"revision": "2018-06-14",
+						"namespace": "http://tail-f.com/ns/progress",
+						"prefix": "progress",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-rest-error",
+						"namespace": "http://tail-f.com/ns/tailf-rest-error",
+						"prefix": "tfrerr"
+					},
+					{
+						"name": "tailf-rest-query",
+						"revision": "2017-01-06",
+						"namespace": "http://tail-f.com/ns/tailf-rest-query",
+						"prefix": "tfrestq"
+					},
+					{
+						"name": "tailf-rollback",
+						"revision": "2018-01-12",
+						"namespace": "http://tail-f.com/ns/rollback",
+						"prefix": "rollback",
+						"exported-to": [
+							"rest",
+							"netconf",
+							"maapi"
+						]
+					},
+					{
+						"name": "tailf-tls",
+						"revision": "2019-06-13",
+						"namespace": "http://tail-f.com/ns/tls",
+						"prefix": "tls",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-webui",
+						"revision": "2013-03-07",
+						"namespace": "http://tail-f.com/ns/webui",
+						"prefix": "webui",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "tailf-xsd-types",
+						"revision": "2017-11-20",
+						"namespace": "http://tail-f.com/yang/xsd-types",
+						"prefix": "xs",
+						"exported-to-all": [
+							null
+						]
+					},
+					{
+						"name": "velocity_ctrlr",
+						"namespace": "http://velocity.f5.com/ns/velocity",
+						"prefix": "velocity_ctrlr",
+						"exported-to-all": [
+							null
+						]
+					}
+				]
+			},
+			"netconf": {
+			},
+			"cli": {
+				"listen": {
+					"ssh": [
+						{
+							"ip": "0.0.0.0",
+							"port": 2024
+						}
+					]
+				}
+			},
+			"webui": {
+				"listen": {
+					"tcp": [
+						{
+							"ip": "0.0.0.0",
+							"port": 8008
+						}
+					]
+				}
+			},
+			"rest": {
+				"listen": {
+					"tcp": [
+						{
+							"ip": "0.0.0.0",
+							"port": 8008
+						}
+					]
+				}
+			},
+			"snmp": {
+				"listen": {
+					"udp": [
+						{
+							"ip": "0.0.0.0",
+							"port": 161
+						}
+					]
+				},
+				"mib": [
+					"SNMP-MPD-MIB",
+					"SNMPv2-MIB",
+					"F5-ALERT-DEF-MIB",
+					"F5-COMMON-SMI-MIB",
+					"SNMP-FRAMEWORK-MIB"
+				],
+				"version": {
+					"v1": [
+						null
+					],
+					"v2c": [
+						null
+					],
+					"v3": [
+						null
+					]
+				}
+			},
+			"internal": {
+				"callpoints": {
+					"callpoint": [
+						{
+							"id": "controller-image-state",
+							"path": "/oc-sys:system/image/state/controllers/controller",
+							"range": [
+								{
+									"lower": "1",
+									"upper": "1",
+									"daemon": {
+										"id": 4,
+										"name": "partition_software_manager-operdata-1",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								},
+								{
+									"lower": "2",
+									"upper": "2",
+									"daemon": {
+										"id": 0,
+										"name": "partition_software_manager-operdata-2",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								}
+							]
+						},
+						{
+							"id": "display_event_log",
+							"daemon": {
+								"id": 14,
+								"name": "EventLogOperHdlr",
+								"callbacks": [
+									"get_next",
+									"get_elem"
+								]
+							}
+						},
+						{
+							"id": "partition-image-state",
+							"path": "/f5-system-image:image/partition/state/controllers/controller",
+							"range": [
+								{
+									"lower": "1",
+									"upper": "1",
+									"daemon": {
+										"id": 4,
+										"name": "partition_software_manager-operdata-1",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								},
+								{
+									"lower": "2",
+									"upper": "2",
+									"daemon": {
+										"id": 0,
+										"name": "partition_software_manager-operdata-2",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								}
+							]
+						},
+						{
+							"id": "partition_status",
+							"path": "/velocity_ctrlr:ctrlr_status/partitions/controller",
+							"range": [
+								{
+									"lower": "1",
+									"upper": "1",
+									"daemon": {
+										"id": 4,
+										"name": "partition_software_manager-operdata-1",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								},
+								{
+									"lower": "2",
+									"upper": "2",
+									"daemon": {
+										"id": 0,
+										"name": "partition_software_manager-operdata-2",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								}
+							]
+						},
+						{
+							"id": "remote_console_status",
+							"path": "/velocity_ctrlr:ctrlr_status/remote_console/slot",
+							"range": [
+								{
+									"default": [
+										null
+									],
+									"daemon": {
+										"id": 7,
+										"name": "terminal_server-default-operdata-193",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								}
+							]
+						},
+						{
+							"id": "system-redundancy-details-state-hardware",
+							"path": "/oc-sys:system/redundancy-details/state/hardware/controllers/controller",
+							"range": [
+								{
+									"lower": "1",
+									"upper": "1",
+									"daemon": {
+										"id": 3,
+										"name": "vcc-ha-operdata-1",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								},
+								{
+									"lower": "2",
+									"upper": "2",
+									"daemon": {
+										"id": 9,
+										"name": "vcc-ha-operdata-2",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								}
+							]
+						},
+						{
+							"id": "system-redundancy-details-state-software",
+							"path": "/oc-sys:system/redundancy-details/state/software/controllers/controller",
+							"range": [
+								{
+									"lower": "1",
+									"upper": "1",
+									"daemon": {
+										"id": 12,
+										"name": "vcc-confd-node-operdata-1",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								},
+								{
+									"lower": "2",
+									"upper": "2",
+									"daemon": {
+										"id": 2,
+										"name": "vcc-confd-node-operdata-2",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								}
+							]
+						},
+						{
+							"id": "system-redundancy-state",
+							"daemon": {
+								"id": 11,
+								"name": "vcc-confd-master-operdata-1",
+								"callbacks": [
+									"get_next",
+									"get_elem"
+								]
+							}
+						},
+						{
+							"id": "user_manager_status",
+							"path": "/velocity_ctrlr:ctrlr_status/user_manager/controller",
+							"range": [
+								{
+									"lower": "1",
+									"upper": "1",
+									"daemon": {
+										"id": 5,
+										"name": "vcc-user-manager-operdata-1",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								},
+								{
+									"lower": "2",
+									"upper": "2",
+									"daemon": {
+										"id": 6,
+										"name": "vcc-user-manager-operdata-2",
+										"callbacks": [
+											"get_next",
+											"get_elem"
+										]
+									}
+								}
+							]
+						}
+					],
+					"validationpoint": [
+						{
+							"id": "controller-validate-point",
+							"daemon": {
+								"id": 8,
+								"name": "vcc_validate"
+							}
+						},
+						{
+							"id": "partition-validate-point",
+							"daemon": {
+								"id": 8,
+								"name": "vcc_validate"
+							}
+						},
+						{
+							"id": "slot-validate-point",
+							"daemon": {
+								"id": 8,
+								"name": "vcc_validate"
+							}
+						},
+						{
+							"id": "system-redundancy-nodes-validate-point",
+							"daemon": {
+								"id": 8,
+								"name": "vcc_validate"
+							}
+						},
+						{
+							"id": "user_validate_point",
+							"daemon": {
+								"id": 8,
+								"name": "vcc_validate"
+							}
+						}
+					],
+					"actionpoint": [
+						{
+							"id": "clear-event-log",
+							"daemon": {
+								"id": 13,
+								"name": "EventLogActionHdlr"
+							}
+						}
+					],
+					"typepoint": [
+						{
+							"id": "tls-mgmt-ca-certificate",
+							"file": "/usr/lib/confd/lib/core/confd.ez/confd/ebin/confd_tls_mgmt.beam"
+						},
+						{
+							"id": "tls-mgmt-certificate",
+							"file": "/usr/lib/confd/lib/core/confd.ez/confd/ebin/confd_tls_mgmt.beam"
+						},
+						{
+							"id": "tls-mgmt-private-key",
+							"file": "/usr/lib/confd/lib/core/confd.ez/confd/ebin/confd_tls_mgmt.beam"
+						}
+					]
+				},
+				"cdb": {
+					"datastore": [
+						{
+							"name": "running",
+							"transaction-id": "1582-657065-818309@master",
+							"filename": "/var/confd/cdb/A.cdb",
+							"disk-size": "10535",
+							"ram-size": "66283",
+							"read-locks": 0,
+							"write-lock-set": false,
+							"waiting-for-replication-sync": false
+						},
+						{
+							"name": "operational",
+							"transaction-id": "1582-631210-143453@master",
+							"filename": "/var/confd/cdb/O.cdb",
+							"disk-size": "6559",
+							"ram-size": "41628",
+							"subscription-lock-set": false
+						}
+					],
+					"client": [
+						{
+							"name": "authentication-mgr",
+							"info": "7/12",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 76,
+									"path": "/system/aaa"
+								}
+							]
+						},
+						{
+							"name": "authentication-mgr",
+							"info": "7/11",
+							"type": "inactive"
+						},
+						{
+							"name": "orchestration_manager",
+							"info": "1/27",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 80,
+									"path": "/partitions/partition"
+								}
+							]
+						},
+						{
+							"name": "orchestration_manager",
+							"info": "1/17",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 79,
+									"path": "/slots/slot"
+								}
+							]
+						},
+						{
+							"name": "orchestration_manager",
+							"info": "1/16",
+							"type": "inactive"
+						},
+						{
+							"name": "orchestration_manager",
+							"info": "1/15",
+							"type": "inactive"
+						},
+						{
+							"name": "partition_software_manager-operdata-1",
+							"info": "9/19",
+							"type": "inactive"
+						},
+						{
+							"name": "partition_software_manager-operdata-1",
+							"info": "9/18",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 5,
+									"path": "/slots"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 4,
+									"path": "/partitions"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 3,
+									"path": "/oc-sys:system"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 2,
+									"path": "/image"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 1,
+									"path": "/dbvars/debug/partition_software_manager"
+								}
+							]
+						},
+						{
+							"name": "python",
+							"info": "10/6",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 10,
+									"id": 66,
+									"path": "/system/ntp"
+								}
+							]
+						},
+						{
+							"name": "python",
+							"info": "10/4",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 10,
+									"id": 65,
+									"path": "/system/dns"
+								}
+							]
+						},
+						{
+							"name": "python",
+							"info": "10/3",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 10,
+									"id": 23,
+									"path": "/system/ntp"
+								}
+							]
+						},
+						{
+							"name": "switchd-confd-1",
+							"info": "24/26",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "operational",
+									"id": 59,
+									"path": "/oc-lacp:lacp/oc-lacp:interfaces/oc-lacp:interface/oc-lacp:members/oc-lacp:member"
+								},
+								{
+									"datastore": "operational",
+									"id": 58,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-lag:aggregation/oc-lag:state"
+								},
+								{
+									"datastore": "operational",
+									"id": 57,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-eth:ethernet/oc-eth:state"
+								},
+								{
+									"datastore": "operational",
+									"id": 56,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-if:state"
+								}
+							]
+						},
+						{
+							"name": "switchd-confd-1",
+							"info": "24/25",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 51,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-lag:aggregation/oc-lag:config"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 48,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-eth:ethernet/oc-eth:config"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 41,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-if:config"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 36,
+									"path": "/slots"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 31,
+									"path": "/partitions"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 25,
+									"path": "/oc-sys:system"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 17,
+									"path": "/image"
+								}
+							]
+						},
+						{
+							"name": "switchd-confd-2",
+							"info": "26/65",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "operational",
+									"id": 55,
+									"path": "/oc-lacp:lacp/oc-lacp:interfaces/oc-lacp:interface/oc-lacp:members/oc-lacp:member"
+								},
+								{
+									"datastore": "operational",
+									"id": 54,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-lag:aggregation/oc-lag:state"
+								},
+								{
+									"datastore": "operational",
+									"id": 53,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-eth:ethernet/oc-eth:state"
+								},
+								{
+									"datastore": "operational",
+									"id": 52,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-if:state"
+								}
+							]
+						},
+						{
+							"name": "switchd-confd-2",
+							"info": "26/46",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 50,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-lag:aggregation/oc-lag:config"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 46,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-eth:ethernet/oc-eth:config"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 42,
+									"path": "/oc-if:interfaces/oc-if:interface/oc-if:config"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 37,
+									"path": "/slots"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 32,
+									"path": "/partitions"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 26,
+									"path": "/oc-sys:system"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 18,
+									"path": "/image"
+								}
+							]
+						},
+						{
+							"name": "terminal_server-default-config-192",
+							"info": "11/7",
+							"type": "inactive"
+						},
+						{
+							"name": "terminal_server-default-config-192",
+							"info": "11/6",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 29,
+									"path": "/slots"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 19,
+									"path": "/partitions"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 15,
+									"path": "/oc-sys:system"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 14,
+									"path": "/image"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 12,
+									"path": "/dbvars/debug/terminal_server"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 10,
+									"path": "/chassis_users"
+								}
+							]
+						},
+						{
+							"name": "vcc-ha-operdata-1",
+							"info": "8/18",
+							"type": "inactive"
+						},
+						{
+							"name": "vcc-ha-operdata-1",
+							"info": "8/16",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 24,
+									"path": "/system/redundancy/config/mode"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 16,
+									"path": "/dbvars/debug/ha"
+								}
+							]
+						},
+						{
+							"name": "vcc-host-config-config",
+							"info": "8953/15",
+							"type": "inactive"
+						},
+						{
+							"name": "vcc-host-config-config",
+							"info": "8953/13",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 49,
+									"path": "/slots"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 45,
+									"path": "/partitions"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 39,
+									"path": "/oc-sys:system"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 34,
+									"path": "/image"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 30,
+									"path": "/dbvars/debug/system"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 22,
+									"path": "/mgmt_ip"
+								}
+							]
+						},
+						{
+							"name": "vcc-image-server-config",
+							"info": "117/15",
+							"type": "inactive"
+						},
+						{
+							"name": "vcc-image-server-config",
+							"info": "117/13",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 44,
+									"path": "/slots"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 40,
+									"path": "/partitions"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 35,
+									"path": "/oc-sys:system"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 28,
+									"path": "/image"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 20,
+									"path": "/dbvars/debug/system"
+								}
+							]
+						},
+						{
+							"name": "vcc-partition-agent-operdata-1",
+							"info": "9/35",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "operational",
+									"id": 47,
+									"path": "/partition_macs/chassis_base_mac"
+								}
+							]
+						},
+						{
+							"name": "vcc-partition-agent-operdata-1",
+							"info": "9/15",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 43,
+									"path": "/slots"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 38,
+									"path": "/partitions"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 33,
+									"path": "/oc-sys:system"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 27,
+									"path": "/image"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 21,
+									"path": "/dbvars/debug/partition_agent"
+								}
+							]
+						},
+						{
+							"name": "vcc-user-manager-operdata-1",
+							"info": "12/10",
+							"type": "inactive"
+						},
+						{
+							"name": "vcc-user-manager-operdata-1",
+							"info": "12/9",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 13,
+									"path": "/slots"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 11,
+									"path": "/partitions"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 9,
+									"path": "/oc-sys:system"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 8,
+									"path": "/image"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 7,
+									"path": "/dbvars/debug/user_manager"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 6,
+									"path": "/chassis_users"
+								}
+							]
+						},
+						{
+							"name": "vcc_lacpd",
+							"info": "7/37",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 0,
+									"id": 74,
+									"path": "/interfaces/interface"
+								}
+							]
+						},
+						{
+							"name": "vcc_lacpd",
+							"info": "7/36",
+							"type": "inactive"
+						},
+						{
+							"name": "vcc_lacpd",
+							"info": "7/33",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 0,
+									"id": 75,
+									"path": "/lacp/interfaces/interface"
+								}
+							]
+						},
+						{
+							"name": "vcc_lacpd",
+							"info": "7/32",
+							"type": "inactive"
+						},
+						{
+							"name": "vcc_lacpd",
+							"info": "7/31",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "operational",
+									"id": 73,
+									"path": "/interfaces/interface"
+								}
+							]
+						},
+						{
+							"name": "vcc_lacpd",
+							"info": "7/29",
+							"type": "inactive"
+						},
+						{
+							"name": "velocity_rsyslogd",
+							"info": "7/14",
+							"type": "subscriber",
+							"subscription": [
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 78,
+									"path": "/system/logging/sw-components"
+								},
+								{
+									"datastore": "running",
+									"priority": 3,
+									"id": 77,
+									"path": "/system/logging/remote-servers"
+								}
+							]
+						},
+						{
+							"name": "velocity_rsyslogd",
+							"info": "7/13",
+							"type": "inactive"
+						}
+					]
+				}
+			}
+		},
+		"tailf-rollback:rollback-files": {
+			"file": [
+				{
+					"id": 0,
+					"name": "rollback0",
+					"fixed-number": "10488",
+					"creator": "admin",
+					"date": "2020-02-25 18:57:45",
+					"via": "rest"
+				},
+				{
+					"id": 1,
+					"name": "rollback1",
+					"fixed-number": "10487",
+					"creator": "admin",
+					"date": "2020-02-25 18:57:22",
+					"via": "rest"
+				},
+				{
+					"id": 2,
+					"name": "rollback2",
+					"fixed-number": "10424",
+					"creator": "admin",
+					"date": "2020-02-25 18:48:20",
+					"via": "rest"
+				},
+				{
+					"id": 3,
+					"name": "rollback3",
+					"fixed-number": "10423",
+					"creator": "admin",
+					"date": "2020-02-25 18:48:07",
+					"via": "rest"
+				},
+				{
+					"id": 4,
+					"name": "rollback4",
+					"fixed-number": "10422",
+					"creator": "admin",
+					"date": "2020-02-25 18:47:55",
+					"via": "rest"
+				},
+				{
+					"id": 5,
+					"name": "rollback5",
+					"fixed-number": "10421",
+					"creator": "admin",
+					"date": "2020-02-25 18:47:42",
+					"via": "rest"
+				},
+				{
+					"id": 6,
+					"name": "rollback6",
+					"fixed-number": "10367",
+					"creator": "admin",
+					"date": "2020-02-25 07:27:59",
+					"via": "rest"
+				},
+				{
+					"id": 7,
+					"name": "rollback7",
+					"fixed-number": "10366",
+					"creator": "admin",
+					"date": "2020-02-25 07:27:51",
+					"via": "rest"
+				},
+				{
+					"id": 8,
+					"name": "rollback8",
+					"fixed-number": "10365",
+					"creator": "admin",
+					"date": "2020-02-25 07:27:44",
+					"via": "rest"
+				},
+				{
+					"id": 9,
+					"name": "rollback9",
+					"fixed-number": "10364",
+					"creator": "admin",
+					"date": "2020-02-25 07:27:36",
+					"via": "rest"
+				},
+				{
+					"id": 10,
+					"name": "rollback10",
+					"fixed-number": "10363",
+					"creator": "admin",
+					"date": "2020-02-25 07:27:28",
+					"via": "rest"
+				},
+				{
+					"id": 11,
+					"name": "rollback11",
+					"fixed-number": "10362",
+					"creator": "admin",
+					"date": "2020-02-25 07:27:00",
+					"via": "rest"
+				},
+				{
+					"id": 12,
+					"name": "rollback12",
+					"fixed-number": "10361",
+					"creator": "admin",
+					"date": "2020-02-25 07:26:42",
+					"via": "rest"
+				},
+				{
+					"id": 13,
+					"name": "rollback13",
+					"fixed-number": "10360",
+					"creator": "admin",
+					"date": "2020-02-25 07:26:30",
+					"via": "rest"
+				},
+				{
+					"id": 14,
+					"name": "rollback14",
+					"fixed-number": "10359",
+					"creator": "admin",
+					"date": "2020-02-25 07:26:18",
+					"via": "rest"
+				},
+				{
+					"id": 15,
+					"name": "rollback15",
+					"fixed-number": "10358",
+					"creator": "admin",
+					"date": "2020-02-25 07:26:06",
+					"via": "rest"
+				},
+				{
+					"id": 16,
+					"name": "rollback16",
+					"fixed-number": "10304",
+					"creator": "admin",
+					"date": "2020-02-25 07:23:48",
+					"via": "rest"
+				},
+				{
+					"id": 17,
+					"name": "rollback17",
+					"fixed-number": "10301",
+					"creator": "admin",
+					"date": "2020-02-25 07:23:16",
+					"via": "rest"
+				},
+				{
+					"id": 18,
+					"name": "rollback18",
+					"fixed-number": "10300",
+					"creator": "admin",
+					"date": "2020-02-25 07:23:03",
+					"via": "rest"
+				},
+				{
+					"id": 19,
+					"name": "rollback19",
+					"fixed-number": "10137",
+					"creator": "admin",
+					"date": "2020-02-25 07:13:58",
+					"via": "rest"
+				},
+				{
+					"id": 20,
+					"name": "rollback20",
+					"fixed-number": "10136",
+					"creator": "admin",
+					"date": "2020-02-25 07:13:45",
+					"via": "rest"
+				},
+				{
+					"id": 21,
+					"name": "rollback21",
+					"fixed-number": "10135",
+					"creator": "admin",
+					"date": "2020-02-25 07:13:03",
+					"via": "rest"
+				},
+				{
+					"id": 22,
+					"name": "rollback22",
+					"fixed-number": "10085",
+					"creator": "admin",
+					"date": "2020-02-25 07:01:47",
+					"via": "rest"
+				},
+				{
+					"id": 23,
+					"name": "rollback23",
+					"fixed-number": "10084",
+					"creator": "admin",
+					"date": "2020-02-25 07:01:33",
+					"via": "rest"
+				},
+				{
+					"id": 24,
+					"name": "rollback24",
+					"fixed-number": "10083",
+					"creator": "admin",
+					"date": "2020-02-25 07:01:16",
+					"via": "rest"
+				},
+				{
+					"id": 25,
+					"name": "rollback25",
+					"fixed-number": "10082",
+					"creator": "admin",
+					"date": "2020-02-25 07:01:03",
+					"via": "rest"
+				},
+				{
+					"id": 26,
+					"name": "rollback26",
+					"fixed-number": "10081",
+					"creator": "admin",
+					"date": "2020-02-25 07:00:51",
+					"via": "rest"
+				},
+				{
+					"id": 27,
+					"name": "rollback27",
+					"fixed-number": "10042",
+					"creator": "admin",
+					"date": "2020-02-25 03:32:22",
+					"via": "rest"
+				},
+				{
+					"id": 28,
+					"name": "rollback28",
+					"fixed-number": "10041",
+					"creator": "admin",
+					"date": "2020-02-25 03:32:06",
+					"via": "rest"
+				},
+				{
+					"id": 29,
+					"name": "rollback29",
+					"fixed-number": "10040",
+					"creator": "admin",
+					"date": "2020-02-25 03:31:51",
+					"via": "rest"
+				},
+				{
+					"id": 30,
+					"name": "rollback30",
+					"fixed-number": "10039",
+					"creator": "admin",
+					"date": "2020-02-25 03:31:36",
+					"via": "rest"
+				},
+				{
+					"id": 31,
+					"name": "rollback31",
+					"fixed-number": "10038",
+					"creator": "admin",
+					"date": "2020-02-25 03:31:21",
+					"via": "rest"
+				},
+				{
+					"id": 32,
+					"name": "rollback32",
+					"fixed-number": "10037",
+					"creator": "admin",
+					"date": "2020-02-25 03:31:08",
+					"via": "rest"
+				},
+				{
+					"id": 33,
+					"name": "rollback33",
+					"fixed-number": "10036",
+					"creator": "admin",
+					"date": "2020-02-25 03:30:56",
+					"via": "rest"
+				},
+				{
+					"id": 34,
+					"name": "rollback34",
+					"fixed-number": "10035",
+					"creator": "admin",
+					"date": "2020-02-25 03:30:45",
+					"via": "rest"
+				},
+				{
+					"id": 35,
+					"name": "rollback35",
+					"fixed-number": "10034",
+					"creator": "admin",
+					"date": "2020-02-25 03:30:33",
+					"via": "rest"
+				},
+				{
+					"id": 36,
+					"name": "rollback36",
+					"fixed-number": "10014",
+					"creator": "admin",
+					"date": "2020-02-25 03:17:24",
+					"via": "rest"
+				},
+				{
+					"id": 37,
+					"name": "rollback37",
+					"fixed-number": "10013",
+					"creator": "admin",
+					"date": "2020-02-25 03:17:22",
+					"via": "rest"
+				},
+				{
+					"id": 38,
+					"name": "rollback38",
+					"fixed-number": "10012",
+					"creator": "admin",
+					"date": "2020-02-25 03:17:21",
+					"via": "rest"
+				},
+				{
+					"id": 39,
+					"name": "rollback39",
+					"fixed-number": "10011",
+					"creator": "admin",
+					"date": "2020-02-25 03:17:20",
+					"via": "rest"
+				},
+				{
+					"id": 40,
+					"name": "rollback40",
+					"fixed-number": "10010",
+					"creator": "admin",
+					"date": "2020-02-25 03:17:19",
+					"via": "rest"
+				},
+				{
+					"id": 41,
+					"name": "rollback41",
+					"fixed-number": "10009",
+					"creator": "admin",
+					"date": "2020-02-25 03:17:18",
+					"via": "rest"
+				},
+				{
+					"id": 42,
+					"name": "rollback42",
+					"fixed-number": "10008",
+					"creator": "admin",
+					"date": "2020-02-25 03:17:17",
+					"via": "rest"
+				},
+				{
+					"id": 43,
+					"name": "rollback43",
+					"fixed-number": "10007",
+					"creator": "admin",
+					"date": "2020-02-25 03:17:16",
+					"via": "rest"
+				},
+				{
+					"id": 44,
+					"name": "rollback44",
+					"fixed-number": "10006",
+					"creator": "admin",
+					"date": "2020-02-25 03:17:14",
+					"via": "rest"
+				},
+				{
+					"id": 45,
+					"name": "rollback45",
+					"fixed-number": "10005",
+					"creator": "admin",
+					"date": "2020-02-25 03:16:57",
+					"via": "rest"
+				},
+				{
+					"id": 46,
+					"name": "rollback46",
+					"fixed-number": "10004",
+					"creator": "admin",
+					"date": "2020-02-25 03:16:45",
+					"via": "rest"
+				},
+				{
+					"id": 47,
+					"name": "rollback47",
+					"fixed-number": "10003",
+					"creator": "admin",
+					"date": "2020-02-25 03:16:43",
+					"via": "rest"
+				},
+				{
+					"id": 48,
+					"name": "rollback48",
+					"fixed-number": "10002",
+					"creator": "admin",
+					"date": "2020-02-25 03:16:42",
+					"via": "rest"
+				},
+				{
+					"id": 49,
+					"name": "rollback49",
+					"fixed-number": "10001",
+					"creator": "admin",
+					"date": "2020-02-25 03:16:11",
+					"via": "rest"
+				},
+				{
+					"id": 50,
+					"name": "rollback50",
+					"fixed-number": "10385",
+					"creator": "admin",
+					"date": "2020-02-25 03:05:50",
+					"via": "rest"
+				}
+			]
+		},
+		"velocity_ctrlr:mgmt_ip": {
+			"dhcp_enabled": true
+		},
+		"velocity_ctrlr:chassis_mgmt_groups": {
+			"chassis_mgmt_group": [
+				{
+					"cmg_name": "admin"
+				},
+				{
+					"cmg_name": "root"
+				},
+				{
+					"cmg_name": "oper"
+				},
+				{
+					"cmg_name": "user"
+				}
+			]
+		},
+		"velocity_ctrlr:chassis_users": {
+			"chassis_user": [
+				{
+					"username": "admin",
+					"userpw": "$1$XoYZO2N6$oQcb9zQYoiwEb6ziy9M6g0",
+					"userid": 64000,
+					"chassis_capability": "admin",
+					"terminal_service_global_capability": "none"
+				},
+				{
+					"username": "root",
+					"userpw": "$1$gYuAn0wc$2maazS8f7mkvtSSubBF/O/",
+					"userid": 0,
+					"chassis_capability": "root",
+					"terminal_service_global_capability": "none"
+				}
+			]
+		},
+		"velocity_ctrlr:ctrlr_status": {
+			"chassis_num": 1,
+			"partitions": {
+				"controller": [
+					{
+						"controller": 1,
+						"partition": [
+							{
+								"name": "none",
+								"partition_id": 0,
+								"partition_status": "disabled",
+								"partition_info": ""
+							},
+							{
+								"name": "default",
+								"partition_id": 1,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition1",
+								"partition_id": 2,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition2",
+								"partition_id": 3,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition3",
+								"partition_id": 4,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition4",
+								"partition_id": 5,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition5",
+								"partition_id": 6,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition6",
+								"partition_id": 7,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition7",
+								"partition_id": 8,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition8",
+								"partition_id": 9,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition9",
+								"partition_id": 10,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition10",
+								"partition_id": 11,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition11",
+								"partition_id": 12,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition12",
+								"partition_id": 13,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition13",
+								"partition_id": 14,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition14",
+								"partition_id": 15,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition15",
+								"partition_id": 16,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition16",
+								"partition_id": 17,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition17",
+								"partition_id": 18,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition18",
+								"partition_id": 19,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition19",
+								"partition_id": 20,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition20",
+								"partition_id": 21,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition21",
+								"partition_id": 22,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition22",
+								"partition_id": 23,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition23",
+								"partition_id": 24,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition24",
+								"partition_id": 25,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition25",
+								"partition_id": 26,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition26",
+								"partition_id": 27,
+								"partition_status": "failed",
+								"partition_info": ""
+							}
+						]
+					},
+					{
+						"controller": 2,
+						"partition": [
+							{
+								"name": "none",
+								"partition_id": 0,
+								"partition_status": "disabled",
+								"partition_info": ""
+							},
+							{
+								"name": "default",
+								"partition_id": 1,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition1",
+								"partition_id": 2,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition2",
+								"partition_id": 3,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition3",
+								"partition_id": 4,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition4",
+								"partition_id": 5,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition5",
+								"partition_id": 6,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition6",
+								"partition_id": 7,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition7",
+								"partition_id": 8,
+								"partition_status": "running",
+								"partition_info": "1.0.0.2020-02-05-764"
+							},
+							{
+								"name": "partition8",
+								"partition_id": 9,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition9",
+								"partition_id": 10,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition10",
+								"partition_id": 11,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition11",
+								"partition_id": 12,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition12",
+								"partition_id": 13,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition13",
+								"partition_id": 14,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition14",
+								"partition_id": 15,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition15",
+								"partition_id": 16,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition16",
+								"partition_id": 17,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition17",
+								"partition_id": 18,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition18",
+								"partition_id": 19,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition19",
+								"partition_id": 20,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition20",
+								"partition_id": 21,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition21",
+								"partition_id": 22,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition22",
+								"partition_id": 23,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition23",
+								"partition_id": 24,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition24",
+								"partition_id": 25,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition25",
+								"partition_id": 26,
+								"partition_status": "failed",
+								"partition_info": ""
+							},
+							{
+								"name": "partition26",
+								"partition_id": 27,
+								"partition_status": "failed",
+								"partition_info": ""
+							}
+						]
+					}
+				]
+			},
+			"user_manager": {
+				"controller": [
+					{
+						"controller": 1,
+						"num_updates": "29"
+					},
+					{
+						"controller": 2,
+						"num_updates": "247"
+					}
+				]
+			},
+			"interface": {
+				"loopback-mode": false,
+				"enabled": true
+			}
+		},
+		"velocity_ctrlr:partition_macs": {
+			"chassis_base_mac": "0094a18ccc00",
+			"partitions": [
+				{
+					"partition": 1,
+					"state": {
+						"allocated_macs": {
+							"mac": [
+								{
+									"offset": 8,
+									"mac_address": "00:94:a1:8c:cc:08"
+								},
+								{
+									"offset": 9,
+									"mac_address": "00:94:a1:8c:cc:09"
+								},
+								{
+									"offset": 10,
+									"mac_address": "00:94:a1:8c:cc:0a"
+								},
+								{
+									"offset": 11,
+									"mac_address": "00:94:a1:8c:cc:0b"
+								},
+								{
+									"offset": 12,
+									"mac_address": "00:94:a1:8c:cc:0c"
+								},
+								{
+									"offset": 13,
+									"mac_address": "00:94:a1:8c:cc:0d"
+								},
+								{
+									"offset": 14,
+									"mac_address": "00:94:a1:8c:cc:0e"
+								},
+								{
+									"offset": 15,
+									"mac_address": "00:94:a1:8c:cc:0f"
+								},
+								{
+									"offset": 16,
+									"mac_address": "00:94:a1:8c:cc:10"
+								},
+								{
+									"offset": 17,
+									"mac_address": "00:94:a1:8c:cc:11"
+								},
+								{
+									"offset": 18,
+									"mac_address": "00:94:a1:8c:cc:12"
+								},
+								{
+									"offset": 19,
+									"mac_address": "00:94:a1:8c:cc:13"
+								},
+								{
+									"offset": 20,
+									"mac_address": "00:94:a1:8c:cc:14"
+								},
+								{
+									"offset": 21,
+									"mac_address": "00:94:a1:8c:cc:15"
+								},
+								{
+									"offset": 22,
+									"mac_address": "00:94:a1:8c:cc:16"
+								},
+								{
+									"offset": 23,
+									"mac_address": "00:94:a1:8c:cc:17"
+								}
+							]
+						}
+					}
+				},
+				{
+					"partition": 3,
+					"state": {
+						"allocated_macs": {
+							"mac": [
+								{
+									"offset": 88,
+									"mac_address": "00:94:a1:8c:cc:58"
+								},
+								{
+									"offset": 89,
+									"mac_address": "00:94:a1:8c:cc:59"
+								},
+								{
+									"offset": 90,
+									"mac_address": "00:94:a1:8c:cc:5a"
+								},
+								{
+									"offset": 91,
+									"mac_address": "00:94:a1:8c:cc:5b"
+								},
+								{
+									"offset": 92,
+									"mac_address": "00:94:a1:8c:cc:5c"
+								},
+								{
+									"offset": 93,
+									"mac_address": "00:94:a1:8c:cc:5d"
+								},
+								{
+									"offset": 94,
+									"mac_address": "00:94:a1:8c:cc:5e"
+								},
+								{
+									"offset": 95,
+									"mac_address": "00:94:a1:8c:cc:5f"
+								},
+								{
+									"offset": 96,
+									"mac_address": "00:94:a1:8c:cc:60"
+								},
+								{
+									"offset": 97,
+									"mac_address": "00:94:a1:8c:cc:61"
+								},
+								{
+									"offset": 98,
+									"mac_address": "00:94:a1:8c:cc:62"
+								},
+								{
+									"offset": 99,
+									"mac_address": "00:94:a1:8c:cc:63"
+								},
+								{
+									"offset": 100,
+									"mac_address": "00:94:a1:8c:cc:64"
+								},
+								{
+									"offset": 101,
+									"mac_address": "00:94:a1:8c:cc:65"
+								},
+								{
+									"offset": 102,
+									"mac_address": "00:94:a1:8c:cc:66"
+								},
+								{
+									"offset": 103,
+									"mac_address": "00:94:a1:8c:cc:67"
+								}
+							]
+						}
+					}
+				},
+				{
+					"partition": 4,
+					"state": {
+						"allocated_macs": {
+							"mac": [
+								{
+									"offset": 104,
+									"mac_address": "00:94:a1:8c:cc:68"
+								},
+								{
+									"offset": 105,
+									"mac_address": "00:94:a1:8c:cc:69"
+								},
+								{
+									"offset": 106,
+									"mac_address": "00:94:a1:8c:cc:6a"
+								},
+								{
+									"offset": 107,
+									"mac_address": "00:94:a1:8c:cc:6b"
+								},
+								{
+									"offset": 108,
+									"mac_address": "00:94:a1:8c:cc:6c"
+								},
+								{
+									"offset": 109,
+									"mac_address": "00:94:a1:8c:cc:6d"
+								},
+								{
+									"offset": 110,
+									"mac_address": "00:94:a1:8c:cc:6e"
+								},
+								{
+									"offset": 111,
+									"mac_address": "00:94:a1:8c:cc:6f"
+								},
+								{
+									"offset": 112,
+									"mac_address": "00:94:a1:8c:cc:70"
+								},
+								{
+									"offset": 113,
+									"mac_address": "00:94:a1:8c:cc:71"
+								},
+								{
+									"offset": 114,
+									"mac_address": "00:94:a1:8c:cc:72"
+								},
+								{
+									"offset": 115,
+									"mac_address": "00:94:a1:8c:cc:73"
+								},
+								{
+									"offset": 116,
+									"mac_address": "00:94:a1:8c:cc:74"
+								},
+								{
+									"offset": 117,
+									"mac_address": "00:94:a1:8c:cc:75"
+								},
+								{
+									"offset": 118,
+									"mac_address": "00:94:a1:8c:cc:76"
+								},
+								{
+									"offset": 119,
+									"mac_address": "00:94:a1:8c:cc:77"
+								}
+							]
+						}
+					}
+				},
+				{
+					"partition": 5,
+					"state": {
+						"allocated_macs": {
+							"mac": [
+								{
+									"offset": 24,
+									"mac_address": "00:94:a1:8c:cc:18"
+								},
+								{
+									"offset": 25,
+									"mac_address": "00:94:a1:8c:cc:19"
+								},
+								{
+									"offset": 26,
+									"mac_address": "00:94:a1:8c:cc:1a"
+								},
+								{
+									"offset": 27,
+									"mac_address": "00:94:a1:8c:cc:1b"
+								},
+								{
+									"offset": 28,
+									"mac_address": "00:94:a1:8c:cc:1c"
+								},
+								{
+									"offset": 29,
+									"mac_address": "00:94:a1:8c:cc:1d"
+								},
+								{
+									"offset": 30,
+									"mac_address": "00:94:a1:8c:cc:1e"
+								},
+								{
+									"offset": 31,
+									"mac_address": "00:94:a1:8c:cc:1f"
+								},
+								{
+									"offset": 32,
+									"mac_address": "00:94:a1:8c:cc:20"
+								},
+								{
+									"offset": 33,
+									"mac_address": "00:94:a1:8c:cc:21"
+								},
+								{
+									"offset": 34,
+									"mac_address": "00:94:a1:8c:cc:22"
+								},
+								{
+									"offset": 35,
+									"mac_address": "00:94:a1:8c:cc:23"
+								},
+								{
+									"offset": 36,
+									"mac_address": "00:94:a1:8c:cc:24"
+								},
+								{
+									"offset": 37,
+									"mac_address": "00:94:a1:8c:cc:25"
+								},
+								{
+									"offset": 38,
+									"mac_address": "00:94:a1:8c:cc:26"
+								},
+								{
+									"offset": 39,
+									"mac_address": "00:94:a1:8c:cc:27"
+								}
+							]
+						}
+					}
+				},
+				{
+					"partition": 6,
+					"state": {
+						"allocated_macs": {
+							"mac": [
+								{
+									"offset": 40,
+									"mac_address": "00:94:a1:8c:cc:28"
+								},
+								{
+									"offset": 41,
+									"mac_address": "00:94:a1:8c:cc:29"
+								},
+								{
+									"offset": 42,
+									"mac_address": "00:94:a1:8c:cc:2a"
+								},
+								{
+									"offset": 43,
+									"mac_address": "00:94:a1:8c:cc:2b"
+								},
+								{
+									"offset": 44,
+									"mac_address": "00:94:a1:8c:cc:2c"
+								},
+								{
+									"offset": 45,
+									"mac_address": "00:94:a1:8c:cc:2d"
+								},
+								{
+									"offset": 46,
+									"mac_address": "00:94:a1:8c:cc:2e"
+								},
+								{
+									"offset": 47,
+									"mac_address": "00:94:a1:8c:cc:2f"
+								},
+								{
+									"offset": 48,
+									"mac_address": "00:94:a1:8c:cc:30"
+								},
+								{
+									"offset": 49,
+									"mac_address": "00:94:a1:8c:cc:31"
+								},
+								{
+									"offset": 50,
+									"mac_address": "00:94:a1:8c:cc:32"
+								},
+								{
+									"offset": 51,
+									"mac_address": "00:94:a1:8c:cc:33"
+								},
+								{
+									"offset": 52,
+									"mac_address": "00:94:a1:8c:cc:34"
+								},
+								{
+									"offset": 53,
+									"mac_address": "00:94:a1:8c:cc:35"
+								},
+								{
+									"offset": 54,
+									"mac_address": "00:94:a1:8c:cc:36"
+								},
+								{
+									"offset": 55,
+									"mac_address": "00:94:a1:8c:cc:37"
+								}
+							]
+						}
+					}
+				},
+				{
+					"partition": 7,
+					"state": {
+						"allocated_macs": {
+							"mac": [
+								{
+									"offset": 56,
+									"mac_address": "00:94:a1:8c:cc:38"
+								},
+								{
+									"offset": 57,
+									"mac_address": "00:94:a1:8c:cc:39"
+								},
+								{
+									"offset": 58,
+									"mac_address": "00:94:a1:8c:cc:3a"
+								},
+								{
+									"offset": 59,
+									"mac_address": "00:94:a1:8c:cc:3b"
+								},
+								{
+									"offset": 60,
+									"mac_address": "00:94:a1:8c:cc:3c"
+								},
+								{
+									"offset": 61,
+									"mac_address": "00:94:a1:8c:cc:3d"
+								},
+								{
+									"offset": 62,
+									"mac_address": "00:94:a1:8c:cc:3e"
+								},
+								{
+									"offset": 63,
+									"mac_address": "00:94:a1:8c:cc:3f"
+								},
+								{
+									"offset": 64,
+									"mac_address": "00:94:a1:8c:cc:40"
+								},
+								{
+									"offset": 65,
+									"mac_address": "00:94:a1:8c:cc:41"
+								},
+								{
+									"offset": 66,
+									"mac_address": "00:94:a1:8c:cc:42"
+								},
+								{
+									"offset": 67,
+									"mac_address": "00:94:a1:8c:cc:43"
+								},
+								{
+									"offset": 68,
+									"mac_address": "00:94:a1:8c:cc:44"
+								},
+								{
+									"offset": 69,
+									"mac_address": "00:94:a1:8c:cc:45"
+								},
+								{
+									"offset": 70,
+									"mac_address": "00:94:a1:8c:cc:46"
+								},
+								{
+									"offset": 71,
+									"mac_address": "00:94:a1:8c:cc:47"
+								}
+							]
+						}
+					}
+				},
+				{
+					"partition": 8,
+					"state": {
+						"allocated_macs": {
+							"mac": [
+								{
+									"offset": 72,
+									"mac_address": "00:94:a1:8c:cc:48"
+								},
+								{
+									"offset": 73,
+									"mac_address": "00:94:a1:8c:cc:49"
+								},
+								{
+									"offset": 74,
+									"mac_address": "00:94:a1:8c:cc:4a"
+								},
+								{
+									"offset": 75,
+									"mac_address": "00:94:a1:8c:cc:4b"
+								},
+								{
+									"offset": 76,
+									"mac_address": "00:94:a1:8c:cc:4c"
+								},
+								{
+									"offset": 77,
+									"mac_address": "00:94:a1:8c:cc:4d"
+								},
+								{
+									"offset": 78,
+									"mac_address": "00:94:a1:8c:cc:4e"
+								},
+								{
+									"offset": 79,
+									"mac_address": "00:94:a1:8c:cc:4f"
+								},
+								{
+									"offset": 80,
+									"mac_address": "00:94:a1:8c:cc:50"
+								},
+								{
+									"offset": 81,
+									"mac_address": "00:94:a1:8c:cc:51"
+								},
+								{
+									"offset": 82,
+									"mac_address": "00:94:a1:8c:cc:52"
+								},
+								{
+									"offset": 83,
+									"mac_address": "00:94:a1:8c:cc:53"
+								},
+								{
+									"offset": 84,
+									"mac_address": "00:94:a1:8c:cc:54"
+								},
+								{
+									"offset": 85,
+									"mac_address": "00:94:a1:8c:cc:55"
+								},
+								{
+									"offset": 86,
+									"mac_address": "00:94:a1:8c:cc:56"
+								},
+								{
+									"offset": 87,
+									"mac_address": "00:94:a1:8c:cc:57"
+								}
+							]
+						}
+					}
+				}
+			]
+		}
+	}
+}

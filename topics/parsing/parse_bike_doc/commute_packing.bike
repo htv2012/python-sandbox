@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <ul id="H-Gu1RUi">
+      <li id="3C">
+        <p>Office Packing</p>
+        <ul>
+          <li id="bU">
+            <p>Phone</p>
+          </li>
+          <li id="IA">
+            <p>Laptop</p>
+          </li>
+          <li id="sL">
+            <p>Documents</p>
+            <ul>
+              <li id="do">
+                <p>   Company badge</p>
+              </li>
+              <li id="_0">
+                <p>   Bus pass</p>
+              </li>
+              <li id="xe">
+                <p>   Wallet</p>
+              </li>
+            </ul>
+          </li>
+          <li id="Pe">
+            <p>Tech bag</p>
+            <ul>
+              <li id="qI">
+                <p>   Mouse</p>
+              </li>
+              <li id="xL">
+                <p>   USB-C charger</p>
+              </li>
+              <li id="i_">
+                <p>   USB-C cable</p>
+              </li>
+              <li id="Jt">
+                <p>   Lightning cable</p>
+              </li>
+              <li id="yi">
+                <p>   USB key</p>
+              </li>
+              <li id="F4">
+                <p>   Yubikey</p>
+              </li>
+            </ul>
+          </li>
+          <li id="o5">
+            <p>Medication bag</p>
+            <ul>
+              <li id="cH">
+                <p>   Epipens</p>
+              </li>
+              <li id="f8">
+                <p>   Mask</p>
+              </li>
+              <li id="CW">
+                <p>   Daily pills</p>
+              </li>
+              <li id="MX">
+                <p>   Hand sanitizer</p>
+              </li>
+              <li id="Vz">
+                <p>   Microfiber cloth</p>
+              </li>
+            </ul>
+          </li>
+          <li id="l7">
+            <p>Read and Write</p>
+            <ul>
+              <li id="5c">
+                <p>   Notebook</p>
+              </li>
+              <li id="jw">
+                <p>   Pens</p>
+              </li>
+              <li id="iv">
+                <p>   Kindle</p>
+              </li>
+            </ul>
+          </li>
+          <li id="66">
+            <p>Clothing</p>
+            <ul>
+              <li id="ZH">
+                <p>   Jacket</p>
+              </li>
+              <li id="Yq">
+                <p>   Hat</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </body>
+</html>

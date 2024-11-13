@@ -1,0 +1,11 @@
+Product: F5OS-A
+Version: 1
+Release: 0
+Patch: 0
+Build: 0607
+Build date: 2021-02-04-0
+Platform: appliance
+Branch: master
+Tag: NSIT
+Commit: xxxxxx
+Destination: nsit

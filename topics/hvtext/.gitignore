@@ -1,0 +1,10 @@
+build
+.c9
+*.class
+dist
+hvtext.egg-info
+*.pyc
+__pycache__
+.pytest_cache
+*.swp
+tags

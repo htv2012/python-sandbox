@@ -1,0 +1,7 @@
+streamlit
+pandas
+numpy
+ruff
+black
+isort
+watchdog

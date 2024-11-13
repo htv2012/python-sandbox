@@ -1,0 +1,12 @@
+- id: base 10
+  input_value: "159"
+  base: 10
+  expected: 159
+- id: base 16
+  input_value: "0xb"
+  base: 16
+  expected: 11
+- id: base 2
+  input_value: "110"
+  base: 2
+  expected: 6

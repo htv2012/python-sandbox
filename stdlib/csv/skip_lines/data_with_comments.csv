@@ -1,0 +1,9 @@
+# ======================================================================
+# Demo file: skipping comments
+# ======================================================================
+alias,shell
+john,bash
+amanda,bash
+# The odd ones
+kim,tcsh
+karen,dash

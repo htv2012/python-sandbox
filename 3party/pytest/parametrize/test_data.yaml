@@ -1,0 +1,6 @@
+labels: ["input_value", "base", "expected"]
+test_cases:
+  - id: base 10
+    values: ["159", 10, 159]
+  - id: base 16
+    values: ["0xa", 16, 10]

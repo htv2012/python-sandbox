@@ -1,0 +1,1565 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build core-dev.15.0609.1759                            -->
+<workbook source-platform='mac' version='9.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource hasconnection='false' inline='true' name='Parameters' version='9.1'>
+      <aliases enabled='yes' />
+      <column caption='Profit Bin Size' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Parameter 1]' param-domain-type='range' role='measure' type='quantitative' value='2000.0'>
+        <calculation class='tableau' formula='2000.0' />
+        <range granularity='500.0' max='2500.0' min='500.0' />
+      </column>
+      <column caption='Top Customers' datatype='integer' name='[Parameter 2]' param-domain-type='range' role='measure' type='quantitative' value='15'>
+        <calculation class='tableau' formula='15' />
+        <range granularity='5' max='40' min='5' />
+      </column>
+    </datasource>
+    <datasource inline='true' name='Sample - Superstore Subset (Excel)' version='9.1'>
+      <connection class='excel-direct' cleaning='no' compat='no' dataRefreshTime='' filename='Data/Datasources/Sample - Superstore Subset (Excel).xlsx' interpretationMode='0' show='yes' validate='yes'>
+        <relation name='Orders$' table='[Orders$]' type='table'>
+          <columns gridOrigin='A1:X9427:no:A1:X9427' header='yes' outcome='2'>
+            <column datatype='integer' name='Row ID' ordinal='0' />
+            <column datatype='string' name='Order Priority' ordinal='1' />
+            <column datatype='real' name='Discount' ordinal='2' />
+            <column datatype='real' name='Unit Price' ordinal='3' />
+            <column datatype='real' name='Shipping Cost' ordinal='4' />
+            <column datatype='integer' name='Customer ID' ordinal='5' />
+            <column datatype='string' name='Customer Name' ordinal='6' />
+            <column datatype='string' name='Ship Mode' ordinal='7' />
+            <column datatype='string' name='Customer Segment' ordinal='8' />
+            <column datatype='string' name='Product Category' ordinal='9' />
+            <column datatype='string' name='Product Sub-Category' ordinal='10' />
+            <column datatype='string' name='Product Container' ordinal='11' />
+            <column datatype='string' name='Product Name' ordinal='12' />
+            <column datatype='real' name='Product Base Margin' ordinal='13' />
+            <column datatype='string' name='Region' ordinal='14' />
+            <column datatype='string' name='State or Province' ordinal='15' />
+            <column datatype='string' name='City' ordinal='16' />
+            <column datatype='integer' name='Postal Code' ordinal='17' />
+            <column datatype='date' name='Order Date' ordinal='18' />
+            <column datatype='date' name='Ship Date' ordinal='19' />
+            <column datatype='real' name='Profit' ordinal='20' />
+            <column datatype='integer' name='Quantity ordered new' ordinal='21' />
+            <column datatype='real' name='Sales' ordinal='22' />
+            <column datatype='integer' name='Order ID' ordinal='23' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>Row ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Row ID]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Row ID</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Order Priority</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Order Priority]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Order Priority</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Discount</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Discount]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Discount</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Unit Price</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Unit Price]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Unit Price</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Shipping Cost</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Shipping Cost]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Shipping Cost</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Customer ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Customer ID]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Customer ID</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Customer Name</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Customer Name]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Customer Name</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Ship Mode</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Ship Mode]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Ship Mode</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Customer Segment</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Customer Segment]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Customer Segment</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Product Category</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Product Category]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Product Category</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Product Sub-Category</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Product Sub-Category]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Product Sub-Category</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Product Container</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Product Container]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Product Container</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Product Name</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Product Name]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Product Name</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Product Base Margin</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Product Base Margin]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Product Base Margin</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Region</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[Region]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Region</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>State or Province</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[State or Province]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>State or Province</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>City</remote-name>
+            <remote-type>130</remote-type>
+            <local-name>[City]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>City</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <collation flag='1' name='LEN_RUS_S2' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;WSTR&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Postal Code</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Postal Code]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Postal Code</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Order Date</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[Order Date]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Order Date</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;DATE&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Ship Date</remote-name>
+            <remote-type>7</remote-type>
+            <local-name>[Ship Date]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Ship Date</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>date</local-type>
+            <aggregation>Year</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;DATE&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Profit</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Profit]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Profit</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Quantity ordered new</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Quantity ordered new]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Quantity ordered new</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Sales</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Sales]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Sales</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>15</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;R8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Order ID</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Order ID]</local-name>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias>Order ID</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;I8&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Orders$]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='context'>0</attribute>
+              <attribute datatype='string' name='gridOrigin'>&quot;A1:X9427:no:A1:X9427&quot;</attribute>
+              <attribute datatype='boolean' name='header'>true</attribute>
+              <attribute datatype='integer' name='outcome'>2</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Gross Profit Ratio' datatype='real' default-format='p0.0%' name='[Calculation_9100813121824802]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='SUM([Profit])/SUM([Sales])' />
+      </column>
+      <column datatype='string' name='[City]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+      <column aggregation='Sum' datatype='integer' name='[Customer ID]' role='dimension' type='ordinal' />
+      <column datatype='string' name='[Customer Name]' role='dimension' type='nominal' />
+      <column aggregation='Avg' datatype='real' default-format='p0.0%' name='[Discount]' role='measure' type='quantitative' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='date' datatype-customized='true' name='[Order Date]' role='dimension' type='ordinal' />
+      <column aggregation='Sum' datatype='integer' name='[Order ID]' role='dimension' type='ordinal' />
+      <column datatype='integer' name='[Postal Code]' role='dimension' semantic-role='[ZipCode].[Name]' type='ordinal' />
+      <column aggregation='Avg' datatype='real' default-format='p0.0%' name='[Product Base Margin]' role='measure' type='quantitative' />
+      <column caption='Department' datatype='string' name='[Product Category]' role='dimension' type='nominal' />
+      <column caption='Container' datatype='string' name='[Product Container]' role='dimension' type='nominal' />
+      <column caption='Item' datatype='string' name='[Product Name]' role='dimension' type='nominal'>
+        <desc>
+          <formatted-text>
+            <run>We don&apos;t translate this field</run>
+          </formatted-text>
+        </desc>
+      </column>
+      <column caption='Category' datatype='string' name='[Product Sub-Category]' role='dimension' type='nominal' />
+      <column caption='Profit (bin)' datatype='integer' name='[Profit (bin)]' role='dimension' type='ordinal'>
+        <calculation class='bin' decimals='0' formula='[Profit]' peg='0' size-parameter='[Parameters].[Parameter 1]' />
+      </column>
+      <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Profit]' role='measure' type='quantitative' />
+      <column caption='Order Quantity' datatype='integer' name='[Quantity ordered new]' role='measure' type='quantitative' />
+      <column aggregation='Sum' datatype='integer' name='[Row ID]' role='dimension' type='ordinal' />
+      <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Sales]' role='measure' type='quantitative' />
+      <column datatype='date' datatype-customized='true' name='[Ship Date]' role='dimension' type='ordinal' />
+      <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Shipping Cost]' role='measure' type='quantitative' />
+      <column caption='State' datatype='string' name='[State or Province]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+      <column datatype='string' name='[Supplier]' role='dimension' type='nominal'>
+        <calculation class='categorical-bin' column='[Product Name]' default='&quot;Zoom V.92 V.44 PCI Internal Controllerless FaxModem&quot;'>
+          <bin value='&quot;*Staples* Highlighting Markers&quot;'>
+            <value>&quot;*Staples* Highlighting Markers&quot;</value>
+            <value>&quot;*Staples* Letter Opener&quot;</value>
+            <value>&quot;*Staples* Packaging Labels&quot;</value>
+            <value>&quot;*Staples* vLetter Openers, 2/Pack&quot;</value>
+          </bin>
+          <bin value='&quot;3M Hangers With Command Adhesive&quot;'>
+            <value>&quot;3M Hangers With Command Adhesive&quot;</value>
+            <value>&quot;3M Office Air Cleaner&quot;</value>
+            <value>&quot;3M Organizer Strips&quot;</value>
+            <value>&quot;3M Polarizing Light Filter Sleeves&quot;</value>
+            <value>&quot;3M Polarizing Task Lamp with Clamp Arm, Light Gray&quot;</value>
+          </bin>
+          <bin value='&quot;Acco 3-Hole Punch&quot;'>
+            <value>&quot;Acco 3-Hole Punch&quot;</value>
+            <value>&quot;Acco 6 Outlet Guardian Premium Surge Suppressor&quot;</value>
+            <value>&quot;Acco Clips to Go™ Binder Clips, 24 Clips in Two Sizes&quot;</value>
+            <value>&quot;Acco D-Ring Binder w/DublLock®&quot;</value>
+            <value>&quot;Acco Four Pocket Poly Ring Binder with Label Holder, Smoke, 1\&quot;&quot;</value>
+            <value>&quot;Acco Keyboard-In-A-Box®&quot;</value>
+            <value>&quot;Acco Perma® 2700 Stacking Storage Drawers&quot;</value>
+            <value>&quot;Acco Perma® 3000 Stacking Storage Drawers&quot;</value>
+            <value>&quot;Acco Pressboard Covers with Storage Hooks, 14 7/8\&quot; x 11\&quot;, Dark Blue&quot;</value>
+            <value>&quot;Acco Pressboard Covers with Storage Hooks, 14 7/8\&quot; x 11\&quot;, Executive Red&quot;</value>
+            <value>&quot;Acco Pressboard Covers with Storage Hooks, 14 7/8\&quot; x 11\&quot;, Light Blue&quot;</value>
+            <value>&quot;Acco PRESSTEX® Data Binder with Storage Hooks, Dark Blue, 14 7/8\&quot; X 11\&quot;&quot;</value>
+            <value>&quot;Acco PRESSTEX® Data Binder with Storage Hooks, Dark Blue, 9 1/2\&quot; X 11\&quot;&quot;</value>
+            <value>&quot;Acco Recycled 2\&quot; Capacity Laser Printer Hanging Data Binders&quot;</value>
+            <value>&quot;Acco Six-Outlet Power Strip, 4&apos; Cord Length&quot;</value>
+            <value>&quot;Acco Smartsocket® Color-Coded Six-Outlet AC Adapter Model Surge Protectors&quot;</value>
+            <value>&quot;Acco Smartsocket™ Table Surge Protector, 6 Color-Coded Adapter Outlets&quot;</value>
+            <value>&quot;Acco Suede Grain Vinyl Round Ring Binder&quot;</value>
+            <value>&quot;Acco® Hot Clips™ Clips to Go&quot;</value>
+            <value>&quot;Accohide Poly Flexible Ring Binders&quot;</value>
+            <value>&quot;ACCOHIDE® 3-Ring Binder, Blue, 1\&quot;&quot;</value>
+            <value>&quot;ACCOHIDE® Binder by Acco&quot;</value>
+          </bin>
+          <bin value='&quot;Acme Design Line 8\&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8\&quot; Cut&quot;'>
+            <value>&quot;Acme Design Line 8\&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8\&quot; Cut&quot;</value>
+            <value>&quot;Acme Galleria® Hot Forged Steel Scissors with Colored Handles&quot;</value>
+            <value>&quot;Acme Hot Forged Carbon Steel Scissors with Nickel-Plated Handles, 3 7/8\&quot; Cut, 8\&quot;L&quot;</value>
+            <value>&quot;Acme Kleencut® Forged Steel Scissors&quot;</value>
+            <value>&quot;Acme® 8\&quot; Straight Scissors&quot;</value>
+            <value>&quot;Acme® Box Cutter Scissors&quot;</value>
+            <value>&quot;Acme® Design Stainless Steel Bent Scissors&quot;</value>
+            <value>&quot;Acme® Elite Stainless Steel Scissors&quot;</value>
+            <value>&quot;Acme® Forged Steel Scissors with Black Enamel Handles&quot;</value>
+            <value>&quot;Acme® Office Executive Series Stainless Steel Trimmers&quot;</value>
+            <value>&quot;Acme® Preferred Stainless Steel Scissors&quot;</value>
+          </bin>
+          <bin value='&quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;'>
+            <value>&quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;</value>
+            <value>&quot;Avery 4027 File Folder Labels for Dot Matrix Printers, 5000 Labels per Box, White&quot;</value>
+            <value>&quot;Avery 474&quot;</value>
+            <value>&quot;Avery 478&quot;</value>
+            <value>&quot;Avery 479&quot;</value>
+            <value>&quot;Avery 48&quot;</value>
+            <value>&quot;Avery 481&quot;</value>
+            <value>&quot;Avery 482&quot;</value>
+            <value>&quot;Avery 484&quot;</value>
+            <value>&quot;Avery 485&quot;</value>
+            <value>&quot;Avery 487&quot;</value>
+            <value>&quot;Avery 49&quot;</value>
+            <value>&quot;Avery 491&quot;</value>
+            <value>&quot;Avery 492&quot;</value>
+            <value>&quot;Avery 493&quot;</value>
+            <value>&quot;Avery 494&quot;</value>
+            <value>&quot;Avery 496&quot;</value>
+            <value>&quot;Avery 497&quot;</value>
+            <value>&quot;Avery 498&quot;</value>
+            <value>&quot;Avery 501&quot;</value>
+            <value>&quot;Avery 503&quot;</value>
+            <value>&quot;Avery 504&quot;</value>
+            <value>&quot;Avery 506&quot;</value>
+            <value>&quot;Avery 507&quot;</value>
+            <value>&quot;Avery 508&quot;</value>
+            <value>&quot;Avery 51&quot;</value>
+            <value>&quot;Avery 510&quot;</value>
+            <value>&quot;Avery 511&quot;</value>
+            <value>&quot;Avery 514&quot;</value>
+            <value>&quot;Avery 516&quot;</value>
+            <value>&quot;Avery 52&quot;</value>
+            <value>&quot;Avery 520&quot;</value>
+            <value>&quot;Avery Arch Ring Binders&quot;</value>
+            <value>&quot;Avery Binder Labels&quot;</value>
+            <value>&quot;Avery Binding System Hidden Tab™ Executive Style Index Sets&quot;</value>
+            <value>&quot;Avery Durable Binders&quot;</value>
+            <value>&quot;Avery Durable Poly Binders&quot;</value>
+            <value>&quot;Avery File Folder Labels&quot;</value>
+            <value>&quot;Avery Flip-Chart Easel Binder, Black&quot;</value>
+            <value>&quot;Avery Hanging File Binders&quot;</value>
+            <value>&quot;Avery Heavy-Duty EZD ™ Binder With Locking Rings&quot;</value>
+            <value>&quot;Avery Hi-Liter Comfort Grip Fluorescent Highlighter, Yellow Ink&quot;</value>
+            <value>&quot;Avery Hi-Liter GlideStik Fluorescent Highlighter, Yellow Ink&quot;</value>
+            <value>&quot;Avery Hi-Liter Pen Style Six-Color Fluorescent Set&quot;</value>
+            <value>&quot;Avery Hi-Liter® EverBold™ Pen Style Fluorescent Highlighters, 4/Pack&quot;</value>
+            <value>&quot;Avery Hi-Liter® Fluorescent Desk Style Markers&quot;</value>
+            <value>&quot;Avery Hi-Liter® Smear-Safe Highlighters&quot;</value>
+            <value>&quot;Avery Hole Reinforcements&quot;</value>
+            <value>&quot;Avery Legal 4-Ring Binder&quot;</value>
+            <value>&quot;Avery Non-Stick Binders&quot;</value>
+            <value>&quot;Avery Poly Binder Pockets&quot;</value>
+            <value>&quot;Avery Premier Heavy-Duty Binder with Round Locking Rings&quot;</value>
+            <value>&quot;Avery Printable Repositionable Plastic Tabs&quot;</value>
+            <value>&quot;Avery Reinforcements for Hole-Punch Pages&quot;</value>
+            <value>&quot;Avery Round Ring Poly Binders&quot;</value>
+            <value>&quot;Avery Self-Adhesive Photo Pockets for Polaroid Photos&quot;</value>
+            <value>&quot;Avery Trapezoid Extra Heavy Duty 4\&quot; Binders&quot;</value>
+            <value>&quot;Avery Trapezoid Ring Binder, 3\&quot; Capacity, Black, 1040 sheets&quot;</value>
+            <value>&quot;Avery White Multi-Purpose Labels&quot;</value>
+            <value>&quot;Avery® 3 1/2\&quot; Diskette Storage Pages, 10/Pack&quot;</value>
+            <value>&quot;Avery® Durable Plastic 1\&quot; Binders&quot;</value>
+            <value>&quot;Avery® Durable Slant Ring Binders With Label Holder&quot;</value>
+          </bin>
+          <bin value='&quot;Belkin 105-Key Black Keyboard&quot;'>
+            <value>&quot;Belkin 105-Key Black Keyboard&quot;</value>
+            <value>&quot;Belkin 107-key enhanced keyboard, USB/PS/2 interface&quot;</value>
+            <value>&quot;Belkin 325VA UPS Surge Protector, 6&apos;&quot;</value>
+            <value>&quot;Belkin 5 Outlet SurgeMaster™ Power Centers&quot;</value>
+            <value>&quot;Belkin 6 Outlet Metallic Surge Strip&quot;</value>
+            <value>&quot;Belkin 7 Outlet SurgeMaster Surge Protector with Phone Protection&quot;</value>
+            <value>&quot;Belkin 8 Outlet Surge Protector&quot;</value>
+            <value>&quot;Belkin 8 Outlet SurgeMaster II Gold Surge Protector&quot;</value>
+            <value>&quot;Belkin 8 Outlet SurgeMaster II Gold Surge Protector with Phone Protection&quot;</value>
+            <value>&quot;Belkin ErgoBoard™ Keyboard&quot;</value>
+            <value>&quot;Belkin F5C206VTEL 6 Outlet Surge&quot;</value>
+            <value>&quot;Belkin F9M820V08 8 Outlet Surge&quot;</value>
+            <value>&quot;Belkin MediaBoard 104- Keyboard&quot;</value>
+            <value>&quot;Belkin OmniView SE Rackmount Kit&quot;</value>
+            <value>&quot;Belkin Premiere Surge Master II 8-outlet surge protector&quot;</value>
+          </bin>
+          <bin value='&quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;'>
+            <value>&quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 16701 Slimline Battery Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 16765 Mini Stand Up Battery Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 16801 Nautilus™ Battery Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 1730 StandUp Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 1799 Powerhouse™ Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston 19500 Mighty Mite Electric Pencil Sharpener&quot;</value>
+            <value>&quot;Boston Electric Pencil Sharpener, Model 1818, Charcoal Black&quot;</value>
+            <value>&quot;Boston KS Multi-Size Manual Pencil Sharpener&quot;</value>
+            <value>&quot;Boston Model 1800 Electric Pencil Sharpener, Gray&quot;</value>
+            <value>&quot;Boston School Pro Electric Pencil Sharpener, 1670&quot;</value>
+            <value>&quot;BOSTON® Ranger® \#55 Pencil Sharpener, Black&quot;</value>
+          </bin>
+          <bin value='&quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;'>
+            <value>&quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;</value>
+            <value>&quot;Canon F603 Scientific Calculator&quot;</value>
+            <value>&quot;Canon Image Class D660 Copier&quot;</value>
+            <value>&quot;Canon imageCLASS 2200 Advanced Copier&quot;</value>
+            <value>&quot;Canon Imageclass D680 Copier / Fax&quot;</value>
+            <value>&quot;Canon MP100DHII Printing Calculator&quot;</value>
+            <value>&quot;Canon MP25DIII Desktop Whisper-Quiet Printing Calculator&quot;</value>
+            <value>&quot;Canon MP41DH Printing Calculator&quot;</value>
+            <value>&quot;Canon P1-DHIII Palm Printing Calculator&quot;</value>
+            <value>&quot;Canon PC-428 Personal Copier&quot;</value>
+            <value>&quot;Canon PC1060 Personal Laser Copier&quot;</value>
+            <value>&quot;Canon PC1080F Personal Copier&quot;</value>
+            <value>&quot;Canon PC940 Copier&quot;</value>
+            <value>&quot;Canon S750 Color Inkjet Printer&quot;</value>
+          </bin>
+          <bin value='&quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;'>
+            <value>&quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon Advantage® Foldable Chair Mats for Low Pile Carpets&quot;</value>
+            <value>&quot;Eldon Antistatic Chair Mats for Low to Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon Base for stackable storage shelf, platinum&quot;</value>
+            <value>&quot;Eldon Cleatmat Plus™ Chair Mats for High Pile Carpets&quot;</value>
+            <value>&quot;Eldon Cleatmat® Chair Mats for Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon ClusterMat Chair Mat with Cordless Antistatic Protection&quot;</value>
+            <value>&quot;Eldon Delta Triangular Chair Mat, 52\&quot; x 58\&quot;, Clear&quot;</value>
+            <value>&quot;Eldon Econocleat® Chair Mats for Low Pile Carpets&quot;</value>
+            <value>&quot;Eldon Executive Woodline II Cherry Finish Desk Accessories&quot;</value>
+            <value>&quot;Eldon Expressions Mahogany Wood Desk Collection&quot;</value>
+            <value>&quot;Eldon Expressions Punched Metal &amp; Wood Desk Accessories, Black &amp; Cherry&quot;</value>
+            <value>&quot;Eldon Expressions Punched Metal &amp; Wood Desk Accessories, Pewter &amp; Cherry&quot;</value>
+            <value>&quot;Eldon Expressions™ Desk Accessory, Wood Pencil Holder, Oak&quot;</value>
+            <value>&quot;Eldon Expressions™ Desk Accessory, Wood Photo Frame, Mahogany&quot;</value>
+            <value>&quot;Eldon Image Series Black Desk Accessories&quot;</value>
+            <value>&quot;Eldon Imàge® Series Desk Accessories, Clear&quot;</value>
+            <value>&quot;Eldon Jumbo ProFile™ Portable File Boxes Graphite/Black&quot;</value>
+            <value>&quot;Eldon Pizzaz™ Desk Accessories&quot;</value>
+            <value>&quot;Eldon Portable Mobile Manager&quot;</value>
+            <value>&quot;Eldon Radial Chair Mat for Low to Medium Pile Carpets&quot;</value>
+            <value>&quot;Eldon Regeneration Recycled Desk Accessories, Smoke&quot;</value>
+            <value>&quot;Eldon Shelf Savers™ Cubes and Bins&quot;</value>
+            <value>&quot;Eldon Simplefile® Box Office®&quot;</value>
+            <value>&quot;Eldon Spacemaker® Box, Quick-Snap Lid, Clear&quot;</value>
+            <value>&quot;Eldon Wave Desk Accessories&quot;</value>
+            <value>&quot;Eldon® 200 Class™ Desk Accessories&quot;</value>
+            <value>&quot;Eldon® 200 Class™ Desk Accessories, Burgundy&quot;</value>
+            <value>&quot;Eldon® 300 Class™ Desk Accessories, Black&quot;</value>
+            <value>&quot;Eldon® 400 Class™ Desk Accessories, Black Carbon&quot;</value>
+            <value>&quot;Eldon® 500 Class™ Desk Accessories&quot;</value>
+            <value>&quot;Eldon® Executive Woodline II Desk Accessories, Mahogany&quot;</value>
+            <value>&quot;Eldon® Expressions™ Wood and Plastic Desk Accessories, Oak&quot;</value>
+            <value>&quot;Eldon® Expressions™ Wood Desk Accessories, Oak&quot;</value>
+            <value>&quot;Eldon® Gobal File Keepers&quot;</value>
+            <value>&quot;Eldon® Image Series Desk Accessories, Burgundy&quot;</value>
+            <value>&quot;Eldon® Wave Desk Accessories&quot;</value>
+          </bin>
+          <bin value='&quot;Epson C62 Color Inkjet Printer&quot;'>
+            <value>&quot;Epson C62 Color Inkjet Printer&quot;</value>
+            <value>&quot;Epson C82 Color Inkjet Printer&quot;</value>
+            <value>&quot;Epson DFX-8500 Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson DFX5000+ Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson FX-2180 Wide Format Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson FX-980 Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson LQ-570e Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson LQ-870 Dot Matrix Printer&quot;</value>
+            <value>&quot;Epson Stylus 1520 Color Inkjet Printer&quot;</value>
+          </bin>
+          <bin value='&quot;Fellowes 17-key keypad for PS/2 interface&quot;'>
+            <value>&quot;Fellowes 17-key keypad for PS/2 interface&quot;</value>
+            <value>&quot;Fellowes 8 Outlet Superior Workstation Surge Protector&quot;</value>
+            <value>&quot;Fellowes 8 Outlet Superior Workstation Surge Protector w/o Phone/Fax/Modem Protection&quot;</value>
+            <value>&quot;Fellowes Bankers Box™ Staxonsteel® Drawer File/Stacking System&quot;</value>
+            <value>&quot;Fellowes Bankers Box™ Stor/Drawer® Steel Plus™&quot;</value>
+            <value>&quot;Fellowes Bases and Tops For Staxonsteel®/High-Stak® Systems&quot;</value>
+            <value>&quot;Fellowes Basic 104-Key Keyboard, Platinum&quot;</value>
+            <value>&quot;Fellowes Binding Cases&quot;</value>
+            <value>&quot;Fellowes Black Plastic Comb Bindings&quot;</value>
+            <value>&quot;Fellowes Command Center 5-outlet power strip&quot;</value>
+            <value>&quot;Fellowes EZ Multi-Media Keyboard&quot;</value>
+            <value>&quot;Fellowes High-Stak® Drawer Files&quot;</value>
+            <value>&quot;Fellowes Internet Keyboard, Platinum&quot;</value>
+            <value>&quot;Fellowes Mighty 8 Compact Surge Protector&quot;</value>
+            <value>&quot;Fellowes Mobile File Cart, Black&quot;</value>
+            <value>&quot;Fellowes Mobile Numeric Keypad, Graphite&quot;</value>
+            <value>&quot;Fellowes Neat Ideas® Storage Cubes&quot;</value>
+            <value>&quot;Fellowes Officeware™ Wire Shelving&quot;</value>
+            <value>&quot;Fellowes PB300 Plastic Comb Binding Machine&quot;</value>
+            <value>&quot;Fellowes PB500 Electric Punch Plastic Comb Binding Machine with Manual Bind&quot;</value>
+            <value>&quot;Fellowes Personal Hanging Folder Files, Navy&quot;</value>
+            <value>&quot;Fellowes Premier Superior Surge Suppressor, 10-Outlet, With Phone and Remote&quot;</value>
+            <value>&quot;Fellowes Recycled Storage Drawers&quot;</value>
+            <value>&quot;Fellowes Smart Design 104-Key Enhanced Keyboard, PS/2 Adapter, Platinum&quot;</value>
+            <value>&quot;Fellowes Smart Surge Ten-Outlet Protector, Platinum&quot;</value>
+            <value>&quot;Fellowes Staxonsteel® Drawer Files&quot;</value>
+            <value>&quot;Fellowes Stor/Drawer® Steel Plus™ Storage Drawers&quot;</value>
+            <value>&quot;Fellowes Strictly Business® Drawer File, Letter/Legal Size&quot;</value>
+            <value>&quot;Fellowes Super Stor/Drawer®&quot;</value>
+            <value>&quot;Fellowes Super Stor/Drawer® Files&quot;</value>
+            <value>&quot;Fellowes Superior 10 Outlet Split Surge Protector&quot;</value>
+            <value>&quot;Fellowes Twister Kit, Gray/Clear, 3/pkg&quot;</value>
+          </bin>
+          <bin value='&quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;'>
+            <value>&quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;</value>
+            <value>&quot;Hon 2111 Invitation™ Series Corner Table&quot;</value>
+            <value>&quot;Hon 4-Shelf Metal Bookcases&quot;</value>
+            <value>&quot;Hon 4060 Series Tables&quot;</value>
+            <value>&quot;Hon 4070 Series Pagoda™ Armless Upholstered Stacking Chairs&quot;</value>
+            <value>&quot;Hon 4070 Series Pagoda™ Round Back Stacking Chairs&quot;</value>
+            <value>&quot;Hon 4700 Series Mobuis™ Mid-Back Task Chairs with Adjustable Arms&quot;</value>
+            <value>&quot;Hon 5100 Series Wood Tables&quot;</value>
+            <value>&quot;Hon 61000 Series Interactive Training Tables&quot;</value>
+            <value>&quot;Hon 94000 Series Round Tables&quot;</value>
+            <value>&quot;Hon Comfortask® Task/Swivel Chairs&quot;</value>
+            <value>&quot;Hon Deluxe Fabric Upholstered Stacking Chairs&quot;</value>
+            <value>&quot;Hon Deluxe Fabric Upholstered Stacking Chairs, Rounded Back&quot;</value>
+            <value>&quot;Hon Every-Day® Chair Series Swivel Task Chairs&quot;</value>
+            <value>&quot;Hon GuestStacker Chair&quot;</value>
+            <value>&quot;Hon iLevel™ Computer Training Table&quot;</value>
+            <value>&quot;Hon Metal Bookcases, Black&quot;</value>
+            <value>&quot;Hon Metal Bookcases, Putty&quot;</value>
+            <value>&quot;Hon Multipurpose Stacking Arm Chairs&quot;</value>
+            <value>&quot;Hon Non-Folding Utility Tables&quot;</value>
+            <value>&quot;Hon Olson Stacker Stools&quot;</value>
+            <value>&quot;Hon Pagoda™ Stacking Chairs&quot;</value>
+            <value>&quot;Hon Rectangular Conference Tables&quot;</value>
+            <value>&quot;Hon Valutask™ Swivel Chairs&quot;</value>
+          </bin>
+          <bin value='&quot;Newell 307&quot;'>
+            <value>&quot;Newell 307&quot;</value>
+            <value>&quot;Newell 308&quot;</value>
+            <value>&quot;Newell 309&quot;</value>
+            <value>&quot;Newell 31&quot;</value>
+            <value>&quot;Newell 310&quot;</value>
+            <value>&quot;Newell 312&quot;</value>
+            <value>&quot;Newell 314&quot;</value>
+            <value>&quot;Newell 315&quot;</value>
+            <value>&quot;Newell 318&quot;</value>
+            <value>&quot;Newell 320&quot;</value>
+            <value>&quot;Newell 321&quot;</value>
+            <value>&quot;Newell 323&quot;</value>
+            <value>&quot;Newell 325&quot;</value>
+            <value>&quot;Newell 326&quot;</value>
+            <value>&quot;Newell 327&quot;</value>
+            <value>&quot;Newell 329&quot;</value>
+            <value>&quot;Newell 332&quot;</value>
+            <value>&quot;Newell 333&quot;</value>
+            <value>&quot;Newell 335&quot;</value>
+            <value>&quot;Newell 336&quot;</value>
+            <value>&quot;Newell 337&quot;</value>
+            <value>&quot;Newell 338&quot;</value>
+            <value>&quot;Newell 339&quot;</value>
+            <value>&quot;Newell 340&quot;</value>
+            <value>&quot;Newell 342&quot;</value>
+            <value>&quot;Newell 343&quot;</value>
+            <value>&quot;Newell 346&quot;</value>
+            <value>&quot;Newell 35&quot;</value>
+            <value>&quot;Newell 351&quot;</value>
+            <value>&quot;Newell® 3-Hole Punched Plastic Slotted Magazine Holders for Binders&quot;</value>
+          </bin>
+          <bin value='&quot;Sony IBM Color Diskettes, 25/Pack&quot;'>
+            <value>&quot;Sony IBM Color Diskettes, 25/Pack&quot;</value>
+            <value>&quot;Sony MFD2HD Formatted Diskettes, 10/Pack&quot;</value>
+          </bin>
+          <bin value='&quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;'>
+            <value>&quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones 1\&quot; Hanging DublLock® Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones 14 Line Acrylic Coated Pressboard Data Binders&quot;</value>
+            <value>&quot;Wilson Jones Custom Binder Spines &amp; Labels&quot;</value>
+            <value>&quot;Wilson Jones DublLock® D-Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones Easy Flow II™ Sheet Lifters&quot;</value>
+            <value>&quot;Wilson Jones Elliptical Ring 3 1/2\&quot; Capacity Binders, 800 sheets&quot;</value>
+            <value>&quot;Wilson Jones Hanging View Binder, White, 1\&quot;&quot;</value>
+            <value>&quot;Wilson Jones Impact Binders&quot;</value>
+            <value>&quot;Wilson Jones Ledger-Size, Piano-Hinge Binder, 2\&quot;, Blue&quot;</value>
+            <value>&quot;Wilson Jones Standard D-Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones Suede Grain Vinyl Binders&quot;</value>
+            <value>&quot;Wilson Jones Turn Tabs Binder Tool for Ring Binders&quot;</value>
+            <value>&quot;Wilson Jones® Four-Pocket Poly Binders&quot;</value>
+          </bin>
+          <bin value='&quot;Xerox 188&quot;'>
+            <value>&quot;Xerox 188&quot;</value>
+            <value>&quot;Xerox 1880&quot;</value>
+            <value>&quot;Xerox 1881&quot;</value>
+            <value>&quot;Xerox 1882&quot;</value>
+            <value>&quot;Xerox 1883&quot;</value>
+            <value>&quot;Xerox 1885&quot;</value>
+            <value>&quot;Xerox 1887&quot;</value>
+            <value>&quot;Xerox 1888&quot;</value>
+            <value>&quot;Xerox 1891&quot;</value>
+            <value>&quot;Xerox 1892&quot;</value>
+            <value>&quot;Xerox 1893&quot;</value>
+            <value>&quot;Xerox 1894&quot;</value>
+            <value>&quot;Xerox 1895&quot;</value>
+            <value>&quot;Xerox 1896&quot;</value>
+            <value>&quot;Xerox 1897&quot;</value>
+            <value>&quot;Xerox 1898&quot;</value>
+            <value>&quot;Xerox 1899&quot;</value>
+            <value>&quot;Xerox 19&quot;</value>
+            <value>&quot;Xerox 190&quot;</value>
+            <value>&quot;Xerox 1903&quot;</value>
+            <value>&quot;Xerox 1904&quot;</value>
+            <value>&quot;Xerox 1905&quot;</value>
+            <value>&quot;Xerox 1906&quot;</value>
+            <value>&quot;Xerox 1907&quot;</value>
+            <value>&quot;Xerox 1908&quot;</value>
+            <value>&quot;Xerox 191&quot;</value>
+            <value>&quot;Xerox 1910&quot;</value>
+            <value>&quot;Xerox 1916&quot;</value>
+            <value>&quot;Xerox 1917&quot;</value>
+            <value>&quot;Xerox 1919&quot;</value>
+            <value>&quot;Xerox 1920&quot;</value>
+            <value>&quot;Xerox 1922&quot;</value>
+            <value>&quot;Xerox 1923&quot;</value>
+            <value>&quot;Xerox 1924&quot;</value>
+            <value>&quot;Xerox 1926&quot;</value>
+            <value>&quot;Xerox 1927&quot;</value>
+            <value>&quot;Xerox 1928&quot;</value>
+            <value>&quot;Xerox 1929&quot;</value>
+            <value>&quot;Xerox 193&quot;</value>
+            <value>&quot;Xerox 1930&quot;</value>
+            <value>&quot;Xerox 1932&quot;</value>
+            <value>&quot;Xerox 1933&quot;</value>
+            <value>&quot;Xerox 1934&quot;</value>
+            <value>&quot;Xerox 1935&quot;</value>
+            <value>&quot;Xerox 1936&quot;</value>
+            <value>&quot;Xerox 1937&quot;</value>
+            <value>&quot;Xerox 1938&quot;</value>
+            <value>&quot;Xerox 1939&quot;</value>
+            <value>&quot;Xerox 194&quot;</value>
+            <value>&quot;Xerox 1940&quot;</value>
+            <value>&quot;Xerox 1941&quot;</value>
+            <value>&quot;Xerox 1947&quot;</value>
+            <value>&quot;Xerox 1948&quot;</value>
+            <value>&quot;Xerox 1949&quot;</value>
+            <value>&quot;Xerox 195&quot;</value>
+            <value>&quot;Xerox 1950&quot;</value>
+            <value>&quot;Xerox 1951&quot;</value>
+            <value>&quot;Xerox 1952&quot;</value>
+            <value>&quot;Xerox 1953&quot;</value>
+            <value>&quot;Xerox 1954&quot;</value>
+            <value>&quot;Xerox 1959&quot;</value>
+            <value>&quot;Xerox 196&quot;</value>
+            <value>&quot;Xerox 1961&quot;</value>
+            <value>&quot;Xerox 1962&quot;</value>
+            <value>&quot;Xerox 1963&quot;</value>
+            <value>&quot;Xerox 1964&quot;</value>
+            <value>&quot;Xerox 1966&quot;</value>
+            <value>&quot;Xerox 1968&quot;</value>
+            <value>&quot;Xerox 197&quot;</value>
+            <value>&quot;Xerox 1971&quot;</value>
+            <value>&quot;Xerox 1972&quot;</value>
+            <value>&quot;Xerox 1973&quot;</value>
+            <value>&quot;Xerox 1974&quot;</value>
+            <value>&quot;Xerox 1976&quot;</value>
+            <value>&quot;Xerox 1977&quot;</value>
+            <value>&quot;Xerox 1978&quot;</value>
+            <value>&quot;Xerox 1979&quot;</value>
+            <value>&quot;Xerox 198&quot;</value>
+            <value>&quot;Xerox 1980&quot;</value>
+            <value>&quot;Xerox 1981&quot;</value>
+            <value>&quot;Xerox 1982&quot;</value>
+            <value>&quot;Xerox 1983&quot;</value>
+            <value>&quot;Xerox 1984&quot;</value>
+            <value>&quot;Xerox 1985&quot;</value>
+            <value>&quot;Xerox 1986&quot;</value>
+            <value>&quot;Xerox 1988&quot;</value>
+            <value>&quot;Xerox 1989&quot;</value>
+            <value>&quot;Xerox 199&quot;</value>
+            <value>&quot;Xerox 1991&quot;</value>
+            <value>&quot;Xerox 1992&quot;</value>
+            <value>&quot;Xerox 1993&quot;</value>
+            <value>&quot;Xerox 1994&quot;</value>
+            <value>&quot;Xerox 1995&quot;</value>
+            <value>&quot;Xerox 1996&quot;</value>
+            <value>&quot;Xerox 1997&quot;</value>
+            <value>&quot;Xerox 1998&quot;</value>
+            <value>&quot;Xerox 2&quot;</value>
+            <value>&quot;Xerox 20&quot;</value>
+            <value>&quot;Xerox 200&quot;</value>
+            <value>&quot;Xerox 204&quot;</value>
+            <value>&quot;Xerox 207&quot;</value>
+            <value>&quot;Xerox 209&quot;</value>
+            <value>&quot;Xerox 21&quot;</value>
+            <value>&quot;Xerox 210&quot;</value>
+            <value>&quot;Xerox 212&quot;</value>
+            <value>&quot;Xerox 213&quot;</value>
+            <value>&quot;Xerox 214&quot;</value>
+            <value>&quot;Xerox 215&quot;</value>
+            <value>&quot;Xerox 216&quot;</value>
+            <value>&quot;Xerox 217&quot;</value>
+            <value>&quot;Xerox 220&quot;</value>
+            <value>&quot;Xerox 221&quot;</value>
+            <value>&quot;Xerox 223&quot;</value>
+            <value>&quot;Xerox 224&quot;</value>
+            <value>&quot;Xerox 226&quot;</value>
+            <value>&quot;Xerox 227&quot;</value>
+            <value>&quot;Xerox 229&quot;</value>
+            <value>&quot;Xerox 23&quot;</value>
+            <value>&quot;Xerox 231&quot;</value>
+            <value>&quot;Xerox 4200 Series MultiUse Premium Copy Paper (20Lb. and 84 Bright)&quot;</value>
+            <value>&quot;Xerox Blank Computer Paper&quot;</value>
+          </bin>
+        </calculation>
+        <aliases>
+          <alias key='&quot;*Staples* Highlighting Markers&quot;' value='Staples' />
+          <alias key='&quot;3M Hangers With Command Adhesive&quot;' value='3M' />
+          <alias key='&quot;Acco 3-Hole Punch&quot;' value='Acco' />
+          <alias key='&quot;Acme Design Line 8\&quot; Stainless Steel Bent Scissors w/Champagne Handles, 3-1/8\&quot; Cut&quot;' value='Acme' />
+          <alias key='&quot;Avery 05222 Permanent Self-Adhesive File Folder Labels for Typewriters, on Rolls, White, 250/Roll&quot;' value='Avery' />
+          <alias key='&quot;Belkin 105-Key Black Keyboard&quot;' value='Belkin' />
+          <alias key='&quot;Boston 1645 Deluxe Heavier-Duty Electric Pencil Sharpener&quot;' value='Boston' />
+          <alias key='&quot;Canon BP1200DH 12-Digit Bubble Jet Printing Calculator&quot;' value='Canon' />
+          <alias key='&quot;Eldon Advantage® Chair Mats for Low to Medium Pile Carpets&quot;' value='Eldon' />
+          <alias key='&quot;Epson C62 Color Inkjet Printer&quot;' value='Epson' />
+          <alias key='&quot;Fellowes 17-key keypad for PS/2 interface&quot;' value='Fellowes' />
+          <alias key='&quot;Hon 2090 “Pillow Soft” Series Mid Back Swivel/Tilt Chairs&quot;' value='Hon' />
+          <alias key='&quot;Newell 307&quot;' value='Newell' />
+          <alias key='&quot;Sony IBM Color Diskettes, 25/Pack&quot;' value='Sony' />
+          <alias key='&quot;Wilson Jones “Snap” Scratch Pad Binder Tool for Ring Binders&quot;' value='Wilson Jones' />
+          <alias key='&quot;Xerox 188&quot;' value='Xerox' />
+          <alias key='&quot;Zoom V.92 V.44 PCI Internal Controllerless FaxModem&quot;' value='Other' />
+        </aliases>
+      </column>
+      <column aggregation='Avg' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Unit Price]' role='measure' type='quantitative' />
+      <column-instance column='[Profit]' derivation='Sum' name='[sum:Profit:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Sales]' derivation='Sum' name='[sum:Sales:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Calculation_9100813121824802]' derivation='User' name='[usr:Calculation_9100813121824802:qk]' pivot='key' type='quantitative' />
+      <column-instance column='[Order Date]' derivation='Year' name='[yr:Order Date:ok]' pivot='key' type='ordinal' />
+      <group caption='Top Customers by Profit' name='[Highest profit customers]' name-style='unqualified' user:ui-builder='filter-group'>
+        <groupfilter count='[Parameters].[Parameter 2]' end='top' function='end' units='records' user:ui-marker='end' user:ui-top-by-field='true'>
+          <groupfilter direction='DESC' expression='SUM([Profit])' function='order' user:ui-marker='order'>
+            <groupfilter function='level-members' level='[Customer Name]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </groupfilter>
+        </groupfilter>
+      </group>
+      <drill-paths>
+        <drill-path name='ID fields'>
+          <field>[Customer ID]</field>
+          <field>[Order ID]</field>
+          <field>[Row ID]</field>
+        </drill-path>
+        <drill-path name='Mapping items'>
+          <field>[State or Province]</field>
+          <field>[City]</field>
+          <field>[Postal Code]</field>
+        </drill-path>
+        <drill-path name='Product'>
+          <field>[Product Category]</field>
+          <field>[Product Sub-Category]</field>
+          <field>[Product Name]</field>
+        </drill-path>
+      </drill-paths>
+      <layout dim-ordering='alphabetic' dim-percentage='0.466579' group-percentage='0.112713' measure-ordering='alphabetic' measure-percentage='0.31979' show-hidden-fields='true' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[:Measure Names]' type='palette'>
+            <map to='#1f77b4'>
+              <bucket>&quot;[Sample - Superstore Subset (Excel)].[usr:Calculation_9100813121824802:qk]&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;[Sample - Superstore Subset (Excel)].[sum:Sales new:qk]&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;[Sample - Superstore Subset (Excel)].[sum:Profit:qk]&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;[Sample - Superstore Subset (Excel)].[sum:Sales:qk]&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;[Sample - Superstore Subset (Excel)].[sum:Profit new:qk]&quot;</bucket>
+            </map>
+          </encoding>
+          <encoding attr='color' field='[yr:Order Date:ok]' type='palette'>
+            <map to='#1c73b1'>
+              <bucket>2012</bucket>
+            </map>
+            <map to='#67add4'>
+              <bucket>2011</bucket>
+            </map>
+            <map to='#b4d4da'>
+              <bucket>2010</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>2013</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <datasource-dependencies datasource='Parameters'>
+        <column caption='Profit Bin Size' datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Parameter 1]' param-domain-type='range' role='measure' type='quantitative' value='2000.0'>
+          <calculation class='tableau' formula='2000.0' />
+          <range granularity='500.0' max='2500.0' min='500.0' />
+        </column>
+        <column caption='Top Customers' datatype='integer' name='[Parameter 2]' param-domain-type='range' role='measure' type='quantitative' value='15'>
+          <calculation class='tableau' formula='15' />
+          <range granularity='5' max='40' min='5' />
+        </column>
+      </datasource-dependencies>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Support X Axis'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='Sample - Superstore Subset (Excel)' />
+          </datasources>
+          <datasource-dependencies datasource='Sample - Superstore Subset (Excel)'>
+            <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Profit]' role='measure' type='quantitative' />
+            <column caption='State' datatype='string' name='[State or Province]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[State or Province]' derivation='None' name='[none:State or Province:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Profit]' derivation='Sum' name='[sum:Profit:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[Sample - Superstore Subset (Excel)].[none:State or Province:nk]</rows>
+        <cols>[Sample - Superstore Subset (Excel)].[sum:Profit:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Support Y Axis'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='Sample - Superstore Subset (Excel)' />
+          </datasources>
+          <datasource-dependencies datasource='Sample - Superstore Subset (Excel)'>
+            <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Shipping Cost]' role='measure' type='quantitative' />
+            <column caption='State' datatype='string' name='[State or Province]' role='dimension' semantic-role='[State].[Name]' type='nominal' />
+            <column-instance column='[State or Province]' derivation='None' name='[none:State or Province:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Shipping Cost]' derivation='Sum' name='[sum:Shipping Cost:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[Sample - Superstore Subset (Excel)].[sum:Shipping Cost:qk]</rows>
+        <cols>[Sample - Superstore Subset (Excel)].[none:State or Province:nk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Support both Axes'>
+      <table>
+        <view>
+          <datasources>
+            <datasource name='Sample - Superstore Subset (Excel)' />
+          </datasources>
+          <datasource-dependencies datasource='Sample - Superstore Subset (Excel)'>
+            <column caption='Item' datatype='string' name='[Product Name]' role='dimension' type='nominal'>
+              <desc>
+                <formatted-text>
+                  <run>We don&apos;t translate this field</run>
+                </formatted-text>
+              </desc>
+            </column>
+            <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Profit]' role='measure' type='quantitative' />
+            <column datatype='real' default-format='c&quot;$&quot;#,##0;(&quot;$&quot;#,##0)' name='[Shipping Cost]' role='measure' type='quantitative' />
+            <column-instance column='[Product Name]' derivation='None' name='[none:Product Name:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Profit]' derivation='Sum' name='[sum:Profit:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Shipping Cost]' derivation='Sum' name='[sum:Shipping Cost:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <lod column='[Sample - Superstore Subset (Excel)].[none:Product Name:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[Sample - Superstore Subset (Excel)].[sum:Profit:qk]</rows>
+        <cols>[Sample - Superstore Subset (Excel)].[sum:Shipping Cost:qk]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Support both Axes'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[Sample - Superstore Subset (Excel)].[none:Product Sub-Category:nk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Support Y Axis'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[Sample - Superstore Subset (Excel)].[none:State or Province:nk]</field>
+        </color-one-way>
+      </highlight>
+      <viewpoint />
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Support X Axis'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[Sample - Superstore Subset (Excel)].[none:Postal Code:ok]</field>
+          <field>[Sample - Superstore Subset (Excel)].[none:State or Province:nk]</field>
+        </color-one-way>
+      </highlight>
+      <viewpoint />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Support both Axes' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='Support Y Axis' width='192'>
+      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
+    </thumbnail>
+    <thumbnail height='192' name='Support X Axis' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>

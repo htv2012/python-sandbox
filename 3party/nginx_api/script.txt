@@ -1,0 +1,4 @@
+env list
+env get myenv2
+quit
+

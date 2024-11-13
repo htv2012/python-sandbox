@@ -1,0 +1,4 @@
+USER              Alias   User ID  SHELL
+John Doe          johnd   501      bash
+Jane Doe          janed   502      tcsh
+Long John Silver  longjs  503      zsh

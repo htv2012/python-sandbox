@@ -1,0 +1,35 @@
+# ======================================================================
+# Set these variables
+# ======================================================================
+@hostname = 54.187.10.39
+@adminAuth = Basic admin:Testenv12#
+
+@admUrl=https://{{hostname}}/api/adc/v1
+@envUrl = {{admUrl}}/environments
+@platformUrl=https://{{hostname}}/api/platform/v1
+@rolesUrl = {{platformUrl}}/roles
+@usersUrl = {{platformUrl}}/users
+
+# ======================================================================
+### Admin to create an environment
+# ======================================================================
+
+# @name env1
+POST {{admUrl}}/environments
+Content-Type: application/json
+Authorization: {{adminAuth}}
+
+{
+  "metadata": {
+    "name": "env1",
+    "displayName": "My Environment 1",
+    "description": "A sandbox environment"
+  }
+}
+
+@env1_uid = {{env1.response.body.metadata.uid}}
+
+###
+# DELETE {{envUrl}}/{{env1_uid}}
+# Content-Type: application/json
+# Authorization: {{adminAuth}}

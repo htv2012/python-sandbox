@@ -1,0 +1,26 @@
+{
+    "controllers": [
+        {
+            "controller": 1,
+            "partition": [
+                {
+                    "name": "default",
+                    "partition_id": 1,
+                    "partition_status": "running",
+                    "partition_info": "First partition"
+                }
+            ]
+        },
+        {
+            "controller": 2,
+            "partition": [
+                {
+                    "name": "foo",
+                    "partition_id": 2,
+                    "partition_status": "disabled",
+                    "partition_info": "Backup partition"
+                }
+            ]
+        }
+    ]
+}

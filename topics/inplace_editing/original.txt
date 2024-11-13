@@ -1,0 +1,2 @@
+User name:   $USER
+User's home: $HOME

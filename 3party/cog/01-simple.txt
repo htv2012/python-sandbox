@@ -1,0 +1,9 @@
+[[[cog
+import getpass
+import socket
+
+print("User:", getpass.getuser())
+print("Host:", socket.gethostname())
+]]]
+[[[end]]]
+

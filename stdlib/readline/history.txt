@@ -1,0 +1,23 @@
+I love pizza
+Stop me now
+Once upon a time
+ls *foo
+forget all
+I love pizza
+forget all
+Hello world
+Once upon a time
+type history.txt
+inputrc.txt
+echo /usr/local/bin
+hist
+set-fo
+set-t
+set-this
+ls
+less
+set-thi
+less
+get
+set-f
+set_foo

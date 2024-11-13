@@ -1,0 +1,10 @@
+this is data1.txt
+    hello
+    howdy
+    end of data1.txt
+this is data2.txt
+    end of data2.txt
+this is data3.txt
+    the end
+    is here
+    end of data3.txt

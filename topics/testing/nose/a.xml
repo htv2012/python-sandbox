@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><testsuite name="nosetests" tests="3" errors="0" failures="0" skip="0"><testcase classname="string_test.TestString" name="join_test" time="0.000"><system-out><![CDATA[setUp
+join_test
+tearDown
+]]></system-out></testcase><testcase classname="string_test.TestString" name="split_test" time="0.000"><system-out><![CDATA[setUp
+split_test
+tearDown
+]]></system-out></testcase><testcase classname="string_test.TestString" name="xvar_test" time="0.000"><system-out><![CDATA[setUp
+xvar = 5
+tearDown
+]]></system-out></testcase></testsuite>

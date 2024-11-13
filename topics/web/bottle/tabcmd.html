@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>tabcmd</title>
+<style>
+
+label, .input, span {
+    display: inline-block;
+}
+
+label {
+    padding-right: 10px;
+    width: 300px;
+    text-align: right;
+}
+
+input[type=text] {
+    width: 100%;
+}
+
+.input-field {
+    width: 300px;
+}
+
+.short_help {
+    padding-left: 10px;
+    font-size: 80%;
+    color: cornflowerblue;
+}
+
+div.multicolumns {
+    -moz-column-count: 1;
+    -webkit-column-count: 1;
+    column-count: 1;
+}
+</style>
+</head>
+
+<body onload="javascript:onLoad()">
+<h1>tabcmd</h1>
+<form onsubmit="javascript:onSubmit()">
+<div class="multicolumns">
+
+    <div>
+        <label for="--[no-]cookie">--[no-]cookie:</label>
+        <span class="input-field">
+            <input type="checkbox"name="--[no-]cookie"id="--[no-]cookie"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Do not save the session ID when signing in.</span>
+    </div>
+
+<br/>    <div>
+        <label for="--use-certificate">-c, --use-certificate:</label>
+        <span class="input-field">
+            <input type="checkbox"name="--use-certificate"id="--use-certificate"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Use client certificate to sign in</span>
+    </div>
+
+<br/>    <div>
+        <label for="--help">-h, --help:</label>
+        <span class="input-field">
+            <input type="checkbox"name="--help"id="--help"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Display tabcmd Help</span>
+    </div>
+
+<br/>    <div>
+        <label for="--no-certcheck">--no-certcheck:</label>
+        <span class="input-field">
+            <input type="checkbox"name="--no-certcheck"id="--no-certcheck"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Do not validate the SSL certificate</span>
+    </div>
+
+<br/>    <div>
+        <label for="--no-prompt">--no-prompt:</label>
+        <span class="input-field">
+            <input type="checkbox"name="--no-prompt"id="--no-prompt"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Do not prompt for a password</span>
+    </div>
+
+<br/>    <div>
+        <label for="--no-proxy">--no-proxy:</label>
+        <span class="input-field">
+            <input type="checkbox"name="--no-proxy"id="--no-proxy"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Do not use a HTTP proxy</span>
+    </div>
+
+<br/>    <div>
+        <label for="--password">-p, --password:</label>
+        <span class="input-field">
+            <input type="text" name="--password" id="--password"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Use the specified Tableau Server password</span>
+    </div>
+
+<br/>    <div>
+        <label for="--password-file">--password-file:</label>
+        <span class="input-field">
+            <input type="text" name="--password-file" id="--password-file"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Read the Tableau Server password from FILE</span>
+    </div>
+
+<br/>    <div>
+        <label for="--server">-s, --server:</label>
+        <span class="input-field">
+            <input type="text" name="--server" id="--server"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Use the specified Tableau Server URL. If no</span>
+    </div>
+
+<br/>    <div>
+        <label for="--site">-t, --site:</label>
+        <span class="input-field">
+            <input type="text" name="--site" id="--site"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Use the specified Tableau Server site.</span>
+    </div>
+
+<br/>    <div>
+        <label for="--timeout">--timeout:</label>
+        <span class="input-field">
+            <input type="text" name="--timeout" id="--timeout"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">How long to wait, in seconds, for the</span>
+    </div>
+
+<br/>    <div>
+        <label for="--username">-u, --username:</label>
+        <span class="input-field">
+            <input type="text" name="--username" id="--username"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Use the specified Tableau Server user name</span>
+    </div>
+
+<br/>    <div>
+        <label for="--proxy">-x, --proxy:</label>
+        <span class="input-field">
+            <input type="text" name="--proxy" id="--proxy"
+                   onchange="javascript:onChange()"/>
+        </span>
+        <span class="short_help">Use the specified HTTP proxy</span>
+    </div>
+
+
+</div>
+<input type="submit" value="Copy" />
+</form>
+<hr/>
+<textarea id="cmd" rows="8" cols="100">
+</textarea>
+
+<hr>
+<h1>Help</h1>
+<pre>
+    Tableau Server Command Line Utility -- near.0.0.0
+
+tabcmd help             -- Help for tabcmd commands
+tabcmd help &lt;a command&gt; -- Show Help for a specific command
+tabcmd help commands    -- List all available commands
+
+tabcmd help &lt;a command&gt; | commands
+Command options:
+Global options:
+       --[no-]cookie             Do not save the session ID when signing in.
+                                 Subsequent commands will need to sign in
+                                 again. If unspecified, default is to save
+                                 the session ID
+    -c,--use-certificate         Use client certificate to sign in
+    -h,--help                    Display tabcmd Help
+       --no-certcheck            Do not validate the SSL certificate
+       --no-prompt               Do not prompt for a password
+       --no-proxy                Do not use a HTTP proxy
+    -p,--password &lt;PASSWORD&gt;     Use the specified Tableau Server password
+       --password-file &lt;FILE&gt;    Read the Tableau Server password from FILE
+    -s,--server &lt;URL&gt;            Use the specified Tableau Server URL. If no
+                                 protocol is specified, http:// is assumed
+    -t,--site &lt;SITEID&gt;           Use the specified Tableau Server site.
+                                 Specify an empty string ("") to force use
+                                 of the default site
+       --timeout &lt;SECONDS&gt;       How long to wait, in seconds, for the
+                                 server to complete processing the command.
+                                 The default is to wait until the server
+                                 responds
+    -u,--username &lt;USER&gt;         Use the specified Tableau Server user name
+    -x,--proxy &lt;HOST:PORT&gt;       Use the specified HTTP proxy
+
+</pre>
+
+<script>
+function onChange() {
+    var fields = document.getElementsByTagName('input');
+    var out = "tabcmd";
+    for (var i = 0; i < fields.length; i++) {
+        field = fields[i];
+        if (field.type == "text" && field.value != "") {
+            field.value = unescape(field.value);
+            out += (" " + field.name + " " + field.value);
+        }
+
+        if (field.type == "checkbox" && field.checked) {
+            out += (" " + field.name);
+        }
+    }
+    var cmd = document.getElementById('cmd');
+    cmd.value = out;
+}
+
+function onSubmit() {
+    var cmd = document.getElementById('cmd');
+    cmd.select();
+    document.execCommand('copy');
+}
+
+function onLoad() {
+    var url = decodeURI(window.location.href).split("?");
+    params = url[1].split("&");
+
+    for(var i = 0; i < params.length; i++){
+        var p = params[i].split("=");
+        var key = p[0];
+        var value = p[1].replace(new RegExp("\\+", "g"), " ");
+        var field = document.getElementById(key);
+        if (field.type == "text") {
+            field.value = value;
+        } else if (field.type == "checkbox" && value == "on") {
+            field.checked = true;
+        }
+    }
+    onChange();
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,6 @@
+[tool.pytest.ini_options]
+log_cli_level = "DEBUG"
+log_cli = true
+# log_format = "%(filename)s(%(lineno)d) %(levelname)s %(message)s"
+log_format = "%(message)s"
+

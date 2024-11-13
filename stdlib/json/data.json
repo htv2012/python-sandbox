@@ -1,0 +1,23 @@
+{
+	"color_scheme": "Packages/User/Monokai (SL).tmTheme",
+	"font_size": 12,
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"rulers":
+	[
+		72, 79
+	],
+	"translate_tabs_to_spaces": true,
+	"world_wrap": false,
+	"flags": {
+		"no_save": true,
+		"drop_lines": 13
+	},
+	"insane": [
+		{"foo": "foo value"},
+		{"bar": "bar value"},
+        {"drop_lines": 7}
+	]
+}

@@ -1,0 +1,7 @@
+<orders>
+	<order customer="john" product="eggs" quantity="12" />
+	<order customer="cindy" product="bread" quantity="1" />
+	<order customer="larry" product="tea bags" quantity="100" />
+	<order customer="john" product="butter" quantity="1" />
+	<order product="chicken" quantity="2" customer="derek" />
+</orders>

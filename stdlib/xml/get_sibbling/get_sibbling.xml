@@ -1,0 +1,12 @@
+<root xmlns:rdf="http://www.w3.org/TR/html4x/"
+xmlns:skos="http://www.w3schools.com/furniture/foo">
+
+<rdf:Description rdf:about="http://...">
+     <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+     <skos:narrowMatch rdf:resource="http://dbpedia.org/resource/Biology"/>
+     <skos:narrowMatch rdf:resource="http://rdf.freebase.com/ns/m.01540"/>
+     <skos:prefLabel xml:lang="en">Biology and Biochemistry</skos:prefLabel>
+     <skos:scopeNote xml:lang="en">Used for all coverage of biology and biochemistry unless a more narrow term applies.</skos:scopeNote>
+</rdf:Description>
+
+</root>

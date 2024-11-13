@@ -1,0 +1,39 @@
+# A Perforce Change Specification.
+#
+#  Change:      The change number. 'new' on a new changelist.
+#  Date:        The date this specification was last modified.
+#  Client:      The client on which the changelist was created.  Read-only.
+#  User:        The user who created the changelist.
+#  Status:      Either 'pending' or 'submitted'. Read-only.
+#  Type:        Either 'public' or 'restricted'. Default is 'public'.
+#  Description: Comments about the changelist.  Required.
+#  ImportedBy:  The user who fetched or pushed this change to this server.
+#  Identity:    Identifier for this change.
+#  Jobs:        What opened jobs are to be closed by this changelist.
+#               You may delete jobs from this list.  (New changelists only.)
+#  Files:       What opened files from the default changelist are to be added
+#               to this changelist.  You may delete files from this list.
+#               (New changelists only.)
+
+Change:	1014011
+
+Date:	2017/03/16 13:25:26
+
+Client:	hvu-infrastructure
+
+User:	hvu
+
+Status:	pending
+
+Description:
+	test the tabreview
+	
+	- See if it works with Python 3
+	- See if unicode works
+
+Files:
+	//depot/infrastructure/devtest/TestWatchdog/TestWatchdog/app/__init__.py	# edit
+	//depot/infrastructure/devtest/TestWatchdog/TestWatchdog/app/go.py	# edit
+	//depot/infrastructure/devtest/TestWatchdog/TestWatchdog/app/service_keys.py	# edit
+	//depot/infrastructure/devtest/TestWatchdog/TestWatchdog/app/testwatchdog.py	# edit
+

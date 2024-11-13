@@ -1,0 +1,11 @@
+Vietnam 1:
+  ip: "192.168.75.55"
+  port: 1212
+
+Vietnam 2:
+  ip: "192.168.99.86"
+  port: 3337
+
+Cambodia:
+  ip: "93.95.178.87"
+  port: 8739

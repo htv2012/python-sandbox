@@ -1,0 +1,16 @@
+<root>
+    <article>
+        <title>seattle</title>
+        <place>Seattle</place>
+        <number>1</number>
+        <date>2001</date>
+        <body>Emerald city</body>
+    </article>
+    <article>
+        <title>san_francisco</title>
+        <place>San Francisco</place>
+        <number>2</number>
+        <date>2001</date>
+        <body>The gold mountain</body>
+    </article>
+</root>

@@ -1,0 +1,5 @@
+{
+    "description": "Runs batch_size long tests at at time",
+    "batch_size": 10
+}
+

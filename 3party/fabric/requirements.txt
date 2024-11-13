@@ -1,0 +1,5 @@
+black
+fabric
+isort
+paramiko
+ruff
