@@ -4,15 +4,9 @@ Search Notes
 """
 
 import argparse
-import logging
 import os
 
 import db
-
-logging.basicConfig(
-    level=os.getenv("LOGLEVEL", "WARNING"),
-    format="%(levelname)-12s | %(message)s",
-)
 
 
 parser = argparse.ArgumentParser()
