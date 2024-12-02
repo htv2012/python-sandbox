@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Search Notes
 """
@@ -13,18 +14,11 @@ logging.basicConfig(
     format="%(levelname)-12s | %(message)s",
 )
 
+
 parser = argparse.ArgumentParser()
 parser.add_argument("terms", nargs="+")
 options = parser.parse_args()
 
-terms = " or ".join("body like ?" for term in options.terms)
-sql = f"select title from notes where {terms}"
-logging.debug("sql=%r", sql)
-logging.debug("terms=%r", options.terms)
-
 with db.connect() as connection:
-    for (title,) in connection.execute(
-        f"select title from notes where {terms}",
-        [f"%{term}%" for term in options.terms],
-    ):
+    for (title,) in db.search(connection, options.terms, columns_csv='title'):
         print(title)

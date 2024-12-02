@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 List Notes Titles
 """
