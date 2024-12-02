@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import pathlib
+import pprint
 
 class Data:
     def __init__(self, title, content, metadata):
@@ -12,6 +13,7 @@ class Data:
         id_index = text.index("id: ")
         meat = text[:id_index].strip()
         title, content = meat.split("\n", 1)
+        content = content.rstrip()
 
         meta_text = text[id_index:]
         metadata = dict(line.split(": ") for line in meta_text.strip().splitlines())
@@ -27,6 +29,10 @@ class Data:
 root = pathlib.Path("~/workspaces/joplin/raw").expanduser()
 assert root.is_dir()
 filename = next(root.glob("*"))
+filename = root / "842f4a53825b4bc4bdeca2b06df883aa.md"
 data = Data.from_file(filename)
 print(data.title)
-
+print("---")
+print(data.content)
+print("---")
+pprint.pprint(data.metadata)
