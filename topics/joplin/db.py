@@ -1,11 +1,13 @@
 """
 Database
 """
+import collections
 
 import pathlib
 import sqlite3
 
 import logger
+
 
 def connect():
     root = pathlib.Path("~/.config/joplin-desktop").expanduser()
@@ -21,3 +23,12 @@ def search(connection: sqlite3.Connection, terms: list[str], columns_csv="*"):
     sql = f"select {columns_csv} from notes where {' and '.join('body like ?' for _ in terms)}"
     logger.debug("sql=%r", sql)
     return connection.execute(sql, [f"%{term}%" for term in terms])
+
+
+def search_by_title(connection: sqlite3.Connection, title: str) -> sqlite3.Cursor:
+    return connection.execute("select * from notes where title = ?", title)
+
+def _get_column_names(connection: sqlite3.Connection, table_name: str) -> list:
+    cursor = connection.execute(f"PRAGMA table_info({table_name})")
+    column_names = [column[1] for column in cursor]
+    return column_names
