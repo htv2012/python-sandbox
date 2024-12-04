@@ -1,7 +1,6 @@
 """
 Database
 """
-import collections
 
 import pathlib
 import sqlite3
@@ -16,7 +15,10 @@ def connect():
     if not (db_path.exists() and not db_path.is_dir()):
         raise RuntimeError(f"Database does not exist: {db_path}")
 
-    return sqlite3.connect(f"file:{db_path}?mode=ro")
+    connection_uri = f"file:{db_path}?mode=ro"
+    logger.debug("connection_uri=%r", connection_uri)
+
+    return sqlite3.connect(connection_uri, uri=True)
 
 
 def search(connection: sqlite3.Connection, terms: list[str], columns_csv="*"):
@@ -25,8 +27,13 @@ def search(connection: sqlite3.Connection, terms: list[str], columns_csv="*"):
     return connection.execute(sql, [f"%{term}%" for term in terms])
 
 
-def search_by_title(connection: sqlite3.Connection, title: str) -> sqlite3.Cursor:
-    return connection.execute("select * from notes where title = ?", title)
+def search_by_title(connection: sqlite3.Connection, title: str):
+    column_names = _get_column_names(connection=connection, table_name="notes")
+    for row in connection.execute(
+        "select * from notes where title = ? collate nocase", (title,)
+    ):
+        yield dict(zip(column_names, row))
+
 
 def _get_column_names(connection: sqlite3.Connection, table_name: str) -> list:
     cursor = connection.execute(f"PRAGMA table_info({table_name})")
