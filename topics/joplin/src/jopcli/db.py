@@ -5,7 +5,7 @@ Database
 import pathlib
 import sqlite3
 
-import logger
+from . import logger
 
 
 def connect():
@@ -28,14 +28,14 @@ def search(connection: sqlite3.Connection, terms: list[str], columns_csv="*"):
 
 
 def search_by_title(connection: sqlite3.Connection, title: str):
-    column_names = _get_column_names(connection=connection, table_name="notes")
+    column_names = get_column_names(connection=connection, table_name="notes")
     for row in connection.execute(
         "select * from notes where title = ? collate nocase", (title,)
     ):
         yield dict(zip(column_names, row))
 
 
-def _get_column_names(connection: sqlite3.Connection, table_name: str) -> list:
+def get_column_names(connection: sqlite3.Connection, table_name: str) -> list:
     cursor = connection.execute(f"PRAGMA table_info({table_name})")
     column_names = [column[1] for column in cursor]
     return column_names
