@@ -9,10 +9,12 @@ authors = [
 requires-python = ">=3.10"
 dependencies = [
     "click>=8.1.7",
+    "rich>=13.9.4",
 ]
 
 [project.scripts]
-jc = "jopcli:main"
+jc = "jopcli.cli:main"
+jopcli = "jopcli.cli:main"
 
 [build-system]
 requires = ["hatchling"]
