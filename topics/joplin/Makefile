@@ -11,7 +11,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run jc -h
+	uv run jopcli cat 'jopcli test'
 
 ### Run unit tests
 test: lint
