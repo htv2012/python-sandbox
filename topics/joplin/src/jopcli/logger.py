@@ -13,5 +13,3 @@ logging.basicConfig(
 
 debug = logging.debug
 info = logging.info
-
-

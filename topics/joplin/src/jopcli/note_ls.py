@@ -2,6 +2,7 @@
 """
 List Notes Titles
 """
+
 import db
 
 with db.connect() as connection:

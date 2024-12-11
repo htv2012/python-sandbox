@@ -1,8 +1,19 @@
-cat:
-	python3 note_cat.py "instant pot notes"
-search:
-	python3 note_search.py chicken shrimp
-ls:
-	python3 note_ls.py
-db:
-	python3 -i db.py
+.PHONY: all test run lint
+
+### Default target(s)
+all: run
+
+### Perform static analysis
+lint:
+	uv run ruff check --select I --fix .
+	uv run ruff format .
+	uv run ruff check . --fix
+
+### Run the project
+run: lint
+	uv run jc -h
+
+### Run unit tests
+test: lint
+	uv run pytest -s -v
+

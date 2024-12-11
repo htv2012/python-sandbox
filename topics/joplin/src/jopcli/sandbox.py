@@ -2,6 +2,7 @@
 import pathlib
 import pprint
 
+
 class Data:
     def __init__(self, title, content, metadata):
         self.title = title
