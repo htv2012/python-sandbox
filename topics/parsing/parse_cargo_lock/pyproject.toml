@@ -1,0 +1,23 @@
+[project]
+name = "parse-cargo-lock"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Hai Vu", email = "haivu2004@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+parse-cargo-lock = "parse_cargo_lock.cli:main"
+pcl = "parse_cargo_lock.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.8.3",
+]
