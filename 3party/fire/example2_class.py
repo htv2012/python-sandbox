@@ -13,7 +13,7 @@ def get_settings():
         with open(CONFIG_PATH, "r", encoding="utf-8") as stream:
             settings = json.load(stream)
             return settings
-    except json.decoder.JSONDecodeError:
+    except (json.decoder.JSONDecodeError, FileNotFoundError):
         return {}
 
 
@@ -29,6 +29,12 @@ class MyStuff:
         print(f"{key} = {settings.get(key)}")
 
     def set(self, key, value):
+        """
+        Set the key/value pair
+
+        :param key: The name of the key
+        :param value: The value of the key
+        """
         settings = get_settings()
         settings[key] = value
         with open(CONFIG_PATH, "w", encoding="utf-8") as stream:
