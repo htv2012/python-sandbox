@@ -1,0 +1,14 @@
+[project]
+name = "polars-sandbox"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "polars>=1.19.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.1",
+]
