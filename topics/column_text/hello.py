@@ -11,7 +11,9 @@ def main():
     parser.add_argument("-w", "--width", type=int)
     options = parser.parse_args()
 
-    files_list = [f"{i:>03}. {name}" for i, name in enumerate(os.listdir(options.dir))]
+    files_list = [
+        f"{i:>03}. {name}" for i, name in enumerate(os.listdir(options.dir), 1)
+    ]
     columnize(files_list, total_width=options.width)
 
 
