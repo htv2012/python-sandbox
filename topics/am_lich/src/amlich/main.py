@@ -1,3 +1,5 @@
+import datetime
+
 import click
 
 from . import dl_to_al
@@ -16,8 +18,15 @@ def d2a(year):
 
 
 @main.command()
-def a2d():
-    click.echo("a2d")
+@click.argument("con-gi", type=str.title)
+def tuoi(con_gi):
+    click.echo(f"{con_gi=}")
+    this_year = datetime.date.today().year
+    for year in range(this_year - 120, this_year + 1):
+        age = this_year - year
+        amlich_year = dl_to_al(year)
+        if con_gi in amlich_year:
+            click.echo(f"{year}: {amlich_year}, {age} year{'s' if age>1 else ''} old")
 
 
 if __name__ == "__main__":
