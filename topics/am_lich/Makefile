@@ -23,3 +23,6 @@ clean:
 	uv clean
 	rm -fr .ruff_cache .venv
 
+### Install this tool for local use
+install:
+	uv tool install --upgrade .
