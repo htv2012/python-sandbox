@@ -11,8 +11,8 @@ lint:
 
 ### Run the project
 run: lint
-	uv run amlich tuoi "ti"
-	uv run amlich d2a 2025
+	uv run amlich tuoi "ty"
+	uv run amlich nam 2025
 
 ### Run unit tests
 test: lint

@@ -1,4 +1,4 @@
-def dl_to_al(year: int):
+def get_am_lich(year: int):
     can_lookup = {
         1: "Giap",
         2: "At",
@@ -31,7 +31,3 @@ def dl_to_al(year: int):
     chi = (year - 3) % 12
     out = f"{can_lookup[can]} {chi_lookup[chi]}"
     return out
-
-
-def al_to_dl(year: str, start_year: int, end_year: int):
-    pass
