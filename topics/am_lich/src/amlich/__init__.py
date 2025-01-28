@@ -34,7 +34,7 @@ def get_am_lich(year: int):
 
 
 def to_vietnamese(text: str):
-    can_lookup = {
+    table = {
         "Giap": "Giáp",
         "At": "Ất",
         "Binh": "Bính",
@@ -45,8 +45,6 @@ def to_vietnamese(text: str):
         "Tan": "Tân",
         "Nham": "Nhâm",
         "Quy": "Quý",
-    }
-    chi_lookup = {
         "Ti": "Tí",
         "Suu": "Sửu",
         "Dan": "Dần",
@@ -61,7 +59,6 @@ def to_vietnamese(text: str):
         "Hoi": "Họi",
     }
 
-    for table in [can_lookup, chi_lookup]:
-        for old, new in table.items():
-            text = text.replace(old, new)
+    for old, new in table.items():
+        text = text.replace(old, new)
     return text
