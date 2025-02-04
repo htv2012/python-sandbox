@@ -13,6 +13,7 @@ lint:
 run: lint
 	uv run amlich tuoi "ty"
 	uv run amlich nam 2025
+	uv run amlich gio
 
 ### Run unit tests
 test: lint

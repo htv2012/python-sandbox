@@ -13,6 +13,29 @@ def main():
 
 
 @main.command()
+def gio():
+    """Đối chiếu giờ xưa, giờ nay"""
+    table = PrettyTable(field_names=["Giờ Xưa", "Giờ Nay", "Chú Thích"], align="l")
+    table.add_rows(
+        [
+            ("Tí", "11PM - 01AM", "Canh ba"),
+            ("Sửu", "01AM - 03AM", "Canh tư"),
+            ("Dần", "03AM - 05AM", "Canh năm"),
+            ("Mão", "05AM - 07AM", ""),
+            ("Thìn", "07AM - 09AM", ""),
+            ("Tỵ", "09AM - 11AM", ""),
+            ("Ngọ", "11AM - 01PM", ""),
+            ("Mùi", "01PM - 03PM", ""),
+            ("Thân", "03PM - 05PM", ""),
+            ("Dậu", "05PM - 07PM", ""),
+            ("Tuất", "07PM - 09PM", "Canh một"),
+            ("Hợi", "09PM - 11PM", "Canh hai"),
+        ]
+    )
+    print(table)
+
+
+@main.command()
 @click.argument("year", type=int)
 def nam(year):
     nam_am_lich = get_am_lich(year)
