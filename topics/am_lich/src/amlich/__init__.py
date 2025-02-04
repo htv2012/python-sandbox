@@ -56,7 +56,7 @@ def to_vietnamese(text: str):
         "Than": "Thân",
         "Dau": "Dậu",
         "Tuat": "Tuất",
-        "Hoi": "Họi",
+        "Hoi": "Hợi",
     }
 
     for old, new in table.items():
