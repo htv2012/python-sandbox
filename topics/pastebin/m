@@ -1,2 +1,0 @@
-sandbox: lint
-	python3 -i pastebin.py
