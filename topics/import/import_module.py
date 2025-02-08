@@ -24,5 +24,10 @@ def import_one_module(name, path=None):
 if __name__ == '__main__':
     script_dir = os.path.abspath(os.path.dirname(__file__))
     package_dir = os.path.join(script_dir, 'lib')
+    print(f"{script_dir=}")
+    print(f"{package_dir=}")
     name, mod = import_one_module('mypackage.pager', path=package_dir)
+    print(f"{name,=}")
+    print(f"{mod=}")
+
     mod.view_file(__file__)
