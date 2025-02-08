@@ -17,7 +17,7 @@ class MyGroup(click.Group):
     def list_commands(self, ctx: click.Context):
         root = pathlib.Path(__file__).parent / "commands"
         commands = [path.stem.removeprefix("cmd_") for path in root.glob("cmd_*.py")]
-        return commands
+        return sorted(commands)
 
     def get_command(self, ctx: click.Context, name):
         try:
