@@ -4,6 +4,8 @@ import types
 
 import click
 
+__all__ = ["main"]
+
 
 class Api:
     def get(self):

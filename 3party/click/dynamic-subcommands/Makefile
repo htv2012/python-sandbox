@@ -17,7 +17,7 @@ run: lint
 
 ### Run unit tests
 test: lint
-	uv run pytest -s -v
+	PYTHONPATH=./src uv run pytest -s -v
 
 ### Clean up generated files
 clean:
