@@ -4,12 +4,10 @@ import pytest
 from click.testing import CliRunner
 
 
-@pytest.fixture(scope="session")
-def runner():
-    return CliRunner()
-
-
-def get_subcommands():
+#
+# Support functions
+#
+def _get_subcommands():
     """Get a list of subcommands from the commands/cmd_*.py files"""
     test_dir = pathlib.Path(__file__).parent
     commands_dir = test_dir.parent / "dynamic_subcommands" / "commands"
@@ -19,6 +17,17 @@ def get_subcommands():
     return commands_list
 
 
-def pytest_generate_tests(metafunc: pytest.Metafunc):
-    if "subcommand" in metafunc.fixturenames:
-        metafunc.parametrize("subcommand", get_subcommands())
+#
+# Fixtures
+#
+
+
+@pytest.fixture(scope="session")
+def runner():
+    return CliRunner()
+
+
+@pytest.fixture(params=_get_subcommands())
+def subcommand(request):
+    """Return a list of commands, e.g. ['get', 'put']"""
+    return request.param
