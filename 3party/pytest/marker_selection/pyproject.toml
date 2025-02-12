@@ -1,9 +1,0 @@
-# pyproject.toml
-[tool.pytest.ini_options]
-addopts = "--strict-markers"
-markers = [
-    "license(license_kind): Specify license type: trial, individual, or enterprise"
-]
-
-log_cli = false
-log_cli_level = "DEBUG"

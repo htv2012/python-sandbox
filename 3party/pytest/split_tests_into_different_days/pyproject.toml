@@ -1,8 +1,0 @@
-[tool.pytest.ini_options]
-addopts = "--strict-markers"
-markers = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-
-[tool.ruff.lint]
-# pyflakes, pycodestyle, isort
-select = ["F", "E", "W", "I001"]
-

@@ -1,9 +1,0 @@
-# pyproject.toml
-[tool.pytest.ini_options]
-addopts = "--strict-markers"
-markers = [
-    "require_env(name, reason): Require a specific environment variable"
-]
-
-log_cli = false
-log_cli_level = "DEBUG"

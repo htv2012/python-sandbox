@@ -1,5 +1,0 @@
-# pyproject.toml
-[tool.pytest.ini_options]
-log_cli = "false"
-log_level = "DEBUG"
-log_format = "%(levelname)s | %(filename)s(%(lineno)d) | %(funcName)s | %(message)s"

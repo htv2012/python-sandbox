@@ -1,4 +1,0 @@
-[tool.pytest.ini_options]
-addopts = "--strict-markers"
-log_cli_level = "INFO"
-log_cli = true

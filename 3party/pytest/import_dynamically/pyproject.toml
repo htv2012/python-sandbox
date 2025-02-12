@@ -1,4 +1,0 @@
-[tool.pytest.ini_options]
-log_cli_level = "debug"
-log_cli = true
-

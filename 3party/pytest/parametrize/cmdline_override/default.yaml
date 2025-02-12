@@ -1,7 +1,0 @@
-West Coast:
-  ip: "10.0.0.111"
-  port: 4399
-
-East Coast:
-  ip: "10.0.0.237"
-  port: 3577

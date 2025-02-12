@@ -1,4 +1,0 @@
-paramiko
-pytest
-retry2
-ruff
