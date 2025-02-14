@@ -6,7 +6,7 @@ VERSES = [
     "Eight maids a-milking", "Nine ladies dancing", "Ten lords a-leaping", "Eleven pipers piping",
     "Twelve drummers drumming"
 ]
-for day, verse in zip(DAYS, accumulate(VERSES, lambda a, b: f"{b}\n{a}")):
+for day, verse in zip(DAYS, accumulate(VERSES, lambda a, b: f"{b}\n  {a}")):
     print(f"On the {day} day of Christmas, my true love sent to me")
-    print(verse)
+    print(f"  {verse}")
     print()
