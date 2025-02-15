@@ -9,22 +9,18 @@ import fabric
 import tqdm
 
 
-class Progress:
-    def __init__(self, bar):
-        self.sofar = 0
-        self.bar = bar
+@contextlib.contextmanager
+def progress_bar(bar):
+    sofar = 0
 
-    def update(self, sofar, _):
-        delta = sofar - self.sofar
-        self.sofar = sofar
-        self.bar.update(delta)
-
-    def __enter__(self):
-        return self
-
-    def __exit__(self, exception_type, exception_instance, exception_traceback):
-        self.bar.close()
-
+    def update(new_sofar, _):
+        nonlocal sofar
+        delta = new_sofar - sofar
+        bar.update(delta)
+        sofar = new_sofar
+    
+    with bar:
+        yield update
 
 def main():
     hostname = "ssh-sandbox"
@@ -39,12 +35,12 @@ def main():
         sftp = stack.enter_context(conn.sftp())
         conn.local(f"truncate -s 1GB {local_path}")  # Create large local file
         progress = stack.enter_context(
-            Progress(tqdm.tqdm(total=os.stat(local_path).st_size, unit="bytes"))
+            progress_bar(tqdm.tqdm(total=os.stat(local_path).st_size, unit="bytes"))
         )
         sftp.put(
             "/tmp/big",
             "/tmp/big",
-            callback=progress.update,
+            callback=progress,
         )
 
         # Clean up
