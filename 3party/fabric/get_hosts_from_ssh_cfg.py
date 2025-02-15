@@ -11,3 +11,6 @@ for host_name in sorted(ssh_config.get_hostnames()):
     for key, value in host.items():
         if key not in {"include", "sendenv"}:
             print(f"  {key}: {value}")
+
+with fabric.Connection(host="ssh-sandbox"):
+    pass

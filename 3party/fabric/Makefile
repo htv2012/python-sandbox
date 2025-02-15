@@ -1,14 +1,11 @@
 HOST ?= primary
 
 run: lint
-	python3 fabric_tryout.py $(HOST)
-
-hosts: lint
-	python3 get_hosts_from_ssh_cfg.py
+	uv run write_remote_with_progress_using_paramiko.py
 
 lint: format
-	ruff . --fix
+	uv tool run ruff check . --fix
 
 format:
-	ruff check--select I --fix .
-	ruff format .
+	uv tool run ruff check --select I --fix .
+	uv tool run ruff format .
