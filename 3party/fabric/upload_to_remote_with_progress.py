@@ -18,9 +18,10 @@ def progress_bar(bar):
         delta = new_sofar - sofar
         bar.update(delta)
         sofar = new_sofar
-    
+
     with bar:
         yield update
+
 
 def main():
     hostname = "ssh-sandbox"
