@@ -48,8 +48,15 @@ def info(conn: Connection):
     print("Host Name:      ", end="")
     conn.run("hostname")
 
+    print("Uptime:        ", end="")
+    conn.run("uptime")
+
+
     print("Python version: ", end="")
     conn.run("python3 --version")
 
     conn.run("lsb_release -a")
+
+
     print("-" * 80)
+
