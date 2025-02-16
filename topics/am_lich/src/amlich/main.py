@@ -1,9 +1,9 @@
 import datetime
 
 import click
-from prettytable import PrettyTable
 
 from . import get_am_lich, to_vietnamese
+from .tablelib import create_table
 
 
 @click.group()
@@ -15,9 +15,10 @@ def main():
 @main.command()
 def gio():
     """Đối chiếu giờ xưa, giờ nay"""
-    table = PrettyTable(field_names=["Giờ Xưa", "Giờ Nay", "Chú Thích"], align="l")
-    table.add_rows(
-        [
+    table = create_table(
+        field_names=["Giờ Xưa", "Giờ Nay", "Chú Thích"],
+        alignment="lll",
+        rows=[
             ("Tí", "11PM - 01AM", "Canh ba"),
             ("Sửu", "01AM - 03AM", "Canh tư"),
             ("Dần", "03AM - 05AM", "Canh năm"),
@@ -30,7 +31,7 @@ def gio():
             ("Dậu", "05PM - 07PM", ""),
             ("Tuất", "07PM - 09PM", "Canh một"),
             ("Hợi", "09PM - 11PM", "Canh hai"),
-        ]
+        ],
     )
     print(table)
 
@@ -53,11 +54,39 @@ def tuoi(con_gi):
         if con_gi in (am_lich := get_am_lich(year))
     ]
 
-    table = PrettyTable(field_names=["Dương Lịch", "Âm Lịch", "Số Tuổi"])
-    table.align["Dương Lịch"] = "r"
-    table.align["Âm Lịch"] = "l"
-    table.align["Số Tuổi"] = "r"
-    table.add_rows(rows)
+    table = create_table(
+        field_names=["Dương Lịch", "Âm Lịch", "Số Tuổi"],
+        alignment="rlr",
+        rows=rows,
+    )
+    click.echo(table)
+
+
+@main.command()
+@click.option("-t", "--ten-tuoi", nargs=2, multiple=True)
+def ten_tuoi(ten_tuoi):
+    print(ten_tuoi)
+    rows = []
+    this_year = datetime.date.today().year
+
+    for name, year in ten_tuoi:
+        if name == "x":
+            rows.append((" ", " ", " ", " "))
+            continue
+        adjustment = 0
+        if year.endswith("-"):
+            adjustment = -1
+            year = year[:-1]
+        year = int(year)
+        zodiac = to_vietnamese(get_am_lich(year + adjustment))
+        age = this_year - year
+        rows.append((name, year, age, zodiac))
+
+    table = create_table(
+        field_names=["Tên", "Năm Sinh", "Tuổi", "Âm Lịch"],
+        alignment="lrrl",
+        rows=rows,
+    )
     click.echo(table)
 
 
