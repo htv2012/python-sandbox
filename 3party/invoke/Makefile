@@ -11,7 +11,8 @@ lint:
 
 ### Run the project
 run: lint
-	uv run inside_result_object.py
+	uv run invoke --list
+	uv run invoke apt-upgrade
 
 ### Run unit tests
 test: lint
