@@ -1,26 +1,18 @@
 #!/usr/bin/env python3
 """
-A simple invoke example
+Show the internals of Result object
 """
-
-import reprlib
 
 import invoke
 
-
-def explore(obj, label: str):
-    print(f"\n# {label}")
-    for name in dir(obj):
-        if name.startswith("_"):
-            continue
-        value = reprlib.repr(getattr(obj, name))
-        print(f"- {name} = {value}")
+from explore import show_obj
 
 
 def main():
     """Entry"""
     result = invoke.run("ls")
-    explore(result, "Result object")
+    print("\n# Result object")
+    show_obj(result)
 
 
 if __name__ == "__main__":
