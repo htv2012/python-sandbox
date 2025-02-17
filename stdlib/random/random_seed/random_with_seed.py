@@ -41,7 +41,7 @@ logger = logging.getLogger(__name__)
 
 
 def seed(seed_value=None):
-    # todo: docstring
+    """Set and remember the seed value"""
     global _inst
 
     if seed_value is None:
@@ -53,7 +53,7 @@ def seed(seed_value=None):
 
 
 def get_seed():
-    # todo: docstring
+    """Return the saved seed value"""
     global _inst
     return _inst.seed_value
 

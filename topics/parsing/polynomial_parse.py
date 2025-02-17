@@ -8,7 +8,6 @@ import unittest
 
 
 def parse_polynomial(poly):
-    # TODO: \d+ only parses integer, want: float
     pattern = r"""
         ([+-]?\d+)          # The coefficient
         (                   # Optionally, the x**N

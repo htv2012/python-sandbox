@@ -92,7 +92,6 @@ class HumanPlayer(object):
 class ComputerPlayer(Player):
     def make_a_move(self, board):
         #choice = random.choice(self.valid_coordinates
-        # TODO
 
 
 class Game(object):

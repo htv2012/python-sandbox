@@ -1,5 +1,4 @@
 """ Compare two lists """
-# TODO: Too clunky, need rework
 
 import difflib
 import unittest
@@ -22,7 +21,6 @@ def compare_lists(list1, list2):
     return only_in_1, only_in_2, common
 
 
-# TODO: need more tests
 class CompareListsTest(unittest.TestCase):
     def test_1(self):
         only_in_1, only_in_2, common = compare_lists(

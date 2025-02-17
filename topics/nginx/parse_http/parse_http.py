@@ -175,7 +175,6 @@ def main():
             print()
             print(f"{result['request']['method']} {result['request']['url']}")
             print()
-            # TODO: print headers
             json.dump(result["response"]["body"], sys.stdout, indent=4)
 
 
