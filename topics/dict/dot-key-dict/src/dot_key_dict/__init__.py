@@ -20,7 +20,7 @@ class DotKeyDict(collections.abc.MutableMapping):
         for sub_key in keys:
             try:
                 node = node[sub_key]
-            except KeyError:
+            except (TypeError, KeyError):
                 if sub_key.isnumeric() and isinstance(node, list):
                     node = node[int(sub_key)]
                 else:
