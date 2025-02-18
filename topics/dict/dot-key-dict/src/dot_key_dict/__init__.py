@@ -18,13 +18,13 @@ class DotKeyDict(collections.abc.MutableMapping):
         keys = key.split(self.separator)
         node = self.raw
         for sub_key in keys:
-            if sub_key not in node:
+            try:
+                node = node[sub_key]
+            except KeyError:
                 if sub_key.isnumeric() and isinstance(node, list):
                     node = node[int(sub_key)]
                 else:
                     raise KeyError(f"{key}: {sub_key} not found")
-            else:
-                node = node[sub_key]
         return node
 
     def __setitem__(self, key, value):
