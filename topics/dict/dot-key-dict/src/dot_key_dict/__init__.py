@@ -20,11 +20,8 @@ class DotKeyDict(collections.abc.MutableMapping):
         for sub_key in keys:
             try:
                 node = node[sub_key]
-            except (TypeError, KeyError):
-                if sub_key.isnumeric() and isinstance(node, list):
-                    node = node[int(sub_key)]
-                else:
-                    raise KeyError(f"{key}: {sub_key} not found")
+            except TypeError:
+                node = node[int(sub_key)]
         return node
 
     def __setitem__(self, key, value):

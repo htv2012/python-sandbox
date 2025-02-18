@@ -33,5 +33,9 @@ def test_list_index(sample):
     assert sample["metadata.tags.0"] == "t0"
 
 
-def test_numeric_key(sample):
+def test_numeric_key_found(sample):
     assert sample["lookup.0"] == "zero"
+
+
+def test_numeric_key_not_found(sample):
+    assert "lookup.1" not in sample
