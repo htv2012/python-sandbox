@@ -67,7 +67,7 @@ class Template:
 def main():
     """Entry"""
     template_text = (
-        "My username is {{ENV:USER}}.\n"
+        "My username is {{ ENV:USER }}.\n"
         "My home directory is {{ENV: HOME}}.\n"
         "My first environment is '{{ ALIAS : env1.metadata.name }}'.\n"
         "Its UID is {{ env1.metadata.uid }}."  # If no namespace, assume ALIAS
