@@ -1,34 +1,50 @@
-# tree.py
-import operator
+"""
+tree.py
+
+The `crossplane.parse()` function returns
+
+    {
+        "status": "ok",  # ok or error
+        "errors": []     # List of errors
+        "config": {
+            "file":
+            "status":
+            "error":
+            "parsed": [
+                {
+                    "directive": STR,  # Name, e.g. "user"
+                    "line": NUM,       # Line number within the file
+                    "args": [STR],     # Arguments
+                    "block": [],       # Optional, a list of children directives
+                },
+            ]
+        }
+    }
+"""
 
 import click
 import crossplane
 
 
-def print_tree(nodes: list, get_value, get_children, prefix: str = ""):
+def print_tree(nodes: list, prefix: str = ""):
     for index, node in enumerate(nodes):
         is_last = index == len(nodes) - 1
         connector = "└── " if is_last else "├── "
         click.echo(f"{prefix}{connector}", nl=False)
 
-        children = get_children(node)
+        name = node["directive"]
+        children = node.get("block")
         if children:
-            click.echo(click.style(get_value(node), fg="cyan"), color=True)
+            click.echo(click.style(name, fg="cyan"), color=True, nl=False)
+            if name == "location":
+                click.echo(" " + " ".join(node["args"]), nl=False)
+            click.echo("")
             print_tree(
                 nodes=children,
                 prefix=prefix + ("    " if is_last else "│   "),
-                get_value=get_value,
-                get_children=get_children,
             )
         else:
-            click.echo(get_value(node))
-
-
-def get_children(di: dict):
-    try:
-        return di["block"]
-    except KeyError:
-        return []
+            click.echo(name)
 
 
 @click.command()
@@ -39,19 +55,13 @@ def main(file):
     assert root["errors"] == []
 
     config = root["config"][0]
-    print(config)
     # config is a dict with 4 keys: file, status, errors, parsed
     assert config["errors"] == []
 
     parsed = config["parsed"]
     # parsed is a list of directives
     # each directive is a dict with keys: directive, line, args, block
-    print()
-    print_tree(
-        nodes=parsed,
-        get_value=operator.itemgetter("directive"),
-        get_children=get_children,
-    )
+    print_tree(parsed)
 
 
 if __name__ == "__main__":
