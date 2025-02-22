@@ -1,6 +1,6 @@
 # Import the necessary packages
-from cursesmenu import *
-from cursesmenu.items import *
+from cursesmenu.items import CursesMenu
+from cursesmenu.items import Cur
 
 # Create the menu
 menu = CursesMenu("Title", "Subtitle")
@@ -14,7 +14,7 @@ menu_item = MenuItem("Menu Item")
 function_item = FunctionItem("Call a Python function", input, ["Enter an input"])
 
 # A CommandItem runs a console command
-command_item = CommandItem("Run a console command",  "touch hello.txt")
+command_item = CommandItem("Run a console command", "touch hello.txt")
 
 # A SelectionMenu constructs a menu from a list of strings
 selection_menu = SelectionMenu(["item1", "item2", "item3"])
