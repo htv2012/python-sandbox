@@ -9,8 +9,8 @@ authors = [
 requires-python = ">=3.13"
 dependencies = []
 
-[project.scripts]
-hvtext = "hvtext:main"
+# [project.scripts]
+# hvtext = "hvtext:main"
 
 [build-system]
 requires = ["hatchling"]
