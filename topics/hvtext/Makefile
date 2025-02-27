@@ -16,10 +16,11 @@ py:
 ### Run the project
 run: lint
 	uv run hvtext
+	uv run python -m hvtext.serial "edit 25"
 
 ### Run unit tests
 test: lint
-	uv run pytest -s -v
+	uv run pytest -vv --doctest-modules
 
 ### Clean up generated files
 clean:
