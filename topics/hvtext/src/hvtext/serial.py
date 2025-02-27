@@ -1,11 +1,5 @@
 """
-Find the next in the sequence
-
-For example:
-
-```python
->>> bump("edit 125")
-'edit 126'
+Deals with serial text
 """
 
 import argparse
