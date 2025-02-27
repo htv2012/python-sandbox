@@ -5,7 +5,7 @@ lines, commented lines from a collection of lines.
 """
 
 
-def comment(lines, comment_char='#'):
+def comment(lines, comment_char="#"):
     """
     Given a list of lines, discard those lines that starts with a comment
 
@@ -14,10 +14,7 @@ def comment(lines, comment_char='#'):
     :return: A generator object which generates those lines that are
         not comment lines
     """
-    return filter(
-        lambda line: not line.strip().startswith(comment_char),
-        lines
-    )
+    return filter(lambda line: not line.strip().startswith(comment_char), lines)
 
 
 def blank(lines):

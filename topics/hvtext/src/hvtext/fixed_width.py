@@ -2,6 +2,7 @@
 This package parses rows of fixed-width columns of text, think of the
 ouptut of the `ls -l` command.
 """
+
 import csv
 import fileinput
 import functools
@@ -18,7 +19,7 @@ def guess_columns_for_one_row(row):
     :return: A set of indices where each column starts. If the caller
         wants the indices in order, they can call `sorted()`.
     """
-    indices = set(matched.start() + 1 for matched in re.finditer(r'\S+', row))
+    indices = set(matched.start() + 1 for matched in re.finditer(r"\S+", row))
     return indices
 
 
@@ -31,8 +32,8 @@ def guess_columns(rows):
     :return: A sorted list of indices indicating the start of the columns
     """
     indices = functools.reduce(
-        lambda a, b: a.intersection(b),
-        map(guess_columns_for_one_row, rows))
+        lambda a, b: a.intersection(b), map(guess_columns_for_one_row, rows)
+    )
     return sorted(indices)
 
 
@@ -78,12 +79,11 @@ def split_rows(rows, start_indices=None):
 
 
 def main():
-    """ Module entry: Turn fixed-width rows into CSV """
+    """Module entry: Turn fixed-width rows into CSV"""
     rows = split_rows(fileinput.input())
     writer = csv.writer(sys.stdout)
     writer.writerows(rows)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-

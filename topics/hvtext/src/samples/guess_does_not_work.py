@@ -2,8 +2,8 @@
 """
 Demonstrate when guessing does not work
 """
-from hvtext import fixed_width
 
+from hvtext import fixed_width
 
 OUTPUT = """
 drwxr-xr-x 3 haiv haiv 4096 Jun  8 14:09 fixed_width
@@ -15,21 +15,20 @@ drwxr-xr-x 2 haiv haiv 4096 Jun  8 08:19 __pycache__
 
 
 def main():
-    """ Entry point """
+    """Entry point"""
     # Here we try to guess the columns, but not really work because one
     # of the column is right-justified.
-    print('WITH GUESSING')
+    print("WITH GUESSING")
     for row in fixed_width.split_rows(OUTPUT):
         print(row)
 
     # Since some of the columns are right-justified, we cannot guess,
     # but exciplitly specify the columns manually
-    print('\nWITH EXPLICIT COLUMN DEFINITIONS')
+    print("\nWITH EXPLICIT COLUMN DEFINITIONS")
     indices = [1, 12, 14, 19, 24, 29, 34, 36, 42]
     for row in fixed_width.split_rows(OUTPUT, indices):
         print(row)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-
