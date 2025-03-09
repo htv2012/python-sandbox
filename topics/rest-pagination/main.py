@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 Rest API pagination concept
 
@@ -14,34 +15,48 @@ import itertools
 import requests
 
 
-def iter_users():
-    url = "https://reqres.in/api/users?per_page=3"
-    session = requests.Session()
+def iter_users(
+    base_url: str,
+    per_page: int = 5,
+    page: int = 1,
+    per_page_label: str = "per_page",
+    page_label: str = "page",
+    get_data=None,
+    session: requests.Session = None,
+):
+    def default_get_data(resp: requests.Response):
+        return resp.json()["data"]
 
-    for page in itertools.count(1):
-        resp = session.get(f"{url}&page={page}")
-        data = resp.json()["data"]
+    session = session or requests.Session()
+    if get_data is None:
+        get_data = default_get_data
+
+    for page in itertools.count(page):
+        url = f"{base_url}?{per_page_label}={per_page}&&{page_label}={page}"
+        resp = session.get(url)
+        data = get_data(resp)
         if not data:
             break
         yield from data
 
 
 def print_user(user):
-    print(f"- [{user['id']}] {user['first_name']} {user['last_name']}")
+    print(f"- [{user['id']:>2}] {user['first_name']} {user['last_name']}")
 
 
 def main():
-    print("\n# Pagination Demo")
-    for user in iter_users():
+    print("\n# Handle pagination")
+    users = iter_users("https://reqres.in/api/users")
+    for user in users:
         print_user(user)
 
-    print("\n# Get the First 5 Users")
-    for user, _ in zip(iter_users(), range(5)):
-        print_user(user)
-
-    print("\n# Find Those Whose Last Name Starts with Letter 'F'")
-    found = filter(lambda user: user["last_name"].startswith("F"), iter_users())
-    for user in found:
+    print("\n# Start on page 2")
+    users = iter_users(
+        base_url="https://reqres.in/api/users",
+        page=2,
+        per_page=5,
+    )
+    for user in users:
         print_user(user)
 
 
