@@ -1,7 +1,0 @@
-fabric
-forwardable
-invoke
-paramiko
-pytest
-requests
-ruff
