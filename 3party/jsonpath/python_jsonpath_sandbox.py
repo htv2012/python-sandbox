@@ -47,6 +47,21 @@ def _(jsonpath, store):
 
 
 @app.cell
+def _(jsonpath, store):
+    # Using pointer to get to the books
+    def try_pointer():
+        first = jsonpath.pointer.resolve("/inventory/0", store)
+        print(f"First: {first}")
+
+        second = jsonpath.pointer.resolve(("inventory", 1), store)
+        print(f"Second: {second}")
+
+
+    try_pointer()
+    return (try_pointer,)
+
+
+@app.cell
 def _():
     return
 
