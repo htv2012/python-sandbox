@@ -1,5 +1,5 @@
 .PHONY: all clean install lab lint py run test
-SCRIPT = remove_objects.py
+SCRIPT = cleanup__hierarchical_objects.py
 
 ### Default target(s)
 all: run
