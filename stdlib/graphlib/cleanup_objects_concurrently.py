@@ -1,30 +1,32 @@
 #!/usr/bin/env python3
-"""Resolve dependencies."""
+"""Removing objects concurrently."""
+
 import logging
 import random
 import time
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from graphlib import TopologicalSorter
 
 logging.basicConfig(level=logging.DEBUG, format="%(message)s")
 
 
-def remove_object(obj, g: TopologicalSorter):
+def remove_object(obj):
     logging.info("    - Removing %r", obj)
-    duration = random.randint(1, 3)
-    time.sleep(duration)
-    g.done(obj)
+    time.sleep(random.random() * 1.0)
 
 
 def perform_cleanup(g: TopologicalSorter):
     logging.info("# Clean up")
     g.prepare()
     while g.is_active():
-        with ThreadPoolExecutor() as executor:
-            ready = g.get_ready()
-            logging.info("  - We can clean these concurrently: %s", ", ".join(ready))
-            for node in ready:
-                executor.submit(remove_object, node, g)
+        ready = g.get_ready()
+        logging.info("  - We can remove these concurrently: %s", ", ".join(ready))
+        with ProcessPoolExecutor() as executor:
+            futures = {executor.submit(remove_object, node): node for node in ready}
+            for future in as_completed(futures):
+                node = futures[future]
+                logging.info("    - Done: %r", node)
+                g.done(node)
 
 
 def main():
@@ -37,7 +39,7 @@ def main():
     g = TopologicalSorter(dependencies)
     print("# Dependencies")
     for k, v in dependencies.items():
-        logging.info("  - Before cleaning %s, we must clean up %s", k, ", ".join(v))
+        logging.info("  - Before removing %s, we must remove %s", k, ", ".join(v))
     perform_cleanup(g)
 
 
