@@ -52,8 +52,7 @@ def cleanup_concurrently(dependencies: graphlib.TopologicalSorter):
     while dependencies.is_active():
         batch = dependencies.get_ready()
         print(f"- Remove concurrently: {batch}")
-        for node in batch:
-            dependencies.done(node)
+        dependencies.done(*batch)
 
 
 def main():
