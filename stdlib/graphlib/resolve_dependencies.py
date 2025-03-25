@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Resolve dependencies."""
+
 import graphlib
 
 
