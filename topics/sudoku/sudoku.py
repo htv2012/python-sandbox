@@ -1,6 +1,6 @@
 import collections
-import itertools
 import io
+import itertools
 import pathlib
 
 EMPTY_CELL = "."
@@ -25,34 +25,41 @@ class Sudoku:
         buf.write("└───────┴───────┴───────┘")
         return buf.getvalue()
 
-    def empties(self):
-        return (
-            (row, col)
-            for row, col in itertools.product(range(9), range(9))
-            if self.board[row, col] == EMPTY_CELL
-        )
-
-    def conflicted(self, row, col):
-        candidate = self.board[row, col]
-
-        # Check row
-        if any(self.board[r, col] == candidate for r in range(9) if r != row):
-            return True
-        # Check col
-        if any(self.board[row, c] == candidate for c in range(9) if c != col):
-            return True
-
-
     def solve(self) -> bool:
-        for row, col in self.empties():
-            for candidate in '123456789':
+        for row, col in self.empty_cells():
+            for candidate in "123456789":
+                if self.conflicted(row, col, candidate):
+                    continue
                 self.board[row, col] = candidate
-                if not self.conflicted(row, col) and self.solve():
+                if self.solve():
                     return True
             self.board[row, col] = EMPTY_CELL
             return False
         return True
 
+    def conflicted(self, row, col, candidate):
+        return any(
+            self.board[row2, col2] == candidate
+            for row2, col2 in self.neighbors(row, col)
+        )
+
+    def neighbors(self, row, col):
+        yield from ((row, col2) for col2 in range(9) if col != col2)
+        yield from ((row2, col) for row2 in range(9) if row != row2)
+
+        start_row = row // 3 * 3
+        start_col = col // 3 * 3
+        for row2 in range(start_row, start_row + 3):
+            for col2 in range(start_col, start_col + 3):
+                if row != row2 and col != col2:
+                    yield row2, col2
+
+    def empty_cells(self):
+        return (
+            (row, col)
+            for row, col in itertools.product(range(9), range(9))
+            if self.board[row, col] == EMPTY_CELL
+        )
 
     @classmethod
     def from_grid(cls, grid):
