@@ -75,10 +75,21 @@ def load(path: str | pathlib.Path):
     assert path.exists()
 
     if path.suffix == ".ss":
-        return load_ss(path)
+        return load_simple_sudoku_format(path)
+    elif path.suffix in {".msk", ".sol"}:
+        return load_contest_format(path)
 
 
-def load_ss(path: str | pathlib.Path):
+def load_contest_format(path: str | pathlib.Path):
+    path = pathlib.Path(path)
+    assert path.exists()
+
+    with open(path) as stream:
+        grid = [line.split() for line in stream]
+        return SudokuBoard.from_grid(grid)
+
+
+def load_simple_sudoku_format(path: str | pathlib.Path):
     path = pathlib.Path(path)
     assert path.exists()
 
