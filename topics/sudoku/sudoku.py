@@ -1,4 +1,5 @@
 import collections
+import itertools
 import io
 import pathlib
 
@@ -23,6 +24,35 @@ class Sudoku:
                 buf.write("│───────┼───────┼───────│\n")
         buf.write("└───────┴───────┴───────┘")
         return buf.getvalue()
+
+    def empties(self):
+        return (
+            (row, col)
+            for row, col in itertools.product(range(9), range(9))
+            if self.board[row, col] == EMPTY_CELL
+        )
+
+    def conflicted(self, row, col):
+        candidate = self.board[row, col]
+
+        # Check row
+        if any(self.board[r, col] == candidate for r in range(9) if r != row):
+            return True
+        # Check col
+        if any(self.board[row, c] == candidate for c in range(9) if c != col):
+            return True
+
+
+    def solve(self) -> bool:
+        for row, col in self.empties():
+            for candidate in '123456789':
+                self.board[row, col] = candidate
+                if not self.conflicted(row, col) and self.solve():
+                    return True
+            self.board[row, col] = EMPTY_CELL
+            return False
+        return True
+
 
     @classmethod
     def from_grid(cls, grid):
