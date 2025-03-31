@@ -2,6 +2,7 @@
 """
 Tower of Hanoi
 """
+
 import collections
 
 
@@ -31,9 +32,9 @@ def print_stacks(stacks):
 
 
 def move(stacks, count, src, dest, temp):
-    #print(f"Stacks: {stacks}")
-    #print(f"count={count}, src={src}, dest={dest}, temp={temp}")
-    #print()
+    # print(f"Stacks: {stacks}")
+    # print(f"count={count}, src={src}, dest={dest}, temp={temp}")
+    # print()
 
     if count == 1:
         top = stacks[src].pop()
@@ -54,12 +55,11 @@ def move(stacks, count, src, dest, temp):
         move(stacks, count - 1, src=temp, dest=dest, temp=src)
 
 
-    
 def hanoi(n):
     stacks = dict(
-            A=Stack(range(1, n + 1), maxlen=n),
-            B=Stack(maxlen=n),
-            C=Stack(maxlen=n),
+        A=Stack(range(1, n + 1), maxlen=n),
+        B=Stack(maxlen=n),
+        C=Stack(maxlen=n),
     )
     print(f"Starts with {n} discs, where disc 1 is on top")
     print_stacks(stacks)
@@ -67,10 +67,9 @@ def hanoi(n):
 
 
 def main():
-    """ Entry """
+    """Entry"""
     hanoi(4)
 
 
 if __name__ == "__main__":
     main()
-

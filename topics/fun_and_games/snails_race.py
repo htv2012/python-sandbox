@@ -40,23 +40,22 @@ class Snail:
 
 def create_runners(win, names, target):
     rows = itertools.count(5)
-    runners = [
-        Snail(win, name, next(rows), 10, target)
-        for name in names
-    ]
+    runners = [Snail(win, name, next(rows), 10, target) for name in names]
     return runners
 
 
 def get_command_line_options():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "-r", "--runners",
+        "-r",
+        "--runners",
         help="names of runners, separated by space, keep them < 9 letters long",
         nargs="*",
         default=["Slimmy", "Squishy"],
     )
     parser.add_argument(
-        "-t", "--target",
+        "-t",
+        "--target",
         help="Column number of the target",
         default=30,
         type=int,

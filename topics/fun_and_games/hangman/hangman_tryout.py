@@ -1,5 +1,4 @@
 from hangman import Hangman
 
-h = Hangman('international')
+h = Hangman("international")
 print(h)
-

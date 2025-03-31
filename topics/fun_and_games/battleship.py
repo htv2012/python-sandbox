@@ -3,7 +3,7 @@ import logging
 import os
 
 
-logging.basicConfig(level=os.getenv('LOGLEVEL', logging.WARN))
+logging.basicConfig(level=os.getenv("LOGLEVEL", logging.WARN))
 logger = logging.getLogger(__name__)
 
 
@@ -26,26 +26,26 @@ class Grid:
         """
         ship_id = self.ships.get(coordinate, self.NO_SHIP_FOUND)
         if ship_id == self.NO_SHIP_FOUND:
-            return 'miss'
+            return "miss"
 
         if ship_id > self.HIT_MARKER:
-            return 'was a hit'
+            return "was a hit"
 
-        logger.debug('Ship ID: %r', ship_id)
+        logger.debug("Ship ID: %r", ship_id)
         self.ships[coordinate] += self.HIT_MARKER
         self.health[ship_id] -= 1
-        
-        if self.health[ship_id] == 0:
-            return 'sunk'
 
-        return 'hit'
+        if self.health[ship_id] == 0:
+            return "sunk"
+
+        return "hit"
 
     def shoot(self, coordinate):
         """
         Shoot to a coordinate and print out the result
         """
         assessment = self.assess(coordinate)
-        print('{} ==> {}'.format(coordinate, assessment))
+        print("{} ==> {}".format(coordinate, assessment))
 
     def add_ship(self, coordinates):
         """
@@ -61,20 +61,19 @@ class Grid:
         self.next_id += 1
 
     def __repr__(self):
-        return 'Grid(ships={}, health={})'.format(self.ships, self.health)
+        return "Grid(ships={}, health={})".format(self.ships, self.health)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     grid = Grid()
-    grid.add_ship(('A1', 'A2', 'A3'))
-    grid.add_ship(('D1', 'E1'))
+    grid.add_ship(("A1", "A2", "A3"))
+    grid.add_ship(("D1", "E1"))
 
     print(grid)
-    grid.shoot('C9')
-    grid.shoot('E1')
-    grid.shoot('A3')
-    grid.shoot('A2')
-    grid.shoot('A1')
-    grid.shoot('A1')
+    grid.shoot("C9")
+    grid.shoot("E1")
+    grid.shoot("A3")
+    grid.shoot("A2")
+    grid.shoot("A1")
+    grid.shoot("A1")
     print(grid)
-

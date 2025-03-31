@@ -5,7 +5,7 @@ import random
 
 
 picture = [
-r"""
+    r"""
 |---|
 |
 |
@@ -13,7 +13,7 @@ r"""
 |
 =======
 """,
-r"""
+    r"""
 |---|
 |   O
 |
@@ -21,7 +21,7 @@ r"""
 |
 =======
 """,
-r"""
+    r"""
 |---|
 |   O
 |   |
@@ -29,7 +29,7 @@ r"""
 |
 =======
 """,
-r"""
+    r"""
 |---|
 |   O
 |  /|
@@ -37,7 +37,7 @@ r"""
 |
 =======
 """,
-r"""
+    r"""
 |---|
 |   O
 |  /|\
@@ -45,7 +45,7 @@ r"""
 |
 =======
 """,
-r"""
+    r"""
 |---|
 |   O
 |  /|\
@@ -53,14 +53,14 @@ r"""
 |
 =======
 """,
-r"""
+    r"""
 |---|
 |   O
 |  /|\
 |  / \
 |
 =======
-"""
+""",
 ]
 
 THRESHOLD = len(picture) - 1
@@ -73,9 +73,10 @@ def get_random_word():
         random_word = random.choice(words)
         return random_word.upper()
 
+
 class Player(object):
     def guess(self):
-        letter = input('Guess: ').upper()
+        letter = input("Guess: ").upper()
         return letter
 
 
@@ -84,14 +85,16 @@ class Hangman:
         self.guesses = set()
         self._error_count = 0
         self.word = list(c.upper() for c in word)
-        self.answer = list('_' for c in word)
+        self.answer = list("_" for c in word)
         self.correct = set(self.word)
 
     def evaluate(self, letter):
         letter = letter.upper()
 
         if letter in self.correct:
-            self.answer = [letter if letter == o else c for c, o in zip(self.answer, self.word)]
+            self.answer = [
+                letter if letter == o else c for c, o in zip(self.answer, self.word)
+            ]
             is_correct = True
         else:
             if letter not in self.guesses:
@@ -102,10 +105,10 @@ class Hangman:
         return is_correct
 
     def show(self):
-        print('\n\n{}'.format(picture[self.error_count]))
-        print(' '.join(self.answer))
-        print('Guesses so far: {}'.format(' '.join(sorted(self.guesses))))
-        print('Errors: {}'.format(self.error_count))
+        print("\n\n{}".format(picture[self.error_count]))
+        print(" ".join(self.answer))
+        print("Guesses so far: {}".format(" ".join(sorted(self.guesses))))
+        print("Errors: {}".format(self.error_count))
         print()
 
     @property
@@ -116,13 +119,16 @@ class Hangman:
     def is_correct(self):
         return self.answer == self.word
 
-
     def __str__(self):
-        return ' '.join(self.answer)
+        return " ".join(self.answer)
 
     def __repr__(self):
-        return('Hangman(word={!r}, answer={!r}, guesses={!r}, errors={})'.format(
-            ''.join(self.word), ''.join(self.answer), ''.join(sorted(self.guesses)), self.error_count))
+        return "Hangman(word={!r}, answer={!r}, guesses={!r}, errors={})".format(
+            "".join(self.word),
+            "".join(self.answer),
+            "".join(sorted(self.guesses)),
+            self.error_count,
+        )
 
 
 def start_game(hangman, player):
@@ -140,9 +146,9 @@ def start_game(hangman, player):
 
     hangman.show()
     if hangman.is_correct:
-        print('You won')
+        print("You won")
     else:
-        print('You lost, the word is {}'.format(''.join(hangman.word)))
+        print("You lost, the word is {}".format("".join(hangman.word)))
 
 
 def main():
@@ -154,5 +160,5 @@ def main():
     start_game(hangman, player)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

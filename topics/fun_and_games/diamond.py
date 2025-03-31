@@ -37,10 +37,9 @@ def diamond(size):
 
 
 def main():
-    """ Entry """
+    """Entry"""
     diamond(6)
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

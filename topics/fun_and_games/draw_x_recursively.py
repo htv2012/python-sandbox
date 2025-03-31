@@ -4,6 +4,7 @@ Draw X recursively
 https://stackoverflow.com/q/70904352/459745
 """
 
+
 def draw_x(gap=5, indent=0):
     """
     Draws the letter X, `gap` is the number of spaces between the
@@ -14,16 +15,15 @@ def draw_x(gap=5, indent=0):
     if gap < 1:
         print(f"{prefix}*")
         return
-    print(f"{prefix}*{gap*' '}*")
-    draw_x(gap - 2, indent+1)
-    print(f"{prefix}*{gap*' '}*")
+    print(f"{prefix}*{gap * ' '}*")
+    draw_x(gap - 2, indent + 1)
+    print(f"{prefix}*{gap * ' '}*")
 
 
 def main():
-    """ Entry """
+    """Entry"""
     draw_x()
 
 
 if __name__ == "__main__":
     main()
-
