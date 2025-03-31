@@ -1,4 +1,4 @@
-# Sudoku file format
+# SudokuBoard file format
 # Blank lines and comments are ignored
 # Dot means empty spaces
 

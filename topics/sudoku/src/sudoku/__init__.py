@@ -6,7 +6,7 @@ import pathlib
 EMPTY_CELL = "."
 
 
-class Sudoku:
+class SudokuBoard:
     def __init__(self):
         self.board = collections.defaultdict(lambda: EMPTY_CELL)
 
@@ -94,4 +94,4 @@ def load_ss(path: str | pathlib.Path):
                 continue
             lines.append(line.split())
 
-    return Sudoku.from_grid(lines)
+    return SudokuBoard.from_grid(lines)
