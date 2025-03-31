@@ -1,7 +1,3 @@
-# Sudoku file format
-# Blank lines and comments are ignored
-# Dot means empty spaces
-
 *-----------------------*
 | . 3 . | 4 . . | . . . |
 | 9 . 2 | 8 . 6 | 3 . 1 |
