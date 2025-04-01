@@ -1,5 +1,4 @@
 from jq import jq
-
 from rest_api import Api, Endpoint, create_session
 
 session = create_session()

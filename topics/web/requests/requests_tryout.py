@@ -1,6 +1,6 @@
+from bs4 import BeautifulSoup
 
 import requests
-from bs4 import BeautifulSoup
 
 url = "http://www.hdwallpapers.in"
 html = requests.get(url)

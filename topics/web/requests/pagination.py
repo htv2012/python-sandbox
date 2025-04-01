@@ -3,7 +3,6 @@
 whatis: Make API GET call, with pagination
 """
 
-
 import requests
 
 if __name__ == "__main__":

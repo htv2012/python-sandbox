@@ -10,8 +10,9 @@ import pathlib
 # import qrcode
 # import network
 from api import Shorties
-from flask import Flask
 from flask_restful import Api
+
+from flask import Flask
 
 os.environ["LOGLEVEL"] = "DEBUG"
 logging.basicConfig(level=os.getenv("LOGLEVEL", "WARN"))

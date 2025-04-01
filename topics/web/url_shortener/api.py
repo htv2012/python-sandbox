@@ -6,10 +6,11 @@ A list of favorite songs for karaoke with search
 import logging
 import os
 
+from flask_restful import Api, Resource
+
 from flask import (
     Flask,
 )
-from flask_restful import Api, Resource
 
 os.environ["LOGLEVEL"] = "DEBUG"
 logging.basicConfig(level=os.getenv("LOGLEVEL", "WARN"))
