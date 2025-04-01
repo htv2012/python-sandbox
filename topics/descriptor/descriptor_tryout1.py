@@ -1,7 +1,6 @@
 import logging
 import os
 
-
 logging.basicConfig(level=os.getenv("LOGLEVEL", logging.WARN))
 
 
@@ -34,11 +33,7 @@ class MyClass(object):
         self.y = RevealAccess("hello", "Y")
 
     def __repr__(self):
-        return (
-            "MyClass("
-            f"x={self.x}, y={self.y}"
-            ")"
-        )
+        return f"MyClass(x={self.x}, y={self.y})"
 
 
 if __name__ == "__main__":

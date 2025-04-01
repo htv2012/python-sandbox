@@ -10,11 +10,12 @@ Examples:
     ./dynamic_settings.py settings2
 
 """
+
 import argparse
 
 
 def main():
-    """ Entry """
+    """Entry"""
     parser = argparse.ArgumentParser()
     parser.add_argument("settings")
     options = parser.parse_args()

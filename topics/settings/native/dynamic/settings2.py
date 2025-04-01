@@ -1,1 +1,1 @@
-server = 'server2.com'
+server = "server2.com"

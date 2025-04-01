@@ -2,6 +2,7 @@
 """
 Aggregated Settings
 """
+
 import collections
 import collections.abc
 import contextlib

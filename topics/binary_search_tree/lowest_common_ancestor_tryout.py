@@ -2,6 +2,7 @@
 # Find LCA
 
 import unittest
+
 from tree import BinarySearchTree
 
 
@@ -13,7 +14,7 @@ class LCATest(unittest.TestCase):
         #   2      6
         #  / \    / \
         # 1   3  5   7
-        self.tree = BinarySearchTree.from_sequence('4261357')
+        self.tree = BinarySearchTree.from_sequence("4261357")
         self.tree = BinarySearchTree.from_sequence((4, 2, 6, 1, 3, 5, 7))
         print("==== " + self.id())
 
@@ -33,5 +34,5 @@ class LCATest(unittest.TestCase):
         self.assertEqual(self.tree.left, self.tree.lca(3, 2))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

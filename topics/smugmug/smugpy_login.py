@@ -1,12 +1,11 @@
 #!/usr/bin/env python
 
-from smugpy import SmugMug
-import sys
 
+from smugpy import SmugMug
 
 API_KEY = "H2WUBDYOz6rBYFIN9Dc5KH1qMAtUAwPi"
 OAUTH_SECRET = "d978c7819db9a3b99ef44362c5ad6a3e"
-APP_NAME="TestApp"
+APP_NAME = "TestApp"
 
 
 # Request a "request token" from the smugmug servers for the given permissions.
@@ -23,6 +22,7 @@ def smugmugOauthRequestToken(access="Public", perm="Read"):
     # Get the URL that the user must visit to authorize this app (implicilty includes the request token in the URL)
     url = smugmug.authorize(access=access, perm=perm)
 
-    return url, response['Auth']  # (should contain a 'Token')
+    return url, response["Auth"]  # (should contain a 'Token')
+
 
 print((smugmugOauthRequestToken()))

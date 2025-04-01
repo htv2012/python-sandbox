@@ -1,16 +1,16 @@
 """
 Test functionality of regtools
 """
+
 import contextlib
 import unittest
 import winreg
 
-
-STRING_NAME = 'StringValue'
-STRING_VALUE = 'abc'
+STRING_NAME = "StringValue"
+STRING_VALUE = "abc"
 
 ROOT = winreg.HKEY_CURRENT_USER
-REGTOOLS_DIR = 'Software\\regtools'
+REGTOOLS_DIR = "Software\\regtools"
 RESERVED = 0
 
 
@@ -25,8 +25,10 @@ class RegToolsTests(unittest.TestCase):
     def setUp(self):
         winreg.CreateKey(ROOT, REGTOOLS_DIR)
         with folder_context(ROOT, REGTOOLS_DIR, winreg.KEY_WRITE) as folder:
-            winreg.SetValueEx(folder, STRING_NAME, RESERVED, winreg.REG_SZ, STRING_VALUE)
+            winreg.SetValueEx(
+                folder, STRING_NAME, RESERVED, winreg.REG_SZ, STRING_VALUE
+            )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

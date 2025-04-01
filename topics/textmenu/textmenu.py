@@ -1,11 +1,11 @@
 def menu(prompt, choices):
-    print('\n\n{0}\n'.format(prompt))
+    print("\n\n{0}\n".format(prompt))
     count = len(choices)
     for i, choice in enumerate(choices, 1):
-        print('{0:>3}) {1}'.format(i, choice))
+        print("{0:>3}) {1}".format(i, choice))
 
     while True:
-        response = input('> ')
+        response = input("> ")
         if response in choices:
             return response
         try:

@@ -2,12 +2,12 @@
 """
 1Password tryout
 """
+
 import collections
 import json
 import logging
 import os
 import subprocess
-
 
 CLI = "op"
 
@@ -76,7 +76,7 @@ if not cli_installed():
 
 
 class OnePassword:
-    """ 1Password API """
+    """1Password API"""
 
     def __init__(self, url: str, email: str, secret_key: str):
         """

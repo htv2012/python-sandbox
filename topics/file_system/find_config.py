@@ -2,6 +2,7 @@
 """
 whatis: find configuration file from various places
 """
+
 import itertools
 import os
 
@@ -21,12 +22,12 @@ def find_config_files(base_names, locations):
     return pathnames
 
 
-if __name__ == '__main__':
-    filenames = ['nav.ini', '.nav.ini', 'nav.txt', '.nav.txt']
+if __name__ == "__main__":
+    filenames = ["nav.ini", ".nav.ini", "nav.txt", ".nav.txt"]
     dirs = [
-        os.path.expanduser('~'),
-        'C:\\Users\hvu',
-        'D:\\CloudStation\\src\\workspaces',
-        os.path.expanduser('~/src/workspaces'),
+        os.path.expanduser("~"),
+        "C:\\Users\hvu",
+        "D:\\CloudStation\\src\\workspaces",
+        os.path.expanduser("~/src/workspaces"),
     ]
-    print('\n'.join(find_config_files(filenames, dirs)))
+    print("\n".join(find_config_files(filenames, dirs)))

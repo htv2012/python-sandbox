@@ -7,7 +7,6 @@ trying to access an attribute.
 
 import logging
 
-
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
@@ -20,7 +19,7 @@ class MyThing(object):
         try:
             attribute = super(MyThing, self).__getattribute__(name)
             return attribute
-        except AttributeError as e:
+        except AttributeError:
             if name == "b":
                 return "b prop"
             raise

@@ -3,10 +3,9 @@
 whatis: Create priority lists using bisect or heapq
 """
 
-import collections
 import bisect
+import collections
 import heapq
-
 
 Task = collections.namedtuple("Task", "priority name")
 

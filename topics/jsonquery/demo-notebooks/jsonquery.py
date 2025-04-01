@@ -3,8 +3,8 @@
 This module provides functions that query a JSON object.
 """
 
-from collections.abc import Sequence, Mapping
 import fnmatch
+from collections.abc import Mapping, Sequence
 
 
 def _get_key_value_function(json_object):

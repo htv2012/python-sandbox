@@ -1,5 +1,4 @@
 import pytest
-
 from numericlib import NumericRange
 
 DEFAULT_SIZE = 3

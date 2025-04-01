@@ -1,6 +1,3 @@
 #!/usr/bin/env python
-buffer = (
-    'Hello, '
-    'world'
-    )
+buffer = "Hello, world"
 print(buffer)

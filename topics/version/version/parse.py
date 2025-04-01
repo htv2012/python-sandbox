@@ -20,6 +20,6 @@ def filter_package(lines):
     for line in lines:
         if not line.strip():
             continue
-        if line.lstrip()[0] in {'#', '-'}:
+        if line.lstrip()[0] in {"#", "-"}:
             continue
         yield line

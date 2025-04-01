@@ -2,11 +2,13 @@
 """
 make the library
 """
-import zipfile
+
 import os
+import zipfile
+
 
 def main():
-    """ Entry """
+    """Entry"""
     os.chdir("./lib")
 
     with zipfile.PyZipFile("../mylib.zip", mode="w") as package:
@@ -19,4 +21,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

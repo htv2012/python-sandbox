@@ -2,6 +2,7 @@
 """
 A Python skeleton script
 """
+
 import jwt
 
 
@@ -19,7 +20,7 @@ def main():
     header = jwt.get_unverified_header(raw)
     algorithm = header["alg"]
     payload = jwt.decode(raw, key=key, algorithms=algorithm)
-    
+
     print(f"{header=}")
     print(f"{payload=}")
 

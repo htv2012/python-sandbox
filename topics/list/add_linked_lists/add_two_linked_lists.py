@@ -5,18 +5,16 @@ an add function to return a linked list representing the sum.
 """
 
 
-
-
 class Node(object):
     def __init__(self, data=0, next=None):
         self.data = data
         self.next = next
 
     def __repr__(self):
-        return 'Node({!r}, {!r})'.format(self.data, self.__next__)
+        return "Node({!r}, {!r})".format(self.data, self.__next__)
 
     def __str__(self):
-        return '{}'.format(self.data)
+        return "{}".format(self.data)
 
 
 class List(object):
@@ -48,7 +46,7 @@ class List(object):
             node = node.__next__
 
     def __str__(self):
-        buffer = ' '.join(str(node) for node in self)
+        buffer = " ".join(str(node) for node in self)
         return buffer
 
     def __len__(self):
@@ -69,7 +67,7 @@ def add(list1, list2):
     for node1, node2 in zip(it1, it2):
         reversed_sum.prepend(node1.data + node2.data)
 
-    print('Reversed sum: {}'.format(reversed_sum))
+    print("Reversed sum: {}".format(reversed_sum))
     sum_list = List()
     carry = 0
     for node in reversed_sum:
@@ -86,4 +84,4 @@ list1 = List([2, 7])
 list2 = List([9, 8, 5])
 sum_list = add(list1, list2)
 
-print('{} + {} = {}'.format(list1, list2, sum_list))
+print("{} + {} = {}".format(list1, list2, sum_list))

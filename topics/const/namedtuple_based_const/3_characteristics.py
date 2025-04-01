@@ -2,6 +2,7 @@
 """
 Characteristics of a const
 """
+
 import const
 
 

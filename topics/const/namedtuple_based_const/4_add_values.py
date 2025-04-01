@@ -2,6 +2,7 @@
 """
 Adding values to a const is not a common operation
 """
+
 import const
 
 

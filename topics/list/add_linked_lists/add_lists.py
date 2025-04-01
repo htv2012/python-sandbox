@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" Adds two lists representing ints """
+"""Adds two lists representing ints"""
 
 from itertools import zip_longest
 
@@ -16,8 +16,6 @@ def add_lists(*args):
     return result
 
 
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(add_lists([9, 8, 6], [2, 3, 7, 1]))
     print(add_lists([6, 3, 7], [9, 5], [9, 8, 7, 6]))

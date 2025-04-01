@@ -1,4 +1,5 @@
-""""An equivalent to tail -f command for Python"""
+""" "An equivalent to tail -f command for Python"""
+
 import sys
 import time
 
@@ -9,7 +10,7 @@ def tailf(path):
         with open(path, "r") as stream:
             # Seek to where we left off
             stream.seek(last_position_read)
-            
+
             for line in stream:
                 yield line
 

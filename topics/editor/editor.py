@@ -3,10 +3,11 @@
 A simple tool to invoke a text editor to edit a file or a block of
 text.
 """
-import tempfile
-import subprocess
+
 import os
 import shlex
+import subprocess
+import tempfile
 
 
 def edit_file(filename, editor=None):

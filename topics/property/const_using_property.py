@@ -1,21 +1,23 @@
 class Const(object):
-    __red = 'red'
+    __red = "red"
     red = property(lambda cls: cls.__red)
 
 
-Const.blue = property(lambda cls: 'blue')
+Const.blue = property(lambda cls: "blue")
 
 const = Const()
 print(const.red)
 print(const.blue)
 
-const.blue = 'yellow'
+const.blue = "yellow"
 
 
-print('---')
+print("---")
+
 
 class Foo(object):
     pass
+
 
 foo = Foo()
 foo.a = 3

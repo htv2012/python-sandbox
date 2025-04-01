@@ -1,9 +1,10 @@
 from coroutine import coroutine
 
+
 @coroutine
 def grep(pattern):
-    print('Looking for %r' % pattern)
+    print("Looking for %r" % pattern)
     while True:
-        line = (yield)
+        line = yield
         if pattern in line:
             print(line)

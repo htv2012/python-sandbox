@@ -10,6 +10,7 @@ and work your way inside the list, the resulting list is:
 - The kind of data is irrelevant
 """
 
+
 # ======================================================================
 # Implementation
 # ======================================================================
@@ -54,10 +55,12 @@ def reverse_list(llist):
 # Test
 # ======================================================================
 
+
 def test_node():
     node = Node(5)
     assert node.data == 5
     assert node.next is None
+
 
 def test_iter():
     n3 = Node(7)
@@ -78,4 +81,3 @@ def test_reverse_normal():
     llist = Node.from_iter(original)
     llist = reverse_list(llist)
     assert list(llist) == [7, 8, 19, 10, 6, 2, 3, 1]
-

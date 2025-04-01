@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from mymodule import rm
-
 import os.path
 import tempfile
 import unittest
 
-class RmTestCase(unittest.TestCase):
+from mymodule import rm
 
+
+class RmTestCase(unittest.TestCase):
     tmpfilepath = os.path.join(tempfile.gettempdir(), "tmp-testfile")
 
     def setUp(self):

@@ -3,12 +3,12 @@ Starts with a bunch of coins, two players take turn to remove 1, 2, or 3
 coins from the bunch. The winner is the one who remove the last coin(s).
 """
 
-import random
 import itertools
+import random
 
 
 def human_turn(number_of_coins):
-    taken = int(input("How many: ".format(number_of_coins)))
+    taken = int(input("How many: "))
     return taken
 
 

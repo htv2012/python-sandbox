@@ -10,9 +10,9 @@
 #   - expandtabs() seems to expand tabs within the quotes. We don't want that.
 #
 
-import sys
 import os
 import shutil
+import sys
 
 
 def usage():
@@ -22,7 +22,7 @@ def usage():
 def replaceExtension(originalFile, newExtension):
     fileNumber = 1
     while True:
-        newFile = '%s.%03d%s' % (originalFile, fileNumber, newExtension)
+        newFile = "%s.%03d%s" % (originalFile, fileNumber, newExtension)
         if not os.path.exists(newFile):
             break
         fileNumber = fileNumber + 1
@@ -37,11 +37,11 @@ def main():
 
     # Create a backup file
     srcFile = sys.argv[1]
-    bakFile = replaceExtension(srcFile, '.bak')
+    bakFile = replaceExtension(srcFile, ".bak")
     shutil.copyfile(srcFile, bakFile)
 
-    inFile = open(bakFile, 'r')
-    outFile = open(srcFile, 'w')
+    inFile = open(bakFile, "r")
+    outFile = open(srcFile, "w")
 
     # process the file
     for text in inFile:
@@ -50,5 +50,6 @@ def main():
     inFile.close()
     outFile.close()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

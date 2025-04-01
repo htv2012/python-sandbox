@@ -2,10 +2,9 @@
 # -*- coding: utf-8 -*-
 
 
-import os
-import sys
-import ast
 import argparse
+import ast
+
 
 class Scanner(ast.NodeVisitor):
     def visit_Import(self, node):
@@ -13,7 +12,8 @@ class Scanner(ast.NodeVisitor):
         n = node
         print(node)
         print(ast.dump(node, include_attributes=True))
-        print('---')
+        print("---")
+
 
 def import_checker(filename):
     with open(filename) as f:
@@ -22,8 +22,9 @@ def import_checker(filename):
         scanner = Scanner()
         scanner.visit(root_node)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('filename')
+    parser.add_argument("filename")
     options = parser.parse_args()
     print(import_checker(options.filename))

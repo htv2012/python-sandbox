@@ -4,7 +4,6 @@ import string
 
 import yaml
 
-
 me = pathlib.Path(__file__)
 vars_path = me.with_name("vars.yaml")
 template_path = me.with_name("template.txt")

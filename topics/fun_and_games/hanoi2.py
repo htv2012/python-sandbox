@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from collections import deque, namedtuple
 import logging
+from collections import deque
 
 logging.basicConfig(level=logging.DEBUG)
 LOGGER = logging.getLogger()

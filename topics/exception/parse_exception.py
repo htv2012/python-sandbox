@@ -1,11 +1,10 @@
-import os
 import ast
 import collections
-
+import os
 
 try:
     5 / 0
-except ZeroDivisionError as e:
+except ZeroDivisionError:
     pass
 
 try:
@@ -14,7 +13,7 @@ except TypeError:
     pass
 
 try:
-    os.unlink('/foobar')
+    os.unlink("/foobar")
 except (OverflowError, ReferenceError, OSError):
     pass
 
@@ -29,9 +28,9 @@ except Exception:
     pass
 
 try:
-    print('Exceptions:')
+    print("Exceptions:")
 except IndentationError:
-    print('ERROR')
+    print("ERROR")
 
 
 def do_something():
@@ -40,7 +39,7 @@ def do_something():
     """
     try:
         x = 1
-    except UnboundLocalError as e:
+    except UnboundLocalError:
         pass
 
 
@@ -58,25 +57,27 @@ def find_ignored_exceptions(filename):
         nodes = list(ast.walk(ehandler))
         if isinstance(nodes[1], ast.Pass):
             # "except:"
-            ignore_counter.update(['Exception'])
-        elif (isinstance(nodes[1], ast.Name)
-                and isinstance(nodes[2], ast.Pass)):
+            ignore_counter.update(["Exception"])
+        elif isinstance(nodes[1], ast.Name) and isinstance(nodes[2], ast.Pass):
             # "except ErrorName:"
-            print('Ignore:', nodes[1].id)
+            print("Ignore:", nodes[1].id)
             ignore_counter.update([nodes[1].id])
         elif isinstance(nodes[1], ast.Tuple) and isinstance(nodes[2], ast.Pass):
             # "except (A, B, C):"
             for node in ast.walk(nodes[1]):
                 if isinstance(node, ast.Name):
-                    print('Ignore multi:', node.id)
+                    print("Ignore multi:", node.id)
                     ignore_counter.update([node.id])
-        elif (isinstance(nodes[1], ast.Name)
-                and isinstance(nodes[2], ast.Name)
-                and isinstance(nodes[3], ast.Pass)):
+        elif (
+            isinstance(nodes[1], ast.Name)
+            and isinstance(nodes[2], ast.Name)
+            and isinstance(nodes[3], ast.Pass)
+        ):
             # "except ValueError as e"
-            print('Ignore named:', nodes[1].id)
+            print("Ignore named:", nodes[1].id)
             ignore_counter.update([nodes[1].id])
 
     return ignore_counter
+
 
 print(find_ignored_exceptions(__file__))

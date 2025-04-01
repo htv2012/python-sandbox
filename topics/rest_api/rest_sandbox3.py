@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from jq import jq
+
 from rest_api import Endpoint, create_session
 
 

@@ -6,6 +6,7 @@ import os
 import sys
 import traceback
 
+from PyQt5.QtCore import pyqtSlot
 from PyQt5.QtWidgets import (
     QApplication,
     QGridLayout,
@@ -15,12 +16,10 @@ from PyQt5.QtWidgets import (
     QTextEdit,
     QWidget,
 )
-from PyQt5.QtCore import pyqtSlot
 
 import jsonquery
 
-
-logging.basicConfig(level=os.getenv('LOGLEVEL', 'WARN'))
+logging.basicConfig(level=os.getenv("LOGLEVEL", "WARN"))
 LOGGER = logging.getLogger(__name__)
 
 
@@ -39,47 +38,45 @@ class DemoWidget(QWidget):
         query_button.setAutoDefault(True)
 
         label = QLabel(
-            "result = jsonquery.query("
-            "json_object, key_path, "
-            "predicate, selector)"
+            "result = jsonquery.query(json_object, key_path, predicate, selector)"
         )
         grid.addWidget(label, 1, 2)
 
-        key_path_label = QLabel('key_path')
+        key_path_label = QLabel("key_path")
         self.key_path_edit = QLineEdit()
         grid.addWidget(key_path_label, 2, 0)
         grid.addWidget(self.key_path_edit, 2, 1)
 
-        predicate_label = QLabel('predicate')
+        predicate_label = QLabel("predicate")
         self.predicate_edit = QLineEdit()
         grid.addWidget(predicate_label, 3, 0)
         grid.addWidget(self.predicate_edit, 3, 1)
 
-        selector_label = QLabel('selector')
+        selector_label = QLabel("selector")
         self.selector_edit = QLineEdit()
         grid.addWidget(selector_label, 4, 0)
         grid.addWidget(self.selector_edit, 4, 1)
 
-        json_object_label = QLabel('json_object')
+        json_object_label = QLabel("json_object")
         grid.addWidget(json_object_label, 5, 1)
         self.json_object_edit = QTextEdit()
         self.json_object_edit.setFontFamily("Courier")
         grid.addWidget(self.json_object_edit, 6, 1, 1, 1)
-        
+
         with open("component.json") as stream:
             text = stream.read()
         self.json_object_edit.setText(text)
-        
+
         label = QLabel("result")
         grid.addWidget(label, 5, 2)
         self.result_edit = QTextEdit()
         self.result_edit.setFontFamily("Courier")
         grid.addWidget(self.result_edit, 6, 2, 1, 1)
 
-        self.setLayout(grid) 
-        
+        self.setLayout(grid)
+
         self.setGeometry(0, 0, 1000, 600)
-        self.setWindowTitle('jsonquery sandbox')    
+        self.setWindowTitle("jsonquery sandbox")
         self.showMaximized()
 
     @pyqtSlot()
@@ -110,7 +107,7 @@ class DemoWidget(QWidget):
         self.result_edit.repaint()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     demo = DemoWidget()
     sys.exit(app.exec_())

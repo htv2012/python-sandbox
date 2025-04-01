@@ -84,7 +84,7 @@ def main(stdscr):
         time.sleep(1.0 / len(snails))
 
     stdscr.addstr(2, 1, f"The winner is {winner.name}")
-    stdscr.addstr(3, 1, f"Press any key to continue")
+    stdscr.addstr(3, 1, "Press any key to continue")
     stdscr.getch()
 
 

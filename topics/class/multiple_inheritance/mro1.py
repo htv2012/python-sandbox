@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""" What's the init sequence is like for multiple inheritance """
+"""What's the init sequence is like for multiple inheritance"""
 
 
 class Base1(object):

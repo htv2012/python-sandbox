@@ -5,8 +5,8 @@ x = "no exception"
 try:
     print(x)
 except KeyError:
-    print('Key error')
+    print("Key error")
 except NameError:
-    print('Variable x not found')
+    print("Variable x not found")
 else:
     print('else means no exception, not "other exception"')

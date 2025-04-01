@@ -1,6 +1,7 @@
 """
 Parses key-values block of text
 """
+
 import csv
 import io
 
@@ -29,4 +30,3 @@ def parse(text_or_file_object) -> dict:
 
     # Turns into a dict
     return dict(key_values)
-

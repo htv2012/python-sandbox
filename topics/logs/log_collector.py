@@ -13,6 +13,7 @@ class LinesCollector:
         for line in collector:
             # Do something with those lines
     """
+
     def __init__(self, host, path, username, password, port=22):
         self.host = host
         self.path = path
@@ -54,27 +55,26 @@ class LinesCollector:
             return iter([])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import time
-    lc = LinesCollector('mercury.local', '/tmp/log.txt', 'haiv', None)
+
+    lc = LinesCollector("mercury.local", "/tmp/log.txt", "haiv", None)
 
     # Add lines
-    with lc.open_sftp() as sftp, sftp.open(lc.path, 'a') as stream:
-        stream.write('Roses are red\n')
-        stream.write('Violets are blue\n')
+    with lc.open_sftp() as sftp, sftp.open(lc.path, "a") as stream:
+        stream.write("Roses are red\n")
+        stream.write("Violets are blue\n")
 
     for line in lc:
-        print(line, end='')
+        print(line, end="")
 
     # Add more lines
-    with lc.open_sftp() as sftp, sftp.open(lc.path, 'a') as stream:
-        stream.write('Sugar are sweet\n')
-        stream.write('Not for the diabetes\n')
+    with lc.open_sftp() as sftp, sftp.open(lc.path, "a") as stream:
+        stream.write("Sugar are sweet\n")
+        stream.write("Not for the diabetes\n")
 
-    print('Take a rest')
+    print("Take a rest")
     time.sleep(3)
 
     for line in lc:
-        print(line, end='')
-
-
+        print(line, end="")

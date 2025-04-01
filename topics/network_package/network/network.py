@@ -1,6 +1,7 @@
 """
 Network-related functions
 """
+
 import functools
 import socket
 import subprocess

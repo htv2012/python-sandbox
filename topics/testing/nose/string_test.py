@@ -9,29 +9,38 @@ Copyright (c) 2010 Cisco Systems, Inc.. All rights reserved.
 
 import unittest
 
+
 def setUpModule():
-    print('setUpModule')
+    print("setUpModule")
     global xvar
     xvar = 5
 
+
 def tearDownModule():
-    print('tearDownModule')
+    print("tearDownModule")
+
 
 class TestString(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        print('setUpClass')
+        print("setUpClass")
+
     @classmethod
     def tearDownClass(cls):
-        print('tearDownClass')
+        print("tearDownClass")
+
     def setUp(self):
-        print('setUp')
+        print("setUp")
+
     def tearDown(self):
-        print('tearDown')
+        print("tearDown")
+
     def split_test(self):
-        print('split_test')
+        print("split_test")
+
     def xvar_test(self):
         global xvar
-        print('xvar =', xvar)
+        print("xvar =", xvar)
+
     def join_test(self):
-        print('join_test')
+        print("join_test")

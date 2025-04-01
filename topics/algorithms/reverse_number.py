@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" Referse a number """
+"""Referse a number"""
 
 
 def reverse_number(number):

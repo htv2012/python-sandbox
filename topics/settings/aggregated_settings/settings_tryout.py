@@ -2,14 +2,13 @@
 """
 Aggregated Settings tryout
 """
+
 import os
 
-from settings import Settings, _read_source
+from settings import Settings
 
+APP_DEFAULTS = {"verbose": True}
 
-APP_DEFAULTS = {
-    "verbose": True
-}
 
 def main():
     settings = Settings.from_mixed_sources(
@@ -27,5 +26,5 @@ def main():
     print(f"Home: {settings.HOME}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

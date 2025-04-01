@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Return a read-only dict."""
+
 from types import MappingProxyType
 
 

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-""""Get reference based on the type of the input.
+""" "Get reference based on the type of the input.
 
 - For a dictionary, look at key "ref"
 - For a Response object, look at the .data attribute, which is a dict
 - For an Api object, call .get() to get a Response object
 """
+
 import dataclasses
 from functools import singledispatch
 

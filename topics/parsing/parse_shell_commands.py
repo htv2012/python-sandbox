@@ -2,6 +2,7 @@
 """
 Parses the shell commands, including redirections
 """
+
 import io
 import shlex
 
@@ -31,7 +32,7 @@ def parse_cmd(cmd):
 
 
 def main():
-    """ Entry """
+    """Entry"""
     while True:
         cmd = input("parse> ")
         if cmd == "q":
@@ -43,4 +44,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

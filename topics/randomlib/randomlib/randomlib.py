@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Generate random names and other objects such as URIs, emails, or locations."""
+
 import itertools
 import pathlib
 import random

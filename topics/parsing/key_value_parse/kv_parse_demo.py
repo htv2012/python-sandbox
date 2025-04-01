@@ -2,6 +2,7 @@
 """
 Parses /etc/os-release, /etc/product, ...
 """
+
 import fileinput
 import pprint
 
@@ -9,7 +10,7 @@ import kvlib
 
 
 def main():
-    """ Entry """
+    """Entry"""
     text = "".join(fileinput.input())
     print("Text to parsed:")
     print(text)
@@ -20,5 +21,5 @@ def main():
     pprint.pprint(dict_object)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

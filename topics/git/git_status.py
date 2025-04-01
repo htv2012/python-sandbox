@@ -1,6 +1,6 @@
 #!/usr/bin/env python
-from subprocess import PIPE, Popen
 from collections import Counter
+from subprocess import PIPE, Popen
 
 
 def count_git_status():

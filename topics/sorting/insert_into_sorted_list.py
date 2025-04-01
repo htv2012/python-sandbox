@@ -4,7 +4,6 @@
 Use bisect to start and maintain a sorted list
 """
 
-
 import bisect
 
 ordered_list = [2, 4]

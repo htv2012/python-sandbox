@@ -1,6 +1,7 @@
-from closable import do_not_close, mark_as_closed
-import unittest
 import logging
+import unittest
+
+from closable import do_not_close, mark_as_closed
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)

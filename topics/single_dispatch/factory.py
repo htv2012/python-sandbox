@@ -2,6 +2,7 @@
 """
 A factory which creates different objects
 """
+
 import functools
 
 

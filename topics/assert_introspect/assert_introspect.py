@@ -5,7 +5,7 @@ import os
 
 def flag_assert_that_never_fail(node, filename, line):
     if isinstance(node.test, ast.Tuple) and node.msg is None:
-        error_template = '\n{}({}): The following assert will never fail:'
+        error_template = "\n{}({}): The following assert will never fail:"
         print(error_template.format(filename, node.lineno))
         print(line)
 
@@ -20,27 +20,27 @@ def find_bad_assert(filename):
                 if isinstance(node, ast.Assert):
                     flag_assert_that_never_fail(node, filename, lines[node.lineno - 1])
         except IndentationError as e:
-            error_template = '\n{}: file has indentation error'
+            error_template = "\n{}: file has indentation error"
             print(error_template.format(e.filename))
             print(e.text)
-            print('{}^'.format(' ' * e.offset))
+            print("{}^".format(" " * e.offset))
         except SyntaxError as e:
-            error_template = '\n{}({}): file contains syntax error:'
+            error_template = "\n{}({}): file contains syntax error:"
             print(error_template.format(filename, e.lineno))
             print(e.text.strip())
-            print('{}^'.format(' ' * e.offset))
-        except TypeError as e:
-            error_template = '\n{}: file contains type error:'
+            print("{}^".format(" " * e.offset))
+        except TypeError:
+            error_template = "\n{}: file contains type error:"
             print(error_template.format(filename))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     argument_parser = argparse.ArgumentParser()
-    argument_parser.add_argument('root')
+    argument_parser.add_argument("root")
     options = argument_parser.parse_args()
 
     for cwd, subdirs, filenames in os.walk(options.root):
         for filename in filenames:
-            if os.path.splitext(filename)[-1] == '.py':
+            if os.path.splitext(filename)[-1] == ".py":
                 filename = os.path.join(cwd, filename)
                 find_bad_assert(filename)

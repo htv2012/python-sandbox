@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-""" Which module is available? """
+"""Which module is available?"""
 
 import importlib
-
 
 module_names = """
 arrow
@@ -27,10 +26,10 @@ yaml
 """.split()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     for module_name in module_names:
         try:
             importlib.import_module(module_name)
-            print('🗸', module_name)
+            print("🗸", module_name)
         except ImportError:
-            print(' ', module_name)
+            print(" ", module_name)

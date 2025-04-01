@@ -1,6 +1,5 @@
-import pytest
-
 import peek_anything
+import pytest
 
 
 @pytest.mark.parametrize(

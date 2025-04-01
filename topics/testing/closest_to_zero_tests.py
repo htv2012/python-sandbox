@@ -1,4 +1,3 @@
-import itertools
 
 import pytest
 
@@ -22,8 +21,10 @@ test_data = [
 def test_closest():
     for the_list, expected in test_data:
         actual = closest(the_list)
-        assert actual == expected, 'For input {}, expected {}, got {}'.format(the_list, expected, actual)
+        assert actual == expected, "For input {}, expected {}, got {}".format(
+            the_list, expected, actual
+        )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pytest.main([__file__])

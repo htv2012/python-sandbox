@@ -2,10 +2,8 @@
 """
 Parses the output of the df command
 """
+
 import collections
-import csv
-import io
-import os
 import subprocess
 
 DfEntry = collections.namedtuple(
@@ -26,6 +24,7 @@ def _str2int(s):
     except ValueError:
         return s
 
+
 def _make_entry(tup):
     values = [_str2int(value) for value in tup]
     return DfEntry(*values)
@@ -44,15 +43,12 @@ def parse_disk_free_output(text):
     [
         DfEntry(filesystem='devtmpfs', size=1928372, used=0, available=1928372, percent_used=0, mounted_on='/dev'),
         DfEntry(filesystem='tmpfs', size=1940136, used=0, available=1940136, percent_used=0, mounted_on='/dev/shm')
-    ]    
+    ]
 
     """
     lines = iter(text.replace("%", "").splitlines())
     next(lines)  # Remove the header line
-    entries = [
-        _make_entry(line.split())
-        for line in lines
-    ]
+    entries = [_make_entry(line.split()) for line in lines]
     return entries
 
 

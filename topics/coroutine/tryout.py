@@ -7,12 +7,14 @@ def cat(filename, target):
         for line in f:
             target.send(line.strip())
 
+
 @coroutine
 def grep(pattern, printer):
     while True:
         line = yield
-        if line.startswith('def'):
+        if line.startswith("def"):
             printer.send(line)
+
 
 @coroutine
 def println():
@@ -22,12 +24,11 @@ def println():
 
 
 def main():
-    """ Entry """
+    """Entry"""
     printer = println()
-    searcher = grep('def ', printer)
+    searcher = grep("def ", printer)
     cat(__file__, searcher)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-

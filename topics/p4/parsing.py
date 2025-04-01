@@ -10,5 +10,3 @@ def get_views(client_json):
     except KeyError:
         pass
     return views
-
-

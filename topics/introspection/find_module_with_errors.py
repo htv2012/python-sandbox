@@ -17,16 +17,16 @@ def find_error(filename):
             code = f.read()
             tree = ast.parse(code, filename=filename)
     except SyntaxError as e:
-        print('File: {}, error: {}, text: {}'.format(filename, e,e.text.strip()))
+        print("File: {}, error: {}, text: {}".format(filename, e, e.text.strip()))
         # print('{}: {}'.format(e, e.text.strip()))
 
 
-if __name__ == '__main__':
-    sys.argv.append('.')
+if __name__ == "__main__":
+    sys.argv.append(".")
     root = sys.argv[1]
     for dirpath, dirnames, filenames in os.walk(root):
         for filename in filenames:
-            if not filename.endswith('.py'):
+            if not filename.endswith(".py"):
                 continue
             full_path = os.path.abspath(os.path.join(dirpath, filename))
             find_error(full_path)

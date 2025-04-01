@@ -3,6 +3,7 @@
 Demo: Prints the steps with automatic step numbers
 """
 
+
 def steps_counter(number=1):
     def step(message):
         nonlocal number
@@ -14,7 +15,7 @@ def steps_counter(number=1):
 
 
 def main():
-    """ Entry """
+    """Entry"""
     step = steps_counter()
     print(step("Creating objects"))
     print(step("Query missing parameters"))

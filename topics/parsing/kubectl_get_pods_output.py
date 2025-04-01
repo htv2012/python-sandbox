@@ -2,9 +2,8 @@
 """
 Parses the output of the kubectl get pods
 """
-import collections
-import pprint
 
+import collections
 
 kubectl_get_pods_output = """
 NAME                               READY   STATUS    RESTARTS   AGE
@@ -27,10 +26,7 @@ def parse_kubectl_get_pods_output(text):
     keys = [key.lower() for key in next(non_empty_lines)]
     PodInfo = collections.namedtuple("PodInfo", keys)
 
-    pods = [
-        PodInfo(*values)
-        for values in non_empty_lines
-    ]
+    pods = [PodInfo(*values) for values in non_empty_lines]
 
     for pod in pods:
         print(pod)

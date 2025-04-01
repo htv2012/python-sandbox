@@ -1,5 +1,4 @@
 import pytest
-
 from dot_key_dict import DotKeyDict
 
 

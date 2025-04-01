@@ -54,7 +54,6 @@ class BinarySearchTree(object):
 
         self.left, self.right = self.right, self.left
 
-
     def lca(self, data1, data2):
         """
         Find the lowest common ancestor
@@ -62,7 +61,11 @@ class BinarySearchTree(object):
         smaller, larger = sorted([data1, data2])
         print("dbg: data={}, smaller={}, larger={}".format(self.data, smaller, larger))
 
-        print("dbg S({}) <= D({}) <= L({}): {}".format(smaller, self.data, larger, smaller <= self.data <= larger))
+        print(
+            "dbg S({}) <= D({}) <= L({}): {}".format(
+                smaller, self.data, larger, smaller <= self.data <= larger
+            )
+        )
         if smaller <= self.data <= larger:
             print("dbg: found: {}".format(self))
             return self
@@ -81,6 +84,7 @@ class BinarySearchTree(object):
         # elif smaller == self.data or larger == self.data:
         #     return self
 
+
 def main():
     #      4                    4
     #     /  \                 /  \
@@ -88,15 +92,16 @@ def main():
     #   2      6     ==>     6      2
     #  / \    / \           / \    / \
     # 1   3  5   7         7   5  3   1
-    tree = BinarySearchTree.from_sequence('4261357')
+    tree = BinarySearchTree.from_sequence("4261357")
     print(tree)
 
-    print(' '.join(tree.in_order_traversal()))
-    print(' '.join(tree.pre_order_traversal()))
+    print(" ".join(tree.in_order_traversal()))
+    print(" ".join(tree.pre_order_traversal()))
 
     # print tree.lca(6, 2)
     # print tree.lca(4, 2)
     print(tree.lca(3, 2))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()

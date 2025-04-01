@@ -1,4 +1,3 @@
-from test_class import TestClass
 from foo_test import FooTest
 from mixin1 import Mixin1
 

@@ -3,6 +3,7 @@ Use a crude finite state machine to parse the expression "N + M"
 where N and M are two unsigned integers
 """
 
+
 class State:
     def __init__(self, name):
         self.name = name
@@ -43,9 +44,11 @@ def store_left(char_input):
     global left
     left += char_input
 
+
 def store_right(char_input):
     global right
     right += char_input
+
 
 left = ""
 right = ""
@@ -60,8 +63,12 @@ right_operand = State("right_operand")
 machine = Machine(initial)
 
 for char_input in "0123456789":
-    machine.transition(initial, stimulant=char_input, action=store_left, next_state=left_operand)
-    machine.transition(left_operand, stimulant=char_input, action=store_left, next_state=left_operand)
+    machine.transition(
+        initial, stimulant=char_input, action=store_left, next_state=left_operand
+    )
+    machine.transition(
+        left_operand, stimulant=char_input, action=store_left, next_state=left_operand
+    )
 machine.transition(left_operand, stimulant="+", action=None, next_state=operator)
 
 # Blanks1
@@ -75,12 +82,21 @@ machine.transition(blanks2, stimulant=" ", action=None, next_state=blanks2)
 # Operator
 machine.transition(operator, stimulant=" ", action=None, next_state=blanks2)
 for char_input in "0123456789":
-    machine.transition(blanks2, stimulant=char_input, action=store_right, next_state=right_operand)
-    machine.transition(operator, stimulant=char_input, action=store_right, next_state=right_operand)
+    machine.transition(
+        blanks2, stimulant=char_input, action=store_right, next_state=right_operand
+    )
+    machine.transition(
+        operator, stimulant=char_input, action=store_right, next_state=right_operand
+    )
 
 # Right operand
 for char_input in "0123456789":
-    machine.transition(right_operand, stimulant=char_input, action=store_right, next_state=right_operand)
+    machine.transition(
+        right_operand,
+        stimulant=char_input,
+        action=store_right,
+        next_state=right_operand,
+    )
 
 # Crank the machine
 for char_input in " 12  + 131":

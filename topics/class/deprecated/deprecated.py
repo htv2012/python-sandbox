@@ -1,8 +1,6 @@
-import logging
 import functools
-import types
+import logging
 import warnings
-
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)

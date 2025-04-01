@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 #!/usr/bin/env python3
 """Return a read-only dict."""
+
 from types import MappingProxyType
 
 
@@ -53,7 +54,6 @@ def main():
 if __name__ == "__main__":
     main()
 """Demo a read-only dictionary."""
-from types import MappingProxyType
 
 # mydict is a real dictionary, rodict is a proxy, a read-only dict
 mydict = dict(a=1, b=2, c=3)

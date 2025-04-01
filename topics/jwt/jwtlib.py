@@ -2,8 +2,6 @@
 import base64
 import collections
 import json
-import fileinput
-
 
 JwtParts = collections.namedtuple("JwtParts", ["header", "payload", "signature"])
 

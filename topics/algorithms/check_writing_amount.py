@@ -2,11 +2,10 @@
 """
 Convert number to check writting amount
 """
+
 import collections
-import math
 import logging
 import os
-
 
 logging.basicConfig(level=os.getenv("LOGLEVEL", logging.WARN))
 logger = logging.getLogger(__name__)

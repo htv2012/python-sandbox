@@ -2,6 +2,8 @@
 """
 whatis: Custom exception with extra field
 """
+
+
 class RecordError(Exception):
     def __init__(self, message, record=None):
         super().__init__(message)

@@ -5,14 +5,14 @@ import traceback
 
 
 def greet(name):
-	global ex, exc, value, tb
-	print('Hello, {}'.format(name))
-	try:
-		print(foo)
-	except NameError as e:
-		exc, value, tb = sys.exc_info()
-		traceback.print_exc()
+    global ex, exc, value, tb
+    print("Hello, {}".format(name))
+    try:
+        print(foo)
+    except NameError:
+        exc, value, tb = sys.exc_info()
+        traceback.print_exc()
 
-if __name__ == '__main__':
-	greet('John')
 
+if __name__ == "__main__":
+    greet("John")

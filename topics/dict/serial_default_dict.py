@@ -1,4 +1,4 @@
-""" A defaultdict where each new value is a new increment """
+"""A defaultdict where each new value is a new increment"""
 
 from collections import defaultdict
 from itertools import count

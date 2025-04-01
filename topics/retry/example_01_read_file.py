@@ -5,6 +5,7 @@ Demonstrate the use of the retry function
 1. Create a separate thread to create a file after a short delay
 2. In the main thread, try to read that file until success or timed out
 """
+
 import contextlib
 import os
 import threading
@@ -12,7 +13,6 @@ import time
 
 import flow
 import logger
-
 
 FILENAME = "/tmp/foo"
 

@@ -7,7 +7,7 @@ From Raymond Hettinger
 
 
 def return_in_finally_clause():
-    """ Returns 42 """
+    """Returns 42"""
     try:
         raise KeyError
     finally:
@@ -15,7 +15,7 @@ def return_in_finally_clause():
 
 
 def return_outside_finally_clause():
-    """ Does not have a chance to return value (2) """
+    """Does not have a chance to return value (2)"""
     value = 1
     try:
         raise KeyError
@@ -24,9 +24,9 @@ def return_outside_finally_clause():
     return value
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # This returns 42
-    print('Return value:', return_in_finally_clause())
+    print("Return value:", return_in_finally_clause())
 
     # This causes exception
-    print('Return value:', return_outside_finally_clause())
+    print("Return value:", return_outside_finally_clause())

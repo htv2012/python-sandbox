@@ -5,7 +5,6 @@ __getattr__ get called after looking up an attribute failed
 
 import logging
 
-
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 

@@ -11,10 +11,10 @@ class FileList(object):
 
     def clear_cache(self):
         self._cache = []
-        self._cache_status = 'not cache'
+        self._cache_status = "not cache"
 
     def __iter__(self):
-        if self._cache_status == 'cached':
+        if self._cache_status == "cached":
             for fullpath in self._cache:
                 yield fullpath
         else:
@@ -22,8 +22,8 @@ class FileList(object):
                 for filename in filenames:
                     fullpath = os.path.join(dirpath, filename)
                     self._cache.append(fullpath)
-                    self._cache_status = 'caching'
+                    self._cache_status = "caching"
                     if callable(self.caching_hook):
                         self.caching_hook(fullpath)
                     yield fullpath
-            self._cache_status = 'cached'
+            self._cache_status = "cached"

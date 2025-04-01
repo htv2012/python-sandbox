@@ -25,4 +25,4 @@ class ScriptFilterItem(typing.TypedDict, total=False):
     arg: str
     autocomplete: str
     valid: bool
-    match: str    
+    match: str

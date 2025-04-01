@@ -1,11 +1,8 @@
 import sqlalchemy
-from sqlalchemy import Column
-from sqlalchemy import LargeBinary
-from sqlalchemy import String
+from sqlalchemy import Column, LargeBinary, String
 from sqlalchemy.ext.declarative import declarative_base
 
-
-engine = sqlalchemy.create_engine('sqlite:///artifact.sqlite')
+engine = sqlalchemy.create_engine("sqlite:///artifact.sqlite")
 Base = declarative_base()
 
 
@@ -20,5 +17,3 @@ class Artifact(Base):
 
 Base.metadata.bind = engine
 Base.metadata.create_all()
-
-

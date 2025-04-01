@@ -8,6 +8,7 @@ against the typing tape of a suspect's typerwriter. The task was done
 by hand and it was tedious. This script should make life easier by
 automating that.
 """
+
 import itertools
 
 

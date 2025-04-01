@@ -1,22 +1,23 @@
 """
 Windows Registry Tools
 """
+
 import collections
 import contextlib
 import itertools
 import platform
 
-if platform.system() != 'Windows':
-    raise OSError('This module only works with Windows')
+if platform.system() != "Windows":
+    raise OSError("This module only works with Windows")
 
 import winreg
-
 
 RESERVED = 0
 top_nodes = dict(
     HKCU=winreg.HKEY_CURRENT_USER,
     HKEY_CURRENT_USER=winreg.HKEY_CURRENT_USER,
 )
+
 
 class Registry(collections.MutableMapping):
     def __init__(self, top_node, path):
@@ -27,17 +28,17 @@ class Registry(collections.MutableMapping):
             with self._open_key():
                 pass
         except WindowsError:
-            raise ValueError('Invalid path: {!r}'.format(path))
+            raise ValueError("Invalid path: {!r}".format(path))
 
     @classmethod
     def from_path(cls, path):
-        DRIVE_SEPARATOR = ':\\'
+        DRIVE_SEPARATOR = ":\\"
         if DRIVE_SEPARATOR not in path:
-            raise ValueError('Invalid path: {!r}'.format(path))
+            raise ValueError("Invalid path: {!r}".format(path))
         top_node, path = path.split(DRIVE_SEPARATOR)
 
         if top_node not in top_nodes:
-            raise ValueError('Invalid top node: {!r}'.format(top_node))
+            raise ValueError("Invalid top node: {!r}".format(top_node))
         top_node = top_nodes[top_node]
 
         new_registry = cls(top_node, path)
@@ -55,7 +56,7 @@ class Registry(collections.MutableMapping):
                 value, data_type = winreg.QueryValueEx(container, key)
                 return value
         except WindowsError:
-            key_path = '{}\\{}'.format(self.path, key)
+            key_path = "{}\\{}".format(self.path, key)
             raise KeyError(key_path)
 
     def __setitem__(self, key, value):
@@ -64,7 +65,9 @@ class Registry(collections.MutableMapping):
         elif isinstance(value, int):
             data_type = winreg.REG_DWORD
         else:
-            raise TypeError('Cannot handle object of type {}'.format(type(value).__name__))
+            raise TypeError(
+                "Cannot handle object of type {}".format(type(value).__name__)
+            )
 
         with self._open_key(winreg.KEY_WRITE) as container:
             winreg.SetValueEx(container, key, RESERVED, data_type, value)
@@ -88,22 +91,21 @@ class Registry(collections.MutableMapping):
             return values_count
 
 
-if __name__ == '__main__':
-    r = Registry.from_path('HKCU:\\Software\\Sandbox')
+if __name__ == "__main__":
+    r = Registry.from_path("HKCU:\\Software\\Sandbox")
 
-    r['DeleteMe'] = 1
+    r["DeleteMe"] = 1
 
-    print('--- Before')
+    print("--- Before")
     for k, v in list(r.items()):
-        print('    {} = {!r}'.format(k, v))
+        print("    {} = {!r}".format(k, v))
 
-    r['StringValue'] = 'Modified String Value'
-    r['DwordValue'] = 1234
-    del r['DeleteMe']
+    r["StringValue"] = "Modified String Value"
+    r["DwordValue"] = 1234
+    del r["DeleteMe"]
 
-    print('\n--- After')
+    print("\n--- After")
     for k, v in list(r.items()):
-        print('    {} = {!r}'.format(k, v))
-
+        print("    {} = {!r}".format(k, v))
 
     # value = r['WarnUpgrade20Save2']

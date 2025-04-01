@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" Compare 2 directories """
+"""Compare 2 directories"""
 
 import os
 import sys
@@ -20,7 +20,7 @@ def scan_dir(dir):
 
 
 def show_difference(dir, diff_set):
-    print('\nFiles that are only in {0}:'.format(dir))
+    print("\nFiles that are only in {0}:".format(dir))
     for filename in sorted(diff_set):
         print(filename)
 
@@ -35,5 +35,5 @@ def main():
     show_difference(dir2, db2 - db1)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

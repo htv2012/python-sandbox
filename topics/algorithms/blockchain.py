@@ -2,6 +2,7 @@
 """
 A crude blockchain
 """
+
 import collections
 
 

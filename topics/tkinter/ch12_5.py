@@ -7,11 +7,13 @@ from tkinter import *
 # address = None
 uri_entry = None
 
-def perform_rest() :
+
+def perform_rest():
     global uri_entry
-    print(('\n\nuri_entry: %s' % uri_entry))
+    print(("\n\nuri_entry: %s" % uri_entry))
     uri = uri_entry.get()
-    print(('uri: %s' % uri))
+    print(("uri: %s" % uri))
+
 
 root = Tk()
 Label(root, text="&URI:").grid(row=0, sticky=W)

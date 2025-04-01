@@ -3,7 +3,6 @@
 import pathlib
 import random
 
-
 picture = [
     r"""
 |---|

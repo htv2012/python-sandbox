@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Demo template."""
+
 import os
 
 from template import Template
-
 
 DOC = """
 ABOUT ME

@@ -2,36 +2,36 @@
 """
 Find all paths through a maze
 """
+
 import logging
 import os
 
+logging.basicConfig(level=os.getenv("LOGLEVEL", logging.WARN))
+logger = logging.getLogger("all_routes")
 
-logging.basicConfig(level=os.getenv('LOGLEVEL', logging.WARN))
-logger = logging.getLogger('all_routes')
 
-
-THROUGH = '1'
-BLOCKED = '0'
-TARGET = '9'
-VISITED = '2'
-PATH = '3'
+THROUGH = "1"
+BLOCKED = "0"
+TARGET = "9"
+VISITED = "2"
+PATH = "3"
 
 
 def load_maze(data):
-    return [[c for c in r.strip().split(' ')] for r in data.strip().splitlines()]
+    return [[c for c in r.strip().split(" ")] for r in data.strip().splitlines()]
 
 
 def print_maze(maze):
-    print('\n---')
+    print("\n---")
     for row in maze:
-        print(' '.join(row))
+        print(" ".join(row))
 
 
 def all_routes(maze, route):
     row, column = route[-1]
-    logger.debug('route=%r, row=%r, column=%r', route, row, column)
+    logger.debug("route=%r, row=%r, column=%r", route, row, column)
     visited = set(tuple(x) for x in route)
-    logger.debug('visited=%r', visited)
+    logger.debug("visited=%r", visited)
 
     if maze[row][column] == TARGET:
         yield route
@@ -42,7 +42,7 @@ def all_routes(maze, route):
 
     # This is a through cell
     if row > 0 and (row - 1, column) not in visited:
-        logger.debug('Go North')
+        logger.debug("Go North")
         yield from all_routes(maze, route + [(row - 1, column)])
 
     if row + 1 < len(maze) and (row + 1, column) not in visited:
@@ -72,15 +72,15 @@ def main():
 
     # All routes
     routes = all_routes(maze, [(0, 0)])
-    print('---')
+    print("---")
     for route in routes:
         print(route)
 
     # Shortest
     shortest = shortest_route(maze, 0, 0)
-    print('---')
-    print('Shortest: {} moves, path={}'.format(*shortest))
+    print("---")
+    print("Shortest: {} moves, path={}".format(*shortest))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

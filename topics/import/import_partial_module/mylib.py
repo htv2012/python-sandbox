@@ -1,7 +1,9 @@
 def greet(name):
-    print('Hello', name)
+    print("Hello", name)
+
 
 def farewell(name):
-    print('Bye,', name)
+    print("Bye,", name)
 
-print('Whole module loaded')
+
+print("Whole module loaded")

@@ -1,34 +1,34 @@
 #!/usr/bin/env python
 
+import logging
+import os
 import unittest
 
-from maze import Cell, find_path
-import yaml
 import ddt
-import os
-import logging
 from yaml2json import yaml2json
 
+from maze import Cell
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler())
 
 
-test_cases_filename_yaml = os.path.join(os.path.dirname(__file__), 'maze_test_cases.yaml')
+test_cases_filename_yaml = os.path.join(
+    os.path.dirname(__file__), "maze_test_cases.yaml"
+)
 # test_cases_filename_json = os.path.join(os.path.dirname(__file__), 'maze_test_cases.json')
 test_cases_filename_json = yaml2json(test_cases_filename_yaml)
 assert os.path.exists(test_cases_filename_json)
-
 
 
 @ddt.ddt
 class MazeTest(unittest.TestCase):
     @ddt.file_data(test_cases_filename_json)
     def test_paths(self, edges, expected_path, a, b):
-        logger.info('Entering %s', self.id())
-        logger.debug('Edges: %r', edges)
-        logger.debug('Expected Path: %r', expected_path)
+        logger.info("Entering %s", self.id())
+        logger.debug("Edges: %r", edges)
+        logger.debug("Expected Path: %r", expected_path)
         cells = [Cell(name, neighbors) for name, neighbors in list(edges.items())]
 
     # def test_same_cell(self):
@@ -81,5 +81,5 @@ class MazeTest(unittest.TestCase):
     #     self.assertEqual([start, mid[1], dest], find_path(start, dest))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

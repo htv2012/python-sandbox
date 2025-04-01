@@ -5,11 +5,12 @@ Demonstrate the use of the correction
 1. Create a separate thread to create a file after a short delay
 2. In the main thread, try to read that file until success or timed out
 """
+
 import contextlib
 import os
 
-import logger
 import flow
+import logger
 
 
 def create_contents(file_name):

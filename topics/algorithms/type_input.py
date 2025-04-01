@@ -10,7 +10,7 @@ def type_input(prompt, cast=str):
             raw_value = ask(prompt)
             value = cast(raw_value)
             return value
-        except (ValueError, TypeError) as e:
+        except (ValueError, TypeError):
             pass
 
 

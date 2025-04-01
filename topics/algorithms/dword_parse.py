@@ -2,6 +2,7 @@
 """
 Splits a DWORD into parts
 """
+
 import sys
 
 

@@ -1,8 +1,8 @@
-
 def doit():
     try:
-        return 'Do it'
+        return "Do it"
     finally:
-        print('Finally')
+        print("Finally")
+
 
 print(doit())

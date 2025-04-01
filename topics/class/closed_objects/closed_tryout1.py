@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from closed_objects import mark_as_closed, accessible_while_closed
+from closed_objects import mark_as_closed
 
 
 class User(object):

@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+
 def unique(lst):
     d = {}
     for i in lst:
@@ -12,6 +13,7 @@ def tryunique(lst):
     print("Before: ", lst)
     uniq = unique(lst)
     print("After:  ", uniq)
+
 
 print()
 print("TRY UNIQUE")

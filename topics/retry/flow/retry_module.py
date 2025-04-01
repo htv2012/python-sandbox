@@ -33,13 +33,13 @@ def _create_delay(delay):
 
 
 def retry(
-        action,
-        count=3,
-        correction=None,
-        expect=None,
-        ignore=Exception,
-        delay=None,
-        logger=None,
+    action,
+    count=3,
+    correction=None,
+    expect=None,
+    ignore=Exception,
+    delay=None,
+    logger=None,
 ):
     """
     Retries an `action` maximum `count` number of times until the expected
@@ -75,7 +75,7 @@ def retry(
 
     for trial in range(1, count + 1):
         try:
-            logger.info(f'attemp #{trial}')
+            logger.info(f"attemp #{trial}")
             result = action()
             logger.debug(f"result={result}")
             if expect(result):
@@ -85,9 +85,9 @@ def retry(
                 raise
 
         if correction:
-            logger.info(f'correction #{trial}')
+            logger.info(f"correction #{trial}")
             correction()
 
         timeout = next(delay)
-        logger.info(f'wait for {timeout} seconds')
+        logger.info(f"wait for {timeout} seconds")
         time.sleep(timeout)

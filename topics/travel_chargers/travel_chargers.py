@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """Catalog the travel chargers and cables needed."""
+
 import argparse
 import collections
 import csv
 import pathlib
-
 
 parser = argparse.ArgumentParser()
 parser.add_argument("person", nargs="*")
@@ -20,7 +20,9 @@ with open(data_path) as stream:
 
     for person, device, cable, charger in reader:
         if not options.person or person in options.person:
-            print(f"name: {person}, device: {device}, cable: {cable}, charger: {charger}")
+            print(
+                f"name: {person}, device: {device}, cable: {cable}, charger: {charger}"
+            )
             cables_count[cable] += 1
             chargers_count[charger] += 1
 
@@ -38,4 +40,3 @@ print()
 print("CHARGERS")
 for name, count in chargers_count.items():
     print(f"{count:>2} {name}")
-

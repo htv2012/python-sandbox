@@ -1,4 +1,5 @@
 import unittest
+
 from validate_parameters import validate_parameters
 
 
@@ -10,14 +11,15 @@ class OperationType(object):
     LESS_THAN = 10
 
 
-
 class ValidateEnumTests(unittest.TestCase):
     def test_valid_argument(self):
-        self._func_with_axis_range(AxisRangeType.INDEPENDENT_RANGE, OperationType.LESS_THAN)
+        self._func_with_axis_range(
+            AxisRangeType.INDEPENDENT_RANGE, OperationType.LESS_THAN
+        )
 
     def test_invalid_argument(self):
         with self.assertRaises(ValueError):
-            self._func_with_axis_range(AxisRangeType.INDEPENDENT_RANGE, 'foo')
+            self._func_with_axis_range(AxisRangeType.INDEPENDENT_RANGE, "foo")
 
     def test_invalid_parameter_validation(self):
         with self.assertRaises(LookupError):
@@ -36,6 +38,5 @@ class ValidateEnumTests(unittest.TestCase):
         pass
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

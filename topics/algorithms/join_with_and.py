@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import unittest
 import io
+import unittest
 
 
 def special_join(iterable, separator, last_separator):

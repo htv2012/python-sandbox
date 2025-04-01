@@ -18,6 +18,7 @@ def test_read_expect_error():
     with pytest.raises(ValueError):
         _read_source(1)
 
+
 def test_read_json(tmpdir):
     expected = dict(a=1, b=2)
     json_file = tmpdir / "my.json"
@@ -54,5 +55,3 @@ def test_read_yaml_file_object():
     with io.StringIO(yaml.dump(expected)) as buffer:
         actual = _read_source(buffer)
         assert actual == expected
-
-

@@ -3,6 +3,7 @@
 Convert a dictionary to object so we can use the dot notation, which is
 more convenient
 """
+
 import collections.abc
 
 

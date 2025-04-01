@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function, unicode_literals
+
 # whatis: given a 2D structure, find the neighbors of a cell
 
 

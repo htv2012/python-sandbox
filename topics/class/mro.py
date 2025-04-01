@@ -6,8 +6,6 @@ From Raymond Hettinger
 Demonstrates the MRO
 """
 
-import os
-import sys
 
 
 class Adam(object):

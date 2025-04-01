@@ -2,7 +2,6 @@
 import logging
 import os
 
-
 logging.basicConfig(level=os.getenv("LOGLEVEL", "WARN"))
 logger = logging.getLogger(__name__)
 

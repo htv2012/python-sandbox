@@ -15,13 +15,15 @@ def test_filter_comments():
     lines = ["# hello", " # hello", "\t#hello"]
     assert_that(list(filter_package(lines)), equal_to([]))
 
+
 def test_filter_dash():
     lines = ["-h", " --foo", "\t-bar"]
     assert_that(list(filter_package(lines)), equal_to([]))
 
 
 def test_real_world():
-    lines = io.StringIO(textwrap.dedent("""
+    lines = io.StringIO(
+        textwrap.dedent("""
         # Comment 1
         ipython
 
@@ -35,7 +37,8 @@ def test_real_world():
         pylint
         pyqt5
         pysnooper
-    """))
+    """)
+    )
 
     expected = [
         "ipython\n",
@@ -48,4 +51,3 @@ def test_real_world():
     ]
 
     assert_that(list(filter_package(lines)), equal_to(expected))
-

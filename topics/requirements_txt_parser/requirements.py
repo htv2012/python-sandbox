@@ -9,8 +9,9 @@ class Requirements:
             contents = stream.read()
         req = Requirements(contents)
         for dependency in req:
-            print(dependency)        
+            print(dependency)
     """
+
     def __init__(self, text=None):
         self.flags = []
         self.dependencies = []

@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Parse http file."""
+
 import base64
 import json
 import pathlib

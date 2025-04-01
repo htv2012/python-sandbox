@@ -23,12 +23,12 @@ def main():
 
     # Ignore several
     with ignore_exceptions(IndexError, KeyError):
-        print(di['c'])
+        print(di["c"])
 
     # Exceptions not ignored will still be raised
     with ignore_exceptions(KeyError):
         print(li[3])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

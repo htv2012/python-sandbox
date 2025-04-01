@@ -2,9 +2,9 @@
 """
 Archives a directory: ~/myenv to /tmp/myenv.tar.bz2
 """
+
 import pathlib
 import shutil
-
 
 archive_name = shutil.make_archive(
     base_name="/tmp/myenv",

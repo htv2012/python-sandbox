@@ -19,12 +19,12 @@ class AddSerial(object):
 
 
 def main():
-    """ Entry """
+    """Entry"""
     s = "UPPER PYTHON, Cap Python, lower python"
     new_s = re.sub("python", AddSerial(), s, flags=re.IGNORECASE)
     print("Original:  ", s)
     print("Serialized:", new_s)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

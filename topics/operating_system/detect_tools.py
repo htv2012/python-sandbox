@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Detects Python version and command-line tools."""
+
 import shutil
 import sys
 
@@ -17,7 +18,7 @@ def main():
     actual_version = f"{sys.version_info.major}.{sys.version_info.minor}"
     if actual_version != REQUIRED_PYTHON_VERSION:
         raise SystemExit(
-            f"Expected Python {REQUIRED_PYTHON_VERSION}, " f"but found {sys.version}"
+            f"Expected Python {REQUIRED_PYTHON_VERSION}, but found {sys.version}"
         )
 
     # Detect tools

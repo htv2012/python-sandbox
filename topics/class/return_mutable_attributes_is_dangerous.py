@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""" Why return a mutable attribute might be dangerous """
+"""Why return a mutable attribute might be dangerous"""
 
 
 class Car(object):

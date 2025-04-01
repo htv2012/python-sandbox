@@ -1,8 +1,7 @@
 #!/usr/bin/env python
-from hamcrest import assert_that, equal_to
 
-from version.version import _str2int
 from version import satisfied
+from version.version import _str2int
 
 
 def test_equal():

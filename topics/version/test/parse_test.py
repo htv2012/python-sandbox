@@ -46,5 +46,3 @@ def test_less_than_or_equal():
 
 def test_less_than_or_equal_with_spaces():
     assert_that(parse_package("foo <= 1.2.3"), equal_to(("foo", "<=", "1.2.3")))
-
-

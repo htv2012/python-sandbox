@@ -2,16 +2,16 @@
 """
 Use the greet.zip
 """
-from greet import greet
+
 from farewell import bye
+from greet import greet
 
 
 def main():
-    """ Entry """
+    """Entry"""
     greet("world")
     bye("world")
 
 
 if __name__ == "__main__":
     main()
-

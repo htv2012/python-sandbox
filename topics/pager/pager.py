@@ -3,8 +3,9 @@
 A way to view text or file via the system's pager.
 
 """
-import subprocess
+
 import os
+import subprocess
 
 
 def _get_pager(pager_executable: str = None):

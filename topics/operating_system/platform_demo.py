@@ -5,7 +5,9 @@ platform_demo.py
 Created by Hai Vu on 2012-10-25.
 Demo: using the platform module
 """
+
 from __future__ import print_function
+
 import platform
 
 

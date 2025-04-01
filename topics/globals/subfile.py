@@ -2,6 +2,6 @@
 
 import globals
 
+
 def stuff():
-	globals.myList.append('hey')
-	
+    globals.myList.append("hey")

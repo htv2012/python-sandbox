@@ -4,6 +4,7 @@ Data Validators
 Source: https://www.youtube.com/watch?v=S_ipdVNSFlo&ab_channel=%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9%D0%90%D0%B9%D1%82%D0%B8%D0%BF%D0%B8%D0%BF%D0%BB%D0%BE%D0%B2
 at 36:22
 """
+
 import abc
 
 
@@ -30,8 +31,7 @@ class OneOf(Validator):
     def validate(self, value):
         if value not in self.allowed:
             raise ValueError(
-                f"Expect value to be in {self.allowed}"
-                f", but got {value!r}."
+                f"Expect value to be in {self.allowed}, but got {value!r}."
             )
 
 
@@ -46,18 +46,17 @@ class Number(Validator):
 
         if self.minvalue is not None and value < self.minvalue:
             raise ValueError(
-                f"Expect value not less than {self.minvalue}"
-                f", but got {value!r}."
+                f"Expect value not less than {self.minvalue}, but got {value!r}."
             )
 
         if self.maxvalue is not None and value > self.maxvalue:
             raise ValueError(
-                f"Expect value not greater than {self.maxvalue}"
-                f", but got {value!r}."
+                f"Expect value not greater than {self.maxvalue}, but got {value!r}."
             )
 
 
 if __name__ == "__main__":
+
     class Speaker:
         topic = OneOf("python", "computing")
         sid = Number(minvalue=1001, maxvalue=1999)

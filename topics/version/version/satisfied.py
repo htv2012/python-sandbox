@@ -5,7 +5,6 @@ import os
 
 from .version import Version
 
-
 logging.basicConfig(level=os.getenv("LOGLEVEL", "WARN"))
 LOGGER = logging.getLogger(__name__)
 

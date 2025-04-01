@@ -2,29 +2,23 @@
 """
 A list of favorite songs for karaoke with search
 """
-import csv
-import locale
+
 import logging
 import os
 import pathlib
-import re
-import unicodedata
-
-from flask import Flask, render_template, request
-from flask_restful import Resource, Api
 
 # import qrcode
-
 # import network
-
 from api import Shorties
-
+from flask import Flask
+from flask_restful import Api
 
 os.environ["LOGLEVEL"] = "DEBUG"
 logging.basicConfig(level=os.getenv("LOGLEVEL", "WARN"))
 LOGGER = logging.getLogger("shortie")
 STATIC_DIR = pathlib.Path(__file__).parent.resolve() / "static"
 PORT = 3001
+
 
 def generate_url_qrcode(text, filename):
     """
@@ -36,7 +30,7 @@ def generate_url_qrcode(text, filename):
 
 app = Flask(__name__)
 api = Api(app)
-api.add_resource(Shorties, '/api', '/api/<string:short>')
+api.add_resource(Shorties, "/api", "/api/<string:short>")
 
 
 @app.route("/")

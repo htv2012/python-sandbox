@@ -1,8 +1,6 @@
-import requests
-import random
-from bs4 import BeautifulSoup
-import urllib.parse
 
+import requests
+from bs4 import BeautifulSoup
 
 url = "http://www.hdwallpapers.in"
 html = requests.get(url)
@@ -36,10 +34,11 @@ soup = BeautifulSoup(html.text)
 #     print 'URL:', newurl
 
 # List of categories:
-category = dict((a.text, a['href']) for a in soup.find_all('a') if 'wallpapers.html' in a['href'])
-from pprint import pprint
+category = dict(
+    (a.text, a["href"]) for a in soup.find_all("a") if "wallpapers.html" in a["href"]
+)
+
 # pprint(cat)
 longest = max(len(k) for k in category)
 for i in sorted(category):
-    print('{:<{w}}: {}'.format(i, category[i], w=longest))
-
+    print("{:<{w}}: {}".format(i, category[i], w=longest))

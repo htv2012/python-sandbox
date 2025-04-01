@@ -20,10 +20,11 @@ def typed_input(prompt, return_type=str, input_proc=input, retries=1):
             typed_value = return_type(raw_value)
             return typed_value
         except ValueError:
-            print('Invalid value: {!r}, try again'.format(raw_value))
+            print("Invalid value: {!r}, try again".format(raw_value))
 
-    raise ValueError('Invalid input {!r} for type {!r}'.format(
-        raw_value, return_type.__name__))
+    raise ValueError(
+        "Invalid input {!r} for type {!r}".format(raw_value, return_type.__name__)
+    )
 
 
 def float_input(prompt, input_proc=input, retries=1):
@@ -31,10 +32,9 @@ def float_input(prompt, input_proc=input, retries=1):
     This function behaves like input(), but returns a float.
     See typed_input() for parameters.
     """
-    return typed_input(prompt,
-                       return_type=float,
-                       input_proc=input_proc,
-                       retries=retries)
+    return typed_input(
+        prompt, return_type=float, input_proc=input_proc, retries=retries
+    )
 
 
 def int_input(prompt, input_proc=input, retries=1):
@@ -42,7 +42,4 @@ def int_input(prompt, input_proc=input, retries=1):
     This function behaves like input(), but returns an int.
     See typed_input() for parameters.
     """
-    return typed_input(prompt,
-                       return_type=int,
-                       input_proc=input_proc,
-                       retries=retries)
+    return typed_input(prompt, return_type=int, input_proc=input_proc, retries=retries)

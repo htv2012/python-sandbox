@@ -3,8 +3,7 @@ import logging
 import os
 import sys
 
-
-logging.basicConfig(level=os.getenv('LOGLEVEL', logging.warn))
+logging.basicConfig(level=os.getenv("LOGLEVEL", logging.warn))
 logger = logging.getLogger(__name__)
 
 
@@ -14,17 +13,16 @@ VISITED = 2
 TARGET = 9
 
 
-
 def log_satus(status, row, col):
-    logger.info('(%r, %r) %s', row, col, status)
+    logger.info("(%r, %r) %s", row, col, status)
 
 
 def write_maze(file_handle, maze):
-    file_handle.write('\n---\n')
+    file_handle.write("\n---\n")
     for row in maze:
-        file_handle.write(' '.join(str(x) for x in row))
-        file_handle.write('\n')
-    file_handle.write('\n')
+        file_handle.write(" ".join(str(x) for x in row))
+        file_handle.write("\n")
+    file_handle.write("\n")
 
 
 def print_maze(maze):
@@ -33,17 +31,17 @@ def print_maze(maze):
 
 def solve(maze, row, col):
     if maze[row][col] == TARGET:
-        log_satus('target found', row, col)
+        log_satus("target found", row, col)
         return True
     elif maze[row][col] == BLOCKED:
-        log_satus('blocked', row, col)
+        log_satus("blocked", row, col)
         return False
     elif maze[row][col] == VISITED:
-        log_satus('visited', row, col)
+        log_satus("visited", row, col)
         return False
 
     # Gets here means the cell is not visited
-    log_satus('visiting', row, col)
+    log_satus("visiting", row, col)
     maze[row][col] = VISITED
 
     # Go East
@@ -65,15 +63,9 @@ def solve(maze, row, col):
     return False
 
 
-if __name__ == '__main__':
-    maze = [
-        [1, 1, 1, 1],
-        [1, 0, 1, 1],
-        [1, 1, 0, 1],
-        [1, 1, 1, 9]
-    ]
+if __name__ == "__main__":
+    maze = [[1, 1, 1, 1], [1, 0, 1, 1], [1, 1, 0, 1], [1, 1, 1, 9]]
 
     print_maze(maze)
     print(solve(maze, 0, 0))
     print_maze(maze)
-

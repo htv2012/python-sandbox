@@ -2,8 +2,8 @@
 """
 In a markdown doc, move all the links to the bottom.
 """
-import re
 
+import re
 
 LINK_PATTERN = re.compile(
     """

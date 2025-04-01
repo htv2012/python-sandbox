@@ -3,11 +3,10 @@
 Given a directory, find the name of the python package
 """
 
-import pathlib 
 import argparse
+import pathlib
 
-
-marker = '__init__.py'
+marker = "__init__.py"
 
 
 def find_package(path_to_leaf):
@@ -18,14 +17,13 @@ def find_package(path_to_leaf):
         components.insert(0, path.name)
         path = path.parent
 
-    return '.'.join(components)
+    return ".".join(components)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('path')
+    parser.add_argument("path")
     options = parser.parse_args()
     print(find_package(options.path))
 
     path = pathlib.Path(options.path)
-

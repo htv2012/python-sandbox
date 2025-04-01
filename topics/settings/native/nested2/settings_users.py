@@ -1,3 +1,2 @@
-admin_user = 'administrator'
-admin_password = 'iforgot'
-
+admin_user = "administrator"
+admin_password = "iforgot"

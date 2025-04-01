@@ -5,7 +5,7 @@ import collections
 class OneBasedTuple(collections.abc.Sequence):
     """
     A tuple where index starts at 1 instead of the usual 0. For example:
-    
+
         names = Base1Tuple(["Alex", "Beatrice", "Carmen"])
         assert names[1] == "Alex"
         assert names[2] == "Beatrice"
@@ -13,6 +13,7 @@ class OneBasedTuple(collections.abc.Sequence):
         assert names[-1] == "Carmen"
         # names[0] or names[4] will raise an IndexError
     """
+
     def __init__(self, iterable=None):
         self._tuple = tuple(iterable or [])
 
@@ -30,7 +31,7 @@ class OneBasedTuple(collections.abc.Sequence):
             start = start - 1
         if stop > 0:
             stop -= 1
-        
+
         new_slice = slice(start, stop, step)
         return self._tuple[new_slice]
 
@@ -40,11 +41,11 @@ class OneBasedTuple(collections.abc.Sequence):
         self._validate_index(index)
         if index > 0:
             index = index - 1
-            
+
         return self._tuple[index]
-    
+
     def __iter__(self):
         return iter(self._tuple)
-    
+
     def __len__(self):
         return len(self._tuple)

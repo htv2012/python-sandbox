@@ -1,7 +1,6 @@
 import datetime
 
 from loguru import logger
-
 from rate_limiting import calls_per_second
 
 

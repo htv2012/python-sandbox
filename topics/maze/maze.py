@@ -26,6 +26,3 @@ def find_path(start, dest, seen=None):
             return [start] + path
 
     return None
-
-
-

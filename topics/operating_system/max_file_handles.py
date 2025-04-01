@@ -19,5 +19,5 @@ def get_max_file_handles():
     return max_handles
 
 
-if __name__ == '__main__':
-    print('System allow maximum of {0} file handles'.format(get_max_file_handles()))
+if __name__ == "__main__":
+    print("System allow maximum of {0} file handles".format(get_max_file_handles()))

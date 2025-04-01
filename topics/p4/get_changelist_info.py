@@ -3,14 +3,13 @@
 
 import logging
 
-
 INFO = logging.INFO
 DEBUG = logging.DEBUG
 WARNING = logging.WARNING
 
 
 def create_logger(logger_name, log_level=logging.WARNING, filename=None):
-    """ Create a logger that log to the console, if a filename is
+    """Create a logger that log to the console, if a filename is
     supplied, log to that file as well.
     """
     logger = logging.getLogger(logger_name)
@@ -24,10 +23,11 @@ def create_logger(logger_name, log_level=logging.WARNING, filename=None):
 
     # Create a file handler and set appropriate level
     if filename:
-        fh = logging.FileHandler(filename=filename, mode='w')
+        fh = logging.FileHandler(filename=filename, mode="w")
         fformatter = logging.Formatter(
-            '%(asctime)s;%(filename)s;%(lineno)d;%(levelname)s;%(message)s',
-            "%Y-%m-%d %H:%M:%S")
+            "%(asctime)s;%(filename)s;%(lineno)d;%(levelname)s;%(message)s",
+            "%Y-%m-%d %H:%M:%S",
+        )
         fh.setFormatter(fformatter)
         logger.addHandler(fh)
     return logger
@@ -44,16 +44,16 @@ def get_changelist_info(p4_describe_output):
     try:
         _, changelist, _, who, _, date_str, time_str = line.split()
     except ValueError:
-        logger.error('Failed to parse line: %r', line)
+        logger.error("Failed to parse line: %r", line)
         raise
 
     return changelist, who, date_str, time_str
 
 
-if __name__ == '__main__':
-    with open('changelist22.txt') as f:
+if __name__ == "__main__":
+    with open("changelist22.txt") as f:
         changelist, who, date_str, time_str = get_changelist_info(f)
-        logger.info('Change list: %s', changelist)
-        logger.info('Who:         %s', who)
-        logger.info('Date:        %s', date_str)
-        logger.info('Time:        %s', time_str)
+        logger.info("Change list: %s", changelist)
+        logger.info("Who:         %s", who)
+        logger.info("Date:        %s", date_str)
+        logger.info("Time:        %s", time_str)

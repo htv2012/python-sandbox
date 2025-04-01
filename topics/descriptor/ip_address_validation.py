@@ -7,15 +7,15 @@ import ipaddress
 class IPAddress:
     def __init__(self, value=None):
         self.value = self.validate(value)
-        
+
     def validate(self, value):
         if value is None:
             return value
         return ipaddress.ip_address(value)
-    
+
     def __get__(self, obj, objtype):
         return self.value
-    
+
     def __set__(self, obj, value):
         self.value = self.validate(value)
 
@@ -25,6 +25,7 @@ class Host:
 
     def __init__(self, address=None):
         self.ip_address = address
+
 
 def main():
     """Perform script."""
@@ -41,7 +42,6 @@ def main():
         host.ip_address = "192.168.1.256"
     except ValueError as error:
         print(f"ERROR: {error}")
-
 
 
 if __name__ == "__main__":

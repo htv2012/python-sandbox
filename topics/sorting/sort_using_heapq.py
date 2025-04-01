@@ -2,8 +2,8 @@
 """
 Use heapq to implement a list that is always sorted, find top N...
 """
-import heapq
 
+import heapq
 
 test_scores = [
     (95, "Jake M"),

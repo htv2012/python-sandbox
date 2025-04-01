@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Format all numbers in a text document with commas."""
+
 import re
 
 

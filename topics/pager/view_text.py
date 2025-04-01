@@ -2,6 +2,7 @@
 """
 Demo of view_text()
 """
+
 import pager
 
 

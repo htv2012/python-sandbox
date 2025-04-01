@@ -1,7 +1,9 @@
 """
 Property is slower than data member
 """
+
 from __future__ import print_function
+
 import timeit
 
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import collections
 
+
 class Tree:
     def __init__(self, data):
         self.data = data
@@ -43,12 +44,12 @@ class Tree:
         visit_function(self.data)
 
     def __repr__(self):
-        return '[{}]'.format(self.data)
+        return "[{}]".format(self.data)
 
     def print(self, handle=None, level=0):
         if self.right is not None:
             self.right.print(level=level + 1)
-        print(f'{" " * 4 * level}->({self.data})')
+        print(f"{' ' * 4 * level}->({self.data})")
         if self.left is not None:
             self.left.print(level=level + 1)
 
@@ -59,6 +60,7 @@ def _update_queue_and_grid(node, queue, grid, column_number):
     grid[column_number].append(node.data)
     if node.left or node.right:
         queue.append((node, column_number))
+
 
 def vertical(root):
     """
@@ -79,14 +81,16 @@ def vertical(root):
 
     return grid
 
+
 def _column_view(root, row_index):
     grid = vertical(root)
     for _, column in sorted(grid.items()):
         yield column[row_index]
 
+
 def top_view(root):
     return _column_view(root, row_index=0)
 
+
 def bottom_view(root):
     return _column_view(root, row_index=-1)
-

@@ -2,13 +2,14 @@
 """
 Demo: Get an item from 1Password
 """
+
 import getpass
 
 import onepassword
 
 
 def main():
-    """ Entry """
+    """Entry"""
     url = "https://my.1password.com"
     email = "haivu2004@gmail.com"
     secret_key = getpass.getpass("Enter secret key: ")

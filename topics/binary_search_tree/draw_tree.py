@@ -2,6 +2,7 @@
 """
 Draws a binary search tree and save to a file
 """
+
 import argparse
 import collections
 
@@ -21,8 +22,9 @@ def get_edges(root):
             yield node.data, node.right.data
             queue.append(node.right)
 
+
 def main():
-    """ Entry """
+    """Entry"""
     parser = argparse.ArgumentParser()
     parser.add_argument("nodes", nargs="+", type=int)
     parser.add_argument("-o", "--output", default="out.png")
@@ -36,4 +38,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

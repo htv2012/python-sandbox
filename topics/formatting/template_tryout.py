@@ -4,13 +4,13 @@ from string import Template
 
 
 def main():
-    who = 'Tim'
-    what = 'chicken'
-    template = Template('$who likes $what')
+    who = "Tim"
+    what = "chicken"
+    template = Template("$who likes $what")
 
     print(template.substitute(locals()))
-    print(template.substitute(who='Anne', what='Apple'))
+    print(template.substitute(who="Anne", what="Apple"))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

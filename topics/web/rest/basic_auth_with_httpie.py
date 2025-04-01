@@ -2,6 +2,7 @@
 """
 Demo: Basic auth with httpie (http and https commands)
 """
+
 import json
 import subprocess
 

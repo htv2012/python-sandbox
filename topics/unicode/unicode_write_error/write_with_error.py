@@ -4,5 +4,5 @@ Without the line:
 Write will fail
 """
 
-with open('out.txt', 'wb') as f:
-    f.write('Hải')
+with open("out.txt", "wb") as f:
+    f.write("Hải")

@@ -29,4 +29,3 @@ d4 = Directive("D4", my_args)
 print(d4)  # Directive(name='D3', args=[1, 2, 3])
 my_args.append(4)
 print(d4)  # Directive(name='D3', args=[1, 2, 3, 4])
-

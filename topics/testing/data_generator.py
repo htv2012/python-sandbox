@@ -2,6 +2,7 @@
 
 import itertools
 import json
+
 # import yaml
 
 
@@ -12,18 +13,20 @@ def data_generator(**kwargs):
 
 
 def repr_dict(dict_object):
-    keys_values = ', '.join('%r: %r' % (k, dict_object[k]) for k in sorted(dict_object))
-    return '{' + keys_values + '}'
+    keys_values = ", ".join("%r: %r" % (k, dict_object[k]) for k in sorted(dict_object))
+    return "{" + keys_values + "}"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     data = data_generator(
-        datasource=['relational', 'cube'],
-        sheet_type=['worksheet', 'dashboard', 'storyboard'],
-        selection=['single', 'multiple'],
+        datasource=["relational", "cube"],
+        sheet_type=["worksheet", "dashboard", "storyboard"],
+        selection=["single", "multiple"],
     )
     test_cases = {
-        '{datasource}_datasource_{selection}_selection_from_{sheet_type}'.format(**tc): tc
+        "{datasource}_datasource_{selection}_selection_from_{sheet_type}".format(
+            **tc
+        ): tc
         for tc in data
     }
 

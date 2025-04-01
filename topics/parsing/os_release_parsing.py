@@ -2,13 +2,14 @@
 """
 Uses csv to parse /etc/os-release
 """
+
 import csv
 import pathlib
 from pprint import pprint
 
 
 def main():
-    """ Entry """
+    """Entry"""
     path = pathlib.Path("/etc/os-release")
     if not path.exists():
         raise SystemExit("/etc/os-release does not exist, cannot parse")
@@ -21,4 +22,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

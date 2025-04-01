@@ -2,6 +2,7 @@
 """
 Create constants that cannot be altered
 """
+
 import collections
 
 

@@ -2,7 +2,8 @@
 """
 Demo: How to use os.fork()
 """
-import os, sys
+
+import os
 
 
 def main():
@@ -13,7 +14,8 @@ def main():
         print(f"Still in main, child pid is {pid}")
         return
 
-    print('I am the child process, pid=%d' % os.getpid())
+    print("I am the child process, pid=%d" % os.getpid())
+
 
 if __name__ == "__main__":
     main()

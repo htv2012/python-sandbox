@@ -1,8 +1,8 @@
 """
 For a dictionary, sort the keys from lowest value to highest
 """
-import operator
 
+import operator
 
 # A list of grades, not in any order
 grades = dict(John=95, Amanda=89, Jake=91, Betty=97)

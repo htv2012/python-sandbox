@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import getpass
-import pwd
 import grp
+import pwd
 
 name = getpass.getuser()
 password_entry = pwd.getpwnam(name)

@@ -2,8 +2,8 @@
 """
 Gets and parse remote date/time
 """
+
 import datetime
-import subprocess
 
 try:
     import paramiko

@@ -17,13 +17,7 @@ class User:
         return hash(self.uid)
 
     def __repr__(self):
-        return (
-            f"{self.__class__.__name__}("
-            f"uid={self.uid!r}"
-            f", "
-            f"alias={self.alias!r}"
-            f")"
-        )
+        return f"{self.__class__.__name__}(uid={self.uid!r}, alias={self.alias!r})"
 
 
 def main():

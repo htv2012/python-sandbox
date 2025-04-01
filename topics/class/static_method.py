@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-""" static method """
+"""static method"""
 
 
 class Server:

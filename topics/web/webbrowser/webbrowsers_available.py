@@ -1,32 +1,31 @@
 #!/usr/bin/env python
 import webbrowser
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     browsers = [
-        'mozilla',
-        'firefox',
-        'netscape',
-        'galeon',
-        'epiphany',
-        'skipstone',
-        'kfmclient',
-        'konqueror',
-        'kfm',
-        'mosaic',
-        'opera',
-        'grail',
-        'links',
-        'elinks',
-        'lynx',
-        'w3m',
-        'windows-default',
-        'macosx',
-        'safari',
-        'google-chrome',
-        'chrome',
-        'chromium',
-        'chromium-browser',
+        "mozilla",
+        "firefox",
+        "netscape",
+        "galeon",
+        "epiphany",
+        "skipstone",
+        "kfmclient",
+        "konqueror",
+        "kfm",
+        "mosaic",
+        "opera",
+        "grail",
+        "links",
+        "elinks",
+        "lynx",
+        "w3m",
+        "windows-default",
+        "macosx",
+        "safari",
+        "google-chrome",
+        "chrome",
+        "chromium",
+        "chromium-browser",
     ]
 
     available = {True: [], False: []}
@@ -38,13 +37,12 @@ if __name__ == '__main__':
         else:
             available[True].append(browser_name)
 
-    print('# Available')
+    print("# Available")
     for name in available[True]:
-        print(f'  {name}')
+        print(f"  {name}")
     print()
 
-    print('# Unavailable')
+    print("# Unavailable")
     for name in available[False]:
-        print(f'  {name}')
+        print(f"  {name}")
     print()
-

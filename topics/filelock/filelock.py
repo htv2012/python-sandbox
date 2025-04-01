@@ -3,6 +3,7 @@ import multiprocessing
 _locks = {}
 dict_lock = multiprocessing.Lock()
 
+
 def exclusive_access(filename):
     while True:
         with dict_lock:

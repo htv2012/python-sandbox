@@ -2,6 +2,7 @@
 """
 A Python skeleton script
 """
+
 import itertools
 
 

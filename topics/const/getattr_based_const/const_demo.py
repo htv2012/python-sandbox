@@ -8,7 +8,7 @@ def main():
     color = Const(red=1, green=2)
     print(f"{color=}")
     print(f"{color.red=}")
-    print(f"color.red==1? {color.red==1}")
+    print(f"color.red==1? {color.red == 1}")
 
     print("\n# Demo: iter")
     print(f"Is 2 in color? {2 in color}")

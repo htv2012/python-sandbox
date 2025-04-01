@@ -3,4 +3,5 @@ def coroutine(func):
         cr = func(*args, **kwargs)
         next(cr)
         return cr
+
     return start

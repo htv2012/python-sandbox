@@ -1,9 +1,9 @@
-import functools
 import types
 
 
 class Profile:
-    """ Profile a function """
+    """Profile a function"""
+
     def __init__(self, func):
         # functools.wraps(func)(self)
         self.func = func
@@ -20,13 +20,15 @@ class Profile:
         else:
             return types.MethodType(self, instance)
 
+
 @Profile
 def greet(name):
-    """ Show greetings """
-    print('Hello {name}'.format(**locals()))
+    """Show greetings"""
+    print("Hello {name}".format(**locals()))
 
-if __name__ == '__main__':
-    greet('Johnny')
-    greet('Frankie')
-    print('Greet was called {} time(s)'.format(greet.ncalls))
-    print('Doc:', greet.__doc__)
+
+if __name__ == "__main__":
+    greet("Johnny")
+    greet("Frankie")
+    print("Greet was called {} time(s)".format(greet.ncalls))
+    print("Doc:", greet.__doc__)

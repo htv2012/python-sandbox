@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """How to peek into an interable."""
+
 import itertools
 
 

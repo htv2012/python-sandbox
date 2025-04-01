@@ -4,10 +4,10 @@
 Demo the jsonquery module
 
 """
+
 import json
 
 import jsonquery
-
 
 OBJECT_UNDER_TEST = {
     "controllers": [
@@ -18,9 +18,9 @@ OBJECT_UNDER_TEST = {
                     "name": "default",
                     "partition_id": 1,
                     "partition_status": "running",
-                    "partition_info": "First partition"
+                    "partition_info": "First partition",
                 }
-            ]
+            ],
         },
         {
             "controller": 2,
@@ -29,10 +29,10 @@ OBJECT_UNDER_TEST = {
                     "name": "foo",
                     "partition_id": 2,
                     "partition_status": "disabled",
-                    "partition_info": "Backup partition"
+                    "partition_info": "Backup partition",
                 }
-            ]
-        }
+            ],
+        },
     ]
 }
 
@@ -45,7 +45,7 @@ def print_heading(heading):
 
 
 def main():
-    """ Entry """
+    """Entry"""
     print_heading("Original Object")
     print(json.dumps(OBJECT_UNDER_TEST, sort_keys=True, indent=4))
 
@@ -75,5 +75,5 @@ def main():
         print(value)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

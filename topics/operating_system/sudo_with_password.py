@@ -2,6 +2,7 @@
 """
 Demo: How to feed password to the sudo command.
 """
+
 import getpass
 import subprocess
 

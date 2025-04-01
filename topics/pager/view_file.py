@@ -2,6 +2,7 @@
 """
 Demo of view_file()
 """
+
 import pager
 
 

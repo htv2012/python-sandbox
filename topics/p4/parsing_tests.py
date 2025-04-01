@@ -21,15 +21,19 @@ class GetViewsTests(unittest.TestCase):
             "View0": "//depot/teams/data-dev/... //hvu-mac-data-dev/...",
             "View1": "//depot/private/hvu/... //hvu-mac-data-dev/private/...",
             "View2": "//depot/infrastructure/pycentral/... //hvu-mac-data-dev/pycentral/...",
-            "code": "stat"
+            "code": "stat",
         }
         actual = get_views(client_json)
         expected = [
-            ['//depot/teams/data-dev/...', '//hvu-mac-data-dev/...'],
-            ['//depot/private/hvu/...', '//hvu-mac-data-dev/private/...'],
-            ['//depot/infrastructure/pycentral/...', '//hvu-mac-data-dev/pycentral/...'],
+            ["//depot/teams/data-dev/...", "//hvu-mac-data-dev/..."],
+            ["//depot/private/hvu/...", "//hvu-mac-data-dev/private/..."],
+            [
+                "//depot/infrastructure/pycentral/...",
+                "//hvu-mac-data-dev/pycentral/...",
+            ],
         ]
         self.assertEqual(expected, actual)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

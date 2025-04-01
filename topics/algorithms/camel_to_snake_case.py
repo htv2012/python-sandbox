@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 import argparse
-import string
-import os
 import logging
-
+import os
+import string
 
 CAPS = string.ascii_uppercase
 logging.basicConfig(level=os.getenv("LOGLEVEL", logging.WARN))

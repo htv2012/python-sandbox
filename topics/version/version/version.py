@@ -18,7 +18,7 @@ def _make_equal_lengths(tuple1, tuple2):
 class Version:
     def __init__(self, version_str):
         self.version_str = version_str.strip()
-        self.version_tuple = tuple(_str2int(n) for n in self.version_str.split('.'))
+        self.version_tuple = tuple(_str2int(n) for n in self.version_str.split("."))
 
     def __repr__(self):
         return f"{self.__class__.__name__}({self.version_str!r})"

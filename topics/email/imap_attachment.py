@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # whatis: Retrieve IMAP message and extract attachment
 from __future__ import print_function, unicode_literals
+
 import argparse
-import sys
-import os
-import getopt
-import imaplib
 import email
+import imaplib
 import mimetypes
+import os
+import sys
 
 
 def downloadInboxMessage(server, port, user, password, messageNumber):
@@ -29,25 +29,25 @@ def downloadInboxMessage(server, port, user, password, messageNumber):
     imap = imaplib.IMAP4(server, port)
     imap.login(user, password)
     imap.select()
-    status, data = imap.fetch(messageNumber, '(RFC822)')
+    status, data = imap.fetch(messageNumber, "(RFC822)")
     messageText = data[0][1]
     return messageText
 
 
 def getDefaultFilename(contentType, counter):
-    if (contentType == 'text/plain'):
-        ext = '.txt'
+    if contentType == "text/plain":
+        ext = ".txt"
     else:
         ext = mimetypes.guess_extension(contentType)
 
     if not ext:
-        ext = '.wav'
+        ext = ".wav"
 
-    filename = 'part-%03d%s' % (counter, ext)
+    filename = "part-%03d%s" % (counter, ext)
     return filename
 
 
-def saveAttachments(messageText, outputDir='.'):
+def saveAttachments(messageText, outputDir="."):
     """
     Description:
         Givine a message, extract, decode, and save the attachmentsA to
@@ -69,7 +69,7 @@ def saveAttachments(messageText, outputDir='.'):
     counter = 1
     for part in msg.walk():
         # Multipart are just containers
-        if part.get_content_maintype() == 'multipart':
+        if part.get_content_maintype() == "multipart":
             continue
 
         # Grab the filename
@@ -77,15 +77,14 @@ def saveAttachments(messageText, outputDir='.'):
 
         # If we cannot retrieve the file name, make something up
         if not filename:
-            filename = getDefaultFilename(part.get_content_type(),
-                                          counter);
+            filename = getDefaultFilename(part.get_content_type(), counter)
 
         # Add directory to the filename
         filename = os.path.join(outputDir, filename)
         print(">>>filename:%s<<<" % (filename))
 
         # Save the attachment
-        outFile = open(filename, 'wb')
+        outFile = open(filename, "wb")
         outFile.write(part.get_payload(decode=True))
         outFile.close()
 
@@ -98,17 +97,16 @@ def usage():
     Displays the usage
     """
     scriptName = os.path.split(sys.argv[0])[1]
-    print('\n%s -- download IMAP message, then decode the attachments' \
-          % scriptName)
-    print('\nUsage:')
-    print('  %s [options]')
-    print('\nOptions:')
-    print('  -s, --server        <server name or IP>')
-    print('  -t, --port          <port number>')
-    print('  -u, --user          <user name>')
-    print('  -p, -password       <login password>')
-    print('  -m, -message-number <1, 2, .. last>')
-    print('  -o, -output-dir     <where to save attachments to')
+    print("\n%s -- download IMAP message, then decode the attachments" % scriptName)
+    print("\nUsage:")
+    print("  %s [options]")
+    print("\nOptions:")
+    print("  -s, --server        <server name or IP>")
+    print("  -t, --port          <port number>")
+    print("  -u, --user          <user name>")
+    print("  -p, -password       <login password>")
+    print("  -m, -message-number <1, 2, .. last>")
+    print("  -o, -output-dir     <where to save attachments to")
     print()
 
 
@@ -117,34 +115,35 @@ def get_arguments():
     Parse the command line and return a argparse.Namespace object
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument('server', help='Server name or IP')
-    parser.add_argument('port', help='Port number')
-    parser.add_argument('user', help='Login user name')
-    parser.add_argument('password', help='Login password')
-    parser.add_argument('message_number', help='Message number')
+    parser.add_argument("server", help="Server name or IP")
+    parser.add_argument("port", help="Port number")
+    parser.add_argument("user", help="Login user name")
+    parser.add_argument("password", help="Login password")
+    parser.add_argument("message_number", help="Message number")
     parser.add_argument(
-            '-o', '--output-dir',
-            default='.',
-            help='Where to save attachment')
+        "-o", "--output-dir", default=".", help="Where to save attachment"
+    )
     arguments = parser.parse_args()
     return arguments
 
 
 def main():
-    """ Script Entry """
+    """Script Entry"""
     arguments = get_arguments()
     try:
         msg = downloadInboxMessage(
-                arguments.server,
-                arguments.port,
-                arguments.user,
-                arguments.password,
-                arguments.message_number)
+            arguments.server,
+            arguments.port,
+            arguments.user,
+            arguments.password,
+            arguments.message_number,
+        )
         saveAttachments(msg, arguments.output_dir)
         return 0
     except Exception as exc:
         print(exc)
         return 1
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     sys.exit(main())
