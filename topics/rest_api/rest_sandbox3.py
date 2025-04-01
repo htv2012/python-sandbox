@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-from jq import jq
+import rich
+
 from rest_api import Endpoint, create_session
 
 
@@ -10,7 +11,7 @@ def main():
     ep = Endpoint("https://httpbin.org")
     r = api.get(ep("/get"))
     print(r)
-    jq(r.json())
+    rich.print_json(data=r.json(), indent=4)
 
 
 if __name__ == "__main__":

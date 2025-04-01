@@ -29,8 +29,10 @@ class Endpoint:
 
 
 class Api:
-    def __init__(self, session: requests.Session, endpoint: Endpoint):
-        self.session = session
+    def __init__(self, endpoint: Endpoint, session: requests.Session = None):
+        self.session = session or create_session()
+        if isinstance(endpoint, str):
+            endpoint = Endpoint(endpoint)
         self.ep = endpoint
 
     def get(self, url, **kwargs):

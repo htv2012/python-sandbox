@@ -1,11 +1,11 @@
-from jq import jq
-from rest_api import Api, Endpoint, create_session
+#!/usr/bin/env python3
+import rich
 
-session = create_session()
-endpoint = Endpoint("https://httpbin.org/")
-api = Api(session=session, endpoint=endpoint)
+from rest_api import Api
 
-print(f"\n# GET {endpoint('/get')}")
+api = Api("https://httpbin.org/")
+
+print("\n# GET /get")
 resp = api.get("/get")
 print(resp)
-jq(resp.json())
+rich.print_json(data=resp.json(), indent=4)
