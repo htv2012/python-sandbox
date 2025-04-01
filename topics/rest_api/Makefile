@@ -11,9 +11,9 @@ lint:
 
 ### Run the project
 run: lint
-	uv run rest_sandbox.py
-	uv run rest_sandbox2.py
-	uv run rest_sandbox3.py
+	uv run samples/rest_sandbox.py
+	uv run samples/rest_sandbox2.py
+	uv run samples/rest_sandbox3.py
 
 ### Run unit tests
 test: lint
