@@ -1,7 +1,9 @@
+import io
 from collections import defaultdict
 
 COLS = "ABCDEFGHIJ"
 ROWS = "1234567890"
+IDS = "01234"
 
 MARK_EMPTY = " "
 MARK_HIT = "x"
@@ -14,7 +16,7 @@ class ShipBoard:
         self.grid = defaultdict(lambda: MARK_EMPTY)
         self.health = {}
         self.ship = {}
-        self.ids = iter(range(5))
+        self.ids = iter(IDS)
 
     def add(self, *ship):
         # TODO: Validate each coordinate, flag such coordinate as A13, or X2
@@ -35,3 +37,21 @@ class ShipBoard:
         self.health[ship_id] -= 1
         self.grid[coord] = MARK_SUNK if self.health[ship_id] == 0 else MARK_HIT
         return self.grid[coord]
+
+    def __str__(self):
+        buf = io.StringIO()
+        buf.write("SHIPS\n\n")
+        buf.write("  │ A │ B │ C │ D │ E │ F │ G │ H │ I │ J │\n")
+        buf.write("──┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───│\n")
+
+        for row in ROWS:
+            buf.write(f"{row} │")
+            for col in COLS:
+                buf.write(f" {self.grid[col + row]} │")
+            buf.write("\n")
+            if row == "0":
+                buf.write("──┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘\n")
+            else:
+                buf.write("──┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───│\n")
+
+        return buf.getvalue()
