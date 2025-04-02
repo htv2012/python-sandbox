@@ -1,13 +1,22 @@
 import io
 
+from .player import Player
 from .ship_board import ShipBoard
 from .target_board import TargetBoard
 
 
 class GameBoard:
-    def __init__(self):
-        self.ship = ShipBoard()
-        self.target = TargetBoard()
+    def __init__(
+        self,
+        ship: ShipBoard = None,
+        target: TargetBoard = None,
+        player1: Player = None,
+        player2: Player = None,
+    ):
+        self.ship = ship or ShipBoard()
+        self.target = target or TargetBoard()
+        self.player1 = player1
+        self.player2 = player2
 
     def __str__(self):
         buf = io.StringIO()
