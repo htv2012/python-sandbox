@@ -1,44 +1,38 @@
-from loguru import logger
-
-
 def jump_table(pattern: str):
     pattern = pattern
     table = {}
-    longest = len(pattern)
+    pat_len = len(pattern)
 
     for index, ch in enumerate(pattern):
-        table[ch] = longest - 1 - index
+        table[ch] = pat_len - 1 - index
     del table[pattern[-1]]
 
     def calculate_jump(ch: str) -> int:
-        nonlocal longest
+        nonlocal pat_len
         nonlocal table
-        return table.get(ch, longest)
+        return table.get(ch, pat_len)
 
     return calculate_jump
 
 
 def match(src: str, pat: str) -> int:
+    """
+    Boyer-Moore string matching algorithm
+    https://youtu.be/4Oj_ESzSNCk?si=JEmgLMcNkx5fjrm-
+    """
     if pat == "":
         raise ValueError("Pattern cannot be empty")
 
     jump = jump_table(pat)
     found_index = 0
-    longest = len(pat)
+    pat_len = len(pat)
+    src_len = len(src)
 
-    while found_index < len(src):
-        bad = src[found_index + longest - 1]
-        logger.debug(f"{found_index=}, {bad=}")
-        for index in reversed(range(longest)):
+    while (last_mismatch_index := found_index + pat_len - 1) < src_len:
+        for index in reversed(range(pat_len)):
             if src[found_index + index] != pat[index]:
-                logger.debug(
-                    f"mismatched at {src[found_index + index]=} and {pat[index]=}"
-                )
-                skip = jump(bad)
-                logger.debug(f"{skip=}")
-                found_index += skip
-                logger.debug(f"{found_index=}")
+                found_index += jump(src[last_mismatch_index])
                 break
         else:
             return found_index
-    raise ValueError()
+    raise ValueError(f"Pattern not found: {pat}")
