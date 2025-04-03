@@ -1,4 +1,6 @@
+# import pudb
 from loguru import logger
+
 
 def jump_table(pattern: str):
     pattern = pattern
@@ -17,16 +19,25 @@ def jump_table(pattern: str):
     return calculate_jump
 
 
-def match(src: str, pat: str) -> index:
+def match(src: str, pat: str) -> int:
     jump = jump_table(pat)
     found_index = 0
     longest = len(pat)
+    # pudb.set_trace()
 
     while found_index < len(src):
-        bad = src[found_index + longest]
-        logger.debug(f'{found_index=}, {bad=}')
+        bad = src[found_index + longest - 1]
+        logger.debug(f"{found_index=}, {bad=}")
         for index in reversed(range(longest)):
             if src[found_index + index] != pat[index]:
-                logger.debug(f'mismatched at {src
-
-
+                logger.debug(
+                    f"mismatched at {src[found_index + index]=} and {pat[index]=}"
+                )
+                skip = jump(bad)
+                logger.debug(f"{skip=}")
+                found_index += skip
+                logger.debug(f"{found_index=}")
+                break
+        else:
+            return found_index
+    raise ValueError()
