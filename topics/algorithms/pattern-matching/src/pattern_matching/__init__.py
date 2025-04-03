@@ -1,3 +1,5 @@
+from loguru import logger
+
 def jump_table(pattern: str):
     pattern = pattern
     table = {}
@@ -13,3 +15,18 @@ def jump_table(pattern: str):
         return table.get(ch, longest)
 
     return calculate_jump
+
+
+def match(src: str, pat: str) -> index:
+    jump = jump_table(pat)
+    found_index = 0
+    longest = len(pat)
+
+    while found_index < len(src):
+        bad = src[found_index + longest]
+        logger.debug(f'{found_index=}, {bad=}')
+        for index in reversed(range(longest)):
+            if src[found_index + index] != pat[index]:
+                logger.debug(f'mismatched at {src
+
+
