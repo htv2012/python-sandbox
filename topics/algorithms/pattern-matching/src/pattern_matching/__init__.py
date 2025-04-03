@@ -20,6 +20,9 @@ def jump_table(pattern: str):
 
 
 def match(src: str, pat: str) -> int:
+    if pat == "":
+        raise ValueError("Pattern cannot be empty")
+
     jump = jump_table(pat)
     found_index = 0
     longest = len(pat)

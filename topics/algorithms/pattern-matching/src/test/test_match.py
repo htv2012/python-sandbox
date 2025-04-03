@@ -18,6 +18,7 @@ def test_match(haystack, needle, expected):
     ["haystack", "needle"],
     [
         pytest.param("abc", "kbc", id="not_found"),
+        pytest.param("abcdef", "", id="empty_pattern"),
     ],
 )
 def test_not_match(haystack, needle):
