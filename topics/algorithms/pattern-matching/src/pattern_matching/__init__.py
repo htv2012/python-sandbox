@@ -1,4 +1,3 @@
-# import pudb
 from loguru import logger
 
 
@@ -26,7 +25,6 @@ def match(src: str, pat: str) -> int:
     jump = jump_table(pat)
     found_index = 0
     longest = len(pat)
-    # pudb.set_trace()
 
     while found_index < len(src):
         bad = src[found_index + longest - 1]
