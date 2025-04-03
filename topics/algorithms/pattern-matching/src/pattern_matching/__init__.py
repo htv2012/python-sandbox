@@ -1,3 +1,5 @@
+from loguru import logger
+
 def jump_table(pattern: str):
     pattern = pattern
     table = {}
