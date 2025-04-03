@@ -13,10 +13,6 @@ def jump_table(pattern: str):
         return table.get(ch, pat_len)
 
     return calculate_jump
-def match(src: str, pat: str) -> int:
-    if pat == "":
-        raise ValueError("Pattern cannot be empty")
-
 
 
 def match(src: str, pat: str) -> int:
@@ -35,8 +31,7 @@ def match(src: str, pat: str) -> int:
     while (last_mismatch_index := found_index + pat_len - 1) < src_len:
         for index in reversed(range(pat_len)):
             if src[found_index + index] != pat[index]:
-                skip = jump(bad)
-                found_index += skip
+                found_index += jump(src[last_mismatch_index])
                 break
         else:
             return found_index
