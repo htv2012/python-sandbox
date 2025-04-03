@@ -27,3 +27,5 @@ class GameBoard:
             buf.write("\n")
 
         return buf.getvalue()
+
+    def start(self):
