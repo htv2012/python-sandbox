@@ -1,4 +1,6 @@
+# import pudb
 from loguru import logger
+
 
 def jump_table(pattern: str):
     pattern = pattern
@@ -19,12 +21,16 @@ def match(src: str, pat: str) -> int:
     if pat == "":
         raise ValueError("Pattern cannot be empty")
 
+
+
+def match(src: str, pat: str) -> int:
     jump = jump_table(pat)
     found_index = 0
     longest = len(pat)
 
     while found_index < len(src):
         bad = src[found_index + longest - 1]
+        logger.debug(f"{found_index=}, {bad=}")
         for index in reversed(range(longest)):
             if src[found_index + index] != pat[index]:
                 skip = jump(bad)
