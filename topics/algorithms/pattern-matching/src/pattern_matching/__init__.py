@@ -1,20 +1,3 @@
-def jump_table(pattern: str):
-    pattern = pattern
-    table = {}
-    pat_len = len(pattern)
-
-    for index, ch in enumerate(pattern):
-        table[ch] = pat_len - 1 - index
-    del table[pattern[-1]]
-
-    def calculate_jump(ch: str) -> int:
-        nonlocal pat_len
-        nonlocal table
-        return table.get(ch, pat_len)
-
-    return calculate_jump
-
-
 def match(src: str, pat: str) -> int:
     """
     Boyer-Moore string matching algorithm
@@ -23,15 +6,20 @@ def match(src: str, pat: str) -> int:
     if pat == "":
         raise ValueError("Pattern cannot be empty")
 
-    jump = jump_table(pat)
-    found_index = 0
+    # Create bad jump table
     pat_len = len(pat)
     src_len = len(src)
+    table = {}
+    for index, ch in enumerate(pat):
+        table[ch] = pat_len - index - 1
+    del table[ch]
 
+    # Scan/compre from right to left
+    found_index = 0
     while (last_mismatch_index := found_index + pat_len - 1) < src_len:
-        for index in reversed(range(pat_len)):
+        for index in range(pat_len - 1, -1, -1):
             if src[found_index + index] != pat[index]:
-                found_index += jump(src[last_mismatch_index])
+                found_index += table.get(src[last_mismatch_index], pat_len)
                 break
         else:
             return found_index
