@@ -10,13 +10,11 @@ class GameBoard:
         self,
         ship: ShipBoard = None,
         target: TargetBoard = None,
-        player1: Player = None,
-        player2: Player = None,
+        player: Player = None,
     ):
         self.ship = ship or ShipBoard()
         self.target = target or TargetBoard()
-        self.player1 = player1
-        self.player2 = player2
+        self.player = player
 
     def __str__(self):
         buf = io.StringIO()
@@ -29,3 +27,4 @@ class GameBoard:
         return buf.getvalue()
 
     def start(self):
+        pass

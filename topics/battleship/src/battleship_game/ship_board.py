@@ -39,7 +39,7 @@ class ShipBoard:
         buf = io.StringIO()
         buf.write("SHIPS".ljust(const.BOARD_WIDTH))
         buf.write("\n\n")
-        buf.write("  │ A │ B │ C │ D │ E │ F │ G │ H │ I │ J │\n")
+        buf.write("  │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │ 9 │ 0 │\n")
         buf.write("──┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───│\n")
 
         for row in const.ROWS:
