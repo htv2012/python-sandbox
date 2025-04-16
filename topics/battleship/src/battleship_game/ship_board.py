@@ -45,9 +45,9 @@ class ShipBoard:
         for row in const.ROWS:
             buf.write(f"{row} │")
             for col in const.COLS:
-                buf.write(f" {self.grid[col + row]} │")
+                buf.write(f" {self.grid[row + col]} │")
             buf.write("\n")
-            if row == "0":
+            if row == "J":
                 buf.write("──┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘\n")
             else:
                 buf.write("──┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───│\n")
