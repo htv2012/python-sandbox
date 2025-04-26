@@ -24,10 +24,11 @@ class Config(enum.Enum):
 
 
 def main():
+    cwd = pathlib.Path.cwd()
     config = Config.TESTBED
-    print(config)
-    print(config.path)
-    print(config.cfg)
+    print(f"{config=}")
+    print(f"config.path={config.path.relative_to(cwd)}")
+    print(f"{config.cfg=}")
 
 
 if __name__ == "__main__":
