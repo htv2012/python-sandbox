@@ -2,8 +2,10 @@
 """
 Use enum with argparse
 """
+
 import argparse
 import enum
+
 
 class Transport(enum.StrEnum):
     HTTPS = "https"
@@ -17,11 +19,11 @@ class Transport(enum.StrEnum):
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    "-t", "--transport",
+    "-t",
+    "--transport",
     type=Transport,
     default="https",
     choices=[t.value for t in Transport],
 )
 options = parser.parse_args()
 print(options)
-
