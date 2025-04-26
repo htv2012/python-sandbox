@@ -8,22 +8,17 @@ import enum
 
 
 class Transport(enum.StrEnum):
+    HTTP = "http"
     HTTPS = "https"
     SSH = "ssh"
 
-    @classmethod
-    def _missing_(cls, value: str):
-        """Case-insensitive lookup value"""
-        return cls(value.lower())
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-t", type=Transport, default="https", choices=Transport)
+    options = parser.parse_args()
+    print(f"Transport: {options.t!r}")
 
 
-parser = argparse.ArgumentParser()
-parser.add_argument(
-    "-t",
-    "--transport",
-    type=Transport,
-    default="https",
-    choices=[t.value for t in Transport],
-)
-options = parser.parse_args()
-print(options)
+if __name__ == "__main__":
+    main()

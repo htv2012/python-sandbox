@@ -1,9 +1,6 @@
 demo:
-	./main.py         # Without args
-	@echo ""
-	./main.py -t ssh  # Exact case
-	@echo ""
-	./main.py -t SSH  # Case insensitive
-	@echo ""
+	./main.py
+	./main.py -t ssh
+	./main.py -t http
 	./main.py -h
 
