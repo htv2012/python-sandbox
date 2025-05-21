@@ -5,9 +5,9 @@ all: lint test run
 
 ### Perform static analysis
 lint:
-	uv tool run ruff check --select I --fix .
-	uv tool run ruff format .
-	uv tool run ruff check . --fix
+	uv run ruff check --select I --fix .
+	uv run ruff format .
+	uv run ruff check . --fix
 
 ### Run the project
 run: lint
@@ -24,6 +24,3 @@ clean:
 	uv clean
 	rm -fr .ruff_cache .venv
 
-### Install this tool locally
-install:
-	uv tool install --upgrade .

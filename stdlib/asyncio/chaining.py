@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # whatis: We can chain async coroutines together using the await keyword
 import asyncio
+import random
 
 
 async def make_soup():
@@ -13,6 +14,7 @@ async def make_soup():
 
 async def harvest(veggie):
     print(f"Harvesting {veggie}")
+    await asyncio.sleep(random.randint(1, 4))
     return veggie
 
 

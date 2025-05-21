@@ -1,5 +1,5 @@
 [project]
-name = "dynamic-subcommands"
+name = "battleship-game"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -7,12 +7,10 @@ authors = [
     { name = "Hai Vu", email = "haivu2004@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = [
-    "click>=8.1.8",
-]
+dependencies = []
 
 [project.scripts]
-dynamic-subcommands = "dynamic_subcommands:main"
+battleship-game = "battleship_game:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -20,6 +18,7 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
-    "pytest>=8.3.5",
-    "ruff>=0.11.7",
+    "ipython>=9.0.2",
+    "pytest-dotenv>=0.5.2",
+    "ruff>=0.11.2",
 ]

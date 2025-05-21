@@ -2,6 +2,7 @@
 import asyncio
 import logging
 import os
+import random
 
 logging.basicConfig(
     level=os.getenv("LOGLEVEL", "INFO"),
@@ -11,21 +12,21 @@ logging.basicConfig(
 
 async def brew_coffee():
     logging.info("Brewing coffee")
-    await asyncio.sleep(2)
+    await asyncio.sleep(random.randint(1, 5))
     logging.info("Coffee is ready")
     return "coffee"
 
 
 async def toast():
     logging.info("Toasting bread")
-    await asyncio.sleep(3)
+    await asyncio.sleep(random.randint(1, 5))
     logging.info("Toast is ready")
     return "toast"
 
 
 async def fry_eggs():
     logging.info("Frying eggs")
-    await asyncio.sleep(5)
+    await asyncio.sleep(random.randint(1, 5))
     logging.info("Eggs are ready")
     return "frieg eggs"
 
