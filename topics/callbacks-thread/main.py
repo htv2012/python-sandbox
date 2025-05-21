@@ -4,7 +4,7 @@ import time
 from loguru import logger
 
 
-class Callback:
+class Callbacks:
     def worker(self):
         logger.info("Start worker")
         while True:
@@ -27,7 +27,35 @@ class Callback:
         logger.info("post_hook")
 
 
-def hookup(callback: Callback):
+class Callbacks2:
+    def pre_hook(self):
+        logger.info("pre_hook2")
+
+    def in_hook(self):
+        logger.info("in_hook2")
+
+    def post_hook(self):
+        logger.info("post_hook2")
+
+
+class CallbacksChain:
+    def __init__(self, *others):
+        self.others = others
+
+    def pre_hook(self):
+        for cb in self.others:
+            cb.pre_hook()
+
+    def in_hook(self):
+        for cb in self.others:
+            cb.in_hook()
+
+    def post_hook(self):
+        for cb in self.others:
+            cb.post_hook()
+
+
+def hookup(callback: Callbacks):
     logger.info("Start hookup")
     time.sleep(1)
     callback.pre_hook()
@@ -43,7 +71,11 @@ def hookup(callback: Callback):
 
 def main():
     logger.info("Start main")
-    hookup(Callback())
+    cb1 = Callbacks()
+    cb2 = Callbacks2()
+    chain = CallbacksChain(cb1, cb2)
+
+    hookup(chain)
     logger.info("End main")
 
 
