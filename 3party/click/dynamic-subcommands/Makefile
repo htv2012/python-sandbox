@@ -11,9 +11,14 @@ lint:
 
 ### Run the project
 run: lint
-	uv run dynamic-subcommands
-	uv run dynamic-subcommands put
-	uv run dynamic-subcommands get
+	@echo ""
+	uv run dysub put
+	@echo ""
+	uv run dysub get
+	@echo ""
+	uv run dysub get-status
+	@echo ""
+	uv run dysub show root
 
 ### Run unit tests
 test: lint

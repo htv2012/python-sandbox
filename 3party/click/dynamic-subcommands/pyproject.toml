@@ -12,7 +12,7 @@ dependencies = [
 ]
 
 [project.scripts]
-dynamic-subcommands = "dynamic_subcommands:main"
+dysub = "dynamic_subcommands:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -20,6 +20,7 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
+    "ipython>=9.3.0",
     "pytest>=8.3.5",
     "ruff>=0.11.7",
 ]

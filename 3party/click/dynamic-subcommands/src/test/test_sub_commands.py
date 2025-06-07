@@ -12,8 +12,7 @@ def test_subcommand(runner, subcommand):
     argnames=["subcmd"],
     argvalues=[
         ("foo",),
-        ("pu",),
-        ("ge",),
+        ("bar",),
     ],
 )
 def test_invalid_subcommand(runner, subcmd):

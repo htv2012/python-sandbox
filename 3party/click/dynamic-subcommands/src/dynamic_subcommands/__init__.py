@@ -7,30 +7,35 @@ import click
 __all__ = ["main"]
 
 
-class Api:
-    def get(self):
-        click.echo("Get is under construction")
-
-    def put(self):
-        click.echo("Put is under construction")
-
-
 class MyGroup(click.Group):
+    """Group the sub commands
+
+    - The file names will be command name, e.g. show_status.py -> show-status
+    - In each file, the main function will be the sub command
+    - File names which start with underscore will be ignore. They are mean for support.
+    """
+
     def list_commands(self, ctx: click.Context):
         root = pathlib.Path(__file__).parent / "commands"
-        commands = [path.stem.removeprefix("cmd_") for path in root.glob("cmd_*.py")]
+        commands = [
+            path.stem.replace("_", "-")
+            for path in root.glob("*.py")
+            if not path.stem.startswith("_")
+        ]
         return sorted(commands)
 
     def get_command(self, ctx: click.Context, name):
         try:
-            mod = importlib.import_module(f"dynamic_subcommands.commands.cmd_{name}")
+            mod_name = name.replace("-", "_")
+            mod = importlib.import_module(f"dynamic_subcommands.commands.{mod_name}")
             return mod.main
         except ModuleNotFoundError:
-            ctx.fail(f"There is no command: {name}")
+            ctx.fail(f"Cannot load command: {name}")
 
 
 @click.command(cls=MyGroup)
+@click.option("-v", "--verbose", is_flag=True, default=False)
 @click.pass_context
-def main(ctx: click.Context):
+def main(ctx: click.Context, verbose):
     ctx.ensure_object(types.SimpleNamespace)
-    ctx.obj.api = Api()
+    ctx.obj.verbose = verbose
