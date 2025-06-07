@@ -10,7 +10,8 @@ from click.testing import CliRunner
 def _get_subcommands():
     """Get a list of subcommands from the commands/*.py files"""
     test_dir = pathlib.Path(__file__).parent
-    commands_dir = test_dir.parent / "dynamic_subcommands" / "commands"
+    commands_dir = test_dir.parent / "plugins"
+    print(f"{commands_dir=}")
     commands_list = sorted(
         path.stem.replace("_", "-")
         for path in commands_dir.glob("*.py")

@@ -1,5 +1,6 @@
 import importlib
 import pathlib
+import sys
 import types
 
 import click
@@ -16,25 +17,36 @@ class MyGroup(click.Group):
     - File names which start with underscore will be ignore. They are mean for support.
     """
 
+    def __init__(self, name=None, plugins_dir=None, **kwargs):
+        super().__init__(name=name, **kwargs)
+        if plugins_dir is None:
+            raise ValueError("plugins_dir cannot be None")
+        self.plugins_dir = plugins_dir
+
     def list_commands(self, ctx: click.Context):
-        root = pathlib.Path(__file__).parent / "commands"
         commands = [
             path.stem.replace("_", "-")
-            for path in root.glob("*.py")
+            for path in self.plugins_dir.glob("*.py")
             if not path.stem.startswith("_")
         ]
         return sorted(commands)
 
     def get_command(self, ctx: click.Context, name):
+        sys.path.insert(0, str(self.plugins_dir))
         try:
             mod_name = name.replace("-", "_")
-            mod = importlib.import_module(f"dynamic_subcommands.commands.{mod_name}")
+            mod = importlib.import_module(mod_name)
             return mod.main
         except ModuleNotFoundError:
             ctx.fail(f"Cannot load command: {name}")
+        finally:
+            del sys.path[0]
 
 
-@click.command(cls=MyGroup)
+PLUGINS_DIR = pathlib.Path(__file__).parent.parent / "plugins"
+
+
+@click.command(cls=MyGroup, plugins_dir=PLUGINS_DIR)
 @click.option("-v", "--verbose", is_flag=True, default=False)
 @click.version_option(version=__version__)
 @click.pass_context
