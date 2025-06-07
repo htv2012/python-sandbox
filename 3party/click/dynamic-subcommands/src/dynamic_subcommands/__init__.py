@@ -5,6 +5,7 @@ import types
 import click
 
 __all__ = ["main"]
+__version__ = "1.0.0"
 
 
 class MyGroup(click.Group):
@@ -35,6 +36,7 @@ class MyGroup(click.Group):
 
 @click.command(cls=MyGroup)
 @click.option("-v", "--verbose", is_flag=True, default=False)
+@click.version_option(version=__version__)
 @click.pass_context
 def main(ctx: click.Context, verbose):
     ctx.ensure_object(types.SimpleNamespace)
