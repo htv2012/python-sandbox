@@ -15,11 +15,7 @@ lint:
 ### Run the project
 run: lint
 	@echo ""
-	uv run main.py login --help
-	@echo ""
 	uv run main.py login -s server1 -p 8888 -u user1 -k /tmp/private.key
-	@echo ""
-	uv run main.py ping --help
 	@echo ""
 	uv run main.py ping -s server1 -p 8888
 
