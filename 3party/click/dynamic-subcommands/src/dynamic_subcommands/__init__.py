@@ -17,10 +17,8 @@ class MyGroup(click.Group):
     - File names which start with underscore will be ignore. They are mean for support.
     """
 
-    def __init__(self, name=None, plugins_dir=None, **kwargs):
-        super().__init__(name=name, **kwargs)
-        if plugins_dir is None:
-            raise ValueError("plugins_dir cannot be None")
+    def __init__(self, plugins_dir, **kwargs):
+        super().__init__(**kwargs)
         self.plugins_dir = plugins_dir
 
     def list_commands(self, ctx: click.Context):
