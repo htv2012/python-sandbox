@@ -9,8 +9,8 @@ import click
 
 
 class RunType(str, enum.Enum):
-    MANUAL = "manual"
-    NIGHTLY = "nightly"
+    MANUAL = "manual runtime"
+    NIGHTLY = "nightly runtime"
 
 
 @dataclasses.dataclass(frozen=True)
@@ -58,7 +58,7 @@ class CarParam(click.ParamType):
 
 @click.group
 @click.option("-v", "--verbose", is_flag=True, default=False)
-@click.option("-c", "--confirm", type=click.BOOL)
+@click.option("-c", "--confirm", type=click.BOOL, help="Is confirmation required")
 @click.option("-d", "--date", type=click.DateTime(), default=datetime.datetime.today())
 @click.option(
     "-D",
@@ -73,29 +73,51 @@ class CarParam(click.ParamType):
     ),
     default=pathlib.Path(".").resolve(),
 )
-@click.option("-r", "--run-type", type=click.Choice(RunType, case_sensitive=False))
+@click.option(
+    "-r",
+    "--run-type",
+    type=click.Choice(RunType, case_sensitive=False),
+    help="Run type",
+)
 @click.option("-s", "--server", type=SshServer.from_str)
 @click.option("-t", "--transport", type=CarParam())
 @click.pass_context
-def main(ctx, verbose):
+def zt(ctx, verbose, run_type, server, transport, root_dir, confirm, date):
     """Entry point"""
     ctx.ensure_object(SimpleNamespace)
     ctx.obj.verbose = verbose
+    ctx.obj.run_type = run_type
+    ctx.obj.server = server
+    ctx.obj.transport = transport
+    ctx.obj.root_dir = root_dir
+    ctx.obj.confirm = confirm
+    ctx.obj.date = date
 
 
-@main.command
+def show_obj(obj):
+    print(f"run_type: {obj.run_type!r}")
+    print(f"server: {obj.server!r}")
+    print(f"transport: {obj.transport!r}")
+    print(f"root_dir: {obj.root_dir!r}")
+    print(f"confirm: {obj.confirm!r}")
+    print(f"date: {obj.date!r}")
+
+
+@zt.command
+@click.option("-o", "--outfile")
 @click.pass_context
-def foo(ctx):
+def foo(ctx, outfile):
     print("# foo")
-    print(f"verbose: {ctx.obj.verbose}")
+    show_obj(ctx.obj)
+    print(f"outfile: {outfile}")
 
 
-@main.command
+@zt.command
 @click.pass_context
 def bar(ctx):
     print("# bar")
-    print(f"verbose: {ctx.obj.verbose}")
+    show_obj(ctx.obj)
 
 
 if __name__ == "__main__":
-    main()
+    zt()
