@@ -1,11 +1,11 @@
+import argparse
 import functools
 import io
 import pathlib
+import sys
 from typing import Any
 
 import click
-
-import main
 
 
 def indent(n: int):
@@ -81,7 +81,28 @@ def generate_args(cli):
     yield from generate_args(sub_commands[ans])
 
 
-script = pathlib.Path(main.__file__).name
-cmd = [script]
-cmd.extend(generate_args(main.zt))
-print(" \\\n".join(cmd))
+def generate_script(script, entry):
+    cmd = [script.name]
+
+    # Import
+    sys.path.insert(0, str(script.parent))
+    mod = __import__(script.stem)
+    cli = getattr(mod, entry)
+
+    cmd.extend(generate_args(cli))
+    print()
+    print(" \\\n".join(cmd))
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("script", type=pathlib.Path)
+    parser.add_argument("entry")
+    options = parser.parse_args()
+    if not options.script.exists():
+        raise SystemExit(f"{options.script} does not exist")
+    generate_script(options.script, options.entry)
+
+
+if __name__ == "__main__":
+    main()
