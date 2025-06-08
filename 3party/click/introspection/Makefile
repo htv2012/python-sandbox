@@ -14,7 +14,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run introspect.py main.py zt
+	uv run generate_command.py main.py zt
 
 ### Run unit tests
 test: lint

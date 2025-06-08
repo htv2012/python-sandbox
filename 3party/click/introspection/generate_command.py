@@ -1,36 +1,10 @@
+"""Generate command to run a click app."""
+
 import argparse
-import functools
-import io
 import pathlib
 import sys
-from typing import Any
 
 import click
-
-
-def indent(n: int):
-    return n * "   "
-
-
-@functools.singledispatch
-def show(obj: Any, level: int = 0, *args, **kwargs):
-    print(f"{indent(level)}{obj}")
-
-
-@show.register
-def show_option(opt: click.Option, level: int = 0, *args, **kwargs):
-    buf = io.StringIO()
-    buf.write(indent(level))
-    buf.write(f"{sorted(opt.opts)[0]} {opt.type}")
-    buf.write(" \\")
-    print(buf.getvalue())
-
-
-@show.register
-def show_group(g: click.Group, level: int = 0, *args, **kwargs):
-    print(f"{g.name} \\")
-    for param in g.params:
-        show(param, level=level + 1)
 
 
 def query_param(param: click.Parameter):
@@ -44,16 +18,16 @@ def query_param(param: click.Parameter):
     if param.is_flag and input("Include flag, y/n? ") == "y":
         return opts[0]
     elif param.type is click.BOOL and not param.is_flag:
-        ans = input("true/false/x: ")
+        ans = input("true/false: ")
         if ans != "x":
             return f"{opts[0]} {ans}"
     elif isinstance(param.type, click.Choice):
-        choices = ["not included"] + [getattr(c, "name", c) for c in param.type.choices]
+        choices = [getattr(c, "name", c) for c in param.type.choices]
         print("Select a choice")
         print("\n".join(f"{index}. {choice}" for index, choice in enumerate(choices)))
-        ans = int(input("> "))
-        if ans != 0:
-            return f"{opts[0]} {choices[ans]}"
+        ans = input("> ")
+        if ans:
+            return f"{opts[0]} {choices[int(ans)]}"
     else:
         ans = input("arg: ")
         if ans != "":
@@ -70,13 +44,13 @@ def generate_args(cli):
     if not sub_commands:
         return
 
-    choices = ["No sub command"] + list(sub_commands)
+    choices = list(cli.commands)
     print("\n".join(f"{index}. {choice}" for index, choice in enumerate(choices)))
-    ans = int(input("> "))
-    if ans == 0:
+    ans = input("> ")
+    if not ans:
         return
 
-    ans = choices[ans]
+    ans = choices[int(ans)]
     yield ans
     yield from generate_args(sub_commands[ans])
 
@@ -88,6 +62,7 @@ def generate_script(script, entry):
     sys.path.insert(0, str(script.parent))
     mod = __import__(script.stem)
     cli = getattr(mod, entry)
+    del sys.path[0]
 
     cmd.extend(generate_args(cli))
     print()
