@@ -3,9 +3,6 @@
 ### Default target(s)
 all: run
 
-edit:
-	$(EDITOR) main.py
-
 ### Perform static analysis
 lint:
 	uv tool run ruff check --select I --fix .
@@ -15,7 +12,7 @@ lint:
 ### Run the project
 run: lint
 	@echo ""
-	uv run main.py \
+	uv run ct \
 		--confirm yes \
 		--date 2025-05-31 \
 		--root-dir . \
