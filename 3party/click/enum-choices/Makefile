@@ -17,9 +17,9 @@ run: lint
 	@echo ""
 	uv run ec
 	@echo ""
-	uv run ec --car marilyn
+	uv run ec --star Marilyn
 	@echo ""
-	uv run ec --car monroe
+	uv run ec --star monroe
 
 ### Run unit tests
 test: lint
