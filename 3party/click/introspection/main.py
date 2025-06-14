@@ -105,6 +105,8 @@ def show_obj(obj):
 
 @zt.command
 @click.option("-o", "--outfile")
+@click.argument("src")
+@click.argument("dest")
 @click.pass_context
 def foo(ctx, outfile):
     print("# foo")
