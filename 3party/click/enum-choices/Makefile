@@ -4,7 +4,7 @@
 all: run
 
 edit:
-	$(EDITOR) main.py
+	$(EDITOR) ec
 
 ### Perform static analysis
 lint:
@@ -14,10 +14,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run main.py
-	uv run main.py -t staging
-	uv run main.py -t Pilot
-	uv run main.py -t Production
+	uv run ec
 
 ### Run unit tests
 test: lint
