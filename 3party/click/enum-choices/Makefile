@@ -14,7 +14,12 @@ lint:
 
 ### Run the project
 run: lint
+	@echo ""
 	uv run ec
+	@echo ""
+	uv run ec --car marilyn
+	@echo ""
+	uv run ec --car monroe
 
 ### Run unit tests
 test: lint

@@ -33,3 +33,4 @@ def main(car):
     print(f"Nick Name: {car.name}")
     print(f"Name: {car.value}")
     print(f"Full Name: {car.config['Name']}")
+    print(f"Configuration: {car.config}")
