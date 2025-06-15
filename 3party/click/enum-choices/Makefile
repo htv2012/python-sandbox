@@ -15,13 +15,28 @@ lint:
 ### Run the project
 run: lint
 	@echo ""
+	#
+	# Use default value
+	#
 	uv run ec
+
 	@echo ""
+	#
+	# Case insenstive
+	#
 	uv run ec --star Marilyn
+
 	@echo ""
+	#
+	# Same config as Marilyn
+	#
 	uv run ec --star monroe
+
 	@echo ""
-	uv run ec --star Mary-Lou  # Dash will be converted to underscore
+	#
+	# Dash will be converted to underscore
+	#
+	uv run ec --star Mary-Lou
 
 ### Run unit tests
 test: lint
