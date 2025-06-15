@@ -1,0 +1,10 @@
+[project]
+name = "manage-resource-using-call-on-close"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "click>=8.2.1",
+    "loguru>=0.7.3",
+]
