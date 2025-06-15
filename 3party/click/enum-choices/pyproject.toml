@@ -8,7 +8,7 @@ authors = [
 ]
 requires-python = ">=3.13"
 dependencies = [
-    "click>=8.2.1",
+    "click==8.1.7",
     "pyyaml>=6.0.2",
 ]
 
@@ -18,3 +18,8 @@ ec = "enum_choices:main"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ipython>=9.3.0",
+]

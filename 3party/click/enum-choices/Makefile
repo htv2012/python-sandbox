@@ -20,6 +20,8 @@ run: lint
 	uv run ec --star Marilyn
 	@echo ""
 	uv run ec --star monroe
+	@echo ""
+	uv run ec --star Mary-Lou  # Dash will be converted to underscore
 
 ### Run unit tests
 test: lint
