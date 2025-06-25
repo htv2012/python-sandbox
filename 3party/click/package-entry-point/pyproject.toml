@@ -1,0 +1,18 @@
+[project]
+name = "hello"
+version = "1.0.0"
+description = "Hello App"
+requires-python = ">= 3.9"
+dependencies = [
+    "click==8.1.7",
+]
+
+[project-scripts]
+hello = "hello.hello:main"
+
+[build-system]
+requires = ["hatchling"]
+uild-backend = "hatchling.build"
+#requires = ["flit_core<4"]
+#uild-backend = "flit_core.buildapi"
+
