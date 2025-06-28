@@ -11,10 +11,15 @@ lint:
 	uv tool run ruff check --select I --fix .
 	uv tool run ruff format .
 	uv tool run ruff check . --fix
+	@echo ""
 
 ### Run the project
 run: lint
+	uv run ea --venue devpit
+	uv run ea --venue devpit1
+	uv run ea --venue devpit2
 	uv run ea --venue treasureisland
+	uv run ea --venue fs1
 
 ### Run unit tests
 test: lint
