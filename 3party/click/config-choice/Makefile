@@ -14,12 +14,23 @@ lint:
 
 ### Run the project
 run: lint
-	uv run config-choice --venue devpit1
-	uv run config-choice --venue devpit
-	uv run config-choice --venue treasureIsland
-	uv run config-choice --venue devpit1
-	uv run config-choice --venue fs1
-	-uv run config-choice --venue foobar
+	#
+	# Demo: choices
+	#
+	uv run config-choice --venue=devpit1
+	uv run config-choice --venue=devpit2
+	uv run config-choice --venue=fs1
+
+	#
+	# Demo: Aliases
+	#
+	uv run config-choice --venue=devpit
+	uv run config-choice --venue=treasureIsland
+
+	#
+	# Demo: Invalid choice
+	#
+	-uv run config-choice --venue=foobar
 
 ### Run unit tests
 test: lint
