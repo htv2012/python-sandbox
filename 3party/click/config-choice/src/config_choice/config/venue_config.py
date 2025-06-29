@@ -32,7 +32,7 @@ class ConfigType(click.Choice):
 
     If a configuration file is devpit1.yaml, then the choice for that
     file is "devpit1".
-    
+
     Among the configuration files, there is a special _aliases.yaml file,
     which specifies all the aliases. For example, treasureisland is an
     alias for devpit1. That means treasureisland will use devpit1.yaml
@@ -40,12 +40,9 @@ class ConfigType(click.Choice):
 
     The click return type will be ConfigFile.
     """
+
     def __init__(self):
-        root = (
-            pathlib.Path(__file__)
-            .with_name("venue_config")
-            .relative_to(pathlib.Path.cwd())
-        )
+        root = pathlib.Path(__file__).with_name("venue_config")
         self.path = {path.stem: path for path in root.glob("*.yaml")}
 
         # If there is an _aliases.yaml, process it
