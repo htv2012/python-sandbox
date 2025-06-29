@@ -31,10 +31,12 @@ class ConfigType(click.Choice):
     A click custom type to gather all configuration files as choices.
 
     If a configuration file is devpit1.yaml, then the choice for that
-    file is "devpit1". Among the configuration files, there is a special
-    _aliases.yaml file, which specifies all the aliases. For example,
-    treasureisland is an alias for devpit1. That means treasureisland
-    will use devpit1.yaml as its configuration file.
+    file is "devpit1".
+    
+    Among the configuration files, there is a special _aliases.yaml file,
+    which specifies all the aliases. For example, treasureisland is an
+    alias for devpit1. That means treasureisland will use devpit1.yaml
+    as its configuration file.
 
     The click return type will be ConfigFile.
     """
