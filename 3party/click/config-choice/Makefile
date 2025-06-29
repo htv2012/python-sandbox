@@ -14,10 +14,12 @@ lint:
 
 ### Run the project
 run: lint
-	@echo ""
-	uv run config-choice -c prep
-	@echo ""
-	-uv run config-choice -c foo
+	uv run config-choice --venue devpit1
+	uv run config-choice --venue devpit
+	uv run config-choice --venue treasureIsland
+	uv run config-choice --venue devpit1
+	uv run config-choice --venue fs1
+	-uv run config-choice --venue foobar
 
 ### Run unit tests
 test: lint
