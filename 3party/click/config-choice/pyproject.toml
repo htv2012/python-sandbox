@@ -1,0 +1,26 @@
+[project]
+name = "config-choice"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Hai Vu", email = "haivu2004@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "click>=8.2.1",
+    "pyyaml>=6.0.2",
+]
+
+[project.scripts]
+config-choice = "config_choice:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ipython>=9.3.0",
+    "ruff>=0.12.1",
+]
