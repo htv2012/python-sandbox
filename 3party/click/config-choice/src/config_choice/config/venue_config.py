@@ -1,7 +1,8 @@
 import contextlib
 import dataclasses
 import functools
-import pathlib
+from pathlib import Path
+from typing import Dict
 
 import click
 import yaml
@@ -18,13 +19,17 @@ class ConfigFile:
     """
 
     venue_id: str
-    path: pathlib.Path
+    path: Path
 
     @functools.cached_property
-    def config(self) -> dict:
+    def config(self) -> Dict:
         """Return the venue_config value of the config file."""
         with open(self.path, "rb") as stream:
             return yaml.safe_load(stream)["venue_config"]
+
+    @property
+    def is_devpit(self):
+        return "devpit" in self.venue_id
 
 
 class ConfigFileType(click.Choice):
@@ -43,12 +48,12 @@ class ConfigFileType(click.Choice):
     """
 
     def __init__(self):
-        root = pathlib.Path(__file__).with_name("venue_config")
-        self.path = {path.stem: path for path in root.glob("*.yaml")}
+        root = Path(__file__).with_name("venue_config")
+        self.path: Dict[str, Path] = {path.stem: path for path in root.glob("*.yaml")}
 
         with contextlib.suppress(KeyError):
             # File _aliases.yaml is optional. That means
-            # the following line might raises a KeyError
+            # the following line might raise a KeyError
             aliases_file = self.path.pop("_aliases")
 
             # Alias such as treasureisland shares the same
@@ -62,8 +67,8 @@ class ConfigFileType(click.Choice):
 
     def convert(self, value, param, ctx) -> ConfigFile:
         # Call the base class' convert() to ensure the
-        # argument from command-line is valid
-        value = super().convert(value, param, ctx)
+        # argument from command-line is a valid choice
+        value: str = super().convert(value, param, ctx)
 
-        # Convert from a string to ConfigFile
+        # Convert from a string argument to ConfigFile
         return ConfigFile(value, self.path[value])

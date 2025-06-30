@@ -23,4 +23,5 @@ build-backend = "hatchling.build"
 dev = [
     "ipython>=9.3.0",
     "ruff>=0.12.1",
+    "ty>=0.0.1a12",
 ]
