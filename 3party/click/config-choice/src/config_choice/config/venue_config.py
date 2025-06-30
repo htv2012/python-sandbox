@@ -56,8 +56,8 @@ class ConfigFileType(click.Choice):
             # the following line might raise a KeyError
             aliases_file = self.path.pop("_aliases")
 
-            # Alias such as treasureisland shares the same
-            # config file with devpit1
+            # _aliases.yaml file exists, add them to the
+            # choices
             with open(aliases_file, "rb") as stream:
                 aliases = yaml.safe_load(stream)
             for alias, name in aliases.items():
