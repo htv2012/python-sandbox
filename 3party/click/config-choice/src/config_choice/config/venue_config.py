@@ -63,7 +63,7 @@ class ConfigFileType(click.Choice):
             for alias, name in aliases.items():
                 self.path[alias] = self.path[name]
 
-        super().__init__(self.path, case_sensitive=False)
+        super().__init__(sorted(self.path), case_sensitive=False)
 
     def convert(self, value, param, ctx) -> ConfigFile:
         # Call the base class' convert() to ensure the
