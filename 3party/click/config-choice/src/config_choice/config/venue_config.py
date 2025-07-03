@@ -29,7 +29,7 @@ class ConfigFile:
 
     @property
     def is_devpit(self):
-        return "devpit" in self.venue_id
+        return self.venue_id.startswith("devpit") or self.venue_id == "treasureisland"
 
 
 class ConfigFileType(click.Choice):
