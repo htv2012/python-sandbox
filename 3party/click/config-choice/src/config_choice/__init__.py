@@ -19,6 +19,6 @@ VENUE_CONFIG_DIR = pathlib.Path(__file__).parent / "config" / "venue_configs"
     required=False,
 )
 def main(venue, test_config):
-    print(f"Venue ID: {venue.name}, config: {venue.config}")
+    print(f"Venue: {venue.name}, config: {venue.config}")
     print(f"Test: {test_config.name}, config: {test_config.config}")
     print()

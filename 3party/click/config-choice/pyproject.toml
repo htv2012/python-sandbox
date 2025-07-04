@@ -14,6 +14,7 @@ dependencies = [
 
 [project.scripts]
 config-choice = "config_choice:main"
+c = "config_choice:main"
 
 [build-system]
 requires = ["hatchling"]
