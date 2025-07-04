@@ -4,7 +4,7 @@
 all: run
 
 edit:
-	$(EDITOR) config-choice
+	$(EDITOR) -p src/config_choice/__init__.py src/config_choice/config/*.py
 
 ### Perform static analysis
 lint:
@@ -27,6 +27,11 @@ run: lint
 	#
 	uv run config-choice --venue=devpit
 	uv run config-choice --venue=treasureIsland
+
+	#
+	# Demo: test config
+	#
+	uv run config-choice --venue=fs1 --test-config=smoke
 
 	#
 	# Demo: Invalid choice

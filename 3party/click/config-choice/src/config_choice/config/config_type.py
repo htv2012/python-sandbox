@@ -1,7 +1,7 @@
 import contextlib
 import dataclasses
 import functools
-from pathlib import Path
+import pathlib
 from typing import Dict
 
 import click
@@ -9,30 +9,25 @@ import yaml
 
 
 @dataclasses.dataclass(frozen=True)
-class ConfigFile:
-    """
-    Represent a venue configuration file, which consists of the following attributes
-
-    venue_id: Identify a venue, e.g. "devpit1"
-    path: the path to the configuration file
-    config: The venue_config value of the file, a dictionary
-    """
-
-    venue_id: str
-    path: Path
+class Config:
+    name: str
+    path: pathlib.Path
 
     @functools.cached_property
     def config(self) -> Dict:
         """Return the venue_config value of the config file."""
         with open(self.path, "rb") as stream:
-            return yaml.safe_load(stream)["venue_config"]
-
-    @property
-    def is_devpit(self):
-        return self.venue_id.startswith("devpit") or self.venue_id == "treasureisland"
+            return yaml.safe_load(stream)
 
 
-class ConfigFileType(click.Choice):
+class ConfigFile(Config):
+    @functools.cached_property
+    def config(self) -> Dict:
+        ret = super().config
+        return ret["venue_config"]
+
+
+class ConfigType(click.Choice):
     """
     A click custom type to gather all configuration files as choices.
 
@@ -47,11 +42,13 @@ class ConfigFileType(click.Choice):
     See: https://click.palletsprojects.com/en/stable/parameter-types/#how-to-implement-custom-types
     """
 
-    name = "ConfigFile"
+    name = "ConfigType"
 
-    def __init__(self):
-        root = Path(__file__).with_name("venue_config")
-        self.path: Dict[str, Path] = {path.stem: path for path in root.glob("*.yaml")}
+    def __init__(self, root: pathlib.Path, cls=None):
+        self.cls = cls or Config
+        self.path: Dict[str, pathlib.Path] = {
+            path.stem: path for path in root.glob("*.yaml")
+        }
 
         with contextlib.suppress(KeyError):
             # File _aliases.yaml is optional. That means
@@ -67,10 +64,10 @@ class ConfigFileType(click.Choice):
 
         super().__init__(sorted(self.path), case_sensitive=False)
 
-    def convert(self, value, param, ctx) -> ConfigFile:
+    def convert(self, value, param, ctx):
         # Call the base class' convert() to ensure the
         # argument from command-line is a valid choice
         value: str = super().convert(value, param, ctx)
 
         # Convert from a string argument to ConfigFile
-        return ConfigFile(value, self.path[value])
+        return self.cls(value, self.path[value])

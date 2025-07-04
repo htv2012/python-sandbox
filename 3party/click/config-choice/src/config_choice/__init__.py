@@ -1,13 +1,24 @@
+import pathlib
+
 import click
 
-from .config.venue_config import ConfigFile, ConfigFileType
+from .config.config_type import ConfigFile, ConfigType
+
+TEST_CONFIG_DIR = pathlib.Path(__file__).parent / "config" / "test_configs"
+VENUE_CONFIG_DIR = pathlib.Path(__file__).parent / "config" / "venue_configs"
 
 
 @click.command
-@click.option("--venue", type=ConfigFileType(), required=True)
-def main(venue: ConfigFile):
-    print(f"Venue ID: {venue.venue_id}")
-    print(f"Path: {venue.path}")
-    print(f"Config: {venue.config}")
-    print(f"Is it a dev pit? {venue.is_devpit}")
+@click.option(
+    "--venue", type=ConfigType(cls=ConfigFile, root=VENUE_CONFIG_DIR), required=True
+)
+@click.option(
+    "--test-config",
+    type=ConfigType(root=TEST_CONFIG_DIR),
+    default="nightly",
+    required=False,
+)
+def main(venue, test_config):
+    print(f"Venue ID: {venue.name}, config: {venue.config}")
+    print(f"Test: {test_config.name}, config: {test_config.config}")
     print()
