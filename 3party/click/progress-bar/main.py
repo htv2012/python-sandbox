@@ -1,11 +1,11 @@
-import click
 import time
+
+import click
 
 
 def main():
-    steps = [f"step {i}" for i in range(15)]
-    with click.progressbar(steps) as bar:
-        for step in bar:
+    with click.progressbar(range(15), label="Downloading") as bar:
+        for _ in bar:
             time.sleep(0.5)
 
 

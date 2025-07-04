@@ -8,9 +8,9 @@ edit:
 
 ### Perform static analysis
 lint:
-	uv run ruff check --select I --fix . --quiet
-	uv run ruff format . --quiet
-	uv run ruff check . --fix --quiet
+	@uv run ruff check --select I --fix . --quiet
+	@uv run ruff format . --quiet
+	@uv run ruff check . --fix --quiet
 
 ### Run the project
 run: lint
