@@ -47,6 +47,8 @@ class ConfigFileType(click.Choice):
     See: https://click.palletsprojects.com/en/stable/parameter-types/#how-to-implement-custom-types
     """
 
+    name = "ConfigFile"
+
     def __init__(self):
         root = Path(__file__).with_name("venue_config")
         self.path: Dict[str, Path] = {path.stem: path for path in root.glob("*.yaml")}
