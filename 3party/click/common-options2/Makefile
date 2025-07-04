@@ -8,15 +8,13 @@ edit:
 
 ### Perform static analysis
 lint:
-	uv tool run ruff check --select I --fix .
-	uv tool run ruff format .
-	uv tool run ruff check . --fix
+	@uv tool run ruff check --select I --fix . --quiet
+	@uv tool run ruff format . --quiet
+	@uv tool run ruff check . --fix --quiet
 
 ### Run the project
 run: lint
-	@echo ""
-	uv run main.py login -s server1 -p 8888 -u user1 -k /tmp/private.key
-	@echo ""
+	uv run main.py login -s server1 -p 8888 -u user1 -k /tmp/private.key --verbose
 	uv run main.py ping -s server1 -p 8888
 
 ### Run unit tests

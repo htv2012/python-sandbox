@@ -16,6 +16,10 @@ USER_OPTIONS = [
     click.option("-k", "--key-file", help="Path to private key file"),
 ]
 
+SINGLE_OPTION = click.option(
+    "-v", "--verbose", is_flag=True, default=False, help="Produce extra output"
+)
+
 
 def add_options(options):
     def _add(fn):
@@ -29,20 +33,26 @@ def add_options(options):
 @main.command
 @add_options(SERVER_OPTIONS)
 @add_options(USER_OPTIONS)
-def login(server, port, user, key_file):
+@SINGLE_OPTION
+def login(server, port, user, key_file, verbose):
     """Login to a server"""
     print(f"{server=}")
     print(f"{port=}")
     print(f"{user=}")
     print(f"{key_file=}")
+    print(f"{verbose=}")
+    print()
 
 
 @main.command
 @add_options(SERVER_OPTIONS)
-def ping(server, port):
+@SINGLE_OPTION
+def ping(server, port, verbose):
     """Ping a server"""
     print(f"{server=}")
     print(f"{port=}")
+    print(f"{verbose=}")
+    print()
 
 
 if __name__ == "__main__":
