@@ -14,7 +14,10 @@ lint:
 
 ### Run the project
 run: lint
+	@echo ""
 	uv run dataclass-param uid=501,alias=karenc
+	@echo ""
+	uv run dataclass-param uid=501,alias=karenc,shell=bash,serial=210 --admin alias=root,uid=0,shell=sh,serial=1
 
 ### Run unit tests
 test: lint
