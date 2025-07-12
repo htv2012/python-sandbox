@@ -1,5 +1,6 @@
 import dataclasses
 import typing
+from typing import Dict, Optional
 
 import click
 
@@ -10,6 +11,9 @@ class User:
     alias: str
     shell: typing.Optional[str] = "zsh"
     serial: int = dataclasses.field(default=101)
+
+    # Instruction on how to cast str to an attribute
+    cast = {"uid": int, "serial": int}
 
 
 class DataclassParamType(click.ParamType):
@@ -38,12 +42,12 @@ class DataclassParamType(click.ParamType):
             return self.cls(**kwargs)
 
 
-class DataclassParamType2(click.ParamType):
-    """A different approach."""
+class ClassParamType(click.ParamType):
+    """Generic classes."""
 
-    def __init__(self, cls, cast):
+    def __init__(self, cls=None, cast: Optional[Dict[str, str]] = None):
         self.cls = cls
-        self._cast = cast
+        self._cast = cast or {}
 
     def cast(self, key, value, param, ctx):
         try:
@@ -51,24 +55,23 @@ class DataclassParamType2(click.ParamType):
             return type_(value)
         except ValueError:
             self.fail(f"Invalid argument: {value}", param, ctx)
+        except KeyError:
+            # There is no instruction to cast, return value as is
+            return value
 
     def convert(self, value, param, ctx):
         kwargs = dict(kv.split("=") for kv in value.split(","))
         kwargs = {k: self.cast(k, v, param, ctx) for k, v in kwargs.items()}
-        print(f"{kwargs=}")
-        ret = self.cls(**kwargs)
-        print(f"{ret=}")
-        return ret
+        if self.cls is not None:
+            return self.cls(**kwargs)
+        return kwargs
 
 
 @click.command
-@click.option(
-    "--admin",
-    type=DataclassParamType2(
-        User, {"uid": int, "alias": str, "shell": str, "serial": int}
-    ),
-)
-@click.argument("user", type=DataclassParamType(User))
-def main(user, admin) -> None:
+@click.option("--admin", type=ClassParamType(User, User.cast))
+@click.option("--user", type=DataclassParamType(User))
+@click.option("--raw", type=ClassParamType(cast={"foo": int, "bar": float}))
+def main(user, admin, raw) -> None:
     print(f"{user=}")
     print(f"{admin=}")
+    print(f"{raw=}")
