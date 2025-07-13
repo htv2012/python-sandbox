@@ -59,6 +59,7 @@ def test_convert_expect_pass(value, expected_svar, param_type, mock_param, mock_
     [
         pytest.param("foo,3.5,true,hello", id="incorrect type for arg"),
         pytest.param("bvar=5", id="incorrect type for kwarg"),
+        pytest.param("bvar=5=1", id="too many equal signs"),
     ],
 )
 def test_convert_expect_fail(value, param_type, mock_param, mock_ctx):

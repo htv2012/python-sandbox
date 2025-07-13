@@ -8,6 +8,13 @@ __all__ = ["ClassParamType"]
 
 
 class ClassParamType(click.ParamType):
+    """A click ParamType which converts an argument to a class object.
+
+    Args:
+        cls: The resulting class
+        cast: A dictionary of {attribute: type}. The order of the keys matter
+    """
+
     def __init__(self, cls, cast: Optional[dict] = None):
         super().__init__()
         self.cls = cls
