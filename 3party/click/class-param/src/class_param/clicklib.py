@@ -1,3 +1,5 @@
+import contextlib
+import json
 from typing import Optional
 
 import click
@@ -15,10 +17,17 @@ class ClassParamType(click.ParamType):
         self.kwargs_cast = cast
         self.args_cast = tuple(cast.values())
 
+    def jsonify(self, value, expected_type):
+        with contextlib.suppress(json.JSONDecodeError):
+            value = json.loads(value)
+        if not isinstance(value, expected_type):
+            raise ValueError()
+        return value
+
     def add_arg(self, index, value, args, param, ctx):
         try:
             cast = self.args_cast[index]
-            args.append(cast(value))
+            args.append(self.jsonify(value, cast))
         except ValueError:
             self.fail(
                 f"Expect {value!r} to be of type {cast.__name__} ", param=param, ctx=ctx
@@ -27,7 +36,7 @@ class ClassParamType(click.ParamType):
     def add_kwarg(self, key, value, kwargs, param, ctx):
         try:
             cast = self.kwargs_cast[key]
-            kwargs[key] = cast(value)
+            kwargs[key] = self.jsonify(value, cast)
         except ValueError:
             self.fail(
                 f"For {key}={value}. Expected {value!r} to be of type {cast.__name__}",
