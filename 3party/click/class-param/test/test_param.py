@@ -4,7 +4,7 @@ from unittest.mock import Mock
 import click
 import pytest
 
-from class_param.clicklib import ClassParamType
+from class_param.clicklib import ClassParamType, jsonify
 
 
 @dataclasses.dataclass
@@ -57,11 +57,23 @@ def test_convert_expect_pass(value, expected_svar, param_type, mock_param, mock_
 @pytest.mark.parametrize(
     ["value"],
     [
-        pytest.param("foo,3.5,true,hello", id="incorrect type for arg"),
-        pytest.param("bvar=5", id="incorrect type for kwarg"),
         pytest.param("bvar=5=1", id="too many equal signs"),
     ],
 )
 def test_convert_expect_fail(value, param_type, mock_param, mock_ctx):
     with pytest.raises(click.BadParameter):
         param_type.convert(value, mock_param, mock_ctx)
+
+
+@pytest.mark.parametrize(
+    ["input_value", "expected"],
+    [
+        pytest.param("3.5", 3.5, id="float"),
+        pytest.param("3", 3, id="int"),
+        pytest.param("true", True, id="true"),
+        pytest.param("false", False, id="false"),
+        pytest.param("foo", "foo", id="str"),
+    ],
+)
+def test_jsonify(input_value, expected):
+    assert jsonify(input_value) == expected
