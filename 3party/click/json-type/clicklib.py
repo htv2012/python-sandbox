@@ -14,6 +14,8 @@ def jsonify(text: str):
 
 
 class ArgsKwargsParamType(click.ParamType):
+    name = "csv"
+
     def parse_token(self, token, args, kwargs, param, ctx):
         if "=" in token:
             kv = token.split("=")
@@ -33,6 +35,8 @@ class ArgsKwargsParamType(click.ParamType):
 
 
 class ClassParamType(ArgsKwargsParamType):
+    name = "class"
+
     def __init__(self, cls):
         super().__init__()
         self.cls = cls
