@@ -1,0 +1,17 @@
+[project]
+name = "json-type"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "click==8.1.7",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.4.0",
+    "jupyterlab>=4.4.4",
+    "pytest>=8.4.1",
+    "ruff>=0.12.3",
+]
