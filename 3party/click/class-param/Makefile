@@ -15,13 +15,15 @@ lint:
 ### Run the project
 run: lint
 	@echo ""
-	uv run class-param --user 501,karen,1
+	uv run class-param --user 501,karen,true
 	@echo ""
-	uv run class-param --user 502,john,is_admin=0,shell=zsh
+	uv run class-param --user 502,john,is_admin=true,shell=zsh
 	@echo ""
 	uv run class-param --server example.com
 	@echo ""
-	uv run class-param --server example.com,port=2233
+	uv run class-param --server example.com,2233
+	@echo ""
+	uv run class-param --server host=example.com,port=2233
 
 ### Run unit tests
 test: lint

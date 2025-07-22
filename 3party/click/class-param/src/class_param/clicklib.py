@@ -13,18 +13,18 @@ def jsonify(value):
 
 
 class ClassParamType(click.ParamType):
-    """A click ParamType which converts an argument to a class object.
+    """A click ParamType which converts an argument to a class object."""
 
-    Args:
-        cls: The resulting class
-        cast: A dictionary of {attribute: type}. The order of the keys matter
-    """
+    name = "csv-args"
 
     def __init__(self, cls):
         super().__init__()
         self.cls = cls
 
     def convert(self, value, param, ctx):
+        with contextlib.suppress(AttributeError, TypeError, ValueError):
+            return self.cls.from_str(value)
+
         tokens = value.split(",")
         args = []
         kwargs = {}
