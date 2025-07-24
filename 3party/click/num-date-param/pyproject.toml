@@ -1,0 +1,18 @@
+[project]
+name = "num-date-param"
+version = "0.1.0"
+description = "Parameter which can be a number or a date/time"
+readme = "README.md"
+requires-python = ">=3.13"
+
+dependencies = [
+    "click>=8.2.1",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.4.0",
+    "jupyterlab>=4.4.5",
+    "pytest>=8.4.1",
+    "ruff>=0.12.4",
+]
