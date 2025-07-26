@@ -48,4 +48,4 @@ def create_logger(logger_name, log_level=logging.WARNING, filename=None):
 logger = create_logger('labels', log_level=DEBUG)
 logger.info('hello, world')
 logger.debug('pull my finger')
-logger.warn('File not found, create one with defaults')
+logger.warning('File not found, create one with defaults')

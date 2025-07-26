@@ -27,6 +27,6 @@ if __name__ == '__main__':
 
     # Start logging
     logger.error('This is error')
-    logger.warn('This is warn')
+    logger.warning('This is warn')
     logger.info('This is info')
     logger.debug('This is debug')

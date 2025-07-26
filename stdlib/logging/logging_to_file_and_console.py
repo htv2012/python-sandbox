@@ -26,7 +26,7 @@ logger.addHandler(fh)
 # "application" code
 logger.debug("debug message")
 logger.info("info message")
-logger.warn("warn message")
+logger.warning("warn message")
 
 # Simulate a crash to see if log files are properly closed
 # x = 5

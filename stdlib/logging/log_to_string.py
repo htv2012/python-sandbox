@@ -11,7 +11,7 @@ logger.addHandler(handler)
 
 logger.info('This is information')
 logger.debug('Debugging stuff')
-logger.warn('Out of beer')
+logger.warning('Out of beer')
 
 print('Buffer:')
 print('---')

@@ -10,7 +10,7 @@ def main():
     logger = logging.getLogger('consoleAndFile')
     logger.debug('debug message')
     logger.info('info message')
-    logger.warn('warn message')
+    logger.warning('warn message')
     logger.error('error message')
     logger.critical('critical message')
 
