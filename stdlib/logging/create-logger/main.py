@@ -24,19 +24,19 @@ def setup_zt_loop_logger(filename):
 
     console_handler = logging.StreamHandler()
     console_handler.setLevel(logging.INFO)
-    formatter = logging.Formatter(
-        "%(asctime)s %(filename)s(%(lineno)d) %(levelname)s %(message)s",
+    console_formatter = logging.Formatter(
+        "%(filename)s(%(lineno)d) %(levelname)s %(message)s"
     )
-    console_handler.setFormatter(formatter)
+    console_handler.setFormatter(console_formatter)
     logger.addHandler(console_handler)
 
     if filename != "none":
         file_handler = logging.FileHandler(filename=filename, mode="w")
         file_handler.setLevel(logging.DEBUG)
-        fformatter = logging.Formatter(
+        file_formatter = logging.Formatter(
             "%(asctime)s %(filename)s(%(lineno)d) %(levelname)s %(message)s"
         )
-        file_handler.setFormatter(fformatter)
+        file_handler.setFormatter(file_formatter)
         logger.addHandler(file_handler)
 
     return logger
@@ -52,12 +52,12 @@ def setup_zt_loop_logger(filename):
     ),
 )
 @click.option("--log-overwrite", is_flag=True, default=False)
-def main(log_file, log_overwrite):
-    mode = "cow_wash"
+@click.option("--mode", default="cowwash")
+def main(log_file, log_overwrite, mode):
     filename = get_logger_filename(log_file, log_overwrite, mode)
-    print(f"{filename=}")
     logger = setup_zt_loop_logger(filename)
 
+    logger.info("Filename=%s", filename)
     logger.debug("debug message")
     logger.info("info message")
     logger.warning("warning message")
