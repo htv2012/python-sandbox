@@ -1,9 +1,14 @@
+#!/usr/bin/env python3
+"""Given a logger, patch it to redact password."""
+
 import logging
 import re
 
 
 def redact(logger):
-    def apply_redact(existing_formatter):
+    """Redact a logger to remove password."""
+
+    def patch(existing_formatter):
         def do_format(record):
             text = existing_formatter(record)
             return re.sub(r"password=.*? ", "password=*** ", text)
@@ -11,7 +16,7 @@ def redact(logger):
         return do_format
 
     for handler in logger.handlers:
-        handler.formatter.format = apply_redact(handler.formatter.format)
+        handler.formatter.format = patch(handler.formatter.format)
 
 
 def main():
