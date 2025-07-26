@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import logging
 import logging.handlers
@@ -49,7 +49,7 @@ def main():
 
     logger.debug("debug message")
     logger.info("info message")
-    logger.warn("warn message")
+    logger.warning("warning message")
     logger.error("error message")
     logger.critical("critical message")
 
