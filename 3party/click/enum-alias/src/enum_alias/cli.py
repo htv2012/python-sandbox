@@ -1,24 +1,22 @@
 import click
 
-from .venue_config import ConfigFile
+from .config import ConfigFile
 
 
 @click.command
 @click.option(
-    "-v",
-    "--venue",
+    "--config",
     type=click.Choice(ConfigFile.names(), case_sensitive=False),
     callback=ConfigFile.from_param,
     required=True,
 )
-def zerotouch(venue) -> None:
-    print(f"Name: {venue}")
-    print(f"Value: {venue.value}")
-    print(f"Path: {venue.path}")
-    print(f"Content: {venue.content}")
-    print(f"Is it a dev pit? {venue.is_devpit}")
+def main(config) -> None:
+    print(f"Name: {config}")
+    print(f"Value: {config.value}")
+    print(f"Path: {config.path}")
+    print(f"Content: {config.content}")
     print()
 
 
 if __name__ == "__main__":
-    zerotouch()
+    main()

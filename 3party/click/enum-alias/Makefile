@@ -15,11 +15,10 @@ lint:
 
 ### Run the project
 run: lint
-	uv run zerotouch --venue devpit
-	uv run zerotouch --venue devpit1
-	uv run zerotouch --venue devpit2
-	uv run zerotouch --venue treasureisland
-	uv run zerotouch --venue fs1
+	uv run mytool --config config1
+	uv run mytool --config config2
+	uv run mytool --config normal
+	uv run mytool --config default
 
 ### Run unit tests
 test: lint

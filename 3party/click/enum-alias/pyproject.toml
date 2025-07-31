@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-zerotouch = "enum_alias.cli:zerotouch"
+mytool = "enum_alias.cli:main"
 
 [build-system]
 requires = ["hatchling"]
