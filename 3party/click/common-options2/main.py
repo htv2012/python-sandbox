@@ -16,12 +16,16 @@ USER_OPTIONS = [
     click.option("-k", "--key-file", help="Path to private key file"),
 ]
 
-verbose = click.option(
+VERBOSE = click.option(
     "-v", "--verbose", is_flag=True, default=False, help="Produce extra output"
 )
 
 
 def add_options(options):
+    if not isinstance(options, list):
+        # Turn a single parameter into a list
+        options = [options]
+
     def _add(fn):
         for option in reversed(options):
             fn = option(fn)
@@ -33,7 +37,7 @@ def add_options(options):
 @main.command
 @add_options(SERVER_OPTIONS)
 @add_options(USER_OPTIONS)
-@verbose
+@add_options(VERBOSE)
 def login(server, port, user, key_file, verbose):
     """Login to a server"""
     print(f"{server=}")
@@ -46,7 +50,7 @@ def login(server, port, user, key_file, verbose):
 
 @main.command
 @add_options(SERVER_OPTIONS)
-@verbose
+@add_options(VERBOSE)
 def ping(server, port, verbose):
     """Ping a server"""
     print(f"{server=}")
