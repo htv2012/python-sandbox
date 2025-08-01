@@ -18,25 +18,23 @@ run: lint
 	#
 	# Demo: choices
 	#
-	uv run config-choice --venue=devpit1
-	uv run config-choice --venue=devpit2
-	uv run config-choice --venue=fs1
+	uv run config-choice --config=config1
+	uv run config-choice --config=config2
 
 	#
 	# Demo: Aliases
 	#
-	uv run config-choice --venue=devpit
-	uv run config-choice --venue=treasureIsland
+	uv run config-choice --config=normal
 
 	#
 	# Demo: test config
 	#
-	uv run config-choice --venue=fs1 --test-config=smoke
+	uv run config-choice --config=config1 --test-config=smoke
 
 	#
 	# Demo: Invalid choice
 	#
-	-uv run config-choice --venue=foobar
+	-uv run config-choice --config=foobar
 
 ### Run unit tests
 test: lint

@@ -5,12 +5,12 @@ import click
 from .config.config_type import ConfigFile, ConfigType
 
 TEST_CONFIG_DIR = pathlib.Path(__file__).parent / "config" / "test_configs"
-VENUE_CONFIG_DIR = pathlib.Path(__file__).parent / "config" / "venue_configs"
+CONFIG_DIR = pathlib.Path(__file__).parent / "config" / "configs"
 
 
 @click.command
 @click.option(
-    "--venue", type=ConfigType(cls=ConfigFile, root=VENUE_CONFIG_DIR), required=True
+    "--config", type=ConfigType(cls=ConfigFile, root=CONFIG_DIR), required=True
 )
 @click.option(
     "--test-config",
@@ -18,7 +18,7 @@ VENUE_CONFIG_DIR = pathlib.Path(__file__).parent / "config" / "venue_configs"
     default="nightly",
     required=False,
 )
-def main(venue, test_config):
-    print(f"Venue: {venue.name}, config: {venue.config}")
+def main(config, test_config):
+    print(f"Config: {config.name}, config: {config.config}")
     print(f"Test: {test_config.name}, config: {test_config.config}")
     print()

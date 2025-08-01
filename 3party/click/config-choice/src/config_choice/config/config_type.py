@@ -15,7 +15,7 @@ class Config:
 
     @functools.cached_property
     def config(self) -> Dict:
-        """Return the venue_config value of the config file."""
+        """Return the content of the config file."""
         with open(self.path, "rb") as stream:
             return yaml.safe_load(stream)
 
@@ -24,19 +24,19 @@ class ConfigFile(Config):
     @functools.cached_property
     def config(self) -> Dict:
         ret = super().config
-        return ret["venue_config"]
+        return ret
 
 
 class ConfigType(click.Choice):
     """
     A click custom type to gather all configuration files as choices.
 
-    If a configuration file is devpit1.yaml, then the choice for that
-    file is "devpit1".
+    If a configuration file is config1.yaml, then the choice for that
+    file is "config1".
 
     Among the configuration files, there is an optional _aliases.yaml
-    file, which specifies all the aliases. For example, treasureisland is
-    an alias for devpit1. That means treasureisland will use devpit1.yaml
+    file, which specifies all the aliases. For example, normal is
+    an alias for config1. That means treasureisland will use config1.yaml
     as its configuration file.
 
     See: https://click.palletsprojects.com/en/stable/parameter-types/#how-to-implement-custom-types
