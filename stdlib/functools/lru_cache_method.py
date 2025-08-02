@@ -2,6 +2,7 @@
 """
 whatis: See if lru_cache works for a method
 """
+
 import functools
 
 
