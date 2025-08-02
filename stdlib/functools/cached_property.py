@@ -20,6 +20,8 @@ print("\n")
 print("#")
 print("# cached_property.py")
 print("#")
+print("bar is a property + lru_cache")
+print("baz is a cached_property")
 foo = Foo()
 
 print("\n# First access")
