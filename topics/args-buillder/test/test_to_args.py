@@ -1,6 +1,5 @@
 import pytest
-
-from handler import to_args
+from args_builder.handler import to_args
 
 
 @pytest.mark.parametrize(

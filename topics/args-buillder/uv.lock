@@ -3,6 +3,29 @@ revision = 2
 requires-python = ">=3.13"
 
 [[package]]
+name = "args-builder"
+version = "0.1.0"
+source = { editable = "." }
+
+[package.dev-dependencies]
+dev = [
+    { name = "ipython" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "ipython", specifier = ">=9.4.0" },
+    { name = "pytest", specifier = ">=8.4.1" },
+    { name = "pytest-cov", specifier = ">=6.2.1" },
+    { name = "ruff", specifier = ">=0.12.7" },
+]
+
+[[package]]
 name = "asttokens"
 version = "3.0.0"
 source = { registry = "https://pypi.org/simple" }
@@ -263,29 +286,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/18/99/668cade231f434aaa59bbfbf49469068d2ddd945000621d3d165d2e7dd7b/pytest_cov-6.2.1.tar.gz", hash = "sha256:25cc6cc0a5358204b8108ecedc51a9b57b34cc6b8c967cc2c01a4e00d8a67da2", size = 69432, upload-time = "2025-06-12T10:47:47.684Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/bc/16/4ea354101abb1287856baa4af2732be351c7bee728065aed451b678153fd/pytest_cov-6.2.1-py3-none-any.whl", hash = "sha256:f5bc4c23f42f1cdd23c70b1dab1bbaef4fc505ba950d53e0081d0730dd7e86d5", size = 24644, upload-time = "2025-06-12T10:47:45.932Z" },
-]
-
-[[package]]
-name = "request-to-args"
-version = "0.1.0"
-source = { virtual = "." }
-
-[package.dev-dependencies]
-dev = [
-    { name = "ipython" },
-    { name = "pytest" },
-    { name = "pytest-cov" },
-    { name = "ruff" },
-]
-
-[package.metadata]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "ipython", specifier = ">=9.4.0" },
-    { name = "pytest", specifier = ">=8.4.1" },
-    { name = "pytest-cov", specifier = ">=6.2.1" },
-    { name = "ruff", specifier = ">=0.12.7" },
 ]
 
 [[package]]

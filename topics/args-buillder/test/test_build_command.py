@@ -1,6 +1,6 @@
 import pytest
 
-from handler import CommandRequest, build_command
+from args_builder.handler import CommandRequest, build_command
 
 
 @pytest.mark.parametrize(

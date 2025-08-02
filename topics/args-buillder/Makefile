@@ -18,7 +18,7 @@ run: lint
 
 ### Run unit tests
 test: lint
-	uv run pytest -s -vv --cov=.
+	uv run pytest
 
 ### Clean up generated files
 clean:
