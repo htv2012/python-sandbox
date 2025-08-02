@@ -9,12 +9,14 @@ class CommandRequest:
 
 
 def to_args(kwargs):
+    args = []
     for name, value in kwargs.items():
-        yield f"--{name.replace('_', '-')}"
+        args.append(f"--{name.replace('_', '-')}")
         if isinstance(value, list):
-            yield from value
+            args.extend(value)
         elif value != "":
-            yield value
+            args.append(value)
+    return args
 
 
 def build_command(command: str, req: CommandRequest):

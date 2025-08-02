@@ -1,4 +1,5 @@
 import pytest
+
 from args_builder.handler import to_args
 
 
@@ -21,4 +22,4 @@ from args_builder.handler import to_args
     ],
 )
 def test_to_args(indict, expected):
-    assert list(to_args(indict)) == expected
+    assert to_args(indict) == expected

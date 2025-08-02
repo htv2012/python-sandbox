@@ -16,6 +16,10 @@ args-builder = "args_builder:main"
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
+
+[tool.pytest.ini_options]
+addopts = "-s -v --cov=src/args_builder/"
+
 [dependency-groups]
 dev = [
     "ipython>=9.4.0",
@@ -23,6 +27,3 @@ dev = [
     "pytest-cov>=6.2.1",
     "ruff>=0.12.7",
 ]
-
-[tool.pytest.ini_options]
-addopts = "-s -v --cov=src/args_builder --cov-report html"
