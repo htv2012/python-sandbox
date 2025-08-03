@@ -20,18 +20,21 @@ def find_bad_assert(filename):
                 if isinstance(node, ast.Assert):
                     flag_assert_that_never_fail(node, filename, lines[node.lineno - 1])
         except IndentationError as e:
-            error_template = "\n{}: file has indentation error"
-            print(error_template.format(e.filename))
-            print(e.text)
-            print("{}^".format(" " * e.offset))
+            # error_template = "\n{}: file has indentation error"
+            # print(error_template.format(e.filename))
+            # print(e.text)
+            # print("{}^".format(" " * e.offset))
+            pass
         except SyntaxError as e:
-            error_template = "\n{}({}): file contains syntax error:"
-            print(error_template.format(filename, e.lineno))
-            print(e.text.strip())
-            print("{}^".format(" " * e.offset))
+            # error_template = "\n{}({}): file contains syntax error:"
+            # print(error_template.format(filename, e.lineno))
+            # print(e.text.strip())
+            # print("{}^".format(" " * e.offset))
+            pass
         except TypeError:
-            error_template = "\n{}: file contains type error:"
-            print(error_template.format(filename))
+            # error_template = "\n{}: file contains type error:"
+            # print(error_template.format(filename))
+            pass
 
 
 if __name__ == "__main__":
