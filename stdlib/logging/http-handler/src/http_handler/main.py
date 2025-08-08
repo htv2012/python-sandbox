@@ -4,15 +4,14 @@ import logging.handlers
 
 
 class MyHttpHandler(logging.handlers.HTTPHandler):
-    pass
+    def mapLogRecord(self, record):
+        return {"foo": "bar"}
 
-
-#    def mapLogRecord(self, record):
-#        return {
-#            "asctime": record.asctime,
-#            "levelno": record.levelno,
-#            "message": record.message,
-#        }
+    #    return {
+    #        "asctime": record.asctime,
+    #        "levelno": record.levelno,
+    #        "message": record.message,
+    #    }
 
 
 def create_logger():
