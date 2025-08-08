@@ -18,13 +18,14 @@ class LogRecord(BaseModel):
 
 
 @app.post("/log/")
-def accept_log(log_record: LogRecord):
+def accept_log(log_record):
     print(log_record)
-    return {
-        "asctime": log_record.asctime,
-        "levelno": log_record.levelno,
-        "message": log_record.message,
-    }
+    return {"status": "OK"}
+    # return {
+    #     "asctime": log_record.asctime,
+    #     "levelno": log_record.levelno,
+    #     "message": log_record.message,
+    # }
 
 
 # A GET endpoint with path parameters
