@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import collections
+import reprlib
 
 
 class OneBasedTuple(collections.abc.Sequence):
@@ -14,8 +15,15 @@ class OneBasedTuple(collections.abc.Sequence):
         # names[0] or names[4] will raise an IndexError
     """
 
-    def __init__(self, iterable=None):
-        self._tuple = tuple(iterable or [])
+    def __init__(self, *elements):
+        self._tuple = tuple(elements)
+
+    @classmethod
+    def from_iterable(cls, iterable):
+        return cls(*iterable)
+
+    def __repr__(self):
+        return self.__class__.__name__ + reprlib.repr(self._tuple)
 
     def _validate_index(self, index):
         if index == 0:

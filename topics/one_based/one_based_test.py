@@ -7,7 +7,9 @@ import pytest
 
 from one_based import OneBasedTuple
 
-SAMPLE = OneBasedTuple("one two three four five six seven eight nine ten".split())
+SAMPLE = OneBasedTuple.from_iterable(
+    "one two three four five six seven eight nine ten".split()
+)
 
 
 def test_first():
