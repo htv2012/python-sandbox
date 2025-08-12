@@ -18,10 +18,6 @@ class OneBasedTuple(collections.abc.Sequence):
     def __init__(self, *elements):
         self._tuple = tuple(elements)
 
-    @classmethod
-    def from_iterable(cls, iterable):
-        return cls(*iterable)
-
     def __repr__(self):
         return self.__class__.__name__ + reprlib.repr(self._tuple)
 
