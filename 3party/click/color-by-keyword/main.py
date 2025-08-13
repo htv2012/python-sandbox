@@ -7,6 +7,7 @@ def myecho(text: str):
     text = text.replace("[WARNING]", click.style("[WARNING]", fg="bright_yellow"))
     click.echo(text)
 
+
 def main():
     myecho("test1 [PASSED]")
     myecho("test2 [FAILED]")
