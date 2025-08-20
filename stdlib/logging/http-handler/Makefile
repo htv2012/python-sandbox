@@ -16,6 +16,10 @@ lint:
 run: lint
 	uv run src/http_handler/main.py
 
+### Start the server
+server:
+	uv run uvicorn http_handler.server:app --reload --log-level=debug
+
 ### Run unit tests
 test: lint
 	uv run pytest -s -v

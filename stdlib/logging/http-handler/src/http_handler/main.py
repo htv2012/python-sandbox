@@ -2,6 +2,8 @@
 import logging
 import logging.handlers
 
+import requests
+
 
 class MyHttpHandler(logging.handlers.HTTPHandler):
     def mapLogRecord(self, record):
@@ -10,6 +12,29 @@ class MyHttpHandler(logging.handlers.HTTPHandler):
            "levelno": record.levelno,
            "message": record.message,
        }
+    def __init__(self, endpoint: str):
+        super().__init__("", "")
+        self.endpoint = endpoint
+
+    def mapLogRecord(self, record):
+        ret = {
+            "asctime": record.asctime,
+            "levelno": record.levelno,
+            "message": record.message,
+        }
+        print(f"Return {ret}")
+        return ret
+
+    def emit(self, record):
+        data = self.mapLogRecord(record)
+        resp = requests.post(
+            url=self.endpoint,
+            headers={"Content-Type": "application/json"},
+            data=data,
+        )
+        print(f"{resp=}")
+        breakpoint()
+        print()
 
 
 def create_logger():
@@ -23,7 +48,8 @@ def create_logger():
     ch.setFormatter(formatter)
     logger.addHandler(ch)
 
-    logger.addHandler(MyHttpHandler(host="127.0.0.1:8000", url="/log/", method="POST"))
+    # logger.addHandler(MyHttpHandler(host="127.0.0.1:8000", url="/log/", method="POST"))
+    logger.addHandler(MyHttpHandler(endpoint="http://127.0.0.1:8000/log/"))
 
     return logger
 
