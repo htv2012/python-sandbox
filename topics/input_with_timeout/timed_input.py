@@ -1,7 +1,8 @@
 import select
 import sys
 
-def timed_input(prompt, default, timeout: int = 10, show_default:bool=True):
+
+def timed_input(prompt, default, timeout: int = 10, show_default: bool = True):
     sys.stdout.write(prompt)
     if show_default:
         sys.stdout.write(f"[{default}] ")
@@ -14,6 +15,7 @@ def timed_input(prompt, default, timeout: int = 10, show_default:bool=True):
         print()
         answer = default
     return answer or default
+
 
 name = timed_input("What is your name? ", default="stranger", timeout=5)
 print(f"Hello, {name}")
