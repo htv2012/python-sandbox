@@ -1,4 +1,5 @@
 import csv
+import tempfile
 
 from fabric import Connection, task
 
@@ -16,6 +17,15 @@ def get_update(os_release_info: dict):
     if os_id == "debian":
         return "apt update", "apt upgrade -y", "apt install -y"
     raise ValueError(f"Do not handle {os_id}")
+
+
+@task
+def get_python_version(conn: Connection):
+    result = conn.run("python3 --version", hide=True, warn=True)
+    if result.exited != 0:
+        print(result)
+    else:
+        print(result.stdout)
 
 
 @task
