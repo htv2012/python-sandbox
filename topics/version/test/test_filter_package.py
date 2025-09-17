@@ -1,24 +1,22 @@
 import io
 import textwrap
 
-from hamcrest import assert_that, equal_to
-
-from version import filter_package
+from versionlib import filter_package
 
 
 def test_filter_blank_lines():
     lines = ["  ", "", "\t"]
-    assert_that(list(filter_package(lines)), equal_to([]))
+    assert list(filter_package(lines)) == []
 
 
 def test_filter_comments():
     lines = ["# hello", " # hello", "\t#hello"]
-    assert_that(list(filter_package(lines)), equal_to([]))
+    assert list(filter_package(lines)) == []
 
 
 def test_filter_dash():
     lines = ["-h", " --foo", "\t-bar"]
-    assert_that(list(filter_package(lines)), equal_to([]))
+    assert list(filter_package(lines)) == []
 
 
 def test_real_world():
@@ -50,4 +48,4 @@ def test_real_world():
         "pysnooper\n",
     ]
 
-    assert_that(list(filter_package(lines)), equal_to(expected))
+    assert list(filter_package(lines)) == expected

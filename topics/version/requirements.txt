@@ -1,4 +1,0 @@
-pyhamcrest
-pytest
-pytest-pythonpath
-pytest-watch
