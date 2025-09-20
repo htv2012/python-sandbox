@@ -18,7 +18,7 @@ run: lint
 
 ### Run unit tests
 test: lint
-	uv run pytest -s -v
+	uv run --env-file=.env pytest -s -v
 
 ### Clean up generated files
 clean:

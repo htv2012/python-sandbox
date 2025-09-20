@@ -6,12 +6,16 @@ def path_split(path: str):
         r"""
         \[\d+\]                     # List index
         |
-        \[[a-zA-Z_][a-zA-Z0-9_]*\]  # Dictionary key
+        \[[^\]]+\]  # Dictionary key
         |
-        \.[a-zA-Z_]+                # Object attribute
+        \.[a-zA-Z0-9_]+             # Object attribute
         """,
         re.VERBOSE,
     )
+
+    # Clean up the path, add leading dot if needed
+    if path[0] != "[" and path[0] != ".":
+        path = "." + path
 
     tokens = pattern.findall(path)
     out = []
@@ -19,13 +23,11 @@ def path_split(path: str):
         if "[" in token:
             token = token[1:-1]
             try:
-                # List Index
                 out.append((int(token), "index"))
             except ValueError:
-                # Dictionary key
                 out.append((token, "key"))
         else:
-            token = token[1:]
+            token = token.removeprefix(".")
             out.append((token, "attribute"))
 
     return out
