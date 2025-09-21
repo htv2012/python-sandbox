@@ -6,7 +6,7 @@ from kai_drill import kai
 
 test_obj = SimpleNamespace(
     name="Object Name",
-    tags=["tag0", "tag1"],
+    tags=["tag0", "tag1", "tag2", "tag3", "tag4"],
     phone={"home": "555-1212", "work": "333-1111"},
     commands=[
         SimpleNamespace(
@@ -36,6 +36,14 @@ test_obj = SimpleNamespace(
         pytest.param(
             test_obj, "commands[0].result.foo", None, None, id="error in leaf"
         ),
+        pytest.param(
+            test_obj, "tags[:3]", None, ["tag0", "tag1", "tag2"], id="slice, first N"
+        ),
+        pytest.param(
+            test_obj, "tags[3:]", None, ["tag3", "tag4"], id="slice, from N on"
+        ),
+        pytest.param(test_obj, "tags[4:2:-1]", None, ["tag4", "tag3"], id="reversed"),
+        pytest.param(test_obj, "tags[1:2:3:4]", None, None, id="invalid slice"),
     ],
 )
 def test_kai(obj, path, default, expected):

@@ -7,6 +7,7 @@ from kai_drill import TokenKind, split_path
     "path,expected",
     [
         pytest.param("[0]", [(0, TokenKind.KEY_OR_INDEX)], id="index"),
+        pytest.param("[:3]", [(slice(None, 3), TokenKind.KEY_OR_INDEX)], id="slice1"),
         pytest.param("[_key_1]", [("_key_1", TokenKind.KEY_OR_INDEX)], id="key"),
         pytest.param(
             "[tally total]",
