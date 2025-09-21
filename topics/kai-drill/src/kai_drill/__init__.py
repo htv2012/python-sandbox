@@ -1,7 +1,7 @@
 import re
 
 
-def path_split(path: str):
+def split_path(path: str):
     pattern = re.compile(
         r"""
         \[\d+\]                     # List index
@@ -34,8 +34,13 @@ def path_split(path: str):
 
 
 def kai(obj, path, default=None):
-    if isinstance(path, str):
-        path = path.split(".")
-
-    # out = obj
-    # for name in path:
+    out = obj
+    try:
+        for name, kind in split_path(path):
+            if kind == "key" or kind == "index":
+                out = out[name]
+            elif kind == "attribute":
+                out = getattr(out, name)
+        return out
+    except (KeyError, IndexError, AttributeError):
+        return default

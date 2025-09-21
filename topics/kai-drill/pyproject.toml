@@ -21,5 +21,6 @@ dev = [
     "ipython>=9.5.0",
     "pudb>=2025.1",
     "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
     "ruff>=0.13.1",
 ]

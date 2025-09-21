@@ -1,6 +1,6 @@
 import pytest
 
-from kai_drill import path_split
+from kai_drill import split_path
 
 
 @pytest.mark.parametrize(
@@ -20,4 +20,4 @@ from kai_drill import path_split
     ],
 )
 def test_path_split(path, expected):
-    assert path_split(path) == expected
+    assert split_path(path) == expected
