@@ -29,6 +29,7 @@ test_obj = SimpleNamespace(
         pytest.param(test_obj, "name", None, "Object Name", id="attribute, no dot"),
         pytest.param(test_obj, "tags[1]", None, "tag1", id="list element"),
         pytest.param(test_obj, "phone[home]", None, "555-1212", id="dictionary"),
+        pytest.param(test_obj, "commands[0].name", None, "command1", id="combo"),
         pytest.param(
             test_obj, "commands[0].result.output", None, "Hello", id="nested1"
         ),
