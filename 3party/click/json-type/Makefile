@@ -25,6 +25,8 @@ run: lint
 	uv run main.py --user 501,anna,false
 	@echo ""
 	uv run main.py --user 1,root,is_admin=true
+	@echo ""
+	uv run main.py --raw '{"tx1": {"dl": {"start": 0, "end": 1279}, "ul": {"start": 0, "end": 1439}}}'
 
 ### Run unit tests
 test: lint

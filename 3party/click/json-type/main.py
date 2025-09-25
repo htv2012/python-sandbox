@@ -1,4 +1,5 @@
 import dataclasses
+import json
 
 import click
 
@@ -31,7 +32,8 @@ class User:
 @click.option("-s", "--server", type=ClassParamType(Server))
 @click.option("-u", "--user", type=ClassParamType(User), metavar="uid,alias,is_admin")
 @click.option("--user2", type=User.from_str)
-def main(data: ArgsKwargs, server: Server, user: User, user2: User):
+@click.option("--raw", type=json.loads, help="Raw JSON", default="{}")
+def main(data: ArgsKwargs, server: Server, user: User, user2: User, raw):
     if server:
         print(f"{server=}")
     if data is not None:
@@ -40,6 +42,7 @@ def main(data: ArgsKwargs, server: Server, user: User, user2: User):
         print(f"{user=}")
     if user2:
         print(f"{user2=}")
+    print(f"raw={json.dumps(raw, indent=4)}")
 
 
 if __name__ == "__main__":
