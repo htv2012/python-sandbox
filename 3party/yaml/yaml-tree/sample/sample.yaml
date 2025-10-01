@@ -1,0 +1,8 @@
+servers:
+  test1:
+    host: test1.example.com
+    port: 2200
+  test2:
+    host: test2.example.com
+    port: 2201
+in_service: ["test1", "test2"]

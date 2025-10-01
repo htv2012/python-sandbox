@@ -1,0 +1,26 @@
+[project]
+name = "yaml-tree"
+version = "3.1.0"
+description = "Displays YAML file in tree format"
+readme = "README.md"
+authors = [
+    { name = "Hai Vu", email = "yhavu@amazon.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "click==8.1.7",
+    "pyyaml>=6.0.2",
+]
+
+[project.scripts]
+yt = "yaml_tree:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ipython>=9.3.0",
+    "ruff>=0.11.13",
+]
