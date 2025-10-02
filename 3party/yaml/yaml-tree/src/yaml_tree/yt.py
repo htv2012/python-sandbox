@@ -31,7 +31,7 @@ DEFAULT_SETTINGS = dict(
 )
 
 
-def color_print(color: str, text: str, end: str = "\n"):
+def color_print(color: str, text: str, end: str = None):
     lookup = dict(red=31, green=32, yellow=33, blue=34, megenta=35, cyan=36, white=37)
     print(f"\033[1;{lookup[color]}m{text}\033[0m", end=end)
 
@@ -129,8 +129,9 @@ def jq(expr, tree, error_color):
 
     try:
         return yaml.safe_load(proc.stdout)
-    except yaml.parser.ParserError:
-        raise SystemExit(proc.stdout)
+    except yaml.parser.ParserError as error:
+        color_print(error_color, error)
+        raise SystemExit(1)
 
 
 def parse(text: str):
