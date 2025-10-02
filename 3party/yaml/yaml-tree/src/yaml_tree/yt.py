@@ -33,7 +33,7 @@ DEFAULT_SETTINGS = dict(
 
 
 def color_print(color: str, text: str, end: str = None):
-    lookup = dict(red=31, green=32, yellow=33, blue=34, megenta=35, cyan=36, white=37)
+    lookup = dict(red=31, green=32, yellow=33, blue=34, magenta=35, cyan=36, white=37)
     print(f"\033[1;{lookup[color]}m{text}\033[0m", end=end)
 
 
@@ -60,7 +60,7 @@ def is_scalar(obj: Any):
     )
 
 
-def echo_value(value: Any, colors):
+def print_value(value: Any, colors):
     if isinstance(value, str):
         color = colors["string_value"]
     else:
@@ -68,12 +68,12 @@ def echo_value(value: Any, colors):
     color_print(color, repr(value))
 
 
-def echo_key(key: str, color, end=None):
+def print_key(key: str, color, end=None):
     color_print(color["key"], key, end=end)
 
 
-def echo_index(index: int, color, end=None):
-    echo_key(f"[{index}]", color, end=end)
+def print_index(index: int, color, end=None):
+    print_key(f"[{index}]", color, end=end)
 
 
 @functools.singledispatch
@@ -88,12 +88,12 @@ def print_list(obj: List, color, prefix: str = ""):
         last = value == last_key
         if is_scalar(value):
             print(f"{prefix}{CONNECTOR[last]}", end="")
-            echo_index(key, color, end="")
+            print_index(key, color, end="")
             print("=", end="")
-            echo_value(value, color)
+            print_value(value, color)
         else:
             print(f"{prefix}{CONNECTOR[last]}", end="")
-            echo_index(key, color)
+            print_index(key, color)
             print_tree(value, color, f"{prefix}{'    ' if last else '│   '}")
 
 
@@ -104,12 +104,12 @@ def print_dict(obj: Dict, color, prefix: str = ""):
         last = key == last_key
         if is_scalar(value):
             print(f"{prefix}{CONNECTOR[last]}", end="")
-            echo_key(key, color, end="")
+            print_key(key, color, end="")
             print("=", end="")
-            echo_value(value, color)
+            print_value(value, color)
         else:
             print(f"{prefix}{CONNECTOR[last]}", end="")
-            echo_key(key, color)
+            print_key(key, color)
             print_tree(value, color, f"{prefix}{'    ' if last else '│   '}")
 
 
