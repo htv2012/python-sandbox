@@ -5,15 +5,18 @@ all: run
 
 ### Perform static analysis
 lint:
-	uv run ruff check --select I --fix .
-	uv run ruff format .
-	uv run ruff check . --fix
+	uv run ruff check -q --select I --fix .
+	uv run ruff format -q .
+	uv run ruff check -q . --fix
 
 ### Run the project
 run: lint
+	@echo ""
 	uv run yt sample/sample.yaml
 	@echo ""
 	uv run yt sample/sample.yaml --filter '.servers'
+	@echo ""
+	uv run yt --version
 
 ### Run unit tests
 test: lint
