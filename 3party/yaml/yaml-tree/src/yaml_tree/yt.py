@@ -5,6 +5,7 @@ import pathlib
 import shutil
 import subprocess
 import sys
+from importlib.metadata import version
 from typing import Any, Dict, List, TypedDict
 
 import yaml
@@ -139,7 +140,8 @@ def parse(text: str):
 
 
 def parse_command_line():
-    parser = argparse.ArgumentParser()
+    package_version = version("yaml_tree")
+    parser = argparse.ArgumentParser(description="Display YAML file in tree format.")
     parser.add_argument(
         "-f",
         "--filter",
@@ -151,7 +153,9 @@ def parse_command_line():
         ),
     )
     parser.add_argument("filename", nargs="?", default="-")
-    parser.add_argument("-V", "--version", action="version", version="%(PROG)s 1.1.1")
+    parser.add_argument(
+        "-V", "--version", action="version", version=f"%(prog)s {package_version}"
+    )
     options = parser.parse_args()
     return options
 

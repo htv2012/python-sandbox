@@ -1,6 +1,6 @@
 [project]
 name = "yaml-tree"
-version = "3.1.0"
+version = "3.2.0"
 description = "Displays YAML file in tree format"
 readme = "README.md"
 authors = [
