@@ -24,15 +24,15 @@ CONNECTOR = {True: "└── ", False: "├── "}
 
 DEFAULT_SETTINGS = dict(
     color=TextColor(
-        key="blue",
-        string_value="yellow",
+        key="yellow",
+        string_value="magenta",
         value="cyan",
         error="red",
     )
 )
 
 
-def color_print(color: str, text: str, end: str = None):
+def print_color(color: str, text: str, end: str = None):
     lookup = dict(red=31, green=32, yellow=33, blue=34, magenta=35, cyan=36, white=37)
     print(f"\033[1;{lookup[color]}m{text}\033[0m", end=end)
 
@@ -65,11 +65,11 @@ def print_value(value: Any, colors):
         color = colors["string_value"]
     else:
         color = colors["value"]
-    color_print(color, repr(value))
+    print_color(color, repr(value))
 
 
 def print_key(key: str, color, end=None):
-    color_print(color["key"], key, end=end)
+    print_color(color["key"], key, end=end)
 
 
 def print_index(index: int, color, end=None):
@@ -125,13 +125,13 @@ def jq(expr, tree, error_color):
         check=False,
     )
     if proc.stderr:
-        color_print(error_color, proc.stderr)
+        print_color(error_color, proc.stderr)
         raise SystemExit(1)
 
     try:
         return yaml.safe_load(proc.stdout)
     except yaml.parser.ParserError as error:
-        color_print(error_color, error)
+        print_color(error_color, error)
         raise SystemExit(1)
 
 
