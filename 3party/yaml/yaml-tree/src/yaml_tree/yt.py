@@ -160,11 +160,15 @@ def parse_command_line():
     return options
 
 
-def read_file(filename: str):
+def read_file(filename: str, error_color: str):
     if filename == "-":
         return sys.stdin.read()
-    with open(filename) as stream:
-        return stream.read()
+    try:
+        with open(filename) as stream:
+            return stream.read()
+    except FileNotFoundError as error:
+        print_color(error_color, error)
+        raise SystemExit(1)
 
 
 def main():
@@ -187,7 +191,7 @@ def main():
     """
     settings = load_settings()
     options = parse_command_line()
-    raw = read_file(options.filename)
+    raw = read_file(options.filename, settings["color"]["error"])
     tree = parse(raw)
     tree = jq(options.filter, tree, error_color=settings["color"]["error"])
     print_tree(tree, settings["color"])
