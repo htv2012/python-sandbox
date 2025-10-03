@@ -1,11 +1,11 @@
 import argparse
 import functools
+import importlib.metadata
 import json
 import pathlib
 import shutil
 import subprocess
 import sys
-from importlib.metadata import version
 from typing import Any, Dict, List, TypedDict
 
 import yaml
@@ -140,7 +140,7 @@ def parse(text: str):
 
 
 def parse_command_line():
-    package_version = version("yaml_tree")
+    package_version = importlib.metadata.version("yaml_tree")
     parser = argparse.ArgumentParser(description="Display YAML file in tree format.")
     parser.add_argument(
         "-f",

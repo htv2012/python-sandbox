@@ -5,9 +5,9 @@ all: run
 
 ### Perform static analysis
 lint:
-	uv run ruff check -q --select I --fix .
-	uv run ruff format -q .
-	uv run ruff check -q . --fix
+	uv run ruff check --select I --fix .
+	uv run ruff format .
+	uv run ruff check . --fix
 
 ### Run the project
 run: lint
