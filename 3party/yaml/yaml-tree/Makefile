@@ -11,9 +11,12 @@ lint:
 
 ### Run the project
 run: lint
+	@echo ""
 	uv run yt sample/sample.yaml
 	@echo ""
 	uv run yt sample/sample.yaml --filter '.servers'
+	@echo ""
+	uv run yt --version
 
 ### Run unit tests
 test: lint

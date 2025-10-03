@@ -1,29 +1,40 @@
+import argparse
 import functools
+import importlib.metadata
 import json
 import pathlib
 import shutil
 import subprocess
-from typing import Any, Dict, List
+import sys
+from typing import Any, Dict, List, TypedDict
 
-import click
 import yaml
 import yaml.parser
 
+
+class TextColor(TypedDict):
+    key: str
+    string_value: str
+    value: str
+    error: str
+
+
 CONNECTOR = {True: "└── ", False: "├── "}
 
-KEY_COLOR = "key"
-STRING_VALUE_COLOR = "string_value"
-VALUE_COLOR = "value"
-ERROR_COLOR = "error"
 
-DEFAULT_SETTINGS = {
-    "color": {
-        KEY_COLOR: "bright_blue",
-        STRING_VALUE_COLOR: "bright_yellow",
-        VALUE_COLOR: "bright_cyan",
-        ERROR_COLOR: "red",
-    }
-}
+DEFAULT_SETTINGS = dict(
+    color=TextColor(
+        key="yellow",
+        string_value="magenta",
+        value="cyan",
+        error="red",
+    )
+)
+
+
+def print_color(color: str, text: str, end: str = None):
+    lookup = dict(red=31, green=32, yellow=33, blue=34, magenta=35, cyan=36, white=37)
+    print(f"\033[1;{lookup[color]}m{text}\033[0m", end=end)
 
 
 def load_settings():
@@ -49,19 +60,20 @@ def is_scalar(obj: Any):
     )
 
 
-def echo_value(value: Any, color):
-    click.secho(
-        repr(value),
-        fg=color[STRING_VALUE_COLOR] if isinstance(value, str) else color[VALUE_COLOR],
-    )
+def print_value(value: Any, colors):
+    if isinstance(value, str):
+        color = colors["string_value"]
+    else:
+        color = colors["value"]
+    print_color(color, repr(value))
 
 
-def echo_key(key: str, color, nl=True):
-    click.secho(key, fg=color[KEY_COLOR], nl=nl)
+def print_key(key: str, color, end=None):
+    print_color(color["key"], key, end=end)
 
 
-def echo_index(index: int, color, nl=True):
-    echo_key(f"[{index}]", color, nl=nl)
+def print_index(index: int, color, end=None):
+    print_key(f"[{index}]", color, end=end)
 
 
 @functools.singledispatch
@@ -75,13 +87,13 @@ def print_list(obj: List, color, prefix: str = ""):
     for key, value in enumerate(obj):
         last = value == last_key
         if is_scalar(value):
-            click.echo(f"{prefix}{CONNECTOR[last]}", nl=False)
-            echo_index(key, color, nl=False)
-            click.echo("=", nl=False)
-            echo_value(value, color)
+            print(f"{prefix}{CONNECTOR[last]}", end="")
+            print_index(key, color, end="")
+            print("=", end="")
+            print_value(value, color)
         else:
-            click.echo(f"{prefix}{CONNECTOR[last]}", nl=False)
-            echo_index(key, color)
+            print(f"{prefix}{CONNECTOR[last]}", end="")
+            print_index(key, color)
             print_tree(value, color, f"{prefix}{'    ' if last else '│   '}")
 
 
@@ -91,13 +103,13 @@ def print_dict(obj: Dict, color, prefix: str = ""):
     for key, value in obj.items():
         last = key == last_key
         if is_scalar(value):
-            click.echo(f"{prefix}{CONNECTOR[last]}", nl=False)
-            echo_key(key, color, nl=False)
-            click.echo("=", nl=False)
-            echo_value(value, color)
+            print(f"{prefix}{CONNECTOR[last]}", end="")
+            print_key(key, color, end="")
+            print("=", end="")
+            print_value(value, color)
         else:
-            click.echo(f"{prefix}{CONNECTOR[last]}", nl=False)
-            echo_key(key, color)
+            print(f"{prefix}{CONNECTOR[last]}", end="")
+            print_key(key, color)
             print_tree(value, color, f"{prefix}{'    ' if last else '│   '}")
 
 
@@ -113,34 +125,53 @@ def jq(expr, tree, error_color):
         check=False,
     )
     if proc.stderr:
-        click.secho(proc.stderr, fg=error_color)
+        print_color(error_color, proc.stderr)
         raise SystemExit(1)
 
     try:
         return yaml.safe_load(proc.stdout)
-    except yaml.parser.ParserError:
-        raise SystemExit(proc.stdout)
+    except yaml.parser.ParserError as error:
+        print_color(error_color, error)
+        raise SystemExit(1)
 
 
 def parse(text: str):
     return yaml.safe_load(text)
 
 
-@click.command
-@click.option(
-    "-f",
-    "--filter",
-    default=".",
-    show_default=True,
-    help=(
-        "Expression to filter the result. "
-        "This filter is the same as jq. "
-        "See: https://jqlang.org/manual/#basic-filters"
-    ),
-)
-@click.version_option()
-@click.argument("filename", required=False, default="-")
-def main(filter, filename) -> None:
+def parse_command_line():
+    package_version = importlib.metadata.version("yaml_tree")
+    parser = argparse.ArgumentParser(description="Display YAML file in tree format.")
+    parser.add_argument(
+        "-f",
+        "--filter",
+        default=".",
+        help=(
+            "Expression to filter the result. "
+            "This filter is the same as jq. "
+            "See: https://jqlang.org/manual/#basic-filters"
+        ),
+    )
+    parser.add_argument("filename", nargs="?", default="-")
+    parser.add_argument(
+        "-V", "--version", action="version", version=f"%(prog)s {package_version}"
+    )
+    options = parser.parse_args()
+    return options
+
+
+def read_file(filename: str, error_color: str):
+    if filename == "-":
+        return sys.stdin.read()
+    try:
+        with open(filename) as stream:
+            return stream.read()
+    except FileNotFoundError as error:
+        print_color(error_color, error)
+        raise SystemExit(1)
+
+
+def main():
     """
     Displays a YAML file in tree format with optional JQ's style filter.
 
@@ -159,10 +190,10 @@ def main(filter, filename) -> None:
         edit ~/.config/yt.yaml
     """
     settings = load_settings()
-    with click.open_file(filename or "-") as stream:
-        raw = stream.read()
+    options = parse_command_line()
+    raw = read_file(options.filename, settings["color"]["error"])
     tree = parse(raw)
-    tree = jq(filter, tree, error_color=settings["color"][ERROR_COLOR])
+    tree = jq(options.filter, tree, error_color=settings["color"]["error"])
     print_tree(tree, settings["color"])
 
 
