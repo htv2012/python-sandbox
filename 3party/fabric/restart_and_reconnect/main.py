@@ -1,4 +1,5 @@
 import contextlib
+import subprocess
 import time
 
 import fabric
@@ -18,21 +19,13 @@ def show_info(c: fabric.Connection):
 
 
 @contextlib.contextmanager
-def ensure_rebooted(hostname: str):
-    """
-    Create a ssh client and perform some prep works remotely.
-    """
-    logger.info(f"Connect to {hostname}")
-    with fabric.Connection(host=hostname) as conn:
-        logger.info("Reboot")
-        conn.sudo("shutdown -r now")
-
-    time.sleep(1)
-    logger.info("Wait host comes online")
-    with fabric.Connection(host=hostname) as conn:
+def ssh_connect(host: str, timeout=None):
+    with fabric.Connection(host=host) as conn:
+        logger.info(f"Connect to {host}")
         while True:
             try:
                 conn.open()
+                logger.info(f"Connected to {host}")
                 break
             except (
                 EOFError,
@@ -40,13 +33,35 @@ def ensure_rebooted(hostname: str):
                 paramiko.ssh_exception.SSHException,
                 paramiko.ssh_exception.NoValidConnectionsError,
             ):
-                logger.info("Still offline...")
+                logger.info("Wait for connection")
                 time.sleep(3)
+    yield conn
 
-        logger.info("Yield control to caller")
+
+def is_host_online(host: str):
+    cmd = ["ping", "-W", "1", "-c", "1", host]
+    proc = subprocess.run(cmd, check=False, capture_output=True)
+    return proc.returncode == 0
+
+
+@contextlib.contextmanager
+def ensure_rebooted(hostname: str):
+    """
+    Create a ssh client and perform some prep works remotely.
+    """
+    with ssh_connect(host=hostname) as conn:
+        show_info(conn)
+        logger.info("Reboot")
+        conn.sudo("shutdown -r now")
+
+    time.sleep(3)
+    logger.info("Wait for host goes offline")
+    while is_host_online(hostname):
+        time.sleep(2)
+
+    logger.info("Wait host comes online")
+    with ssh_connect(host=hostname) as conn:
         yield conn
-
-    logger.info("Clean up")
 
 
 def main():
