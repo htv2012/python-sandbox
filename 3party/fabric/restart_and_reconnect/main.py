@@ -1,44 +1,38 @@
 import contextlib
-import logging
-import logging.config
-import pathlib
 import time
 
 import fabric
 import paramiko
+from loguru import logger
 
-config_path = pathlib.Path(__file__).with_name("logging.ini")
-logging.config.fileConfig(config_path)
+
+def run(c: fabric.Connection, cmd):
+    result = c.run(cmd, hide=True)
+    return result.stdout.strip()
+
+
+def show_info(c: fabric.Connection):
+    logger.info(f"Host: {run(c, 'hostname')}")
+    logger.info(f"Uptime: {run(c, 'uptime -p')}")
+    logger.info(f"User: {run(c, 'whoami')}")
 
 
 @contextlib.contextmanager
-def ssh_connection():
+def ensure_rebooted(hostname: str):
     """
     Create a ssh client and perform some prep works remotely.
     """
-    logging.info("First connection...")
-    with fabric.Connection(host="test1") as connection:
-        logging.info("Connected")
-
-        logging.info("Show uptime")
-        connection.run("uptime")
-
-        logging.info("Prep the remote host")
-        # Perform prep works here
-
-        logging.info("Reboot the remote host")
-        connection.sudo("shutdown -r now")
+    logger.info(f"Connect to {hostname}")
+    with fabric.Connection(host=hostname) as conn:
+        logger.info("Reboot")
+        conn.sudo("shutdown -r now")
 
     time.sleep(1)
-    logging.info("Second connection...")
-    with fabric.Connection(host="test1") as connection:
+    logger.info("Wait host comes online")
+    with fabric.Connection(host=hostname) as conn:
         while True:
             try:
-                connection.open()
-                logging.info("Connected again")
-
-                logging.info("Show uptime")
-                connection.run("uptime")
+                conn.open()
                 break
             except (
                 EOFError,
@@ -46,24 +40,21 @@ def ssh_connection():
                 paramiko.ssh_exception.SSHException,
                 paramiko.ssh_exception.NoValidConnectionsError,
             ):
-                logging.debug("Retrying...")
+                logger.info("Still offline...")
                 time.sleep(3)
 
-        logging.info("Yield control to caller")
-        yield connection
+        logger.info("Yield control to caller")
+        yield conn
 
-    logging.info("Clean up")
+    logger.info("Clean up")
 
 
 def main():
     """Entry"""
-    # Suppress paramiko log
-    logging.getLogger("paramiko").setLevel(logging.CRITICAL)
-    with ssh_connection() as conn:
-        logging.info("Run WHOAMI")
-        response = conn.run("whoami", hide=True)
-        logging.info("User name: %r", response.stdout.strip())
-        logging.info("Done WHOAMI")
+    with ensure_rebooted(hostname="test1") as conn:
+        show_info(conn)
+        os_release = run(conn, "cat /etc/os-release")
+        logger.info(f"Content of /etc/os-release\n{os_release}")
 
 
 if __name__ == "__main__":
