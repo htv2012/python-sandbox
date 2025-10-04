@@ -17,8 +17,11 @@ def ssh_connection():
     Create a ssh client and perform some prep works remotely.
     """
     logging.info("First connection...")
-    with fabric.Connection(host="primary") as connection:
+    with fabric.Connection(host="test1") as connection:
         logging.info("Connected")
+
+        logging.info("Show uptime")
+        connection.run("uptime")
 
         logging.info("Prep the remote host")
         # Perform prep works here
@@ -28,11 +31,14 @@ def ssh_connection():
 
     time.sleep(1)
     logging.info("Second connection...")
-    with fabric.Connection(host="primary") as connection:
+    with fabric.Connection(host="test1") as connection:
         while True:
             try:
                 connection.open()
                 logging.info("Connected again")
+
+                logging.info("Show uptime")
+                connection.run("uptime")
                 break
             except (
                 EOFError,
