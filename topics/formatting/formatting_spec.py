@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 import dataclasses
-import logging
 import os
 import re
 
-logging.basicConfig(level=os.getenv("LOGLEVEL", "DEBUG"))
-logger = logging.getLogger(__name__)
 
 
 SPEC_PATTERN = re.compile(
@@ -13,7 +10,7 @@ SPEC_PATTERN = re.compile(
     ^             # Start
     ([<>^])?      # One of: < > or ^
     (\d*)?        # The width, a series of digits
-    (a|s|u|csv)?  # a=alias, s=shell, u=uid, csv=comma separated values
+    (alias|shell|uid|csv)?
     $             # End
 """,
     re.VERBOSE,
@@ -21,12 +18,7 @@ SPEC_PATTERN = re.compile(
 
 
 def parse_spec(spec: str):
-    logger.debug("spec=%r", spec)
     matched = SPEC_PATTERN.match(spec)
-    logging.debug("matched=%r", matched)
-    if matched:
-        logging.debug("groups=%r", matched.groups())
-
     alignment, width, selector = matched.groups()
     return alignment or "", width or "", selector or ""
 
@@ -38,13 +30,13 @@ class User:
     shell: str
 
     def __format__(self, spec):
-        """Spec: u: uid, a: alias, s: shell"""
+        """Spec: uid, alias, shell"""
         alignment, width, selector = parse_spec(spec)
-        if selector == "a" or selector == "":
+        if selector == "alias" or selector == "":
             value = self.alias
-        elif selector == "u":
+        elif selector == "uid":
             value = self.uid
-        elif selector == "s":
+        elif selector == "shell":
             value = self.shell
         elif selector == "csv":
             value = f"{self.uid},{self.alias},{self.shell}"
@@ -57,27 +49,25 @@ class User:
 
 def main():
     user = User(uid=501, alias="karen", shell="bash")
-    print("repr:", repr(user))
-    print("-" * 20)
+    print(f"User = {user!r}")
 
-    print("\n# No spec")
-    print("123456789012")
-    print(f"{user}")
 
-    print("\n# Spec='>12u'")
-    print("123456789012")
-    print(f"{user:>12u}")
+    print("\n# No alignment")
+    for spec in ["| {}| ", "| {:uid} |", "| {:alias} |", "| {:shell} |"]:
+        print(spec.format(user))
 
-    print("\n# Spec='12a'")
-    print("123456789012")
-    print(f"{user:12a}")  # Left justify
+    print("\n# Left Justify")
+    for spec in ["| {:<12} |", "| {:<12uid} |", "| {:<12alias} |", "| {:<12shell} |"]:
+        print(spec.format(user))
 
-    print("\n# Spec='^12s'")
-    print("123456789012")
-    print(f"{user:^12s}")  # Center
+    print("\n# Right Justify")
+    for spec in ["| {:>12} |", "| {:>12uid} |", "| {:>12alias} |", "| {:>12shell} |"]:
+        print(spec.format(user))
 
-    print("\n# Spec='csv'")
-    print(f"{user:csv}")
+    print("\n# Center")
+    for spec in ["| {:^12} |", "| {:^12uid} |", "| {:^12alias} |", "| {:^12shell} |"]:
+        print(spec.format(user))
+
 
 
 if __name__ == "__main__":
