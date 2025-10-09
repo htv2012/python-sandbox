@@ -59,7 +59,7 @@ def info(conn: Connection):
     conn.run("hostname")
 
     print("Uptime: ", end="")
-    conn.run("uptime")
+    conn.run("uptime -p")
 
     print("Python version: ", end="")
     conn.run("python3 --version")
