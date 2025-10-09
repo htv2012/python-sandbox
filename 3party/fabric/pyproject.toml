@@ -15,3 +15,8 @@ dev = [
     "ipython>=9.4.0",
     "ruff>=0.12.10",
 ]
+
+[tool.uv.workspace]
+members = [
+    "restart_and_reconnect",
+]
