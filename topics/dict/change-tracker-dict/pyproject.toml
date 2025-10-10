@@ -20,6 +20,13 @@ build-backend = "uv_build"
 dev = [
     "ipython>=9.6.0",
     "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
     "ruff>=0.14.0",
     "ty>=0.0.1a22",
 ]
+
+[tool.pytest.ini_options]
+addopts = "--cov=change_tracker_dict"
+
+[tool.coverage.run]
+omit = ["src/change_tracker_dict/main.py"]
