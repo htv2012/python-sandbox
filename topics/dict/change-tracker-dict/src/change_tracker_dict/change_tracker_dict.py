@@ -7,6 +7,7 @@ import collections
 import contextlib
 
 __all__ = ["ChangeTrackerDict"]
+NO_DEFAULT = object()
 
 
 class ChangeTrackerDict(collections.ChainMap):
@@ -19,19 +20,45 @@ class ChangeTrackerDict(collections.ChainMap):
         self.maps.insert(0, self.tracker)
 
     def __delitem__(self, key):
-        del self.maps[0]
-
-        if key in self.tracker:
-            # Delete key in tracker and ignore subsequent errors
-            del self.tracker[key]
-            with contextlib.suppress(KeyError):
+        with self.no_tracker():
+            if key in self.tracker:
+                # Delete key in tracker and ignore subsequent errors
+                del self.tracker[key]
+                with contextlib.suppress(KeyError):
+                    super().__delitem__(key)
+            else:
+                # Delete key in the rest of the chain, do not ignore error
                 super().__delitem__(key)
-        else:
-            # Delete key in the rest of the chain, do not ignore error
-            super().__delitem__(key)
 
-        self.maps.insert(0, self.tracker)
-        self.deleted_keys.append(key)
+            self.deleted_keys.append(key)
+
+    def pop(self, key, default=NO_DEFAULT):
+        with self.no_tracker():
+            if key in self.tracker:
+                ret = self.tracker.pop(key, default)
+                ret2 = super().pop(key, default)
+                self.deleted_keys.append(key)
+                if ret is NO_DEFAULT and ret2 is NO_DEFAULT:
+                    raise KeyError(key)
+                elif ret is not NO_DEFAULT:
+                    return ret
+                else:
+                    return ret2
+            else:
+                ret = super().pop(key, default)
+                self.deleted_keys.append(key)
+                if ret is NO_DEFAULT:
+                    raise KeyError(key)
+                return ret
+
+    @contextlib.contextmanager
+    def no_tracker(self):
+        """Temporarily remove the tracker, then add back on"""
+        del self.maps[0]
+        try:
+            yield
+        finally:
+            self.maps.insert(0, self.tracker)
 
     @property
     def changed(self) -> bool:
