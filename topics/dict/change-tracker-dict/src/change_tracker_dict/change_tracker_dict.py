@@ -9,6 +9,8 @@ import contextlib
 __all__ = ["ChangeTrackerDict"]
 NO_DEFAULT = object()
 
+Change = collections.namedtuple("Change", "op,key,value")
+
 
 class ChangeTrackerDict(collections.ChainMap):
     """A dictionary which tracks changes."""
@@ -50,8 +52,6 @@ class ChangeTrackerDict(collections.ChainMap):
 
     @property
     def changes(self) -> list:
-        updates = [
-            f"Updated: [{key!r}]={value!r}" for key, value in self.tracker.items()
-        ]
-        deletions = [f"Deleted: [{key!r}]" for key in self.deleted_keys]
+        updates = [Change("update", key, value) for key, value in self.tracker.items()]
+        deletions = [Change("delete", key, None) for key in self.deleted_keys]
         return updates + deletions

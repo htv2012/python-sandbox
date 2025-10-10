@@ -19,22 +19,22 @@ def test_no_change(tracked):
 
 def test_deletion(tracked):
     del tracked["a"]
-    assert "Deleted: ['a']" in tracked.changes
+    assert [("delete", "a", None)] == tracked.changes
 
 
 def test_pop_existing_key_with_default(tracked):
     assert tracked.pop("a", "default") == 1
-    assert ["Deleted: ['a']"] == tracked.changes
+    assert [("delete", "a", None)] == tracked.changes
 
 
 def test_pop_existing_key_without_default(tracked):
     tracked.pop("a")
-    assert ["Deleted: ['a']"] == tracked.changes
+    assert [("delete", "a", None)] == tracked.changes
 
 
 def test_pop_with_default(tracked):
     assert tracked.pop("foo", "bar") == "bar"
-    assert ["Deleted: ['foo']"] == tracked.changes
+    assert [("delete", "foo", None)] == tracked.changes
 
 
 def test_pop_without_default(tracked):
@@ -44,18 +44,17 @@ def test_pop_without_default(tracked):
 
 def test_addition(tracked):
     tracked["c"] = "foo"
-    assert "Updated: ['c']='foo'" in tracked.changes
+    assert [("update", "c", "foo")] == tracked.changes
 
 
 def test_update(tracked):
     tracked["a"] = "bar"
-    assert "Updated: ['a']='bar'" in tracked.changes
+    assert [("update", "a", "bar")] == tracked.changes
 
 
 def test_update_many(tracked):
     tracked.update({"a": "bar", "c": "foo"})
-    assert "Updated: ['c']='foo'" in tracked.changes
-    assert "Updated: ['a']='bar'" in tracked.changes
+    assert [("update", "a", "bar"), ("update", "c", "foo")] == tracked.changes
 
 
 def test_add_then_delete(tracked, original):
