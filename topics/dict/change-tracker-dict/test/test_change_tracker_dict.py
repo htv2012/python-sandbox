@@ -36,3 +36,15 @@ def test_update_many(tracked):
     tracked.update({"a": "bar", "c": "foo"})
     assert "Updated: ['c']='foo'" in tracked.changes
     assert "Updated: ['a']='bar'" in tracked.changes
+
+
+def test_add_then_delete(tracked, original):
+    tracked["new"] = "foo"
+    del tracked["new"]
+    assert dict(tracked) == original
+
+
+def test_add_then_delete_existing_key(tracked):
+    tracked["a"] = "foo"
+    del tracked["a"]
+    assert dict(tracked) == dict(b=2)
