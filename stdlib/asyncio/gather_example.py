@@ -5,25 +5,25 @@ import random
 from loguru import logger
 
 
-async def factorial(name, number):
-    f = 1
+async def factorial(task_id, number):
+    logger.debug(f"Task {task_id}: Calculating factorial({number})")
+    out = 1
     for i in range(2, number + 1):
-        logger.debug(f"Task {name}: Compute factorial({number}), currently i={i}...")
-        await asyncio.sleep(random.randint(1, 3))
-        f *= i
-    logger.debug(f"Task {name}: factorial({number}) = {f}")
-    return f
+        await asyncio.sleep(random.random())
+        out *= i
+    logger.debug(f"Task {task_id}: factorial({number}) = {out}")
+    return out
 
 
 async def main():
-    # Schedule three calls *concurrently*:
-    L = await asyncio.gather(
-        factorial("A", 2),
-        factorial("B", 3),
-        factorial("C", 4),
-        factorial("D", 5),
-    )
-    logger.info(L)
+    tasks_input = [("A", 6), ("B", 3), ("C", 4)]
+    tasks = [factorial(*task_input) for task_input in tasks_input]
+    results = await asyncio.gather(*tasks)
+
+    # gather() keeps the order of input/output
+    for (task_id, input_value), output_value in zip(tasks_input, results):
+        logger.info(f"{task_id}: factorial({input_value}) -> {output_value}")
 
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())
