@@ -22,6 +22,26 @@ def test_deletion(tracked):
     assert "Deleted: ['a']" in tracked.changes
 
 
+def test_pop_existing_key_with_default(tracked):
+    assert tracked.pop("a", "default") == 1
+    assert ["Deleted: ['a']"] == tracked.changes
+
+
+def test_pop_existing_key_without_default(tracked):
+    tracked.pop("a")
+    assert ["Deleted: ['a']"] == tracked.changes
+
+
+def test_pop_with_default(tracked):
+    assert tracked.pop("foo", "bar") == "bar"
+    assert ["Deleted: ['foo']"] == tracked.changes
+
+
+def test_pop_without_default(tracked):
+    with pytest.raises(KeyError, match="foo"):
+        tracked.pop("foo")
+
+
 def test_addition(tracked):
     tracked["c"] = "foo"
     assert "Updated: ['c']='foo'" in tracked.changes
