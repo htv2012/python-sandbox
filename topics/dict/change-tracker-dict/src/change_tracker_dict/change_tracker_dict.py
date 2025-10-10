@@ -24,14 +24,13 @@ class ChangeTrackerDict(collections.ChainMap):
             if key in self.tracker:
                 ret = self.tracker.pop(key, default)
                 super().pop(key, default)
-                self.deleted_keys.append(key)
-                return ret
             else:
                 ret = super().pop(key, default)
-                self.deleted_keys.append(key)
                 if ret is NO_DEFAULT:
                     raise KeyError(key)
-                return ret
+
+            self.deleted_keys.append(key)
+            return ret
 
     def __delitem__(self, key):
         self.pop(key)
