@@ -19,19 +19,6 @@ class ChangeTrackerDict(collections.ChainMap):
         self.tracker = {}
         self.maps.insert(0, self.tracker)
 
-    def __delitem__(self, key):
-        with self.no_tracker():
-            if key in self.tracker:
-                # Delete key in tracker and ignore subsequent errors
-                del self.tracker[key]
-                with contextlib.suppress(KeyError):
-                    super().__delitem__(key)
-            else:
-                # Delete key in the rest of the chain, do not ignore error
-                super().__delitem__(key)
-
-            self.deleted_keys.append(key)
-
     def pop(self, key, default=NO_DEFAULT):
         with self.no_tracker():
             if key in self.tracker:
@@ -50,6 +37,9 @@ class ChangeTrackerDict(collections.ChainMap):
                 if ret is NO_DEFAULT:
                     raise KeyError(key)
                 return ret
+
+    def __delitem__(self, key):
+        self.pop(key)
 
     @contextlib.contextmanager
     def no_tracker(self):
