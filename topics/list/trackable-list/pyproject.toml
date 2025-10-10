@@ -1,0 +1,35 @@
+[project]
+name = "trackable-list"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Hai Vu", email = "haivu2004@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+trackable-list = "trackable_list:main"
+
+[build-system]
+requires = ["uv_build>=0.8.15,<0.9.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipython>=9.6.0",
+    "pytest>=8.4.2",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.14.0",
+    "ty>=0.0.1a22",
+]
+
+[tool.pytest.ini_options]
+addopts = "--cov=trackable_list --no-cov-on-fail"
+
+[tool.coverage.run]
+omit = ["src/trackable_list/main.py"]
+
+[tool.coverage.html]
+directory = "coverage"
