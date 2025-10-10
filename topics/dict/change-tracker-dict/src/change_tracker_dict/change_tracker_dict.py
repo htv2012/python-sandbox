@@ -23,14 +23,9 @@ class ChangeTrackerDict(collections.ChainMap):
         with self.no_tracker():
             if key in self.tracker:
                 ret = self.tracker.pop(key, default)
-                ret2 = super().pop(key, default)
+                super().pop(key, default)
                 self.deleted_keys.append(key)
-                if ret is NO_DEFAULT and ret2 is NO_DEFAULT:
-                    raise KeyError(key)
-                elif ret is not NO_DEFAULT:
-                    return ret
-                else:
-                    return ret2
+                return ret
             else:
                 ret = super().pop(key, default)
                 self.deleted_keys.append(key)

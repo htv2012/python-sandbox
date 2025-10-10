@@ -26,7 +26,11 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-addopts = "--cov=change_tracker_dict"
+addopts = "--cov=change_tracker_dict --no-cov-on-fail"
 
 [tool.coverage.run]
 omit = ["src/change_tracker_dict/main.py"]
+
+[tool.coverage.html]
+directory = "coverage"
+
