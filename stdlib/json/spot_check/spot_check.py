@@ -25,8 +25,10 @@ def spot_check(actual, expected):
             actual_value = error
         if actual_value != expected_value:
             errors.append(
-                f"{path=}, expected={expected_value!r}, actual={actual_value!r}"
+                AssertionError(
+                    f"{path=}, expected={expected_value!r}, actual={actual_value!r}"
+                )
             )
 
     if errors:
-        raise AssertionError("Spot check failed:\n- " + "\n- ".join(errors))
+        raise ExceptionGroup("Spot check failed", errors)
