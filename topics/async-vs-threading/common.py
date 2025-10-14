@@ -1,4 +1,4 @@
-FRUIT_COUNT = 64
+FRUIT_COUNT = 63
 
 
 def url(fruit_id: int):

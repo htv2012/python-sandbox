@@ -9,7 +9,7 @@ from common import FRUIT_COUNT, url
 
 def get_fruit(client: httpx.Client, fruit_id: int) -> dict:
     response = client.get(url(fruit_id))
-    assert response.status_code == 200
+    response.raise_for_status()
     return response.json()
 
 
