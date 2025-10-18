@@ -11,24 +11,35 @@ def lut():
 
 def test_access(lut):
     lut[0]
-    assert lut.transactions == [("get", 0, "Peter", None)]
+    assert lut.transactions == [
+        dict(action="get", index=0, prev_value=None, value="Peter")
+    ]
     lut[2]
-    assert lut.transactions == [("get", 0, "Peter", None), ("get", 2, "Mary", None)]
+    assert lut.transactions == [
+        dict(action="get", index=0, prev_value=None, value="Peter"),
+        dict(action="get", index=2, prev_value=None, value="Mary"),
+    ]
 
 
 def test_set(lut):
     lut[0] = "John"
-    assert lut.transactions == [("set", 0, "John", "Peter")]
+    assert lut.transactions == [
+        dict(action="set", index=0, prev_value="Peter", value="John")
+    ]
 
 
 def test_append(lut):
     lut.append("John")
-    assert lut.transactions == [("insert", 3, "John", None)]
+    assert lut.transactions == [
+        dict(action="insert", index=3, prev_value=None, value="John")
+    ]
 
 
 def test_delete(lut):
     del lut[0]
-    assert lut.transactions == [("delete", 0, None, "Peter")]
+    assert lut.transactions == [
+        dict(action="delete", index=0, prev_value="Peter", value=None)
+    ]
 
 
 def test_insert(lut):
@@ -38,6 +49,12 @@ def test_insert(lut):
 
 def test_replace_slice(lut):
     lut[:1] = ["John", "George"]
+    # assert lut.transactions == [ ("set", slice(None, 1, None), ["John", "George"], ["Peter"]) ]
     assert lut.transactions == [
-        ("set", slice(None, 1, None), ["John", "George"], ["Peter"])
+        dict(
+            action="set",
+            index=slice(None, 1, None),
+            prev_value=["Peter"],
+            value=["John", "George"],
+        )
     ]
