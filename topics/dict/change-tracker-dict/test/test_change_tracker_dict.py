@@ -72,3 +72,22 @@ def test_add_then_delete_existing_key(tracked):
     tracked["a"] = "foo"
     del tracked["a"]
     assert dict(tracked) == dict(b=2)
+
+
+@pytest.mark.parametrize(
+    "iterable, value, expected",
+    [
+        pytest.param(
+            ["a", "b", "c"], None, {"a": None, "b": None, "c": None}, id="without value"
+        ),
+        pytest.param("ab", -9, {"a": -9, "b": -9}, id="with value"),
+    ],
+)
+def test_from_keys(iterable, value, expected):
+    if value is None:
+        tracked = ChangeTrackerDict.fromkeys(iterable)
+    else:
+        tracked = ChangeTrackerDict.fromkeys(iterable, value)
+
+    assert tracked.changes == []
+    assert dict(tracked) == expected

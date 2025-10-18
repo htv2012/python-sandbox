@@ -22,6 +22,10 @@ class ChangeTrackerDict(collections.abc.MutableMapping):
             dict(action="set", key=key, prev_value=prev_value, value=value)
         )
 
+    @classmethod
+    def fromkeys(cls, it, value=None, /):
+        return cls(dict.fromkeys(it, value))
+
     @property
     def dirty(self):
         return bool(self._ledger)
