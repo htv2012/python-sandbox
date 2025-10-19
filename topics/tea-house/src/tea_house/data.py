@@ -2,7 +2,6 @@ import csv
 import dataclasses
 import pathlib
 import random
-from decimal import Decimal
 
 DATA_PATH = pathlib.Path(__file__).parent.parent / "data"
 
@@ -10,11 +9,11 @@ DATA_PATH = pathlib.Path(__file__).parent.parent / "data"
 @dataclasses.dataclass
 class Item:
     name: str
-    price: Decimal
+    price: float
 
     @classmethod
     def from_str(cls, name: str, price: str):
-        return cls(name=name, price=Decimal(price))
+        return cls(name=name, price=float(price))
 
 
 @dataclasses.dataclass
