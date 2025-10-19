@@ -8,19 +8,6 @@ from loguru import logger
 from . import Order, load_items
 from .data import generate_names
 
-EMPLOYEES = """
-John
-Anna
-Karen
-Paul
-Peter
-Trish
-Mary
-Grace
-Ken
-Jake
-""".split()
-
 
 def take_order(names, items, que: queue.Queue):
     for number in range(1, 21):
