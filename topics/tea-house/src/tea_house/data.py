@@ -1,29 +1,41 @@
 import csv
 import dataclasses
 import pathlib
+import random
 from decimal import Decimal
+
+DATA_PATH = pathlib.Path(__file__).parent.parent / "data"
 
 
 @dataclasses.dataclass
 class Item:
-    iid: int
     name: str
     price: Decimal
 
-    def __post_init__(self):
-        self.iid = int(self.iid)
-        self.price = Decimal(self.price)
+    @classmethod
+    def from_str(cls, name: str, price: str):
+        return cls(name=name, price=Decimal(price))
 
 
 @dataclasses.dataclass
 class Order:
-    customer_name: str
+    number: int
+    name: str
     items: list[Item] = dataclasses.field(default_factory=list)
 
 
 def load_items() -> list[Item]:
-    data_path = pathlib.Path(__file__).parent.parent / "data" / "items.csv"
-    with open(data_path) as stream:
+    items_path = DATA_PATH / "items.csv"
+    with open(items_path) as stream:
         reader = csv.DictReader(stream)
-        items = [Item(**row) for row in reader]
+        items = [Item.from_str(**row) for row in reader]
     return items
+
+
+def generate_names():
+    names_path = DATA_PATH / "names.csv"
+    with open(names_path) as stream:
+        names = stream.read().splitlines()
+
+    random.shuffle(names)
+    yield from names
