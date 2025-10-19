@@ -1,2 +1,6 @@
+from . import load_items
+
+
 def main() -> None:
-    print("Hello from tea-house!")
+    items = load_items()
+    print(items)
