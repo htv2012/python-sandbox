@@ -3,11 +3,13 @@ import random
 import time
 from concurrent.futures import ThreadPoolExecutor
 
-import pandas as pd
 from loguru import logger
 
 from . import Order, load_items
 from .data import generate_names
+from .report import report
+
+STOP_SIGNAL = 0
 
 
 def take_order(
@@ -29,56 +31,35 @@ def take_order(
             f"Order #{order.number} from {order.name}: {', '.join(item.name for item in order.items)}"
         )
 
-    # These are sentinels with order number < 0 to signal end of
-    # queue. Each employee will receive one
-    for number in range(-employees_count, 0):
-        customers_queue.put(Order(number, "", []))
+    # These are sentinels with order number STOP_SIGNAL to signal
+    # end of queue. Each employee will receive one
+    for _ in range(employees_count):
+        customers_queue.put(Order(STOP_SIGNAL, "", []))
 
 
-def prepare_drink(employee, que: queue.Queue):
+def prepare_drink(employee: str, order: Order):
+    logger.info(f"Order #{order.number} assigned to {employee}")
+    for item in order.items:
+        logger.info(f"Order #{order.number} {employee} prepares {item.name}")
+        time.sleep(random.random())
+    logger.info(f"Order #{order.number} is ready for customer {order.name}")
+
+
+def employee_work(employee, que: queue.Queue):
     logger.info(f"{employee} start")
-    drinks_count = 0  # Used for getting paid
+    drinks_count = 0
 
     while True:
         order = que.get()
-        if order.number < 0:
+        if order.number == STOP_SIGNAL:
             que.task_done()
             break
-        logger.info(f"Order #{order.number} assigned to {employee}")
-        for item in order.items:
-            logger.info(f"Order #{order.number} {employee} prepares {item.name}")
-            time.sleep(random.random())
-            drinks_count += 1
-        logger.info(f"Order #{order.number} is ready for customer {order.name}")
+        prepare_drink(employee, order)
         que.task_done()
+        drinks_count += 1
 
     logger.info(f"{employee} done")
     return drinks_count
-
-
-def report(salary, cash_register: list[Order]):
-    print("\nEMPLOYEES EARNING")
-    salary_df = pd.DataFrame.from_dict(salary, orient="index")
-    salary_df.columns = ["Drinks Served"]
-    salary_df["Earning"] = salary_df["Drinks Served"] * 0.75
-    # type: ignore no-matching-overload
-    salary_df.sort_values(by=["Drinks Served"], ascending=False, inplace=True)
-    print(salary_df)
-
-    orders = pd.DataFrame(
-        [(item.name, item.price) for order in cash_register for item in order.items]
-    )
-    orders.columns = ["Item", "Price"]
-    orders.set_index("Item")
-
-    print("\nORDERS SUMMARY")
-    by_sale = orders.groupby("Item").agg(
-        Quantity=("Price", "count"),
-        Sale=("Price", "sum"),
-    )
-    # type: ignore no-matching-overload
-    by_sale.sort_values(by=["Sale", "Quantity"], ascending=False, inplace=True)
-    print(by_sale)
 
 
 def main() -> None:
@@ -92,7 +73,7 @@ def main() -> None:
         employees = [next(names) for _ in range(EMPLOYEES_COUNT)]
         work_shift = {
             executor.submit(
-                prepare_drink, employee=employee, que=customers_queue
+                employee_work, employee=employee, que=customers_queue
             ): employee
             for employee in employees
         }
