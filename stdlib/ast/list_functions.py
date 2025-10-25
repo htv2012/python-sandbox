@@ -18,6 +18,7 @@ root = ast.parse(content, filename=filename)
 for node in ast.walk(root):
     if not isinstance(node, ast.FunctionDef):
         continue
+    breakpoint()
     if options.verbose:
         for line_number in range(node.lineno, node.end_lineno + 1):
             line = linecache.getline(filename, line_number).rstrip()
