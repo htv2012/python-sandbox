@@ -1,3 +1,5 @@
+import functools
+
 import click
 
 
@@ -17,9 +19,12 @@ USER_OPTIONS = [
 ]
 
 # Example: Single option to be shared
-VERBOSE = click.option(
+verbose = click.option(
     "-v", "--verbose", is_flag=True, default=False, help="Produce extra output"
 )
+
+# Example: Single option using partial
+output = functools.partial(click.option, "--output", "-o")
 
 
 def log_level(levels=None, **kwargs):
@@ -46,9 +51,10 @@ def add_options(options):
 @main.command
 @add_options(SERVER_OPTIONS)
 @add_options(USER_OPTIONS)
-@add_options(VERBOSE)
+@verbose
+@output()
 @log_level()
-def login(server, port, user, key_file, verbose, log_level):
+def login(server, port, user, key_file, verbose, log_level, output):
     """Login to a server"""
     print(f"{server=}")
     print(f"{port=}")
@@ -56,19 +62,22 @@ def login(server, port, user, key_file, verbose, log_level):
     print(f"{key_file=}")
     print(f"{verbose=}")
     print(f"{log_level=}")
+    print(f"{output=}")
     print()
 
 
 @main.command
 @add_options(SERVER_OPTIONS)
-@add_options(VERBOSE)
+@add_options(verbose)
+@output(default="out.txt")
 @log_level(["WARN", "INFO", "DEBUG"], default="WARN")
-def ping(server, port, verbose, log_level):
+def ping(server, port, verbose, log_level, output):
     """Ping a server"""
     print(f"{server=}")
     print(f"{port=}")
     print(f"{verbose=}")
     print(f"{log_level=}")
+    print(f"{output=}")
     print()
 
 
