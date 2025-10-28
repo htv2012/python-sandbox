@@ -16,6 +16,8 @@ lint:
 run: lint
 	uv run main.py login -s server1 -p 8888 -u user1 -k /tmp/private.key --verbose
 	uv run main.py ping -s server1 -p 8888
+	uv run main.py convert -o out.txt in.txt
+	uv run main.py unconvert in.txt
 
 ### Run unit tests
 test: lint

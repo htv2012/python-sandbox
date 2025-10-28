@@ -18,6 +18,11 @@ USER_OPTIONS = [
     click.option("-k", "--key-file", help="Path to private key file"),
 ]
 
+IO = [
+    click.option("--output", "-o", default="-"),
+    click.argument("filename"),
+]
+
 # Example: Single option to be shared
 verbose = click.option(
     "-v", "--verbose", is_flag=True, default=False, help="Produce extra output"
@@ -27,14 +32,15 @@ verbose = click.option(
 output = functools.partial(click.option, "--output", "-o")
 
 
+# Example: Single option, with customization
 def log_level(levels=None, **kwargs):
-    """Single option, with customization"""
     if levels is None:
         levels = ["ERROR", "WARNING", "INFO", "DEBUG"]
     return click.option("--log-level", type=click.Choice(levels), **kwargs)
 
 
-def add_options(options):
+# Example: Shared multiple options and arguments
+def add_parameters(options):
     """Add arbitrary options."""
     if not isinstance(options, list):
         # Turn a single parameter into a list
@@ -49,8 +55,8 @@ def add_options(options):
 
 
 @main.command
-@add_options(SERVER_OPTIONS)
-@add_options(USER_OPTIONS)
+@add_parameters(SERVER_OPTIONS)
+@add_parameters(USER_OPTIONS)
 @verbose
 @output()
 @log_level()
@@ -67,8 +73,8 @@ def login(server, port, user, key_file, verbose, log_level, output):
 
 
 @main.command
-@add_options(SERVER_OPTIONS)
-@add_options(verbose)
+@add_parameters(SERVER_OPTIONS)
+@add_parameters(verbose)
 @output(default="out.txt")
 @log_level(["WARN", "INFO", "DEBUG"], default="WARN")
 def ping(server, port, verbose, log_level, output):
@@ -78,6 +84,22 @@ def ping(server, port, verbose, log_level, output):
     print(f"{verbose=}")
     print(f"{log_level=}")
     print(f"{output=}")
+    print()
+
+
+@main.command
+@add_parameters(IO)
+def convert(output, filename):
+    print(f"{output=}")
+    print(f"{filename=}")
+    print()
+
+
+@main.command
+@add_parameters(IO)
+def unconvert(output, filename):
+    print(f"{output=}")
+    print(f"{filename=}")
     print()
 
 
