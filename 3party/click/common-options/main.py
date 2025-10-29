@@ -29,14 +29,9 @@ verbose = click.option(
 )
 
 # Example: Single option using partial
-output = functools.partial(click.option, "--output", "-o")
-
-
-# Example: Single option, with customization
-def log_level(levels=None, **kwargs):
-    if levels is None:
-        levels = ["ERROR", "WARNING", "INFO", "DEBUG"]
-    return click.option("--log-level", type=click.Choice(levels), **kwargs)
+output = functools.partial(
+    click.option, "--output", "-o", help="Redirect output to file"
+)
 
 
 # Example: Shared multiple options and arguments
@@ -59,48 +54,25 @@ def add_parameters(options):
 @add_parameters(USER_OPTIONS)
 @verbose
 @output()
-@log_level()
-def login(server, port, user, key_file, verbose, log_level, output):
-    """Login to a server"""
-    print(f"{server=}")
-    print(f"{port=}")
-    print(f"{user=}")
-    print(f"{key_file=}")
-    print(f"{verbose=}")
-    print(f"{log_level=}")
-    print(f"{output=}")
-    print()
-
-
-@main.command
-@add_parameters(SERVER_OPTIONS)
-@add_parameters(verbose)
-@output(default="out.txt")
-@log_level(["WARN", "INFO", "DEBUG"], default="WARN")
-def ping(server, port, verbose, log_level, output):
-    """Ping a server"""
-    print(f"{server=}")
-    print(f"{port=}")
-    print(f"{verbose=}")
-    print(f"{log_level=}")
-    print(f"{output=}")
-    print()
+def common(server, port, user, key_file, verbose, output):
+    """Example: Using common options."""
+    pass
 
 
 @main.command
 @add_parameters(IO)
-def convert(output, filename):
-    print(f"{output=}")
-    print(f"{filename=}")
-    print()
+def common_arg(output, filename):
+    """Example: Common options and arguments."""
+    pass
 
 
 @main.command
-@add_parameters(IO)
-def unconvert(output, filename):
-    print(f"{output=}")
-    print(f"{filename=}")
-    print()
+@output(
+    default="/tmp/out.txt", help="Prints to a file", show_default=True, metavar="FILE"
+)
+def customize(output):
+    """Example: using partial to customize an option."""
+    pass
 
 
 if __name__ == "__main__":
