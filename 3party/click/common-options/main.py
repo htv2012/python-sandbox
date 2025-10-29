@@ -9,14 +9,10 @@ def main():
 
 
 SERVER_OPTIONS = [
-    click.option("-s", "--server", help="Host or IP"),
+    click.argument("server"),
     click.option("-p", "--port", type=int, help="port number"),
 ]
 
-IO = [
-    click.option("--output", "-o", default="-"),
-    click.argument("filename"),
-]
 
 # Example: Single option to be shared
 verbose = click.option(
@@ -49,14 +45,7 @@ def add_parameters(options):
 @verbose
 @output()  # For partial, the parentheses are required
 def common(server, port, verbose, output):
-    """Example: Using common options."""
-    pass
-
-
-@main.command
-@add_parameters(IO)
-def common_arg(output, filename):
-    """Example: Common options and arguments."""
+    """Example: Using common options and arguments."""
     pass
 
 

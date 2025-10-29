@@ -22,10 +22,6 @@ run: lint
 	@echo "# Demo: Common with customization"
 	@echo "================================================================================"
 	uv run main.py customize --help
-	@echo "================================================================================"
-	@echo "# Demo: Common options and args"
-	@echo "================================================================================"
-	uv run main.py common-arg --help
 
 ### Run unit tests
 test: lint
