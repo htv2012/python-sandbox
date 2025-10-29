@@ -13,11 +13,6 @@ SERVER_OPTIONS = [
     click.option("-p", "--port", type=int, help="port number"),
 ]
 
-USER_OPTIONS = [
-    click.option("-u", "--user", help="User name"),
-    click.option("-k", "--key-file", help="Path to private key file"),
-]
-
 IO = [
     click.option("--output", "-o", default="-"),
     click.argument("filename"),
@@ -51,10 +46,9 @@ def add_parameters(options):
 
 @main.command
 @add_parameters(SERVER_OPTIONS)
-@add_parameters(USER_OPTIONS)
 @verbose
-@output()
-def common(server, port, user, key_file, verbose, output):
+@output()  # For partial, the parentheses are required
+def common(server, port, verbose, output):
     """Example: Using common options."""
     pass
 
