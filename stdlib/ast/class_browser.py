@@ -4,13 +4,16 @@ import pathlib
 import pprint
 import pyclbr
 
+
+def parse(path: pathlib.Path):
+    path_to_module = str(path.parent)
+    module_name = path.stem
+    result = pyclbr.readmodule_ex(module_name, path=[path_to_module])
+    return result
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument("full_path", type=pathlib.Path)
 options = parser.parse_args()
-print(options)
-
-path_to_module = str(options.full_path.parent)
-module_name = options.full_path.stem
-
-result = pyclbr.readmodule_ex(module_name, path=[path_to_module])
+result = parse(options.full_path)
 pprint.pprint(result)

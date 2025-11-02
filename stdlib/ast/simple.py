@@ -35,7 +35,12 @@ class Foo(object):
         return self._foo
 
 class Bar(Foo):
-    pass
+    def method1(self):
+        pass
+
+    @property
+    def property1(self):
+        pass
 
 def hello(name):
     print('Hello,', name)
