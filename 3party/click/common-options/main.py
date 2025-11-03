@@ -2,15 +2,11 @@ import functools
 
 import click
 
-
-@click.group()
-def main():
-    pass
-
-
 SERVER_OPTIONS = [
     click.argument("server"),
-    click.option("-p", "--port", type=int, help="port number"),
+    click.option(
+        "-p", "--port", type=int, help="port number", default=8888, show_default=True
+    ),
 ]
 
 
@@ -40,22 +36,24 @@ def add_parameters(options):
     return _add
 
 
-@main.command
+# ======================================================================
+# main
+# ======================================================================
+
+
+@click.command
 @add_parameters(SERVER_OPTIONS)
 @verbose
-@output()  # For partial, the parentheses are required
-def common(server, port, verbose, output):
-    """Example: Using common options and arguments."""
-    pass
-
-
-@main.command
 @output(
     default="/tmp/out.txt", help="Prints to a file", show_default=True, metavar="FILE"
 )
-def customize(output):
-    """Example: using partial to customize an option."""
-    pass
+def main(server, port, verbose, output):
+    """Common Options Demo"""
+    print(f"{server = }")
+    print(f"{port = }")
+    print(f"{output = }")
+    print(f"{verbose = }")
+    print()
 
 
 if __name__ == "__main__":

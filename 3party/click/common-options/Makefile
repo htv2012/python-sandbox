@@ -14,14 +14,9 @@ lint:
 
 ### Run the project
 run: lint
-	@echo "================================================================================"
-	@echo "# Demo: Common options"
-	@echo "================================================================================"
-	uv run main.py common --help
-	@echo "================================================================================"
-	@echo "# Demo: Common with customization"
-	@echo "================================================================================"
-	uv run main.py customize --help
+	uv run main.py --help
+	@echo ""
+	uv run main.py myserver
 
 ### Run unit tests
 test: lint
