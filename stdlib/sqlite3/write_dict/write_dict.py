@@ -19,7 +19,6 @@ class MyData(object):
         cursor.execute('DROP TABLE IF EXISTS {}'.format(self.table_name))
         cursor.execute('CREATE TABLE {}')
 
-    def 
 
 if __name__ == '__main__':
     header = ['uid', 'alias', 'duration', 'isadmin']
