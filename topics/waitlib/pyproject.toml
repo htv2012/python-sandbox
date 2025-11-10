@@ -1,0 +1,15 @@
+[project]
+name = "waitlib"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ipython>=9.7.0",
+    "pytest>=9.0.0",
+    "pytest-asyncio>=0.23.3",
+    "ruff>=0.14.4",
+]
