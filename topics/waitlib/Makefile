@@ -1,10 +1,7 @@
 .PHONY: all clean install lab lint py run test
 
 ### Default target(s)
-all: test
-
-edit:
-	$(EDITOR) main.py
+all: run
 
 ### Perform static analysis
 lint:
@@ -14,7 +11,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run main.py
+	uv run sample.py
 
 ### Run unit tests
 test: lint

@@ -31,23 +31,23 @@ def is_greater_than(target: int):
     return predicate
 
 
-# --- Test Cases ---
-
-
+@pytest.mark.asyncio
 async def test_successful_completion():
     """Tests that polling stops immediately when the predicate is met."""
+
     async def fut():
         return 5
 
     result = await wait_for_async(
         fut,
-        lambda res: res == 5,
+        lambda res, exc: res == 5,
         timeout=5,
         interval=0.1,
     )
+    assert result == 5
 
 
-
+@pytest.mark.asyncio
 async def test_timeout_exceeded():
     """Tests that an asyncio.TimeoutError is raised when the condition is never met."""
     global call_count
@@ -69,9 +69,7 @@ async def test_timeout_exceeded():
     assert call_count >= 1
 
 
-# ---
-
-
+@pytest.mark.asyncio
 async def test_func_raises_exception_and_retries():
     """Tests that the loop continues if the func raises an exception, and the predicate ignores it."""
 
@@ -104,6 +102,7 @@ async def test_func_raises_exception_and_retries():
 # ---
 
 
+@pytest.mark.asyncio
 async def test_func_raises_exception_and_predicate_accepts_it():
     """Tests that if the predicate returns True while an exception is active, the exception is re-raised."""
 
@@ -124,9 +123,7 @@ async def test_func_raises_exception_and_predicate_accepts_it():
     assert mock_func.call_count == 1
 
 
-# ---
-
-
+@pytest.mark.asyncio
 async def test_logging(caplog):
     """Tests that the logger receives expected debug and warning messages."""
     global call_count
@@ -163,10 +160,8 @@ async def test_logging(caplog):
     assert len(success_logs) == 1
 
 
-# ---
-
-
 @patch("asyncio.sleep", new=Mock(wraps=asyncio.sleep))
+@pytest.mark.asyncio
 async def test_correct_interval_sleep(mock_sleep):
     """Tests that asyncio.sleep is called with the specified interval."""
     global call_count
