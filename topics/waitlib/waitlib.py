@@ -30,17 +30,21 @@ async def _wait_for_condition(
             result = await func(*args, **kwargs)
         except Exception as e:
             exc = e
-            logger.debug(f"wait_for: {func.__name__}() raised {type(e).__name__}: {e}")
+            logger.debug(
+                f"wait_for_async: {func.__name__}() raised {type(e).__name__}: {e}"
+            )
 
         if predicate(result, exc):
             if exc is not None:
-                logger.debug("wait_for: predicate accepted exception, re-raising it.")
+                logger.debug(
+                    "wait_for_async: predicate accepted exception, re-raising it."
+                )
                 raise exc
-            logger.debug("wait_for: predicate satisfied, returning result.")
+            logger.debug("wait_for_async: predicate satisfied, returning result.")
             return result
 
         logger.debug(
-            f"wait_for: condition not met (Elapsed: {elapsed:.2f}s), retrying in {interval}s..."
+            f"wait_for_async: condition not met (Elapsed: {elapsed:.2f}s), retrying in {interval}s..."
         )
         await asyncio.sleep(interval)
 
