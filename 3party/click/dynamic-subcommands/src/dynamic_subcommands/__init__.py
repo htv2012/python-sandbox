@@ -6,7 +6,7 @@ import types
 import click
 
 __all__ = ["main"]
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
 
 class MyGroup(click.Group):
