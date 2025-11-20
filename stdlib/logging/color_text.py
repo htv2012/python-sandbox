@@ -37,6 +37,7 @@ def setup_logger():
         "Process Name": Colors.YELLOW,
         "Hello": Colors.MAGENTA,
         "Pass": Colors.GREEN,
+        "Fail": Colors.RED,
     }
 
     logger = logging.getLogger(__name__)
@@ -58,6 +59,7 @@ def main():
     logger.debug("PID: 33445")
     logger.info("Process Name: Hello")
     logger.info("Test result: Pass")
+    logger.info("Test result: Fail")
 
 
 if __name__ == "__main__":
