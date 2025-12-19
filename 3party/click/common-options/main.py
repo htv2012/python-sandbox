@@ -21,15 +21,12 @@ output = functools.partial(
 )
 
 
-# Example: Shared multiple options and arguments
-def add_parameters(options):
-    """Add arbitrary options."""
-    if not isinstance(options, list):
-        # Turn a single parameter into a list
-        options = [options]
+# Example: Shared multiple parameters
+def add_parameters(*parameters):
+    """Add arbitrary parameters."""
 
     def _add(fn):
-        for option in reversed(options):
+        for option in reversed(parameters):
             fn = option(fn)
         return fn
 
@@ -42,7 +39,7 @@ def add_parameters(options):
 
 
 @click.command
-@add_parameters(SERVER_OPTIONS)
+@add_parameters(*SERVER_OPTIONS)
 @verbose
 @output(
     default="/tmp/out.txt", help="Prints to a file", show_default=True, metavar="FILE"
