@@ -18,7 +18,7 @@ def main():
     print(f"  {sorted_list3}")
     print()
 
-    print("# Merge them, while maitaining sorted order:")
+    print("# Merge them, while maintaining sorted order:")
     merged_list = list(heapq.merge(sorted_list1, sorted_list2, sorted_list3))
     print(f"  {merged_list}")
 
