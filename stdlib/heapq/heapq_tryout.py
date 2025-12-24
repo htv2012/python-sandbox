@@ -2,6 +2,7 @@
 """
 whatis: dynamic sort using heapq
 """
+
 import heapq
 
 
