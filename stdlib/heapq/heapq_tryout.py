@@ -7,15 +7,17 @@ import heapq
 
 def show_heap(heap, label):
     print(f"# {label}")
-    print(f"  {heap}")
+    print(f"{heap}")
     print()
 
 
 def main():
     """Entry"""
     numbers = [100, 5, 2, 25]
-    heapq.heapify(numbers)
     show_heap(numbers, "Original")
+
+    heapq.heapify(numbers)
+    show_heap(numbers, "After heapify")
 
     # Adding random numbers
     heapq.heappush(numbers, 67)
