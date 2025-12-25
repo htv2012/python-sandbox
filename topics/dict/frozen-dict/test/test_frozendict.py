@@ -1,6 +1,6 @@
 import pytest
 
-from frozendict import frozendict
+from frozen_dict import frozendict
 
 # dut: dictionary under test
 

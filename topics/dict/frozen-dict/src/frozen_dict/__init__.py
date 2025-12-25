@@ -1,4 +1,5 @@
 import collections.abc
+import reprlib
 from typing import Iterable, Optional
 
 
@@ -18,3 +19,7 @@ class frozendict(collections.abc.Mapping):
 
     def __hash__(self):
         return hash(repr(self.__data))
+
+    def __repr__(self) -> str:
+        content = reprlib.repr(self.__data)
+        return f"{self.__class__.__name__}({content})"
