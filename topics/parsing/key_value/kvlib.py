@@ -3,7 +3,9 @@ Parses key-values block of text
 """
 
 import csv
+import fileinput
 import io
+import json
 
 
 def parse(text_or_file_object) -> dict:
@@ -14,19 +16,33 @@ def parse(text_or_file_object) -> dict:
     :param text_or_file_object: The multiline text block or a file-like object
     :return: a dictionary
     """
-    try:
-        text = text_or_file_object.read()
-    except AttributeError:
-        text = text_or_file_object
+    if hasattr(text_or_file_object, "read"):
+        file = text_or_file_object
+    else:
+        file = io.StringIO(text_or_file_object)
 
-    # Sniff (guess) what the delimiter, quoting chars are
-    csv_dialect = csv.Sniffer().sniff(text)
+    # Determine the dialect
+    read_position = file.tell()
+    csv_dialect = csv.Sniffer().sniff(file.read(100))
+    file.seek(read_position)
 
-    # Create a CSV parser
-    reader = csv.reader(io.StringIO(text), dialect=csv_dialect)
-
-    # Remove the empty lines
+    # Parse
+    reader = csv.reader(file, dialect=csv_dialect)
     key_values = (kv for kv in reader if kv)
-
-    # Turns into a dict
     return dict(key_values)
+
+
+def main():
+    """Entry"""
+    text = "".join(fileinput.input())
+    print("Text to parse:")
+    print(text)
+    print("-" * 80)
+
+    print("Parsed:")
+    dict_object = parse(text)
+    print(json.dumps(dict_object, indent=4))
+
+
+if __name__ == "__main__":
+    main()
