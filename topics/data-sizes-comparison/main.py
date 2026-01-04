@@ -5,10 +5,12 @@ import typing
 
 from pympler import asizeof
 
-UserNamedTuple = collections.namedtuple("UserNamedTuple", "uid,alias,is_admin,shell")
+UserNamedTupleFromCollections = collections.namedtuple(
+    "UserNamedTupleFromCollections", "uid,alias,is_admin,shell"
+)
 
 
-class UserNamedTuple2(typing.NamedTuple):
+class UserNamedTupleFromTyping(typing.NamedTuple):
     uid: int
     alias: str
     is_admin: bool
@@ -39,23 +41,35 @@ class UserDataclassFrozen:
     shell: str
 
 
-users = [
-    UserNamedTuple(501, "karenc", True, "/bin/bash"),
-    UserNamedTuple2(501, "karenc", True, "/bin/bash"),
-    UserDataclass(501, "karenc", True, "/bin/bash"),
-    UserDataclassFrozen(501, "karenc", True, "/bin/bash"),
-    UserDataclassWithSlots(501, "karenc", True, "/bin/bash"),
-    types.SimpleNamespace(uid=501, alias="karenc", is_admin=True, shell="/bin/bash"),
-]
+def main():
+    users = [
+        (
+            (user := cls(uid=501, alias="karenc", is_admin=True, shell="/bin/bash")),
+            asizeof.asizeof(user),
+        )
+        for cls in [
+            UserNamedTupleFromCollections,
+            UserNamedTupleFromTyping,
+            UserDataclass,
+            UserDataclassFrozen,
+            UserDataclassWithSlots,
+            types.SimpleNamespace,
+        ]
+    ]
+    users.sort(key=lambda t: t[1])
 
-print("Size Object")
-print("---- ------")
-for user in users:
-    print(f"{asizeof.asizeof(user):>4} {user}")
+    print("Size Object")
+    print("---- ------")
+    for user, size in users:
+        print(f"{size:>4} {user.__class__.__name__}")
 
-print()
-print("Summary")
-print("- Named tuple from collections and typing are of the same size")
-print("- Named tuple is lighter weight than data classe")
-print("- Data class with slot is very light weight")
-print("- Adding frozen does not help reduce the size of a data class")
+    print()
+    print("Summary")
+    print("- Named tuple from collections and typing are of the same size")
+    print("- Named tuple is lighter weight than data classe")
+    print("- Data class with slot is very light weight")
+    print("- Adding frozen does not help reduce the size of a data class")
+
+
+if __name__ == "__main__":
+    main()
