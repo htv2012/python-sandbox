@@ -32,7 +32,6 @@ def push(data: list, element: Any):
         index, parent = parent, _up(parent)
 
 
-@pysnooper.snoop()
 def _heapify_down(data: list, here: int):
     length = len(data)
     while here < length:
@@ -57,7 +56,13 @@ def pop(data: list) -> Any:
     return result
 
 
-data = [1, 2, 3, 7, 9]
+data = [5, 1, 6, 2, 3, 7, 9]
+print("\n# Original")
 print(data)
+
+print("\n# Heapified")
+_heapify_down(data, 0)
+print(data)
+
 result = pop(data)
 print(f"{result=}, {data=}")

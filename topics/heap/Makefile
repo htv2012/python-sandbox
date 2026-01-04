@@ -1,13 +1,13 @@
 run:
-	python heap.py
+	uv run python heap.py
 	
 test: lint
-	pytest -s -vv
+	uv run pytest -s -vv
 
 lint: format
-	ruff check . --fix
+	uv run ruff check . --fix
 
 format:
-	ruff check --select I --fix .
-	ruff format .
+	uv run ruff check --select I --fix .
+	uv run ruff format .
 
