@@ -14,7 +14,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run main.py
+	uv run ipython -i main.py
 
 ### Run unit tests
 test: lint
