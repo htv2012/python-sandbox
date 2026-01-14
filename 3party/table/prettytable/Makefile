@@ -1,12 +1,12 @@
 script = prettytable_tryout.py
 
 run: lint
-	uv run $(script)
+	@uv run $(script)
 
 lint: format
-	uv run ruff check . --fix
+	@uv run ruff check --quiet --fix .
 
 format:
-	uv run ruff check --select I --fix .
-	uv run ruff format .
+	@uv run ruff check --select I --fix --quiet .
+	@uv run ruff format . --quiet
 

@@ -3,33 +3,20 @@
 Reformat stdout using pretty table
 """
 
-import contextlib
-import io
-
-import prettytable
-
-
-@contextlib.contextmanager
-def table_format_stdout(headers=None):
-    buf = io.StringIO()
-    with contextlib.redirect_stdout(buf):
-        yield
-
-    buf.seek(0)
-    table = prettytable.from_csv(buf, field_names=headers)
-    table.align = "l"
-    print(table)
+from tablelib import tsv_table
 
 
 def main():
     """Entry"""
-    with table_format_stdout():
+    print("\n#\n# Use first row of output as headers\n#\n")
+    with tsv_table():
         print("UID\tAlias\tShell")
         print("501\tanna\tbash")
         print("502\tkaren\tzsh")
         print("1011\tjake\tzsh")
 
-    with table_format_stdout(headers=["User ID", "User Alias", "Shell"]):
+    print("\n#\n# Explicitly specify the headers\n#\n")
+    with tsv_table(headers=["User ID", "User Alias", "Shell"]):
         print("501\tanna\tbash")
         print("502\tkaren\tzsh")
         print("1011\tjake\tzsh")
