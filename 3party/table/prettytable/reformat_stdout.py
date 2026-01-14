@@ -10,18 +10,14 @@ import prettytable
 
 
 @contextlib.contextmanager
-def table_format_stdout(header: bool = True):
+def table_format_stdout(headers=None):
     buf = io.StringIO()
     with contextlib.redirect_stdout(buf):
         yield
 
-    table = prettytable.PrettyTable()
     buf.seek(0)
-    if header:
-        headers = next(buf).rstrip().split("\t")
-        table.field_names = headers
-    table.add_rows(line.rstrip().split("\t") for line in buf)
-
+    table = prettytable.from_csv(buf, field_names=headers)
+    table.align = "l"
     print(table)
 
 
@@ -29,6 +25,11 @@ def main():
     """Entry"""
     with table_format_stdout():
         print("UID\tAlias\tShell")
+        print("501\tanna\tbash")
+        print("502\tkaren\tzsh")
+        print("1011\tjake\tzsh")
+
+    with table_format_stdout(headers=["User ID", "User Alias", "Shell"]):
         print("501\tanna\tbash")
         print("502\tkaren\tzsh")
         print("1011\tjake\tzsh")
