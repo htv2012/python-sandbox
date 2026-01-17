@@ -3,47 +3,18 @@
 Reformat stdout using pretty table
 """
 
+from banner import banner
+from colors import colorize
 from tablelib import tsv_table
 
 
-class Colors:
-    BLUE = "\033[94m"
-    CYAN = "\033[96m"
-    GREEN = "\033[92m"
-    MAGENTA = "\033[95m"
-    RED = "\033[91m"
-    YELLOW = "\033[93m"
-
-    RESET = "\033[0m"
-    BOLD = "\033[1m"
-    UNDERLINE = "\033[4m"
-
-
-def banner(text: str):
-    print()
-    print("#")
-    print(f"# {text}")
-    print("#")
-    print()
-
-def colorize(text: str):
-    lookup = {
-        "Passed": Colors.GREEN,
-        "Failed": Colors.RED,
-        "Blocked": Colors.MAGENTA,
-        "Passed with warnings": Colors.YELLOW,
-    }
-    color = lookup.get(text, "")
-    if color:
-        text = f"{color}{text}{Colors.RESET}"
-    return text
-
-
 def show_results(results):
-        print("Test\tResult")
-        for name, result in results:
-            result = colorize(result)
-            print(f"{name}\t{result}")
+    print("Test\tResult")
+    for name, result in results:
+        result = colorize(result)
+        print(f"{name}\t{result}")
+
+
 def main():
     """Entry"""
     results = [
