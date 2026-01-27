@@ -1,6 +1,6 @@
-from .plural import format_count
+from .plural_rules import plural
 
-__all__ = ["format_count", "main"]
+__all__ = ["main", "plural"]
 
 
 def main():
@@ -11,6 +11,8 @@ def main():
         (3, "vase"),
         (380, "meter"),
         (1, "meter"),
+        (2, "match(es)"),
+        (2, "child|children"),
     ]
     for count, word in data:
-        print(format_count(count, word))
+        print(plural(count, word))
