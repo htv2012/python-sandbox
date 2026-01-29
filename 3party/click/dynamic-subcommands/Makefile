@@ -18,7 +18,7 @@ run: lint
 	@echo ""
 	uv run dysub get-status
 	@echo ""
-	uv run dysub show root
+	uv run dysub nested --help
 
 ### Run unit tests
 test: lint

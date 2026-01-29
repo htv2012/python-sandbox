@@ -17,17 +17,17 @@ class MyGroup(click.Group):
     - File names which start with underscore will be ignore. They are mean for support.
     """
 
-    def __init__(self, plugins_dir, **kwargs):
-        super().__init__(**kwargs)
+    def __init__(self, plugins_dir, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.plugins_dir = plugins_dir
 
     def list_commands(self, ctx: click.Context):
-        commands = [
+        commands = sorted(
             path.stem.replace("_", "-")
             for path in self.plugins_dir.glob("*.py")
             if not path.stem.startswith("_")
-        ]
-        return sorted(commands)
+        )
+        return commands
 
     def get_command(self, ctx: click.Context, name):
         sys.path.insert(0, str(self.plugins_dir))
