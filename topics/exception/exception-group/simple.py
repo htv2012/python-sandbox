@@ -2,14 +2,14 @@
 from banner import banner
 
 
-def verify_user(user: dict):
+def verify_user(uid, alias, shell):
     excs = []
-    if user["uid"] < 501:
-        excs.append(ValueError(f"Expect UID>=501, got {user['uid']!r}"))
-    if user["alias"] == "root":
+    if uid < 501:
+        excs.append(ValueError(f"Expect UID>=501, got {uid!r}"))
+    if alias == "root":
         excs.append(ValueError("Expect non-root user"))
     allowed = {"bash", "rsh", "sh", "zsh"}
-    if user["shell"] not in allowed:
+    if shell not in allowed:
         excs.append(ValueError(f"Shell is not in allowed list: {allowed}"))
 
     if excs:
@@ -18,8 +18,7 @@ def verify_user(user: dict):
 
 def main():
     banner("Demo: See what an ExceptionGroup looks like in the terminal")
-    user = dict(uid=0, alias="root", shell="dash")
-    verify_user(user)
+    verify_user(uid=0, alias="root", shell="dash")
 
 
 if __name__ == "__main__":
