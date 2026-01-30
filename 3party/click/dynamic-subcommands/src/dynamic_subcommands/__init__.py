@@ -14,7 +14,7 @@ def is_plugin(path: pathlib.Path):
         return False
     elif path.suffix == ".py":
         return True
-    elif path.is_dir() and (path / "__init__.py").is_file())
+    elif path.is_dir() and (path / "__init__.py").is_file():
         return True
 
 
