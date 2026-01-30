@@ -9,6 +9,15 @@ __all__ = ["main"]
 __version__ = "1.0.1"
 
 
+def is_plugin(path: pathlib.Path):
+    if path.name.startswith("_"):
+        return False
+    elif path.suffix == ".py":
+        return True
+    elif path.is_dir() and (path / "__init__.py").is_file())
+        return True
+
+
 class MyGroup(click.Group):
     """Group the sub commands
 
@@ -24,8 +33,8 @@ class MyGroup(click.Group):
     def list_commands(self, ctx: click.Context):
         commands = sorted(
             path.stem.replace("_", "-")
-            for path in self.plugins_dir.glob("*.py")
-            if not path.stem.startswith("_")
+            for path in self.plugins_dir.glob("*")
+            if is_plugin(path)
         )
         return commands
 
