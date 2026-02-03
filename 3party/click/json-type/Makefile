@@ -16,17 +16,15 @@ lint:
 run: lint
 	uv run main.py
 	@echo ""
-	uv run main.py --data abc,1,1.5,true,verbose=false,level=5 
+	uv run main.py --server '{"host": "myhost", "port": 2200, "secured": false}'
 	@echo ""
-	uv run main.py --server myhost,2200,false
+	uv run main.py --user '{"uid": 501, "alias": "anna", "is_admin": true, "groups": ["sudo", "print"]}'
 	@echo ""
-	uv run main.py --server myhost,port=3344,secured=True
+	uv run main.py --band '{"name": "Peter, Paul, and Mary", "members": ["Peter", "Paul", "Mary"]}'
 	@echo ""
-	uv run main.py --user 501,anna,false
-	@echo ""
-	uv run main.py --user 1,root,is_admin=true
-	@echo ""
-	uv run main.py --raw '{"tx1": {"dl": {"start": 0, "end": 1279}, "ul": {"start": 0, "end": 1439}}}'
+	@echo "# Demo: invalid argument"
+	-uv run main.py --server '{"host": "myhost", "port": "2200", "secured": false}'
+	
 
 ### Run unit tests
 test: lint
