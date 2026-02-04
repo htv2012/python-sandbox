@@ -21,6 +21,7 @@ def create_option(prefix, field):
         decl = f"{decl}/--no-{decl.removeprefix('--')}"
     elif issubclass(field.type, enum.Enum):
         kwargs["type"] = click.Choice([e.value for e in field.type])
+        # BUG: Only work for string values
     else:
         kwargs["type"] = field.type
 
