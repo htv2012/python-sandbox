@@ -17,7 +17,7 @@ class UserInfo:
     uid: int
     alias: str
     department: Department
-    admin: bool = True
+    is_admin: bool = False
     security_score: float = 0.75
     groups: List[str] = dataclasses.field(default_factory=list)
     keys: Set[int] = dataclasses.field(default_factory=set)

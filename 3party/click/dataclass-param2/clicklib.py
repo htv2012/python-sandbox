@@ -6,6 +6,8 @@ from typing import Optional
 
 import click
 
+__all__ = ["dataclass_options"]
+
 
 def create_option(prefix, field):
     """Create a click option from a data class field."""
@@ -36,7 +38,7 @@ def create_option(prefix, field):
     return click.option(decl, **kwargs)
 
 
-def _convert(value, default_factory, cls):
+def convert(value, default_factory, cls):
     """
     Convert a value.
 
@@ -73,7 +75,7 @@ def dataclass_options(cls, name: Optional[str] = None):
             attrs = {}
             for field, cast in zip(dataclasses.fields(cls), casts):
                 attrs[field.name] = kwargs.pop(f"{name}_{field.name}")
-                attrs[field.name] = _convert(attrs[field.name], cast, field.type)
+                attrs[field.name] = convert(attrs[field.name], cast, field.type)
 
             obj = cls(**attrs)
             kwargs[name] = obj
