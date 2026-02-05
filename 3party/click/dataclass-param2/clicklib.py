@@ -37,15 +37,22 @@ def create_option(prefix, field):
     return click.option(decl, **kwargs)
 
 
-def convert(value, cast, cls):
+def _convert(value, default_factory, cls):
+    """
+    Convert a value.
+
+    Args:
+        value: The value to be converted, if None, no conversion performed.
+        default_factory: The field default factory
+    """
     if value is None:
         return value
     with contextlib.suppress(TypeError):
         # issubclass might generate a TypeError
         if issubclass(cls, enum.Enum):
             return cls(value)
-    if cast is not dataclasses.MISSING:
-        return cast(value)
+    if default_factory is not dataclasses.MISSING:
+        return default_factory(value)
     return value
 
 
@@ -67,7 +74,7 @@ def dataclass_options(cls, name: Optional[str] = None):
             attrs = {}
             for field, cast in zip(dataclasses.fields(cls), casts):
                 attrs[field.name] = kwargs.pop(f"{name}_{field.name}")
-                attrs[field.name] = convert(attrs[field.name], cast, field.type)
+                attrs[field.name] = _convert(attrs[field.name], cast, field.type)
 
             obj = cls(**attrs)
             kwargs[name] = obj
