@@ -13,7 +13,8 @@ lint:
 run: lint
 	uv run main.py --help
 	@echo "================================================================================"
-	uv run main.py --user-alias=anna --user-uid=501 --user-keys=1 --user-keys=7 --user-groups sudo --user-groups print --user-admin --user-department engineer
+	uv run main.py --user-alias=anna --user-uid=501 --user-keys=1 --user-keys=7 --user-groups sudo --user-groups print --user-admin --user-department engineer \
+		--receiver-uid=502 --receiver-alias=karen --receiver-department=marketing
 
 ### Run unit tests
 test: lint

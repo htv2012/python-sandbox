@@ -25,9 +25,11 @@ class UserInfo:
 
 @click.command
 @dataclass_options(UserInfo, name="user")
-def main(user):
+@dataclass_options(UserInfo, name="receiver")
+def main(user, receiver):
     """Demo of how to construct a data class from command line."""
     print(f"{user=}")
+    print(f"{receiver=}")
 
 
 if __name__ == "__main__":
