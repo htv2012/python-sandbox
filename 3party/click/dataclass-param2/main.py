@@ -8,8 +8,8 @@ from clicklib import dataclass_options
 
 
 class Department(enum.Enum):
-    ENGINEER = "engineer"
-    MARKETING = "marketing"
+    ENGINEER = enum.auto()
+    MARKETING = enum.auto()
 
 
 @dataclasses.dataclass

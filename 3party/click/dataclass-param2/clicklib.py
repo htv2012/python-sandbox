@@ -20,8 +20,7 @@ def create_option(prefix, field):
         kwargs["is_flag"] = True
         decl = f"{decl}/--no-{decl.removeprefix('--')}"
     elif issubclass(field.type, enum.Enum):
-        kwargs["type"] = click.Choice([e.value for e in field.type])
-        # BUG: Only work for string values
+        kwargs["type"] = click.Choice(list(field.type.__members__))
     else:
         kwargs["type"] = field.type
 
@@ -50,7 +49,7 @@ def _convert(value, default_factory, cls):
     with contextlib.suppress(TypeError):
         # issubclass might generate a TypeError
         if issubclass(cls, enum.Enum):
-            return cls(value)
+            return cls[value]
     if default_factory is not dataclasses.MISSING:
         return default_factory(value)
     return value
