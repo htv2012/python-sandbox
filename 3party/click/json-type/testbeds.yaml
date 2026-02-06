@@ -1,0 +1,22 @@
+testbed1:
+  server:
+    host: host1
+    port: 1111
+    secured: true
+  user:
+    uid: 1001
+    alias: user1
+    is_admin: false
+    groups:
+      - sudo
+      - print
+  
+testbed2:
+  server:
+    host: host2
+    port: 2222
+    secured: true
+  user:
+    uid: 2002
+    alias: user2
+    is_admin: true

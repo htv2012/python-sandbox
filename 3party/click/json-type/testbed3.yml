@@ -1,0 +1,11 @@
+server:
+  host: host3
+  port: 3333
+  secured: true
+user:
+  uid: 3003
+  alias: user3
+  is_admin: false
+  groups:
+    - sudo
+    - print

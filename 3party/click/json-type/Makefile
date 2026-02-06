@@ -11,20 +11,35 @@ lint:
 	@uv run ruff check --select I --fix . --quiet
 	@uv run ruff format . --quiet
 	@uv run ruff check . --fix --quiet
+	@uv run ty check .
 
 ### Run the project
 run: lint
-	uv run main.py
 	@echo ""
+	@echo "#"
+	@echo "# Demo: Using JSON string to create objects"
+	@echo "#"
 	uv run main.py --server '{"host": "myhost", "port": 2200, "secured": false}'
 	@echo ""
 	uv run main.py --user '{"uid": 501, "alias": "anna", "is_admin": true, "groups": ["sudo", "print"]}'
+
 	@echo ""
-	uv run main.py --band '{"name": "Peter, Paul, and Mary", "members": ["Peter", "Paul", "Mary"]}'
+	@echo "#"
+	@echo "# Demo: create more complex objects"
+	@echo "#"
+	uv run main.py --testbed @testbeds.yaml:testbed1
 	@echo ""
+	uv run main.py --testbed @testbeds.yaml:testbed2
+	@echo ""
+	uv run main.py --testbed @testbed3.yml
+	@echo ""
+	uv run main.py --testbed '{"server": {"host": "host4", "port": 4444, "secured": true}, "user": {"uid": 4004, "alias": "user4"}}'
+
+	@echo ""
+	@echo "#"
 	@echo "# Demo: invalid argument"
+	@echo "#"
 	-uv run main.py --server '{"host": "myhost", "port": "2200", "secured": false}'
-	
 
 ### Run unit tests
 test: lint
