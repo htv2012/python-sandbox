@@ -8,40 +8,33 @@ result.
 """
 
 # import abc
+import contextlib
 import dataclasses
 import enum
-from typing import Any, Dict, List, Protocol
+from typing import List
 
 
 class Subject(enum.Enum):
-    MATH = ("math", 3)
-    ENGLISH = ("english", 4)
-    HISTORY = ("history", 4)
+    MATH = ("Applied Math", 3)
+    ENGLISH = ("English", 4)
+    HISTORY = ("History", 4)
 
     def __init__(self, name, weight):
         self._value_ = name
         self.weight = weight
 
     @classmethod
-    def from_json(cls, json_object: Dict[str, Any]):
-        name = json_object["name"]
-        weight = json_object["weight"]
+    def from_json(cls, json_object: str):
+        name, _, weight = json_object.partition(",")
 
-        for member in Subject:
-            if member.value == name:
-                obj = member
-                obj.weight = weight
-                return obj
+        # found = next((m for m in Subject if m.value == name), None)
+        found = cls[name.upper()]
+        if found is None:
+            raise ValueError()
 
-        raise ValueError()
-
-
-
-
-class HasFromJson(Protocol):
-    @classmethod
-    def from_json(cls, data: Dict[Any, Any]):
-        raise NotImplementedError()
+        with contextlib.suppress(ValueError):
+            found.weight = int(weight)
+        return found
 
 
 @dataclasses.dataclass

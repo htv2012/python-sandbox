@@ -4,15 +4,20 @@ Demo: Convert JSON string from command line arguments into objects
 
 import click
 
-from clicklib import JsonParamType
-from data import Server, Testbed, User
+from json_type.clicklib import EnumParamType, JsonParamType
+from json_type.data import Server, Subject, Testbed, User
 
 
 @click.command
+@click.option("-j", "--subject", type=EnumParamType(Subject))
 @click.option("-s", "--server", type=JsonParamType(Server))
 @click.option("-u", "--user", type=JsonParamType(User))
 @click.option("-t", "--testbed", type=JsonParamType(Testbed))
-def main(server: Server, user: User, testbed: Testbed):
+def main(subject: Subject, server: Server, user: User, testbed: Testbed):
+    if subject is not None:
+        print(f"{subject=}")
+        print(f"  {subject.value=}")
+        print(f"  {subject.weight=}")
     if server is not None:
         print(f"{server=}")
     if user is not None:

@@ -1,11 +1,26 @@
+import contextlib
+import enum
 import json
 import pathlib
+from typing import Any, Dict, List, Protocol, Union
 
 import click
 import yaml
 import yaml.parser
 
-from data import HasFromJson
+JsonType = Union[Dict[Any, Any], List[Any], int, float, str]
+
+
+class HasFromJson(Protocol):
+    @classmethod
+    def from_json(cls, data: JsonType):
+        raise NotImplementedError()
+
+
+def json_parse(json_object: str):
+    with contextlib.suppress(json.JSONDecodeError):
+        return json.loads(json_object)
+    return json_object
 
 
 def parse_file(text: str):
@@ -54,7 +69,7 @@ class JsonParamType(click.ParamType):
         if value.startswith("@"):
             parse = parse_file
         else:
-            parse = json.loads
+            parse = json_parse
 
         try:
             data = parse(value)
@@ -67,3 +82,27 @@ class JsonParamType(click.ParamType):
             yaml.parser.ParserError,
         ) as error:
             self.fail(str(error), param, ctx)
+
+
+class EnumParamType(click.Choice):
+    """Parse argument and return an enum member.
+
+    click 8.1.7 does not support enum choices, so we have to write our
+    own parser.
+    """
+
+    name = "enum"
+
+    def __init__(self, cls: enum.EnumType):
+        choices = [name.lower() for name in cls.__members__]
+        super().__init__(choices, case_sensitive=False)
+        self.cls = cls
+
+    def convert(self, value, param, ctx):
+        target: str = super().convert(value, param, ctx)
+
+        # Instead of direct lookup cls[target], we do this to
+        # handle case where enum names are not all upper case
+        for name, member in self.cls.__members__.items():
+            if name.lower() == target:
+                return member

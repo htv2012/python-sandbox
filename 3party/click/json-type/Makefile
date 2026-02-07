@@ -1,7 +1,7 @@
 .PHONY: all clean install lab lint py run test
 
 ### Default target(s)
-all: run
+all: test run
 
 edit:
 	$(EDITOR) main.py
