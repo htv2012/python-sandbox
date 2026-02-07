@@ -9,7 +9,33 @@ result.
 
 # import abc
 import dataclasses
+import enum
 from typing import Any, Dict, List, Protocol
+
+
+class Subject(enum.Enum):
+    MATH = ("math", 3)
+    ENGLISH = ("english", 4)
+    HISTORY = ("history", 4)
+
+    def __init__(self, name, weight):
+        self._value_ = name
+        self.weight = weight
+
+    @classmethod
+    def from_json(cls, json_object: Dict[str, Any]):
+        name = json_object["name"]
+        weight = json_object["weight"]
+
+        for member in Subject:
+            if member.value == name:
+                obj = member
+                obj.weight = weight
+                return obj
+
+        raise ValueError()
+
+
 
 
 class HasFromJson(Protocol):
