@@ -2,7 +2,7 @@ import contextlib
 import enum
 import json
 import pathlib
-from typing import Any, Dict, List, Protocol, Union
+from typing import Any, Dict, List, Optional, Protocol, Union
 
 import click
 import yaml
@@ -13,14 +13,22 @@ JsonType = Union[Dict[Any, Any], List[Any], int, float, str]
 
 class HasFromJson(Protocol):
     @classmethod
-    def from_json(cls, data: JsonType):
-        raise NotImplementedError()
+    def from_json(cls, json_object: JsonType):
+        raise NotImplementedError()  # pragma: no cover
 
 
-def json_parse(json_object: str):
+def json_parse(json_str: str):
+    """Parse JSON, if failed, return the original object.
+
+    Args:
+        json_str: The string presentation of a JSON object
+
+    Return:
+        A JSON object
+    """
     with contextlib.suppress(json.JSONDecodeError):
-        return json.loads(json_object)
-    return json_object
+        return json.loads(json_str)
+    return json_str
 
 
 def parse_file(text: str):
@@ -44,8 +52,8 @@ def parse_file(text: str):
     text = text.removeprefix("@")
     filename, _, selector = text.partition(":")
     path = pathlib.Path(filename)
-
     loaders = {".json": json.load, ".yaml": yaml.safe_load, ".yml": yaml.safe_load}
+
     if path.suffix not in loaders:
         raise ValueError(f"Unknown file type: {text}")
 
@@ -59,11 +67,18 @@ def parse_file(text: str):
 
 
 class JsonParamType(click.ParamType):
+    """Parameter type which converts a JSON string into objects.
+
+    Args:
+        cls: The class to be returned. It must have a class method named
+            `from_json`.
+    """
+
     name = "json"
 
-    def __init__(self, cls: HasFromJson):
+    def __init__(self, cls: Optional[HasFromJson] = None):
         super().__init__()
-        self.cls = cls
+        self.cls: Optional[HasFromJson] = cls
 
     def convert(self, value, param, ctx):
         if value.startswith("@"):
@@ -72,13 +87,16 @@ class JsonParamType(click.ParamType):
             parse = json_parse
 
         try:
-            data = parse(value)
-            return self.cls.from_json(data)
+            json_object = parse(value)
+            if self.cls is None:
+                return json_object
+            return self.cls.from_json(json_object)
         except (
             FileNotFoundError,
             TypeError,
             ValueError,
             json.JSONDecodeError,
+            yaml.parser.ScannerError,
             yaml.parser.ParserError,
         ) as error:
             self.fail(str(error), param, ctx)

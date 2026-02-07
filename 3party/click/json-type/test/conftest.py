@@ -15,3 +15,8 @@ def convert_enum():
 def convert_user():
     param_type = JsonParamType(User)
     return param_type.convert
+
+
+@pytest.fixture(scope="session")
+def data_path(pytestconfig):
+    return pytestconfig.rootpath / "test" / "data"

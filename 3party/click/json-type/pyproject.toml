@@ -13,6 +13,18 @@ dev = [
     "ipython>=9.4.0",
     "jupyterlab>=4.4.4",
     "pytest>=8.4.1",
+    "pytest-cov>=7.0.0",
     "ruff>=0.12.3",
     "ty>=0.0.15",
 ]
+
+[tool.pytest.ini_options]
+addopts = "--cov=src --cov-report=html:cov"
+
+[tool.coverage.run]
+source = ["src"]
+omit = ["tests/*", "**/test_*.py", "src/json_type/data.py"]
+
+[tool.coverage.report]
+fail_under = 90
+show_missing = true
