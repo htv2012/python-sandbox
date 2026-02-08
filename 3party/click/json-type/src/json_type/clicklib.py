@@ -2,7 +2,7 @@ import contextlib
 import enum
 import json
 import pathlib
-from typing import Any, Dict, List, Optional, Protocol, Union
+from typing import Any, Dict, List, Optional, Protocol, Union, override
 
 import click
 import yaml
@@ -23,7 +23,7 @@ def json_parse(json_str: str):
     Args:
         json_str: The string presentation of a JSON object
 
-    Return:
+    Returns:
         A JSON object
     """
     with contextlib.suppress(json.JSONDecodeError):
@@ -31,34 +31,45 @@ def json_parse(json_str: str):
     return json_str
 
 
-def parse_file(text: str):
-    """Parse a file specified by the text parameter.
+def parse_file(file_spec: str):
+    """Parse a file specified by the file_spec parameter.
 
-    The text is in the format @filename[:selector].  The selector is
+    The file_spec is in the format @filename[:selector].  The selector is
     optional. If specified, it selects the data within the file. This
     alllows us to create a single file which can hold multiple objects.
 
-    Sample text:
-        '@file.json'
-        '@file.yaml'
-        '@file.json:my_obj'
+    Example 1. Using the argument "@file1.yaml" will return {"uid": 501, "alias": "anna"}::
+
+        # file1.yaml
+        uid: 501
+        alias: anna
+
+    Example 2. Using the argument "@file2.yaml:user1" will return the same data::
+
+        # file2.yaml
+        user1:
+            uid: 501
+            alias anna
+        user2:
+            uid: 502
+            alias karen
 
     Args:
-        text: represent the file and a selector
+        file_spec: represent the file and a selector
 
     Returns:
         A JSON object
     """
-    text = text.removeprefix("@")
-    filename, _, selector = text.partition(":")
+    file_spec = file_spec.removeprefix("@")
+    filename, _, selector = file_spec.partition(":")
     path = pathlib.Path(filename)
-    loaders = {".json": json.load, ".yaml": yaml.safe_load, ".yml": yaml.safe_load}
 
-    if path.suffix not in loaders:
-        raise ValueError(f"Unknown file type: {text}")
+    loaders = {".json": json.load, ".yaml": yaml.safe_load, ".yml": yaml.safe_load}
+    loader = loaders.get(path.suffix)
+    if loader is None:
+        raise ValueError(f"Unknown file type: {file_spec}")
 
     with open(path, "rb") as stream:
-        loader = loaders[path.suffix]
         content = loader(stream)
 
     if selector:
@@ -71,21 +82,19 @@ class JsonParamType(click.ParamType):
 
     Args:
         cls: The class to be returned. It must have a class method named
-            `from_json`.
+            `from_json`. If not specified, the convert method will return
+            the raw JSON object.
     """
 
-    name = "json"
+    name = "json"  # Optional, click uses it for documentation
 
     def __init__(self, cls: Optional[HasFromJson] = None):
         super().__init__()
         self.cls: Optional[HasFromJson] = cls
 
-    def convert(self, value, param, ctx):
-        if value.startswith("@"):
-            parse = parse_file
-        else:
-            parse = json_parse
-
+    @override
+    def convert(self, value: str, param, ctx):
+        parse = parse_file if value.startswith("@") else json_parse
         try:
             json_object = parse(value)
             if self.cls is None:
@@ -109,14 +118,15 @@ class EnumParamType(click.Choice):
     own parser.
     """
 
-    name = "enum"
+    name = "enum"  # Optional, click uses it for documentation
 
     def __init__(self, cls: enum.EnumType):
         choices = [name.lower() for name in cls.__members__]
         super().__init__(choices, case_sensitive=False)
         self.cls = cls
 
-    def convert(self, value, param, ctx):
+    @override
+    def convert(self, value: str, param, ctx):
         target: str = super().convert(value, param, ctx)
 
         # Instead of direct lookup cls[target], we do this to
