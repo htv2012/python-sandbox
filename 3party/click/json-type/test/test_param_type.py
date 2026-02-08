@@ -1,12 +1,15 @@
 import contextlib
 import json
 
+import click
 import pytest
 import yaml.parser
 
 from json_type.clicklib import json_parse, parse_file
 
 from .sample import SampleEnum, User
+
+USER = {"uid": 501, "alias": "anna"}
 
 
 @pytest.mark.parametrize(
@@ -51,9 +54,6 @@ def test_convert_simple(convert_user, input_str, expected):
     assert convert_user(input_str, None, None) == expected
 
 
-USER = {"uid": 501, "alias": "anna"}
-
-
 @pytest.mark.parametrize(
     "filename, exception, expected",
     [
@@ -82,4 +82,53 @@ def test_parse_file(data_path, filename, exception, expected):
 
     with context:
         actual = parse_file(filename)
+        assert actual == expected
+
+
+def test_parse_string_expect_json(data_path, convert_json):
+    actual = convert_json('{"uid": 501, "alias": "anna"}', None, None)
+    assert actual == USER
+
+
+@pytest.mark.parametrize(
+    "filename, exception, expected",
+    [
+        # Happy path cases
+        pytest.param("valid_no_section.json", None, USER, id="valid json, no section"),
+        pytest.param(
+            "valid_with_section.json:user1", None, USER, id="valid json, with section"
+        ),
+        pytest.param("valid_no_section.yaml", None, USER, id="valid yaml, no section"),
+        pytest.param(
+            "valid_with_section.yaml:user1", None, USER, id="valid yaml, with section"
+        ),
+        # Error cases
+        pytest.param(
+            "invalid.json", click.exceptions.BadParameter, "", id="invalid json"
+        ),
+        pytest.param(
+            "invalid.yaml", click.exceptions.BadParameter, "", id="invalid yaml"
+        ),
+        pytest.param(
+            "filenotfound.yaml", click.exceptions.BadParameter, "", id="file not found"
+        ),
+        pytest.param(
+            "unknown_file_type.txt",
+            click.exceptions.BadParameter,
+            "",
+            id="unknown file type",
+        ),
+    ],
+)
+def test_convert_to_json_from_file(
+    data_path, convert_json, filename, exception, expected
+):
+    filename = f"@{data_path / filename}"
+    if exception is not None:
+        context = pytest.raises(exception)
+    else:
+        context = contextlib.nullcontext()
+
+    with context:
+        actual = convert_json(filename, None, None)
         assert actual == expected

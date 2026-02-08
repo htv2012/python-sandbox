@@ -17,6 +17,12 @@ def convert_user():
     return param_type.convert
 
 
+@pytest.fixture
+def convert_json():
+    param_type = JsonParamType()
+    return param_type.convert
+
+
 @pytest.fixture(scope="session")
 def data_path(pytestconfig):
     return pytestconfig.rootpath / "test" / "data"
