@@ -30,7 +30,12 @@ def verify_user(uid, alias, shell, permissions):
 
 def main():
     banner("Demo: See what a nested ExceptionGroup looks like in the terminal")
-    verify_user(uid=0, alias="root", shell="dash", permissions={"Delete Account", "Set System Time"})
+    verify_user(
+        uid=0,
+        alias="root",
+        shell="dash",
+        permissions={"Delete Account", "Set System Time"},
+    )
 
 
 if __name__ == "__main__":
