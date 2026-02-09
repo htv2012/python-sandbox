@@ -7,5 +7,5 @@ def main(*suites, name=None):
     print(f"name: {name}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fire.Fire(main)

@@ -4,7 +4,6 @@ import pathlib
 
 import fire
 
-
 CONFIG_PATH = pathlib.Path("/tmp/example2_class.json")
 
 
@@ -41,5 +40,5 @@ class MyStuff:
             json.dump(settings, stream, indent=4)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     fire.Fire(MyStuff)

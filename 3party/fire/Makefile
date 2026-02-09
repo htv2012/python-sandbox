@@ -1,9 +1,10 @@
 demo:
-	./mksuite.py peter paul mary
+	pycheck .
+	uv run mksuite.py peter paul mary
 	@echo "---"
-	./mksuite.py single --name=mysuit
+	uv run mksuite.py single --name=mysuit
 	@echo "---"
-	./example2_class.py set foo 1995
+	uv run example2_class.py set foo 1995
 	@echo "---"
-	./example2_class.py get foo
+	uv run example2_class.py get foo
 
