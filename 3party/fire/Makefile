@@ -8,3 +8,6 @@ demo:
 	@echo "---"
 	uv run example2_class.py get foo
 
+	uv run sub_commands.py hi
+	uv run sub_commands.py bye
+
