@@ -86,9 +86,8 @@ class JsonParamType(click.ParamType):
             the raw JSON object.
     """
 
-    name = "json"  # Optional, click uses it for documentation
-
     def __init__(self, cls: Optional[HasFromJson] = None):
+        self.name = cls.__name__
         super().__init__()
         self.cls: Optional[HasFromJson] = cls
 
@@ -118,9 +117,8 @@ class EnumParamType(click.Choice):
     own parser.
     """
 
-    name = "enum"  # Optional, click uses it for documentation
-
     def __init__(self, cls: enum.EnumType):
+        self.name = cls.__name__
         choices = [name.lower() for name in cls.__members__]
         super().__init__(choices, case_sensitive=False)
         self.cls = cls
