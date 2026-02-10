@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import List, Protocol
+from typing import Protocol
 
 
 class HasName(Protocol):
@@ -21,12 +21,15 @@ class Foo:
     bar: str
 
 
-def get_names(objects: List[HasName]) -> List[str]:
-    return [obj.name for obj in objects]
+def print_name(obj: HasName):
+    print(obj.name)
 
 
-users = [User(f"user-{i}") for i in range(3)]
-print(get_names(users))
+def main():
+    print_name(User("anna"))
+    print_name(Net("private"))
+    print_name(Foo("bar"))  # Static analysis will flag this
 
-foos = [Foo(f"foo-{i}") for i in range(3)]
-print(get_names(foos))
+
+if __name__ == "__main__":
+    main()
