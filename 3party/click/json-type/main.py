@@ -13,7 +13,10 @@ from json_type.data import Server, Subject, Testbed, User
 @click.option("-s", "--server", type=JsonParamType(Server))
 @click.option("-u", "--user", type=JsonParamType(User))
 @click.option("-t", "--testbed", type=JsonParamType(Testbed))
-def main(subject: Subject, server: Server, user: User, testbed: Testbed):
+@click.option("-g", "--group", multiple=True, type=JsonParamType(Subject))
+def main(group, subject: Subject, server: Server, user: User, testbed: Testbed):
+    if group:
+        print(f"{group=}")
     if subject is not None:
         print(f"{subject=}")
         print(f"  {subject.value=}")

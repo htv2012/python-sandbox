@@ -14,6 +14,15 @@ import enum
 from typing import List
 
 
+class AppleMobileDevice(enum.Enum):
+    IPHONE = enum.auto()
+    IPAD = enum.auto()
+
+class AppleComputer(enum.Enum):
+    MB = enum.auto()
+    MBP = enum.auto()
+    IMAC = enum.auto()
+
 class Subject(enum.Enum):
     MATH = ("Applied Math", 3)
     ENGLISH = ("English", 4)
