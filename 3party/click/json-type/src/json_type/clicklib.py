@@ -86,8 +86,13 @@ class JsonParamType(click.ParamType):
             the raw JSON object.
     """
 
+    name = "json"
+
     def __init__(self, cls: Optional[HasFromJson] = None):
-        self.name = cls.__name__
+        name = getattr(cls, "__name__", None)
+        if not (cls is None or name is None):
+            self.name = name
+
         super().__init__()
         self.cls: Optional[HasFromJson] = cls
 
