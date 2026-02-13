@@ -5,7 +5,7 @@ import click
 import pytest
 import yaml.parser
 
-from json_type.clicklib import json_parse, parse_file
+from json_type.clicklib import parse_file, parse_json
 
 from .sample import SampleEnum, User
 
@@ -23,7 +23,7 @@ USER = {"uid": 501, "alias": "anna"}
     ],
 )
 def test_json_parse(json_str, expected):
-    assert json_parse(json_str) == expected
+    assert parse_json(json_str) == expected
 
 
 @pytest.mark.parametrize(

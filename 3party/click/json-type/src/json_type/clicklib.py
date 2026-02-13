@@ -8,7 +8,7 @@ import click
 import yaml
 import yaml.parser
 
-JsonType = Union[Dict[Any, Any], List[Any], int, float, str]
+JsonType = Union[Dict[Any, Any], List[Any], int, float, str, bool]
 
 
 class HasFromJson(Protocol):
@@ -17,7 +17,7 @@ class HasFromJson(Protocol):
         raise NotImplementedError()  # pragma: no cover
 
 
-def json_parse(json_str: str):
+def parse_json(json_str: str) -> JsonType:
     """Parse JSON, if failed, return the original object.
 
     Args:
@@ -31,7 +31,7 @@ def json_parse(json_str: str):
     return json_str
 
 
-def parse_file(file_spec: str):
+def parse_file(file_spec: str) -> JsonType:
     """Parse a file specified by the file_spec parameter.
 
     The file_spec is in the format @filename[:selector].  The selector is
@@ -98,7 +98,7 @@ class JsonParamType(click.ParamType):
 
     @override
     def convert(self, value: str, param, ctx):
-        parse = parse_file if value.startswith("@") else json_parse
+        parse = parse_file if value.startswith("@") else parse_json
         try:
             json_object = parse(value)
             if self.cls is None:
