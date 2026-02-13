@@ -1,3 +1,4 @@
 {
-    "name": "staging"
+  "name": "staging",
+  "server": "10.10.10.1"
 }

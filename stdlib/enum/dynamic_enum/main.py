@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import enum
+import json
 import pathlib
+
+import click
 
 
 def create_config() -> enum.Enum:
@@ -13,9 +16,14 @@ def create_config() -> enum.Enum:
 Config = create_config()
 
 
-def main():
-    for c in Config:
-        print(c)
+@click.command
+@click.argument("config", type=click.Choice(Config, case_sensitive=False))  # type: ignore
+def main(config):
+    with open(config.value) as stream:
+        data = json.load(stream)
+
+    for key, value in data.items():
+        print(f"{key}: {value}")
 
 
 if __name__ == "__main__":
