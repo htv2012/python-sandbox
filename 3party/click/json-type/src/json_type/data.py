@@ -7,7 +7,6 @@ class use the `from_json` class method, while the User class uses the
 result.
 """
 
-# import abc
 import contextlib
 import dataclasses
 import enum
