@@ -19,7 +19,9 @@ class Transport(enum.StrEnum):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-t", type=Transport.from_str, default="https", choices=Transport)
+    parser.add_argument(
+        "-t", type=Transport.from_str, default="https", choices=Transport
+    )
     options = parser.parse_args()
     print(f"Transport: {options.t!r}")
     print()
