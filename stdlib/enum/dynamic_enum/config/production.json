@@ -1,4 +1,4 @@
 {
-  "name": "production",
-  "server": "10.10.10.3"
+  "server": "10.10.10.3",
+  "port": 80
 }

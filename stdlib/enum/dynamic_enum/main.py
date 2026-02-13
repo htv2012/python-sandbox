@@ -9,8 +9,13 @@ import click
 def create_config() -> enum.Enum:
     config_dir = pathlib.Path(__file__).with_name("config")
     assert config_dir.exists()
-    name_value = {path.stem.upper(): path for path in config_dir.glob("*")}
-    return enum.Enum("Config", name_value)
+    pair = []
+    for path in config_dir.glob("*.json"):
+        with open(path) as stream:
+            key = path.stem.upper()
+            value = json.load(stream)
+            pair.append((key, value))
+    return enum.Enum("Config", pair)
 
 
 Config = create_config()
@@ -19,11 +24,8 @@ Config = create_config()
 @click.command
 @click.argument("config", type=click.Choice(Config, case_sensitive=False))  # type: ignore
 def main(config):
-    with open(config.value) as stream:
-        data = json.load(stream)
-
-    for key, value in data.items():
-        print(f"{key}: {value}")
+    for key, value in config.value.items():
+        print(f"  {key}: {value}")
 
 
 if __name__ == "__main__":
