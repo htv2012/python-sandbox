@@ -11,8 +11,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run typer_tryout.py --help
-	uv run main.py Anna true --intro 'this is intro'
+	uv run main.py Anna 25 3.5 true --intro 'this is intro' testing stagging pilot debug
 
 ### Run unit tests
 test: lint
