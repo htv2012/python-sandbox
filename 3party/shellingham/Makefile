@@ -1,10 +1,7 @@
 .PHONY: all test run lint clean
 
 ### Default target(s)
-all: edit run
-
-edit:
-	nvim main.py
+all: run
 
 ### Perform static analysis
 lint:
