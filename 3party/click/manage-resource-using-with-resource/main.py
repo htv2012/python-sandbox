@@ -18,7 +18,7 @@ class ExitStyle(enum.Enum):
 
 class MyResource:
     def __enter__(self):
-        logger.info("Prepare resource")
+        pass
 
     def __exit__(self, exc_type, exc_value, tb):
         logger.info("Clean up resource")
@@ -27,7 +27,6 @@ class MyResource:
 @click.group()
 @click.pass_context
 def main(ctx):
-    logger.info("Start main")
     ctx.obj = ctx.with_resource(MyResource())
 
 
@@ -40,9 +39,6 @@ def main(ctx):
 )
 @click.pass_context
 def sub(ctx, exit_style):
-    logger.info("Inside sub")
-    logger.info(f"Exit Style: {exit_style}")
-
     if exit_style == ExitStyle.NORMAL:
         return
     elif exit_style == ExitStyle.RAISE:

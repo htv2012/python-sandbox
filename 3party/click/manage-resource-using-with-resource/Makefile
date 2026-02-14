@@ -15,13 +15,20 @@ lint:
 ### Run the project
 run: lint
 	-uv run main.py sub -e normal
-	-uv run main.py sub -e raise
+	@echo ""
 	-uv run main.py sub -e ctx_fail
+	@echo ""
 	-uv run main.py sub -e ctx_exit_0
+	@echo ""
 	-uv run main.py sub -e ctx_exit_1
+	@echo ""
 	-uv run main.py sub -e ctx_abort
+	@echo ""
 	-uv run main.py sub -e sys_exit_0
+	@echo ""
 	-uv run main.py sub -e sys_exit_1
+	@echo ""
+	-uv run main.py sub -e raise
 
 ### Run unit tests
 test: lint
