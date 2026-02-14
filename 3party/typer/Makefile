@@ -12,6 +12,7 @@ lint:
 ### Run the project
 run: lint
 	uv run typer_tryout.py --help
+	uv run main.py Anna true --intro 'this is intro'
 
 ### Run unit tests
 test: lint
