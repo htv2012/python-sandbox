@@ -23,6 +23,37 @@ def create_remote_temp_dir(c: Connection):
     c.run(f"rm -fr {remote_temp_dir}", hide=True)
 
 
+def get_local_tar_formats():
+    formats = set(x[0] for x in shutil.get_archive_formats())
+    return set(formats)
+
+
+def get_remote_tar_formats(c: Connection):
+    res = c.run("tar --help", hide=True)
+    lookup = [
+        ("--xz", "xztar"),
+        ("--bzip2", "bztar"),
+        ("--gzip", "gztar"),
+    ]
+    formats = set(format for flag, format in lookup if flag in res.stdout)
+    formats.add("tar")
+    return formats
+
+
+def get_common_tar_format(c: Connection):
+    remote_formats = get_remote_tar_formats(c)
+    local_formats = get_local_tar_formats()
+    common = remote_formats & local_formats
+
+    for format in ["xztar", "bztar", "gztar", "zip"]:
+        if format in common:
+            logger.info("Common tar format: %r", format)
+            return format
+
+    logger.info("Common tar format: %r", "tar")
+    return "tar"
+
+
 @task
 def backup(c: Connection, src: str, dest: str):
     src_path = pathlib.Path(src).expanduser().resolve()
@@ -33,7 +64,7 @@ def backup(c: Connection, src: str, dest: str):
     ):
         arc = shutil.make_archive(
             base_name=f"{temp_dir}/{src_path.name}",
-            format="bztar",
+            format=get_common_tar_format(c),
             root_dir=str(src_path.parent),
             base_dir=src_path.name,
         )
