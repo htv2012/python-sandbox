@@ -1,23 +1,16 @@
 [project]
-name = "fabric-sandbox"
+name = "backup-dir"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "fabric>=3.2.2",
-    "paramiko>=3.5.1",
-    "tqdm>=4.67.1",
 ]
 
 [dependency-groups]
 dev = [
     "ipython>=9.4.0",
+    "pytest>=9.0.2",
     "ruff>=0.12.10",
-]
-
-[tool.uv.workspace]
-members = [
-    "restart_and_reconnect",
-    "backup-dir",
 ]
