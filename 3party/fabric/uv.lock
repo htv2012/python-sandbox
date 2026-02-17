@@ -24,6 +24,7 @@ version = "0.1.0"
 source = { virtual = "backup-dir" }
 dependencies = [
     { name = "fabric" },
+    { name = "invoke" },
 ]
 
 [package.dev-dependencies]
@@ -34,7 +35,10 @@ dev = [
 ]
 
 [package.metadata]
-requires-dist = [{ name = "fabric", specifier = ">=3.2.2" }]
+requires-dist = [
+    { name = "fabric", specifier = ">=3.2.2" },
+    { name = "invoke", specifier = ">=2.2.0" },
+]
 
 [package.metadata.requires-dev]
 dev = [

@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 import re
+import sys
 
 COLOR = {
     "black": "\033[30m",
@@ -25,7 +27,9 @@ pat = re.compile(r"<<\s*(\w+)\s*(.+?)\s*?>>")
 def apply_color(matched: re.Match):
     fg = matched[1]
     text = matched[2]
-    return f"{COLOR[fg]}{text}{COLOR['reset']}"
+    if sys.stdout.isatty():
+        return f"{COLOR[fg]}{text}{COLOR['reset']}"
+    return text
 
 def cprint(text: str, sep=' ', end='\n', file=None, flush=False):
     text = pat.sub(apply_color, text)
