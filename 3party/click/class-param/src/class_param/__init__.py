@@ -15,13 +15,9 @@ class User:
     is_admin: bool
     shell: Optional[str] = "bash"
 
-    param_type = dict(uid=int, alias=str, is_admin=bool, shell=str)
-
 
 class Server:
     """Non-dataclass."""
-
-    param_type = dict(host=str, port=int)
 
     def __init__(self, host, port=None):
         self.host = host
