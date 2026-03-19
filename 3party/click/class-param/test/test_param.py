@@ -14,8 +14,6 @@ class MyClass:
     bvar: bool
     svar: str
 
-    param_type = dict(ivar=int, fvar=float, bvar=bool, svar=str)
-
 
 @pytest.fixture
 def param_type():
