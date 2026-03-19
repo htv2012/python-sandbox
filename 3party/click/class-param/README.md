@@ -3,8 +3,6 @@ Given classes such as:
 ```python
 @dataclasses.dataclass(frozen=True)
 class User:
-    """A user."""
-
     uid: int
     alias: str
     is_admin: bool
