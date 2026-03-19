@@ -1,7 +1,7 @@
 .PHONY: all clean install lab lint py run test
 
 ### Default target(s)
-all: test
+all: test run
 
 edit:
 	$(EDITOR) main.py
@@ -22,6 +22,8 @@ run: lint
 	uv run main.py --server '{"host": "myhost", "port": 2200, "secured": false}'
 	@echo ""
 	uv run main.py --user '{"uid": 501, "alias": "anna", "is_admin": true, "groups": ["sudo", "print"]}'
+	@echo ""
+	uv run main.py --subject math
 
 	@echo ""
 	@echo "#"

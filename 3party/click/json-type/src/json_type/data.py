@@ -22,6 +22,9 @@ class Subject(enum.Enum):
         self._value_ = name
         self.weight = weight
 
+    def __str__(self):
+        return f"{self.value}({self.weight!r})"
+
     @classmethod
     def from_json(cls, json_object: str):
         name, _, weight = json_object.partition(",")

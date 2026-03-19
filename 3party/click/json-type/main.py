@@ -18,9 +18,7 @@ def main(group, subject: Subject, server: Server, user: User, testbed: Testbed):
     if group:
         print(f"{group=}")
     if subject is not None:
-        print(f"{subject=}")
-        print(f"  {subject.value=}")
-        print(f"  {subject.weight=}")
+        print(f"subject={subject}")
     if server is not None:
         print(f"{server=}")
     if user is not None:
