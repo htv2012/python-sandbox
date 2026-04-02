@@ -1,6 +1,5 @@
 import dataclasses
 import logging
-from typing import Optional
 
 import fastapi
 
@@ -20,7 +19,8 @@ class User:
 
 
 @app.get("/")
-def get_index():
+def get_help():
+    """Get a list of endpoints."""
     return {
         "endpoints": [
             {
@@ -36,12 +36,17 @@ def get_index():
 
 
 @app.get("/users/")
-def get_all():
+def get_users():
+    """Get a list of users."""
     return [dataclasses.asdict(user) for user in users.get_all()]
 
 
 @app.get("/users/{user_id}")
-def get_item(user_id: Optional[int] = None):
+def get_user(user_id: int):
+    """Get a user given an ID.
+
+    :param user_id: The user ID
+    """
     logging.info("GET user_id=%r", user_id)
     user = users.get(user_id)
     logging.info("user=%r", user)
