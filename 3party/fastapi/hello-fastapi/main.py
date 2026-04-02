@@ -10,7 +10,18 @@ app = fastapi.FastAPI()
 
 @app.get("/")
 def get_index():
-    return {"message": "Success"}
+    return {
+        "endpoints": [
+            {
+                "name": "GetUsers",
+                "path": "/users/",
+            },
+            {
+                "name": "GetUser",
+                "path": "/users/{user_id}",
+            }
+        ]
+    }
 
 
 DB = {
@@ -19,19 +30,18 @@ DB = {
 }
 
 
-@app.get("/items/")
+@app.get("/users/")
 def get_all():
     return DB
 
 
-@app.get("/items/{item_id}")
-def get_item(item_id: Optional[int] = None):
-    print(f"GET item_id={item_id}")
-    logging.info("GET item_id=%r", item_id)
-    if item_id is None:
+@app.get("/users/{user_id}")
+def get_item(user_id: Optional[int] = None):
+    print(f"GET user_id={user_id}")
+    logging.info("GET user_id=%r", user_id)
+    if user_id is None:
         return {"ids": DB.keys()}
     try:
-        result = DB[item_id]
-        return result
+        return DB[user_id]
     except KeyError:
         raise fastapi.HTTPException(404)
