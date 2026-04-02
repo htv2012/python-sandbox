@@ -3,11 +3,11 @@
 all: server
 
 client:
-	http --print=b 'http://localhost:8000/'
-	http --print=b 'http://localhost:8000/users/'
-	http --print=b 'http://localhost:8000/users/501'
-	http --print=b 'http://localhost:8000/users/502'
-	-http --print=b 'http://localhost:8000/users/503'
+	http 'http://localhost:8000/'
+	http 'http://localhost:8000/users/'
+	http 'http://localhost:8000/users/501'
+	http 'http://localhost:8000/users/502'
+	-http 'http://localhost:8000/users/503'
 
 server: lint
 	uv run uvicorn main:app --log-level=debug --reload --host=0.0.0.0

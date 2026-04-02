@@ -1,11 +1,22 @@
+import dataclasses
 import logging
 from typing import Optional
 
 import fastapi
 
+import users
+
 logging.basicConfig(level="INFO")  # There must be a better way
 
 app = fastapi.FastAPI()
+
+
+@dataclasses.dataclass
+class User:
+    uid: int
+    alias: str
+    is_admin: bool
+    shell: str
 
 
 @app.get("/")
@@ -19,29 +30,21 @@ def get_index():
             {
                 "name": "GetUser",
                 "path": "/users/{user_id}",
-            }
+            },
         ]
     }
 
 
-DB = {
-    501: {"alias": "kevin", "shell": "bash"},
-    502: {"alias": "anna", "shell": "zsh"},
-}
-
-
 @app.get("/users/")
 def get_all():
-    return DB
+    return [dataclasses.asdict(user) for user in users.get_all()]
 
 
 @app.get("/users/{user_id}")
 def get_item(user_id: Optional[int] = None):
-    print(f"GET user_id={user_id}")
     logging.info("GET user_id=%r", user_id)
-    if user_id is None:
-        return {"ids": DB.keys()}
-    try:
-        return DB[user_id]
-    except KeyError:
+    user = users.get(user_id)
+    logging.info("user=%r", user)
+    if user is None:
         raise fastapi.HTTPException(404)
+    return dataclasses.asdict(user)
