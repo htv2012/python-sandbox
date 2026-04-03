@@ -10,14 +10,6 @@ logging.basicConfig(level="INFO")  # There must be a better way
 app = fastapi.FastAPI()
 
 
-@dataclasses.dataclass
-class User:
-    uid: int
-    alias: str
-    is_admin: bool
-    shell: str
-
-
 @app.get("/")
 def get_help():
     """Get a list of endpoints."""
