@@ -3,6 +3,7 @@ import logging
 
 import fastapi
 
+import model
 import users
 
 logging.basicConfig(level="INFO")  # There must be a better way
@@ -45,3 +46,15 @@ def get_user(user_id: int):
     if user is None:
         raise fastapi.HTTPException(404)
     return dataclasses.asdict(user)
+
+
+@app.post("/users")
+def create_user(user_data: model.UserCreate):
+    try:
+        uid = users.create(user_data)
+        return {"uid": uid}
+    except ValueError:
+        raise fastapi.HTTPException(
+            status_code=fastapi.status.HTTP_400_BAD_REQUEST,
+            detail={"reason": "Duplicate alias"},
+        )
