@@ -1,5 +1,7 @@
 import dataclasses
+import enum
 import logging
+from typing import Optional
 
 import fastapi
 
@@ -9,6 +11,24 @@ import users
 logging.basicConfig(level="INFO")  # There must be a better way
 
 app = fastapi.FastAPI()
+
+
+class GetFormat(enum.StrEnum):
+    UID = "uid"
+    ALIAS = "alias"
+    SHORT = "short"
+    FULL = "full"
+
+
+def apply_format(user: users.User, format: GetFormat):
+    if format == GetFormat.UID:
+        return user.uid
+    elif format == GetFormat.ALIAS:
+        return user.alias
+    elif format == GetFormat.SHORT:
+        return {"uid": user.uid, "alias": user.alias}
+    elif format == GetFormat.FULL:
+        return dataclasses.asdict(user)
 
 
 @app.get("/")
@@ -29,23 +49,30 @@ def get_help():
 
 
 @app.get("/users/")
-def get_users():
+def get_users(format: Optional[GetFormat] = None):
     """Get a list of users."""
-    return [dataclasses.asdict(user) for user in users.get_all()]
+    if format is None:
+        format = GetFormat.UID
+
+    ret = [apply_format(user, format) for user in users.get_all()]
+    return ret
 
 
 @app.get("/users/{user_id}")
-def get_user(user_id: int):
+def get_user(user_id: int, format: Optional[GetFormat] = None):
     """Get a user given an ID.
 
     :param user_id: The user ID
     """
-    logging.info("GET user_id=%r", user_id)
+    if format is None:
+        format = GetFormat.FULL
+
+    logging.info("GET user_id=%r, format=%s", user_id, format)
     user = users.get(user_id)
     logging.info("user=%r", user)
     if user is None:
         raise fastapi.HTTPException(404)
-    return dataclasses.asdict(user)
+    return apply_format(user, format)
 
 
 @app.post("/users")

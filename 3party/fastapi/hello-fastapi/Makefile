@@ -5,7 +5,9 @@ all: server
 client:
 	http 'http://localhost:8000/'
 	http 'http://localhost:8000/users/'
+	http 'http://localhost:8000/users/?format=alias'
 	http 'http://localhost:8000/users/501'
+	http 'http://localhost:8000/users/501?format=alias'
 	http 'http://localhost:8000/users/502'
 	-http 'http://localhost:8000/users/503'
 
