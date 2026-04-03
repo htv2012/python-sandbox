@@ -1,6 +1,7 @@
 import dataclasses
 import itertools
 import logging
+from typing import Optional
 
 import fastapi
 
@@ -52,3 +53,20 @@ def delete(uid: int):
             del USERS[i]
             return
     raise LookupError()
+
+
+def update(uid: int, update_data: model.UserUpdate):
+    valid_shells = {"zsh", "bash", "dash", "tcsh", "sh"}
+    for user in USERS:
+        if user.uid == uid:
+            if update_data.shell is not None:
+                if update_data.shell not in valid_shells:
+                    raise ValueError(
+                        f"Shell must be one of {', '.join(valid_shells)}, got {update_data.shell}"
+                    )
+                user.shell = update_data.shell
+            if update_data.is_admin is not None:
+                user.is_admin = update_data.is_admin
+            break
+    else:
+        raise LookupError("User not found")

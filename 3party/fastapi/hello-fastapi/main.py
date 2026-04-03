@@ -13,6 +13,10 @@ logging.basicConfig(level="INFO")  # There must be a better way
 app = fastapi.FastAPI()
 
 
+def reason(text: str):
+    return {"reason": str(text)}
+
+
 class GetFormat(enum.StrEnum):
     UID = "uid"
     ALIAS = "alias"
@@ -83,7 +87,7 @@ def create_user(user_data: model.UserCreate):
     except ValueError:
         raise fastapi.HTTPException(
             status_code=fastapi.status.HTTP_400_BAD_REQUEST,
-            detail={"reason": "Duplicate alias"},
+            detail=reason("Duplicate alias")
         )
 
 
@@ -94,5 +98,19 @@ def delete_user(user_id: int):
     except LookupError:
         raise fastapi.HTTPException(
             status_code=fastapi.status.HTTP_404_NOT_FOUND,
-            detail={"reason": "ID not found"},
+            detail=reason("User not found")
+        )
+
+
+@app.patch("/users/{user_id}")
+def update_user(user_id: int, update_data: model.UserUpdate):
+    try:
+        users.update(user_id, update_data)
+    except LookupError as err:
+        raise fastapi.HTTPException(
+            status_code=fastapi.status.HTTP_404_NOT_FOUND, detail=reason(err)
+        )
+    except ValueError as err:
+        raise fastapi.HTTPException(
+            status_code=fastapi.status.HTTP_400_BAD_REQUEST, detail=reason(err)
         )
