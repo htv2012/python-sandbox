@@ -1,8 +1,8 @@
 .PHONY: run all lint format
 
-all: server
+all: serve
 
-client:
+run:
 	http 'http://localhost:8000/'
 	http 'http://localhost:8000/users/'
 	http 'http://localhost:8000/users/?format=alias'
@@ -11,8 +11,11 @@ client:
 	http 'http://localhost:8000/users/502'
 	-http 'http://localhost:8000/users/503'
 
-server: lint
+serve: lint
 	uv run uvicorn main:app --log-level=debug --reload --host=0.0.0.0
+
+doc:
+	open "http://localhost:8000/docs"
 
 lint: format
 	uv run ruff check . --fix

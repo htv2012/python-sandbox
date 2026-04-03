@@ -85,3 +85,14 @@ def create_user(user_data: model.UserCreate):
             status_code=fastapi.status.HTTP_400_BAD_REQUEST,
             detail={"reason": "Duplicate alias"},
         )
+
+
+@app.delete("/users/{user_id}")
+def delete_user(user_id: int):
+    try:
+        users.delete(user_id)
+    except LookupError:
+        raise fastapi.HTTPException(
+            status_code=fastapi.status.HTTP_404_NOT_FOUND,
+            detail={"reason": "ID not found"},
+        )
