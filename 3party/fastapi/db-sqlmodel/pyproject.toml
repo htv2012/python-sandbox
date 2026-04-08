@@ -1,0 +1,31 @@
+[project]
+name = "db-sqlmodel"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Hai Vu", email = "haivu2004@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "click>=8.1.8",
+    "fastapi[standard]>=0.135.3",
+    "sqlmodel>=0.0.38",
+]
+
+[project.scripts]
+main = "db_sqlmodel:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ipython>=8.32.0",
+    "jupyterlab>=4.3.5",
+    "pudb>=2024.1.3",
+    "pytest>=8.3.4",
+    "python-dotenv>=1.0.1",
+    "ruff>=0.9.7",
+]
