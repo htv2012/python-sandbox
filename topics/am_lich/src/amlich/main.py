@@ -65,7 +65,6 @@ def tuoi(con_gi):
 @main.command()
 @click.option("-t", "--ten-tuoi", nargs=2, multiple=True)
 def ten_tuoi(ten_tuoi):
-    print(ten_tuoi)
     rows = []
     this_year = datetime.date.today().year
 
