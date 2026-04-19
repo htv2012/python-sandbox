@@ -1,10 +1,10 @@
+import dataclasses
 from types import SimpleNamespace
+from typing import Any
 
 import pytest
 
 from kai_drill import kai
-
-from .common import tc
 
 test_obj = SimpleNamespace(
     name="Object Name",
@@ -22,94 +22,106 @@ test_obj = SimpleNamespace(
 )
 
 
+@dataclasses.dataclass
+class KaiTestCase:
+    obj: Any
+    path: str
+    default: Any
+    expected: Any
+
+    @classmethod
+    def param(cls, desc: str, **kwargs):
+        return pytest.param(cls(**kwargs), id=desc)
+
+
 @pytest.mark.parametrize(
     "tc",
     [
-        tc(
+        KaiTestCase.param(
             "obj is None, expect None",
             obj=None,
             path="foo",
             default=None,
             expected=None,
         ),
-        tc(
+        KaiTestCase.param(
             "obj is None, expect default",
             obj=None,
             path="foo",
             default="bar",
             expected="bar",
         ),
-        tc(
+        KaiTestCase.param(
             "attribute",
             obj=test_obj,
             path=".name",
             default=None,
             expected="Object Name",
         ),
-        tc(
+        KaiTestCase.param(
             "attribute without dot",
             obj=test_obj,
             path="name",
             default=None,
             expected="Object Name",
         ),
-        tc(
+        KaiTestCase.param(
             "list element",
             obj=test_obj,
             path="tags[1]",
             default=None,
             expected="tag1",
         ),
-        tc(
+        KaiTestCase.param(
             "dictionary",
             obj=test_obj,
             path="phone[home]",
             default=None,
             expected="555-1212",
         ),
-        tc(
+        KaiTestCase.param(
             "combo",
             obj=test_obj,
             path="commands[0].name",
             default=None,
             expected="command1",
         ),
-        tc(
+        KaiTestCase.param(
             "nested1",
             obj=test_obj,
             path="commands[0].result.output",
             default=None,
             expected="Hello",
         ),
-        tc(
+        KaiTestCase.param(
             "error in leaf",
             obj=test_obj,
             path="commands[0].result.foo",
             default=None,
             expected=None,
         ),
-        tc(
+        KaiTestCase.param(
             "slice, first N",
             obj=test_obj,
             path="tags[:3]",
             default=None,
             expected=["tag0", "tag1", "tag2"],
         ),
-        tc(
+        KaiTestCase.param(
             "slice, from N on",
             obj=test_obj,
             path="tags[3:]",
             default=None,
             expected=["tag3", "tag4"],
         ),
-        tc(
+        KaiTestCase.param(
             "slice, reversed",
             obj=test_obj,
             path="tags[4:2:-1]",
             default=None,
             expected=["tag4", "tag3"],
         ),
-        tc(
+        KaiTestCase.param(
             "slice, invalid",
             obj=test_obj,
             path="tags[1:2:3:4]",
@@ -118,7 +130,7 @@ test_obj = SimpleNamespace(
         ),
     ],
 )
-def test_kai(tc):
+def test_kai(tc: KaiTestCase):
     if tc.default is None:
         actual = kai(tc.obj, tc.path)
     else:
