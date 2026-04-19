@@ -1,13 +1,9 @@
-#!/usr/bin/env python
-# encoding: utf-8
+#!/usr/bin/env python3
 """
 formatting_example.py
 
-Created by Hai Vu on 2012-11-02.
-Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+Created by Hai Vu on 2012-11-02
 """
-
-# from __future__ import print_function
 
 
 class Car:
