@@ -1,0 +1,14 @@
+[project]
+name = "camel2snake"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "ipython>=9.12.0",
+    "pytest>=9.0.3",
+    "ruff>=0.15.11",
+]
