@@ -50,6 +50,13 @@ def split_path(path: str):
         re.VERBOSE,
     )
 
+    if not isinstance(path, str):
+        raise TypeError("path must be str, got: {path!r}")
+
+    # Patch: ensure that path starts with . or [
+    if not path.startswith((".", "[")):
+        raise ValueError(f"invalid path: {path!r}")
+
     # TODO: There might be a bug: e.g. path='foo..bar', and more
     tokens = pattern.findall(path)
     out = []

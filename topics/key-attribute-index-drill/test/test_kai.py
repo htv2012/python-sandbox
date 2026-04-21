@@ -89,7 +89,7 @@ class KaiTestCase:
         KaiTestCase.param(
             "error in leaf",
             obj=test_obj,
-            path="commands[0].result.foo",
+            path=".commands[0].result.foo",
             default=None,
             expected=None,
         ),
@@ -117,7 +117,7 @@ class KaiTestCase:
         KaiTestCase.param(
             "slice, invalid",
             obj=test_obj,
-            path="tags[1:2:3:4]",
+            path=".tags[1:2:3:4]",
             default=None,
             expected=None,
         ),
