@@ -20,7 +20,7 @@ from kai_drill import TokenKind, split_path
             id="key with dashes",
         ),
         pytest.param(".attr", [("attr", TokenKind.ATTRIBUTE)], id="attribute"),
-        pytest.param("attr2", [("attr2", TokenKind.ATTRIBUTE)], id="no leading dot"),
+        # pytest.param("attr2", [("attr2", TokenKind.ATTRIBUTE)], id="no leading dot"),
         pytest.param(
             "[_key_2].attr[0]",
             [
@@ -34,3 +34,16 @@ from kai_drill import TokenKind, split_path
 )
 def test_path_split(path, expected):
     assert split_path(path) == expected
+
+
+@pytest.mark.parametrize(
+    "path,exception",
+    [
+        pytest.param("foo", ValueError, id="missing dot or left bracket"),
+        pytest.param(1, TypeError, id="wrong type, int"),
+        pytest.param(None, TypeError, id="wrong type, None"),
+    ],
+)
+def test_path_split_expect_error(path, exception):
+    with pytest.raises(exception):
+        split_path(path)

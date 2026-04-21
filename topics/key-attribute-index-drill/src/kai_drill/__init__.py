@@ -35,10 +35,10 @@ def to_slice(token: str):
 def split_path(path: str):
     """Split path into pairs of (token, kind).
 
-    >>> split_path("foo")
+    >>> split_path(".foo")
     [('foo', <TokenKind.ATTRIBUTE: 1>)]
 
-    >>> split_path("foo[bar]")
+    >>> split_path(".foo[bar]")
     [('foo', <TokenKind.ATTRIBUTE: 1>), ('bar', <TokenKind.KEY_OR_INDEX: 2>)]
     """
     pattern = re.compile(
@@ -50,10 +50,12 @@ def split_path(path: str):
         re.VERBOSE,
     )
 
-    # TODO: Do not automatically add dot: explicit is better than implicit
-    # Clean up the path, add leading dot if needed
-    if path[0] != "[" and path[0] != ".":
-        path = "." + path
+    if not isinstance(path, str):
+        raise TypeError("path must be str, got: {path!r}")
+
+    # Patch: ensure that path starts with . or [
+    if not path.startswith((".", "[")):
+        raise ValueError(f"invalid path: {path!r}")
 
     # TODO: There might be a bug: e.g. path='foo..bar', and more
     tokens = pattern.findall(path)
