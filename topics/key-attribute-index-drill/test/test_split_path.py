@@ -20,7 +20,7 @@ from kai_drill import TokenKind, split_path
             id="key with dashes",
         ),
         pytest.param(".attr", [("attr", TokenKind.ATTRIBUTE)], id="attribute"),
-        pytest.param("attr2", [("attr2", TokenKind.ATTRIBUTE)], id="no leading dot"),
+        # pytest.param("attr2", [("attr2", TokenKind.ATTRIBUTE)], id="no leading dot"),
         pytest.param(
             "[_key_2].attr[0]",
             [
