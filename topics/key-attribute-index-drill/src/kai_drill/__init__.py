@@ -8,6 +8,14 @@ class TokenKind(enum.Enum):
 
 
 def to_slice(token: str):
+    """Convert string to a slice.
+
+    >>> to_slice(":3")
+    slice(None, 3, None)
+
+    >>> to_slice("3:")
+    slice(3, None, None)
+    """
     if ":" not in token:
         raise ValueError()
 
@@ -25,6 +33,14 @@ def to_slice(token: str):
 
 
 def split_path(path: str):
+    """Split path into pairs of (token, kind).
+
+    >>> split_path("foo")
+    [('foo', <TokenKind.ATTRIBUTE: 1>)]
+
+    >>> split_path("foo[bar]")
+    [('foo', <TokenKind.ATTRIBUTE: 1>), ('bar', <TokenKind.KEY_OR_INDEX: 2>)]
+    """
     pattern = re.compile(
         r"""
         \[[^\]]+\]       # Dictionary key or list index
