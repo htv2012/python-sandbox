@@ -51,7 +51,10 @@ def split_path(path: str):
     )
 
     if not isinstance(path, str):
-        raise TypeError("path must be str, got: {path!r}")
+        raise TypeError(f"path must be str, got: {path!r}")
+
+    if " ." in path or " [" in path or path.endswith(" "):
+        raise ValueError(f"path should not contain spaces: {path!r}")
 
     # Patch: ensure that path starts with . or [
     if not path.startswith((".", "[")):
