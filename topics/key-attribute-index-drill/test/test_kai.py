@@ -30,92 +30,92 @@ class KaiTestCase:
     expected: Any
 
     @classmethod
-    def make(cls, desc: str, **kwargs):
-        return pytest.param(cls(**kwargs), id=desc)
+    def make(cls, id: str, **kwargs):
+        return pytest.param(cls(**kwargs), id=id)
 
 
 @pytest.mark.parametrize(
     "tc",
     [
         KaiTestCase.make(
-            "obj is None, expect None",
+            id="obj is None, expect None",
             obj=None,
             path=".foo",
             default=None,
             expected=None,
         ),
         KaiTestCase.make(
-            "obj is None, expect default",
+            id="obj is None, expect default",
             obj=None,
             path=".foo",
             default="bar",
             expected="bar",
         ),
         KaiTestCase.make(
-            "attribute",
+            id="attribute",
             obj=test_obj,
             path=".name",
             default=None,
             expected="Object Name",
         ),
         KaiTestCase.make(
-            "list element",
+            id="list element",
             obj=test_obj,
             path=".tags[1]",
             default=None,
             expected="tag1",
         ),
         KaiTestCase.make(
-            "dictionary",
+            id="dictionary",
             obj=test_obj,
             path=".phone[home]",
             default=None,
             expected="555-1212",
         ),
         KaiTestCase.make(
-            "combo",
+            id="combo",
             obj=test_obj,
             path=".commands[0].name",
             default=None,
             expected="command1",
         ),
         KaiTestCase.make(
-            "nested1",
+            id="nested1",
             obj=test_obj,
             path=".commands[0].result.output",
             default=None,
             expected="Hello",
         ),
         KaiTestCase.make(
-            "error in leaf",
+            id="error in leaf",
             obj=test_obj,
             path=".commands[0].result.foo",
             default=None,
             expected=None,
         ),
         KaiTestCase.make(
-            "slice, first N",
+            id="slice, first N",
             obj=test_obj,
             path=".tags[:3]",
             default=None,
             expected=["tag0", "tag1", "tag2"],
         ),
         KaiTestCase.make(
-            "slice, from N on",
+            id="slice, from N on",
             obj=test_obj,
             path=".tags[3:]",
             default=None,
             expected=["tag3", "tag4"],
         ),
         KaiTestCase.make(
-            "slice, reversed",
+            id="slice, reversed",
             obj=test_obj,
             path=".tags[4:2:-1]",
             default=None,
             expected=["tag4", "tag3"],
         ),
         KaiTestCase.make(
-            "slice, invalid",
+            id="slice, invalid",
             obj=test_obj,
             path=".tags[1:2:3:4]",
             default=None,
