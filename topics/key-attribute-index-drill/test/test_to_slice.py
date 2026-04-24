@@ -1,31 +1,26 @@
 import pytest
+from common import context, tc
 
 from kai_drill import to_slice
 
 
 @pytest.mark.parametrize(
-    "token,expected",
+    "test_case",
     [
-        pytest.param(":3", slice(None, 3), id="first N elements"),
-        pytest.param("3:", slice(3, None), id="from Nth element on"),
-        pytest.param("-3:", slice(-3, None), id="last N elements"),
-        pytest.param("1:11", slice(1, 11), id="A to B"),
-        pytest.param("10:0:-1", slice(10, 0, -1), id="reversed"),
+        # Happy-path cases
+        tc(id="first N elements", token=":3", expected=slice(None, 3)),
+        tc(id="from Nth element on", token="3:", expected=slice(3, None)),
+        tc(id="last N elements", token="-3:", expected=slice(-3, None)),
+        tc(id="A to B", token="1:11", expected=slice(1, 11)),
+        tc(id="reversed", token="10:0:-1", expected=slice(10, 0, -1)),
+        # Bad cases
+        tc(id="bad: dict key", token="foo", exception=ValueError),
+        tc(id="bad: no colon", token="12", exception=ValueError),
+        tc(id="bad: no digit", token=":", exception=ValueError),
+        tc(id="bad: too many colons", token=":1:2:3", exception=TypeError),
+        tc(id="bad: not an int", token=":foo", exception=ValueError),
     ],
 )
-def test_to_slice_expect_success(token, expected):
-    assert to_slice(token) == expected
-
-
-@pytest.mark.parametrize(
-    "token,exception",
-    [
-        pytest.param("foo", ValueError, id="dict key"),
-        pytest.param("12", ValueError, id="no colon"),
-        pytest.param(":", ValueError, id="no digit"),
-        pytest.param(":1:2:3", TypeError, id="too many colons"),
-    ],
-)
-def test_to_slice_expected_raise(token, exception):
-    with pytest.raises(exception):
-        to_slice(token)
+def test_to_slice(test_case):
+    with context(test_case.exception):
+        assert to_slice(test_case.token) == test_case.expected
