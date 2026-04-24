@@ -18,6 +18,7 @@ from kai_drill import to_slice
         tc(id="bad: no colon", token="12", exception=ValueError),
         tc(id="bad: no digit", token=":", exception=ValueError),
         tc(id="bad: too many colons", token=":1:2:3", exception=TypeError),
+        tc(id="bad: not an int", token=":foo", exception=ValueError),
     ],
 )
 def test_to_slice(test_case):
