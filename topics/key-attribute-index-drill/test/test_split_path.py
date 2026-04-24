@@ -2,6 +2,7 @@ import dataclasses
 from typing import Any, Optional
 
 import pytest
+from common import context
 
 from kai_drill import TokenKind, split_path
 
@@ -86,8 +87,5 @@ class SplitPathTestCase:
     ],
 )
 def test_path_split(test_case):
-    if test_case.exception is None:
+    with context(test_case.exception):
         assert split_path(test_case.path) == test_case.expected
-    else:
-        with pytest.raises(test_case.exception):
-            split_path(test_case.path)
