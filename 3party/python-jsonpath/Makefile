@@ -15,7 +15,12 @@ lint:
 
 ### Run the project
 run: lint
+	@echo ""
+	bat data/users.json
+	@echo ""
 	uv run findall.py
+	@echo ""
+	uv run finditer.py
 
 ### Run unit tests
 test: lint
