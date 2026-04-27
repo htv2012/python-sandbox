@@ -4,10 +4,9 @@ import data
 
 
 def main():
-    matches = jsonpath.findall("$.users.*.name", data.users)
-    print(f"{matches=}")
+    matches = jsonpath.finditer("$.users[*].name", data.users)
     for match in matches:
-        print(f"{match=}")
+        print(f"{match}")
 
 
 if __name__ == "__main__":
