@@ -1,3 +1,15 @@
+# 2026-04-25 Update
+
+| Name            | Version | Release Date |
+| --------------- | ------- | ------------ |
+| jsonpath-ng     | 1.8.0   | 2026-02-24   |
+| jsonpath2       | 0.4.5   | 2022-05-06   |
+| jsonpath-rw     | 1.4.0   | 2015-04-18   |
+| python-jsonpath | 2.0.2   | 2026-01-06   |
+
+
+Only jsonpath-ng and python-jsonpath continues receiving updates.
+
 # 2025-03-24 Update
 
 | Name            | Version | Release Date |

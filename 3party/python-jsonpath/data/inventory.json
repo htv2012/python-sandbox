@@ -1,0 +1,125 @@
+{
+    "name": "ACME Electronics",
+    "products": [
+        {
+            "SKU": "PROD-1000",
+            "name": "Ultra-Quiet Desktop Fan",
+            "unit_price": 15.51,
+            "inventory_count": 64
+        },
+        {
+            "SKU": "PROD-1001",
+            "name": "Mechanical Gaming Keyboard",
+            "unit_price": 188.73,
+            "inventory_count": 140
+        },
+        {
+            "SKU": "PROD-1002",
+            "name": "Ergonomic Office Chair",
+            "unit_price": 103.49,
+            "inventory_count": 127
+        },
+        {
+            "SKU": "PROD-1003",
+            "name": "4K LED Monitor 27\"",
+            "unit_price": 481.45,
+            "inventory_count": 78
+        },
+        {
+            "SKU": "PROD-1004",
+            "name": "Wireless Noise Cancelling Headphones",
+            "unit_price": 114.77,
+            "inventory_count": 100
+        },
+        {
+            "SKU": "PROD-1005",
+            "name": "USB-C Fast Charger",
+            "unit_price": 189.33,
+            "inventory_count": 94
+        },
+        {
+            "SKU": "PROD-1006",
+            "name": "Portable External SSD 1TB",
+            "unit_price": 259.78,
+            "inventory_count": 89
+        },
+        {
+            "SKU": "PROD-1007",
+            "name": "Smart LED Desk Lamp",
+            "unit_price": 141.59,
+            "inventory_count": 88
+        },
+        {
+            "SKU": "PROD-1008",
+            "name": "Aluminum Laptop Stand",
+            "unit_price": 423.81,
+            "inventory_count": 81
+        },
+        {
+            "SKU": "PROD-1009",
+            "name": "Braided HDMI 2.1 Cable",
+            "unit_price": 457.91,
+            "inventory_count": 62
+        },
+        {
+            "SKU": "PROD-1010",
+            "name": "Bluetooth Optical Mouse",
+            "unit_price": 452.27,
+            "inventory_count": 80
+        },
+        {
+            "SKU": "PROD-1011",
+            "name": "HD Webcam with Privacy Cover",
+            "unit_price": 56.82,
+            "inventory_count": 79
+        },
+        {
+            "SKU": "PROD-1012",
+            "name": "Microfiber Mouse Pad",
+            "unit_price": 422.38,
+            "inventory_count": 92
+        },
+        {
+            "SKU": "PROD-1013",
+            "name": "Adjustable Standing Desk",
+            "unit_price": 223.91,
+            "inventory_count": 115
+        },
+        {
+            "SKU": "PROD-1014",
+            "name": "Multi-Port USB Hub",
+            "unit_price": 378.5,
+            "inventory_count": 27
+        },
+        {
+            "SKU": "PROD-1015",
+            "name": "Bamboo Laptop Cooling Pad",
+            "unit_price": 340.46,
+            "inventory_count": 72
+        },
+        {
+            "SKU": "PROD-1016",
+            "name": "Compact Bluetooth Speaker",
+            "unit_price": 483.81,
+            "inventory_count": 126
+        },
+        {
+            "SKU": "PROD-1017",
+            "name": "VR Gaming Headset",
+            "unit_price": 449.07,
+            "inventory_count": 135
+        },
+        {
+            "SKU": "PROD-1018",
+            "name": "Graphic Drawing Tablet",
+            "unit_price": 121.02,
+            "inventory_count": 123
+        },
+        {
+            "SKU": "PROD-1019",
+            "name": "Universal Remote Control",
+            "unit_price": 61.99,
+            "inventory_count": 16
+        }
+    ]
+}
