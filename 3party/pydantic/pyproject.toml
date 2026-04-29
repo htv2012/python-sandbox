@@ -1,0 +1,28 @@
+[project]
+name = "pydantic-sandbox"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Hai Vu", email = "haivu2004@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "pydantic>=2.13.3",
+]
+
+[project.scripts]
+ex1 = 'pydantic_sandbox.ex1:ex1'
+ex2 = 'pydantic_sandbox.ex2_model_json_schema:ex2'
+
+[build-system]
+requires = ["uv_build>=0.9.21,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "ipython>=9.13.0",
+    "jupyterlab>=4.5.7",
+    "pytest>=9.0.3",
+    "ruff>=0.15.12",
+]
