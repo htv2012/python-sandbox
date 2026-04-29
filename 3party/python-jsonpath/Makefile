@@ -21,6 +21,8 @@ run: lint
 	uv run findall.py
 	@echo ""
 	uv run finditer.py
+	@echo ""
+	uv run query.py
 
 ### Run unit tests
 test: lint
