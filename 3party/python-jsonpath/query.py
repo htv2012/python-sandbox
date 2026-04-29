@@ -13,7 +13,6 @@ def show_inexpensive():
     print("Unit Price  Name")
     print("----------  ----")
     for obj in matches:
-        # print(f"{obj['unit_price']:>10}  {obj['name']}")
         print("{unit_price:>10}  {name}".format(**obj))
 
 
