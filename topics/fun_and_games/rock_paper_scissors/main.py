@@ -9,12 +9,14 @@ USER_PHRASES = [
     "You beats the smartest bot in the universe!",
     "Congratulations!",
     "You won. Did you cheat?",
+    "You are just lucky.",
 ]
 
 BOT_PHRASES = [
     "Is that all you can do?",
     "You cannot defeat the smartest bot in the universe.",
     "I can read your mind.",
+    "Loser!",
 ]
 
 
@@ -31,14 +33,14 @@ class Move(enum.StrEnum):
         )
 
 
-def make_user_choice():
+def user_move():
     table = {"r": "rock", "p": "paper", "s": "scissors"}
     while (user_input := input("[r]ock, [p]aper, or [s]cissors: ")) not in "rps":
         print("that is not a valid imput. Please try again")
     return Move(table[user_input])
 
 
-def make_computer_choice():
+def bot_move():
     return random.choice(list(Move))
 
 
@@ -46,26 +48,28 @@ def main():
     print(pathlib.Path("README.md").read_text())
     scores = collections.Counter()
     while not (scores["user"] == 3 or scores["bot"] == 3):
-        user_choice = make_user_choice()
-        bot_choice = make_computer_choice()
+        user_choice = user_move()
+        bot_choice = bot_move()
 
         print(f"User: {user_choice}, bot: {bot_choice} => ", end="")
 
         if user_choice > bot_choice:
             scores["user"] += 1
-            print("user wins")
+            print("you won")
         elif bot_choice > user_choice:
             scores["bot"] += 1
-            print("bot wins ")
+            print("you lost ")
         else:
-            print("tie      ")
+            print("tie")
 
         print(f"Score (user:bot): {scores['user']}:{scores['bot']}")
         print()
 
     if scores["user"] == 3:
+        print("You won.")
         phrase = random.choice(USER_PHRASES)
     else:
+        print("You lost.")
         phrase = random.choice(BOT_PHRASES)
     print(phrase)
 
