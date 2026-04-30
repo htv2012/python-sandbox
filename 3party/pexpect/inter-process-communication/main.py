@@ -12,33 +12,38 @@ PROMPT = "> "
 
 def main():
     """App Entry"""
-    app1 = pexpect.spawn("python3 app1.py", echo=False, encoding="utf-8")
-    app2 = pexpect.spawn("python3 app2.py", echo=False, encoding="utf-8")
+    reverse_line = pexpect.spawn(
+        "python3 reverse_line.py", echo=False, encoding="utf-8"
+    )
+    reverse_words = pexpect.spawn(
+        "python3 reverse_words.py", echo=False, encoding="utf-8"
+    )
 
     text_input = [
         "The more you learn",
         "I love my dog",
+        "cấm không được vào",
     ]
 
     for text in text_input:
-        app1.expect(PROMPT)
-        app1.sendline(text)
-        output = app1.readline()
+        reverse_line.expect(PROMPT)
+        reverse_line.sendline(text)
+        output = reverse_line.readline()
         output = output.rstrip()  # Convert bytes to str
         print(f"{text} -> {output} ", end="")
 
-        app2.expect(PROMPT)
-        app2.sendline(output)
-        output2 = app2.readline()
+        reverse_words.expect(PROMPT)
+        reverse_words.sendline(output)
+        output2 = reverse_words.readline()
         output2 = output2.rstrip()  # Convert bytes to str
         print(f"-> {output2}")
 
     # Quit apps
-    app1.expect(PROMPT)
-    app1.sendline("q")
+    reverse_line.expect(PROMPT)
+    reverse_line.sendline("q")
 
-    app2.expect(PROMPT)
-    app2.sendline("q")
+    reverse_words.expect(PROMPT)
+    reverse_words.sendline("q")
 
 
 if __name__ == "__main__":
