@@ -1,7 +1,7 @@
 .PHONY: all clean install lab lint py run test
 
 ### Default target(s)
-all: test run
+all: test
 
 edit:
 	$(EDITOR) pydantic-sandbox
@@ -13,8 +13,10 @@ lint:
 	@uv run ruff check . --fix --quiet
 
 ### Run the project
-run: lint
+ex1: lint
 	uv run ex1
+
+ex2: lint
 	uv run ex2
 
 ### Run unit tests
