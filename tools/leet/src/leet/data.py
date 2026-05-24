@@ -1,3 +1,6 @@
+import pathlib
+from typing import Optional
+
 QUERY = """query questionData($titleSlug: String!) {
   question(titleSlug: $titleSlug) {
     questionId
@@ -63,40 +66,6 @@ log_level="DEBUG"
 markers=["slow"]
 """
 
-MAKE = """quick: lint
-	PYTHONPATH=.. pytest -s -vv -m 'not slow'
-
-slow: lint
-	PYTHONPATH=.. pytest -s -vv -m 'slow'
-
-all: lint
-	PYTHONPATH=.. pytest -s -vv . ../common
-
-lint: format
-	ruff check . ../common --fix
-
-format:
-	ruff format . ../common
-	ruff check --select I --fix . ../common
-
-cp:
-	grep --color=never -E -v '^from (common|nary_tree|tree|list_node)' solution.py | xsel -b
-"""
-
-
-CONFTEST_TEMPLATE = """import pytest
-
-from solution import Solution
-
-
-@pytest.fixture
-def fut():
-    # Function under test
-    sol = Solution()
-    return sol.%s
-"""
-
-ENV = "PYTHONPATH=..\n"
 
 SETTINGS = """{
     "python.testing.pytestArgs": [
@@ -107,8 +76,16 @@ SETTINGS = """{
 }
 """
 
-SOLUTION_TEMPLATE = """from typing import List, Optional
-from common import nary_tree, tree, list_node
 
-%s
-"""
+def get_template(name: str):
+    here = pathlib.Path(__file__).parent
+    template = here / "artifacts" / name
+    with open(template) as stream:
+        content = stream.read()
+    return content
+
+
+def write_file(root: pathlib.Path, name: str, content: Optional[str] = None):
+    target = root / name
+    content = content or get_template(name)
+    target.write_text(content)

@@ -1,5 +1,4 @@
 import io
-import html2text
 import json
 import re
 import urllib
@@ -7,6 +6,7 @@ import urllib.parse
 from typing import Optional
 
 import bs4
+import html2text
 import requests
 
 from .data import QUERY
@@ -60,11 +60,15 @@ def extract_details(url: str, dump: Optional[str]) -> dict:
             json.dump(response_json, stream, indent=4)
     question = response_json["data"]["question"]
 
-    title = question['title'].lower().replace(" ", "_")
-    details["dir"] = f"leetcode_{question['questionFrontendId']:04}_{title}"
+    title = question["title"].lower().replace(" ", "_")
+    qid = str(question["questionFrontendId"]).zfill(4)
+    details["dir"] = f"leetcode_{qid}_{title}"
+    details["project_id"] = f"leetcode-{qid}"
 
     converter = html2text.HTML2Text()
-    details["readme"] = f"# {question['title']}\n\n{converter.handle(question['content'])}"
+    details["readme"] = (
+        f"# {question['title']}\n\n{converter.handle(question['content'])}"
+    )
 
     buffer = io.StringIO()
     for snippet in question["codeSnippets"]:
@@ -90,6 +94,7 @@ def extract_details(url: str, dump: Optional[str]) -> dict:
     )
 
     var_names = []
+    breakpoint()
     for test_case in examples.values():
         var_names = list(test_case)
         break
@@ -114,5 +119,6 @@ def extract_details(url: str, dump: Optional[str]) -> dict:
         f"    assert fut({', '.join(v for v in var_names if v != 'expected')}) == expected"
     )
     details["test"] = buffer.getvalue()
+    breakpoint()
 
     return details
