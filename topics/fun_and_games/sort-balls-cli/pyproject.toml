@@ -1,0 +1,25 @@
+[project]
+name = "scb"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Hai Vu", email = "haivu2004@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+scb = "scb:main"
+
+[build-system]
+requires = ["uv_build>=0.9.28,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "jupyterlab>=4.5.7",
+    "pytest>=9.0.3",
+    "ruff>=0.15.14",
+    "ty>=0.0.39",
+]
