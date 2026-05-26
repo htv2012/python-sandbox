@@ -1,6 +1,6 @@
 import pytest
 
-from scb.data import STACK_CAPCACITY, Stack
+from scb.stack import CAPACITY, Stack
 
 
 def _create_stack(values: list):
@@ -17,13 +17,13 @@ def test_empty():
 
 
 def test_full():
-    stack = _create_stack(range(STACK_CAPCACITY))
+    stack = _create_stack(range(CAPACITY))
     assert stack.is_full
     assert not stack.is_empty
 
 
 def test_push_pop():
-    stack = _create_stack(range(STACK_CAPCACITY))
+    stack = _create_stack(range(CAPACITY))
 
     out = []
     while not stack.is_empty:
@@ -34,7 +34,7 @@ def test_push_pop():
 
 
 def test_is_completed():
-    stack = _create_stack("a" * STACK_CAPCACITY)
+    stack = _create_stack("a" * CAPACITY)
     assert stack.is_completed
 
 
@@ -44,9 +44,23 @@ def test_is_completed():
         pytest.param([], [" "] * 8, id="empty"),
         pytest.param(["a"], [" "] * 7 + ["a"], id="not full"),
         pytest.param("abcdefg", [" "] + list("gfedcba"), id="almost full"),
-        pytest.param(range(STACK_CAPCACITY), [7, 6, 5, 4, 3, 2, 1, 0], id="full"),
+        pytest.param(range(CAPACITY), [7, 6, 5, 4, 3, 2, 1, 0], id="full"),
     ],
 )
 def test_iter(values, expected):
     stack = _create_stack(values)
     assert list(stack) == expected
+
+
+@pytest.mark.parametrize(
+    "values, expected",
+    [
+        pytest.param([], " ", id="empty"),
+        pytest.param("abc", "c", id="partial fill"),
+        pytest.param(range(CAPACITY - 1), CAPACITY - 2, id="almost full"),
+        pytest.param(range(CAPACITY), CAPACITY - 1, id="full"),
+    ],
+)
+def test_top(values, expected):
+    stack = _create_stack(values)
+    assert stack.top == expected

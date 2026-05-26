@@ -1,43 +1,6 @@
 import io
 
-STACK_CAPCACITY = 8
-
-
-class Stack:
-    def __init__(self):
-        self._data = []
-
-    def __repr__(self):
-        return repr(self._data)
-
-    @property
-    def is_empty(self) -> bool:
-        return len(self._data) == 0
-
-    @property
-    def is_full(self) -> bool:
-        return len(self._data) == STACK_CAPCACITY
-
-    def push(self, value):
-        if self.is_full:
-            raise ValueError("Push a full stack")
-        self._data.append(value)
-
-    def pop(self):
-        if self.is_empty:
-            raise ValueError("Pop an empty stack")
-        return self._data.pop()
-
-    def __iter__(self):
-        out = self._data.copy()
-        while len(out) < STACK_CAPCACITY:
-            out.append(" ")
-        out.reverse()
-        return iter(out)
-
-    @property
-    def is_completed(self) -> bool:
-        return not self.is_empty and all(v == self._data[0] for v in self)
+from .stack import Stack
 
 
 class Grid:
@@ -46,6 +9,9 @@ class Grid:
 
     def __iter__(self):
         return iter(self._stacks)
+
+    def __getitem__(self, key) -> Stack:
+        return self._stacks[key]
 
     def __repr__(self):
         buf = io.StringIO()
@@ -72,6 +38,10 @@ class Grid:
         except ValueError:
             self._stacks[from_stack].push(value)
             raise ValueError("Cannot move to a full stack")
+
+    @property
+    def top_balls(self) -> list:
+        return [stack.top for stack in self]
 
     @property
     def completed(self) -> bool:
