@@ -28,18 +28,16 @@ class Stack:
             raise ValueError("Pop an empty stack")
         return self._data.pop()
 
-    @property
-    def values(self):
+    def __iter__(self):
         out = self._data.copy()
         while len(out) < STACK_CAPCACITY:
             out.append(" ")
         out.reverse()
-        return out
+        return iter(out)
 
     @property
     def is_completed(self) -> bool:
-        values = self.values
-        return values[0] != " " and all(v == values[0] for v in values)
+        return not self.is_empty and all(v == self._data[0] for v in self)
 
 
 class Grid:
@@ -51,9 +49,10 @@ class Grid:
 
     def __repr__(self):
         buf = io.StringIO()
+        buf.write("\n")
         buf.write("| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |\n")
         buf.write("|---|---|---|---|---|---|---|---|\n")
-        for row in zip(*[stack.values for stack in self]):
+        for row in zip(*[list(stack) for stack in self]):
             buf.write("| ")
             buf.write(" | ".join(row))
             buf.write(" |\n")
@@ -68,8 +67,12 @@ class Grid:
 
     def move(self, from_stack: int, to_stack: int):
         value = self._stacks[from_stack].pop()
-        self._stacks[to_stack].push(value)
+        try:
+            self._stacks[to_stack].push(value)
+        except ValueError:
+            self._stacks[from_stack].push(value)
+            raise ValueError("Cannot move to a full stack")
 
     @property
     def completed(self) -> bool:
-        return sum(1 if stack.is_completed else 0 for stack in self._stacks)==7
+        return sum(1 if stack.is_completed else 0 for stack in self) == 7

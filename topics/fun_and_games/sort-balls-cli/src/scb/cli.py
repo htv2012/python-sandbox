@@ -37,5 +37,6 @@ def main():
             print(err)
 
         if grid.completed:
-            print("Completed!")
+            print(grid)
+            print("Sorted!")
             break
