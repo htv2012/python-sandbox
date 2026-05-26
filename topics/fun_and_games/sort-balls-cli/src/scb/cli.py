@@ -16,6 +16,7 @@ class UserInput:
                 if move == "" and self.last:
                     return self.last
                 elif move == ".":
+                    # TODO: crashed
                     self.last = (".", 9)
                     return self.last
                 elif move == "q":
