@@ -23,22 +23,8 @@ def parse_var(text: str):
     return key, value
 
 
-def parse_test_case(example: bs4.element.Tag):
-    test_id = example.text.removesuffix(":")
-    var_list = {}
-
-    pre = example.find_next("pre")
-    if pre is None:
-        pre = example.find_next("div", class_="example-block")
-
-    for line in pre.text.splitlines():
-        if "Input: " in line:
-            var_list.update(
-                parse_var(token) for token in line.removeprefix("Input: ").split(", ")
-            )
-        elif line.startswith("Output: "):
-            var_list["expected"] = json.loads(line.removeprefix("Output: "))
-    return test_id, var_list
+def parse_test_case(content: str):
+    pass
 
 
 def extract_details(url: str, dump: Optional[str]) -> dict:
@@ -94,7 +80,6 @@ def extract_details(url: str, dump: Optional[str]) -> dict:
     )
 
     var_names = []
-    breakpoint()
     for test_case in examples.values():
         var_names = list(test_case)
         break
