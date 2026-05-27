@@ -10,7 +10,7 @@ requires-python = ">=3.13"
 dependencies = []
 
 [project.scripts]
-scb = "scb:main"
+sort-balls = "scb:main"
 
 [build-system]
 requires = ["uv_build>=0.9.28,<0.10.0"]

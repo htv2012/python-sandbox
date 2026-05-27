@@ -14,7 +14,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run scb
+	uv run sort-balls
 
 ### Run unit tests
 test: lint

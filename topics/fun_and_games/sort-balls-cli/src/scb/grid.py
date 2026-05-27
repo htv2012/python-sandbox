@@ -26,7 +26,7 @@ class Grid:
             buf.write(" |\n")
 
         buf.write("  ")
-        buf.write("   ".join("!" if stack.is_completed else " " for stack in self))
+        buf.write("   ".join("x" if stack.is_completed else " " for stack in self))
         buf.write("  \n")
         return buf.getvalue()
 
