@@ -4,6 +4,17 @@ from .stack import Stack
 
 COLUMNS_COUNT = 8
 
+ball_table = {
+    "a": "🔴",
+    "b": "🟠",
+    "c": "🟡",
+    "d": "🟢",
+    "e": "🔵",
+    "f": "🟣",
+    "g": "🟤",
+    " ": "◼️",
+}
+
 
 class Grid:
     def __init__(self):
@@ -18,16 +29,15 @@ class Grid:
     def __repr__(self):
         buf = io.StringIO()
         buf.write("\n")
-        buf.write("| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |\n")
-        buf.write("|---|---|---|---|---|---|---|---|\n")
+        buf.write("│ ")
+        buf.write(" │ ".join("✅" if stack.is_completed else "◼️" for stack in self))
+        buf.write(" │\n")
+        buf.write("│ 0️⃣ │ 1️⃣ │ 2️⃣ │ 3️⃣ │ 4️⃣ │ 5️⃣ │ 6️⃣ │ 7️⃣ │\n")
         for row in zip(*[list(stack) for stack in self]):
-            buf.write("| ")
-            buf.write(" | ".join(row))
-            buf.write(" |\n")
+            buf.write("│ ")
+            buf.write(" │ ".join(row))
+            buf.write(" │\n")
 
-        buf.write("  ")
-        buf.write("   ".join("x" if stack.is_completed else " " for stack in self))
-        buf.write("  \n")
         return buf.getvalue()
 
     def put(self, stack_number: int, value):

@@ -27,7 +27,7 @@ class UserInput:
                 elif len(choice) == 2 and choice.isnumeric():
                     self.last = Choice.MOVE, tuple(int(v) for v in choice)
                     return self.last
-                elif len(choice) == 2 and choice[0] in "abcdefg":
+                elif len(choice) == 2 and choice[0] in "ropgybw":
                     dest = int(choice[1])
                     return Choice.FILL, (choice[0], dest)
             except ValueError:
@@ -38,7 +38,7 @@ def main():
     grid = Grid()
     user_input = UserInput()
 
-    balls = "".join(ch * 8 for ch in "abcdefg")
+    balls = "".join(ch * 8 for ch in "🔴🟠🟡🟢🔵🟣🟤")
     balls = list(balls)
     random.shuffle(balls)
     for i, ball in enumerate(balls):

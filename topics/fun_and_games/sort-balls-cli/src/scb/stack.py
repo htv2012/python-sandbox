@@ -35,7 +35,7 @@ class Stack:
     def __iter__(self):
         out = self._data.copy()
         while len(out) < CAPACITY:
-            out.append(" ")
+            out.append("◼️")
         out.reverse()
         return iter(out)
 
