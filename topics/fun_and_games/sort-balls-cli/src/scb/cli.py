@@ -1,31 +1,35 @@
-import collections
+import enum
 import random
 
 from .grid import Grid
 from .stack import CAPACITY
 
 
+class Choice(enum.Enum):
+    MOVE = enum.auto()
+    QUIT = enum.auto()
+    REPEAT = enum.auto()
+    FILL = enum.auto()
+
+
 class UserInput:
     def __init__(self):
         self.last = None
 
-    def get(self):
+    def get(self) -> tuple[Choice, tuple]:
         while True:
             try:
-                move = input("> ")
-                if move == "" and self.last:
+                choice = input("> ")
+                if choice == "" and self.last:
                     return self.last
-                elif move == ".":
-                    # TODO: crashed
-                    self.last = (".", 9)
+                elif choice == "q":
+                    return Choice.QUIT, tuple()
+                elif len(choice) == 2 and choice.isnumeric():
+                    self.last = Choice.MOVE, tuple(int(v) for v in choice)
                     return self.last
-                elif move == "q":
-                    return -1, -1
-                elif move.startswith("f"):
-                    self.last = ("f", int(move[1]))
-                    return self.last
-                src, dest = [int(v) for v in move]
-                self.last = src, dest
+                elif len(choice) == 2 and choice[0] in "abcdefg":
+                    dest = int(choice[1])
+                    return Choice.FILL, (choice[0], dest)
             except ValueError:
                 pass
 
@@ -43,26 +47,27 @@ def main():
 
     while True:
         print(grid)
-        src, dest = user_input.get()
-        if src == -1:
+        choice, args = user_input.get()
+        if choice == Choice.QUIT:
             break
-        elif src == "f":
-            top = grid.top_balls
-            counter = collections.Counter(top)
-            # most_common() sample return: [('c', 3)]
-            picked = counter.most_common(1)[0][0]
-            for src, ball in enumerate(top):
-                if grid[dest].is_full:
-                    break
-                if ball == picked:
-                    grid.move(src, dest)
-        else:
+        elif choice == Choice.MOVE:
+            src, dest = args
             try:
                 grid.move(from_stack=src, to_stack=dest)
             except ValueError as err:
                 print(err)
+        elif choice == Choice.FILL:
+            picked, dest = args
+            for src, stack in enumerate(grid):
+                if src == dest:
+                    continue
+                while stack.top == picked:
+                    if grid[dest].is_full:
+                        break
+                    stack.pop()
+                    grid[dest].push(picked)
 
-            if grid.completed:
-                print(grid)
-                print("Sorted!")
-                break
+        if grid.completed:
+            print(grid)
+            print("Sorted!")
+            break

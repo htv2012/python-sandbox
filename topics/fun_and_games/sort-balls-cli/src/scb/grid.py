@@ -2,10 +2,12 @@ import io
 
 from .stack import Stack
 
+COLUMNS_COUNT = 8
+
 
 class Grid:
     def __init__(self):
-        self._stacks = [Stack() for _ in range(8)]
+        self._stacks = [Stack() for _ in range(COLUMNS_COUNT)]
 
     def __iter__(self):
         return iter(self._stacks)

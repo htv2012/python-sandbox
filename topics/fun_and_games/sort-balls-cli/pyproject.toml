@@ -7,9 +7,7 @@ authors = [
     { name = "Hai Vu", email = "haivu2004@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = [
-    "textual>=8.2.7",
-]
+dependencies = []
 
 [project.scripts]
 scb = "scb:main"
