@@ -1,6 +1,7 @@
 import enum
 import random
 
+from .draw import draw_grid
 from .grid import Grid
 from .stack import CAPACITY
 
@@ -46,7 +47,7 @@ def main():
         grid.put(stack_number, ball)
 
     while True:
-        print(grid)
+        draw_grid(grid)
         choice, args = user_input.get()
         if choice == Choice.QUIT:
             break
@@ -68,6 +69,6 @@ def main():
                     grid[dest].push(picked)
 
         if grid.completed:
-            print(grid)
+            draw_grid(grid)
             print("Sorted!")
             break

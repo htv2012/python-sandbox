@@ -1,5 +1,3 @@
-import io
-
 from .stack import Stack
 
 COLUMNS_COUNT = 8
@@ -25,20 +23,6 @@ class Grid:
 
     def __getitem__(self, key) -> Stack:
         return self._stacks[key]
-
-    def __repr__(self):
-        buf = io.StringIO()
-        buf.write("\n")
-        buf.write("│ ")
-        buf.write(" │ ".join("✅" if stack.is_completed else "◼️" for stack in self))
-        buf.write(" │\n")
-        buf.write("│ 0️⃣ │ 1️⃣ │ 2️⃣ │ 3️⃣ │ 4️⃣ │ 5️⃣ │ 6️⃣ │ 7️⃣ │\n")
-        for row in zip(*[list(stack) for stack in self]):
-            buf.write("│ ")
-            buf.write(" │ ".join(row))
-            buf.write(" │\n")
-
-        return buf.getvalue()
 
     def put(self, stack_number: int, value):
         self._stacks[stack_number].push(value)

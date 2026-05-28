@@ -1,6 +1,6 @@
 import pytest
 
-from scb.stack import CAPACITY, Stack
+from scb.stack import CAPACITY, EMPTY_VALUE, Stack
 
 
 def _create_stack(values: list):
@@ -41,21 +41,21 @@ def test_is_completed():
 @pytest.mark.parametrize(
     "values, expected",
     [
-        pytest.param([], [" "] * 8, id="empty"),
-        pytest.param(["a"], [" "] * 7 + ["a"], id="not full"),
-        pytest.param("abcdefg", [" "] + list("gfedcba"), id="almost full"),
+        pytest.param([], [EMPTY_VALUE] * 8, id="empty"),
+        pytest.param(["a"], [EMPTY_VALUE] * 7 + ["a"], id="not full"),
+        pytest.param("abcdefg", [EMPTY_VALUE] + list("gfedcba"), id="almost full"),
         pytest.param(range(CAPACITY), [7, 6, 5, 4, 3, 2, 1, 0], id="full"),
     ],
 )
-def test_iter(values, expected):
+def test_as_column(values, expected):
     stack = _create_stack(values)
-    assert list(stack) == expected
+    assert stack.as_column == expected
 
 
 @pytest.mark.parametrize(
     "values, expected",
     [
-        pytest.param([], " ", id="empty"),
+        pytest.param([], None, id="empty"),
         pytest.param("abc", "c", id="partial fill"),
         pytest.param(range(CAPACITY - 1), CAPACITY - 2, id="almost full"),
         pytest.param(range(CAPACITY), CAPACITY - 1, id="full"),
