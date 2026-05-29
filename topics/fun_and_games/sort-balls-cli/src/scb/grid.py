@@ -1,3 +1,5 @@
+from typing import Iterable
+
 from .stack import Stack
 
 COLUMNS_COUNT = 8
@@ -18,7 +20,7 @@ class Grid:
     def __init__(self):
         self._stacks = [Stack() for _ in range(COLUMNS_COUNT)]
 
-    def __iter__(self):
+    def __iter__(self) -> Iterable[Stack]:
         return iter(self._stacks)
 
     def __getitem__(self, key) -> Stack:

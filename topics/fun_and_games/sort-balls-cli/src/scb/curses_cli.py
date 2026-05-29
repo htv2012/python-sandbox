@@ -1,5 +1,5 @@
 # sandbox.py
-import curses
+import collections
 import curses
 import enum
 import io
@@ -31,6 +31,26 @@ class Asset(enum.StrEnum):
     EMPTY = "◼️"
     POP = "↑"
     PUSH = "↓"
+    # ⬆ ⬇
+    BALL1 = "🔴"
+    BALL2 = "🟠"
+    BALL3 = "🟡"
+    BALL4 = "🟢"
+    BALL5 = "🔵"
+    BALL6 = "🟣"
+    BALL7 = "🟤"
+
+    @classmethod
+    def balls(cls):
+        return [
+            Asset.BALL1,
+            Asset.BALL2,
+            Asset.BALL3,
+            Asset.BALL4,
+            Asset.BALL5,
+            Asset.BALL6,
+            Asset.BALL7,
+        ]
 
 
 def draw_grid(screen: curses.window, grid: Grid):
@@ -54,6 +74,17 @@ def draw_grid(screen: curses.window, grid: Grid):
     screen.refresh()
 
 
+def diag() -> Grid:
+    grid = Grid()
+    balls = collections.deque(Asset.balls())
+    for i in range(CAPACITY):
+        for stack, ball in zip(grid[:-1], balls):
+            stack.push(ball)
+        balls.rotate(1)
+
+    return grid
+
+
 def create_grid() -> Grid:
     grid = Grid()
 
@@ -74,13 +105,16 @@ def get_user_input(screen: curses.window, col: int, state: State):
     while True:
         key = screen.getkey()
         if key == curses.KEY_UP and state == State.POP:
-            
+            pass
+        if key == "q":
+            break
 
 
 def _main(screen: curses.window):
     curses.curs_set(0)
 
-    grid = create_grid()
+    # grid = create_grid()
+    grid = diag()
     col = 0
     state = State.POP
 
