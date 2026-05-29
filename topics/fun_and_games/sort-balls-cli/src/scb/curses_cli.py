@@ -5,7 +5,7 @@ import enum
 import io
 import random
 
-from .grid import Grid
+from .grid import COLUMNS_COUNT, Grid
 from .stack import CAPACITY, EMPTY_VALUE
 
 screen = curses.initscr()
@@ -29,9 +29,9 @@ class State(enum.Enum):
 
 class Asset(enum.StrEnum):
     EMPTY = "◼️"
-    POP = "↑"
-    PUSH = "↓"
-    # ⬆ ⬇
+    POP = "⬆"
+    PUSH = "⬇"
+    # ⬆ ⬇ ↑ ↓
     BALL1 = "🔴"
     BALL2 = "🟠"
     BALL3 = "🟡"
@@ -98,22 +98,33 @@ def create_grid() -> Grid:
     return grid
 
 
-def get_user_input(screen: curses.window, col: int, state: State):
+def get_user_input(stdscr: curses.window, col: int, state: State):
     y = 15
     x = 3
-    screen.addstr(y, x, Asset.POP if state == State.POP else Asset.PUSH)
+    stdscr.addstr(y, x, Asset.POP if state == State.POP else Asset.PUSH)
     while True:
-        key = screen.getkey()
-        if key == curses.KEY_UP and state == State.POP:
-            pass
-        if key == "q":
+        key = stdscr.getch()
+        if key == curses.KEY_RIGHT:
+            stdscr.addstr(y, x, " ")
+            col = (col + 1) % COLUMNS_COUNT
+            x = 3 + (col * 5)
+            stdscr.addstr(y, x, Asset.POP if state == State.POP else Asset.PUSH)
+        elif key == curses.KEY_LEFT:
+            stdscr.addstr(y, x, " ")
+            col = (col - 1) % COLUMNS_COUNT
+            x = 3 + (col * 5)
+            stdscr.addstr(y, x, Asset.POP if state == State.POP else Asset.PUSH)
+        elif key == ord(" "):
+            return col
+        elif key == ord("q"):
             break
 
 
-def _main(screen: curses.window):
+def _main(stdscr: curses.window):
     curses.curs_set(0)
     curses.cbreak()
     curses.noecho()
+    stdscr.keypad(True)
 
     # grid = create_grid()
     grid = diag()
@@ -121,8 +132,8 @@ def _main(screen: curses.window):
     state = State.POP
 
     while True:
-        draw_grid(screen, grid)
-        get_user_input(screen, col, state)
+        draw_grid(stdscr, grid)
+        get_user_input(stdscr, col, state)
         break
         # if choice == Choice.QUIT:
         #     break
@@ -148,7 +159,7 @@ def _main(screen: curses.window):
         #     print("Sorted!")
         #     break
 
-    screen.getkey()
+    # stdscr.getkey()
 
 
 def main():
