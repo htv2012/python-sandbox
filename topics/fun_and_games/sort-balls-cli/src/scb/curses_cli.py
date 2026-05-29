@@ -112,6 +112,8 @@ def get_user_input(screen: curses.window, col: int, state: State):
 
 def _main(screen: curses.window):
     curses.curs_set(0)
+    curses.cbreak()
+    curses.noecho()
 
     # grid = create_grid()
     grid = diag()
