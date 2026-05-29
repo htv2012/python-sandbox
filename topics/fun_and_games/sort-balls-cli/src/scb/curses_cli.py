@@ -1,5 +1,6 @@
 # sandbox.py
 import curses
+import curses
 import enum
 import io
 import random
@@ -20,12 +21,16 @@ class Choice(enum.Enum):
     FILL = enum.auto()
 
 
+class State(enum.Enum):
+    POP = enum.auto()
+    PUSH = enum.auto()
+    NONE = enum.auto()
+
+
 class Asset(enum.StrEnum):
     EMPTY = "◼️"
-
-
-class UserInput:
-    pass
+    POP = "↑"
+    PUSH = "↓"
 
 
 def draw_grid(screen: curses.window, grid: Grid):
@@ -62,38 +67,50 @@ def create_grid() -> Grid:
     return grid
 
 
+def get_user_input(screen: curses.window, col: int, state: State):
+    y = 15
+    x = 3
+    screen.addstr(y, x, Asset.POP if state == State.POP else Asset.PUSH)
+    while True:
+        key = screen.getkey()
+        if key == curses.KEY_UP and state == State.POP:
+            
+
+
 def _main(screen: curses.window):
     curses.curs_set(0)
 
     grid = create_grid()
-    user_input = UserInput()
+    col = 0
+    state = State.POP
+
     while True:
         draw_grid(screen, grid)
+        get_user_input(screen, col, state)
         break
-        choice, args = user_input.get()
-        if choice == Choice.QUIT:
-            break
-        elif choice == Choice.MOVE:
-            src, dest = args
-            try:
-                grid.move(from_stack=src, to_stack=dest)
-            except ValueError as err:
-                print(err)
-        elif choice == Choice.FILL:
-            picked, dest = args
-            for src, stack in enumerate(grid):
-                if src == dest:
-                    continue
-                while stack.top == picked:
-                    if grid[dest].is_full:
-                        break
-                    stack.pop()
-                    grid[dest].push(picked)
+        # if choice == Choice.QUIT:
+        #     break
+        # elif choice == Choice.MOVE:
+        #     src, dest = args
+        #     try:
+        #         grid.move(from_stack=src, to_stack=dest)
+        #     except ValueError as err:
+        #         print(err)
+        # elif choice == Choice.FILL:
+        #     picked, dest = args
+        #     for src, stack in enumerate(grid):
+        #         if src == dest:
+        #             continue
+        #         while stack.top == picked:
+        #             if grid[dest].is_full:
+        #                 break
+        #             stack.pop()
+        #             grid[dest].push(picked)
 
-        if grid.completed:
-            draw_grid(grid)
-            print("Sorted!")
-            break
+        # if grid.completed:
+        #     draw_grid(grid)
+        #     print("Sorted!")
+        #     break
 
     screen.getkey()
 
