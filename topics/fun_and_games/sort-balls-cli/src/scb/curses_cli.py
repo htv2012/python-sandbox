@@ -29,6 +29,7 @@ class State(enum.Enum):
 
 class Asset(enum.StrEnum):
     EMPTY = "◼️"
+    CHECKED = "✅"
     POP = "⬆"
     PUSH = "⬇"
     # ⬆ ⬇ ↑ ↓
@@ -80,8 +81,11 @@ def draw_grid(stdscr: curses.window, grid: Grid, ball: str, col: int):
         stdscr.addstr(y + dy + 1, x, buf.getvalue())
 
     # Draw the solved indicators
+    indicators = [
+        Asset.CHECKED if stack.is_completed else Asset.EMPTY for stack in grid
+    ]
     stdscr.addstr(y + 9, x, "├────┼────┼────┼────┼────┼────┼────┼────┤")
-    stdscr.addstr(y + 10, x, "│ " + " │ ".join([Asset.EMPTY] * 8) + " │")
+    stdscr.addstr(y + 10, x, "│ " + " │ ".join(indicators) + " │")
 
     stdscr.refresh()
 
@@ -97,7 +101,7 @@ def diag() -> Grid:
     return grid
 
 
-def create_grid() -> Grid:
+def random_grid() -> Grid:
     grid = Grid()
 
     balls = "".join(ch * 8 for ch in Asset.balls())
@@ -108,6 +112,10 @@ def create_grid() -> Grid:
         grid.put(stack_number, ball)
 
     return grid
+
+
+def create_grid() -> Grid:
+    return random.choice([diag, random_grid])()
 
 
 def get_user_input(stdscr: curses.window, col: int, cursor: str):
@@ -140,8 +148,7 @@ def _main(stdscr: curses.window):
     curses.noecho()
     stdscr.keypad(True)
 
-    # grid = create_grid()
-    grid = diag()
+    grid = create_grid()
     col = 0
     state = State.POP
     ball = " "
@@ -155,13 +162,14 @@ def _main(stdscr: curses.window):
         action, col = get_user_input(
             stdscr, col, Asset.POP if state == State.POP else Asset.PUSH
         )
+        stack = grid[col]
         if action == Action.QUIT:
             break
-        elif action == Action.POP and state == State.POP and not grid[col].is_empty:
-            ball = grid[col].pop()
+        elif action == Action.POP and state == State.POP and not stack.is_empty:
+            ball = stack.pop()
             state = State.PUSH
-        elif action == Action.PUSH and state == State.PUSH and not grid[col].is_full:
-            grid[col].push(ball)
+        elif action == Action.PUSH and state == State.PUSH and not stack.is_full:
+            stack.push(ball)
             state = State.POP
             ball = " "
 
