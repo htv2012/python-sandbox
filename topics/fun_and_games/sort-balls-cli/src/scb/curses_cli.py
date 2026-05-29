@@ -14,6 +14,7 @@ curses.cbreak()
 screen.keypad(True)
 
 
+# TODO: Delete
 class Choice(enum.Enum):
     MOVE = enum.auto()
     QUIT = enum.auto()
@@ -54,6 +55,12 @@ class Asset(enum.StrEnum):
         ]
 
 
+class Coord:
+    GRID_TOP_LEFT = (5, 1)
+    MESSAGE = (20, 1)
+
+
+# TODO: Use h, l, space for left, right, push/pop
 class Action:
     LEFT = curses.KEY_LEFT
     RIGHT = curses.KEY_RIGHT
@@ -67,8 +74,7 @@ def draw_grid(stdscr: curses.window, grid: Grid, ball: str, col: int):
     stdscr.clear()
     stdscr.addstr(1, 1, "SORT COLOR BALLS")
 
-    y = 5
-    x = 1
+    y, x = Coord.GRID_TOP_LEFT
 
     # Draw the "popped" ball
     stdscr.addstr(y - 1, 3 + (col * 5), ball)
@@ -90,7 +96,7 @@ def draw_grid(stdscr: curses.window, grid: Grid, ball: str, col: int):
     stdscr.refresh()
 
 
-def diag() -> Grid:
+def diag_grid() -> Grid:
     grid = Grid()
     balls = collections.deque(Asset.balls())
     for i in range(CAPACITY):
@@ -115,29 +121,30 @@ def random_grid() -> Grid:
 
 
 def create_grid() -> Grid:
-    return random.choice([diag, random_grid])()
+    return random.choice([diag_grid, random_grid])()
 
 
-def get_user_input(stdscr: curses.window, col: int, cursor: str):
+def get_user_input(stdscr: curses.window, column: int, cursor: str):
     y = 16
-    x = 3 + (col * 5)
+    x = 3 + (column * 5)
     stdscr.addstr(y, x, cursor)
+    
     while True:
         key = stdscr.getch()
         if key == Action.RIGHT:
             stdscr.addstr(y, x, " ")
-            col = (col + 1) % COLUMNS_COUNT
-            x = 3 + (col * 5)
+            column = (column + 1) % COLUMNS_COUNT
+            x = 3 + (column * 5)
             stdscr.addstr(y, x, cursor)
         elif key == Action.LEFT:
             stdscr.addstr(y, x, " ")
-            col = (col - 1) % COLUMNS_COUNT
-            x = 3 + (col * 5)
+            column = (column - 1) % COLUMNS_COUNT
+            x = 3 + (column * 5)
             stdscr.addstr(y, x, cursor)
         elif key == Action.POP:
-            return Action.POP, col
+            return Action.POP, column
         elif key == Action.PUSH:
-            return Action.PUSH, col
+            return Action.PUSH, column
         elif key == Action.QUIT:
             return Action.QUIT, -1
 
@@ -149,20 +156,20 @@ def _main(stdscr: curses.window):
     stdscr.keypad(True)
 
     grid = create_grid()
-    col = 0
+    column = 0
     state = State.POP
     ball = " "
 
     while True:
-        draw_grid(stdscr, grid, ball, col)
+        draw_grid(stdscr, grid, ball, column)
         if grid.completed:
-            stdscr.addstr(20, 1, "Sorted!")
+            stdscr.addstr(*Coord.MESSAGE, "Sorted!")
             stdscr.getch()
             break
-        action, col = get_user_input(
-            stdscr, col, Asset.POP if state == State.POP else Asset.PUSH
+        action, column = get_user_input(
+            stdscr, column, Asset.POP if state == State.POP else Asset.PUSH
         )
-        stack = grid[col]
+        stack = grid[column]
         if action == Action.QUIT:
             break
         elif action == Action.POP and state == State.POP and not stack.is_empty:
