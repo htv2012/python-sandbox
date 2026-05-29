@@ -1,4 +1,4 @@
-from typing import Iterable
+from typing import Iterator
 
 from .stack import Stack
 
@@ -20,7 +20,7 @@ class Grid:
     def __init__(self):
         self._stacks = [Stack() for _ in range(COLUMNS_COUNT)]
 
-    def __iter__(self) -> Iterable[Stack]:
+    def __iter__(self) -> Iterator[Stack]:
         return iter(self._stacks)
 
     def __getitem__(self, key) -> Stack:
