@@ -5,7 +5,9 @@ description = "Add your description here"
 readme = "README.md"
 authors = [{ name = "Hai Vu", email = "haivu2004@gmail.com" }]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "ipython>=9.13.0",
+]
 
 [project.scripts]
 sort-balls = "scb:main"
