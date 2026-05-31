@@ -3,15 +3,15 @@ import curses
 import enum
 import io
 
+from loguru import logger
+
 from .asset import Asset
 from .generate import create_grid
 from .grid import COLUMNS_COUNT, Grid
 from .stack import EMPTY_VALUE
 
-screen = curses.initscr()
-curses.noecho()
-curses.cbreak()
-screen.keypad(True)
+logger.remove()  # Do not log to the console
+logger.add("/tmp/sort-balls.log", level="DEBUG")
 
 
 # TODO: Delete
@@ -44,10 +44,8 @@ class Action:
 
 
 def draw_grid(stdscr: curses.window, grid: Grid, ball: str, col: int):
-
     stdscr.clear()
     stdscr.addstr(1, 1, "SORT COLOR BALLS")
-
     y, x = Coord.GRID_TOP_LEFT
 
     # Draw the "popped" ball
@@ -74,20 +72,26 @@ def get_user_input(stdscr: curses.window, column: int, cursor: str):
     y = 16
     x = 3 + (column * 5)
     stdscr.addstr(y, x, cursor)
+    logger.debug(f"get_user_input, {y=}, {x=}, {column=}")
 
     while True:
         key = stdscr.getch()
         if key == Action.RIGHT:
+            logger.debug(f"Right from {y=}, {x=}, {column=}")
             stdscr.addstr(y, x, " ")
             column = (column + 1) % COLUMNS_COUNT
             x = 3 + (column * 5)
             stdscr.addstr(y, x, cursor)
+            logger.debug(f"        to {y=}, {x=}, {column=}")
         elif key == Action.LEFT:
+            logger.debug(f"Left from {y=}, {x=}, {column=}")
             stdscr.addstr(y, x, " ")
             column = (column - 1) % COLUMNS_COUNT
             x = 3 + (column * 5)
             stdscr.addstr(y, x, cursor)
+            logger.debug(f"       to {y=}, {x=}, {column=}")
         elif key == Action.TOGGLE:
+            logger.debug(f"Toggle, {column=}")
             return Action.TOGGLE, column
         elif key == Action.QUIT:
             return Action.QUIT, -1
@@ -110,20 +114,24 @@ def _main(stdscr: curses.window):
             stdscr.addstr(*Coord.MESSAGE, "Sorted!")
             stdscr.getch()
             break
+        logger.debug(f"Before get_user_input, {column=}, {state=}, {ball=}")
         action, column = get_user_input(
             stdscr, column, Asset.POP if state == State.POP else Asset.PUSH
         )
+        logger.debug(f"After get_user_input, {column=}, {action=}")
         stack = grid[column]
         if action == Action.QUIT:
             break
         elif action == Action.TOGGLE:
-            if state == State.POP and not stack.is_empty:
-                ball = stack.pop()
-                state = State.PUSH
-            elif state == State.PUSH and not stack.is_full:
-                stack.push(ball)
-                state = State.POP
-                ball = " "
+            if state == State.POP:
+                if not stack.is_empty:
+                    ball = stack.pop()
+                    state = State.PUSH
+            elif state == State.PUSH:
+                if not stack.is_full:
+                    stack.push(ball)
+                    state = State.POP
+                    ball = " "
 
 
 def main():
