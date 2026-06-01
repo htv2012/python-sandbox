@@ -9,7 +9,7 @@ for h in list(logger.handlers):
     logger.removeHandler(h)
 
 # Create file handler
-file_handler = logging.FileHandler("/tmp/sort-balls.log", mode="a", encoding="utf-8")
+file_handler = logging.FileHandler("/tmp/sort-balls.log", mode="w", encoding="utf-8")
 file_handler.setLevel(logging.DEBUG)
 
 # Optional: set a formatter similar to loguru's default
