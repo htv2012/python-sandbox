@@ -6,7 +6,6 @@ class Asset(enum.StrEnum):
     CHECKED = "✅"
     POP = "⬆"
     PUSH = "⬇"
-    # ⬆ ⬇ ↑ ↓
 
     @classmethod
     def balls(cls):

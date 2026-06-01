@@ -10,18 +10,9 @@ from .logger import logger
 from .stack import EMPTY_VALUE
 
 
-# TODO: Delete
-class Choice(enum.Enum):
-    MOVE = enum.auto()
-    QUIT = enum.auto()
-    REPEAT = enum.auto()
-    FILL = enum.auto()
-
-
 class State(enum.Enum):
     POP = enum.auto()
     PUSH = enum.auto()
-    NONE = enum.auto()
 
 
 class Coord:
@@ -29,7 +20,6 @@ class Coord:
     MESSAGE = (20, 1)
 
 
-# TODO: Use h, l, space for left, right, push/pop
 class Action:
     LEFT = ord("h")
     RIGHT = ord("l")
