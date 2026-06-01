@@ -43,13 +43,13 @@ class Action:
     QUIT = ord("q")
 
 
-def draw_grid(stdscr: curses.window, grid: Grid, ball: str, col: int):
+def draw_grid(stdscr: curses.window, grid: Grid, ball: str, ball_column):
     stdscr.clear()
     stdscr.addstr(1, 1, "SORT COLOR BALLS")
     y, x = Coord.GRID_TOP_LEFT
 
     # Draw the "popped" ball
-    stdscr.addstr(y - 1, 3 + (col * 5), ball)
+    stdscr.addstr(y - 1, 3 + (ball_column * 5), ball)
 
     for dy, row in enumerate(zip(*[stack.as_column for stack in grid])):
         buf = io.StringIO()
@@ -107,9 +107,10 @@ def _main(stdscr: curses.window):
     column = 0
     state = State.POP
     ball = " "
+    ball_column = column
 
     while True:
-        draw_grid(stdscr, grid, ball, column)
+        draw_grid(stdscr, grid, ball, ball_column)
         if grid.completed:
             stdscr.addstr(*Coord.MESSAGE, "Sorted!")
             stdscr.getch()
@@ -126,12 +127,14 @@ def _main(stdscr: curses.window):
             if state == State.POP:
                 if not stack.is_empty:
                     ball = stack.pop()
+                    ball_column = column
                     state = State.PUSH
             elif state == State.PUSH:
                 if not stack.is_full:
                     stack.push(ball)
                     state = State.POP
                     ball = " "
+                    ball_column = column
 
 
 def main():
