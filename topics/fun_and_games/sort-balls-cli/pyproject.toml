@@ -3,11 +3,9 @@ name = "scb"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-authors = [
-    { name = "Hai Vu", email = "haivu2004@gmail.com" }
-]
+authors = [{ name = "Hai Vu", email = "haivu2004@gmail.com" }]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = ["ipython>=9.13.0"]
 
 [project.scripts]
 sort-balls = "scb:main"
@@ -21,5 +19,4 @@ dev = [
     "jupyterlab>=4.5.7",
     "pytest>=9.0.3",
     "ruff>=0.15.14",
-    "ty>=0.0.39",
 ]
