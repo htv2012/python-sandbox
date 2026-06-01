@@ -14,7 +14,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run csort-balls
+	uv run sort-balls
 
 ### Run unit tests
 test: lint
