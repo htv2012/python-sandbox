@@ -79,12 +79,21 @@ def get_user_input(stdscr: curses.window, column: int, cursor: str):
             return Action.TOGGLE, column
         elif key == Action.QUIT:
             return Action.QUIT, -1
+        elif key == curses.KEY_MOUSE:
+            logger.debug("Mouse activity detected")
+            _, x_coord, y_coord, _, button_state = curses.getmouse()
+            if button_state & curses.BUTTON1_CLICKED:
+                clicked_column = (x_coord - 3) // 5
+                logger.debug(f"column {clicked_column} clicked")
+                if 0 <= clicked_column < COLUMNS_COUNT:
+                    return Action.TOGGLE, clicked_column
 
 
 def _main(stdscr: curses.window):
     curses.curs_set(0)
     curses.cbreak()
     curses.noecho()
+    curses.mousemask(curses.ALL_MOUSE_EVENTS | curses.REPORT_MOUSE_POSITION)
     stdscr.keypad(True)
 
     grid = create_grid()
@@ -114,11 +123,15 @@ def _main(stdscr: curses.window):
                     ball_column = column
                     state = State.PUSH
             elif state == State.PUSH:
-                if not stack.is_full:
-                    stack.push(ball)
-                    state = State.POP
-                    ball = " "
-                    ball_column = column
+                logger.debug(f"Moving ball from column {ball_column} to {column}")
+                src = grid[ball_column]
+                src.push(ball)
+                while not stack.is_full and src.top == ball:
+                    top_ball = src.pop()
+                    stack.push(top_ball)
+                state = State.POP
+                ball = " "
+                ball_column = column
 
 
 def main():
