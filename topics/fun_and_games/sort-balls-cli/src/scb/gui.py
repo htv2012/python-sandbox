@@ -50,7 +50,7 @@ def main():
         y_position = size.SCREEN_HEIGHT // 2
 
         # Draw all 7 balls
-        for i, color in enumerate(colors.balls()):
+        for i, color in enumerate(colors.BALLS):
             x_position = (i + 1) * spacing
             draw_ball(screen, color, (x_position, y_position), size.BALL_RADIUS)
 
