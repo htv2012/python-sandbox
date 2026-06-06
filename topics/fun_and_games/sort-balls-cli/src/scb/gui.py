@@ -13,47 +13,37 @@ def draw_ball(surface, color, center, radius):
 
 
 def draw_grid(surface):
-    top = 100
-    for x in range(100, (size.COLUMNS_COUNT + 2) * 100, 100):
+    for i in range(size.COLUMNS_COUNT + 1):
+        x = size.GRID_LEFT + (i * size.COLUMN_WIDTH)
         pygame.draw.line(
             surface,
             colors.LINE,
-            (x, top),
-            (x, 900),
+            (x, size.GRID_TOP),
+            (x, size.GRID_BOTTOM),
             size.LINE_THICKNESS,
         )
-    # for i in range(size.COLUMNS_COUNT + 2):
-    #     x = (size.COLUMN_WIDTH // 2) + i * size.COLUMN_WIDTH
-
-    #     pygame.draw.line(
-    #         surface,
-    #         colors.LINE,
-    #         (x, size.VERTICAL_MARGIN),
-    #         (x, size.VERTICAL_MARGIN + size.COLUMN_HEIGHT),
-    #         size.LINE_THICKNESS,
-    #     )
+    pygame.draw.line(
+        surface,
+        colors.LINE,
+        (size.GRID_LEFT, size.GRID_BOTTOM),
+        (size.GRID_RIGHT, size.GRID_BOTTOM),
+        size.LINE_THICKNESS,
+    )
 
 
 def draw_guide(surface):
-    thin = 1
-    thick = 2
-
-    for x in range(0, size.SCREEN_WIDTH, 20):
+    for x in range(0, max(size.SCREEN_WIDTH, size.SCREEN_HEIGHT), 50):
         pygame.draw.line(
             surface,
-            colors.GUIDE_MAJOR if x % 100 == 0 else colors.GUIDE_MINOR,
+            colors.GUIDE,
             (x, 0),
             (x, size.SCREEN_HEIGHT),
-            thick if x % 100 == 0 else thin,
         )
-
-    for y in range(0, size.SCREEN_HEIGHT, 20):
         pygame.draw.line(
             surface,
-            colors.GUIDE_MAJOR if y % 100 == 0 else colors.GUIDE_MINOR,
-            start_pos=(0, y),
-            end_pos=(size.SCREEN_WIDTH, y),
-            width=thick if y % 100 == 0 else thin,
+            colors.GUIDE,
+            start_pos=(0, x),
+            end_pos=(size.SCREEN_WIDTH, x),
         )
 
 
