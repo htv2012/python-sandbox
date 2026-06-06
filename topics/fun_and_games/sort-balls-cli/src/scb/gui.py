@@ -39,7 +39,6 @@ def draw_grid(surface, grid: Grid):
         left = size.GRID_LEFT + size.GRID_LEFT * col
         bottom = size.GRID_BOTTOM - size.BALL_GAP
         for i in stack:
-            print(f"{i=}, {colors.BALLS=}")
             color = colors.BALLS[i]
             draw_ball(
                 surface,

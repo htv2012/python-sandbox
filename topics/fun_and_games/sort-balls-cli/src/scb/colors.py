@@ -1,16 +1,16 @@
 from pygame import Color
 
-BACKGROUND = (48, 48, 48)
-LINE = (200, 200, 200)
-BALL_OUTLINE = (200, 200, 200)
-GUIDE = (64, 64, 64)
+BACKGROUND = Color("seashell4")
+LINE = Color("thistle")
+BALL_OUTLINE = Color("grey70")
+GUIDE = BACKGROUND
 
 
 BALLS = [
     Color("darkred"),
     Color("cornflowerblue"),
     Color("palegreen2"),
-    Color("moccasin"),
+    Color("midnightblue"),
     Color("Sienna1"),
     Color("cyan4"),
     Color("violetred1"),
