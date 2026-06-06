@@ -2,7 +2,10 @@ import sys
 
 import pygame
 
+from scb.grid import Grid
+
 from . import colors, size
+from .generate import create_grid
 
 
 def draw_ball(surface, color, center, radius):
@@ -12,7 +15,7 @@ def draw_ball(surface, color, center, radius):
     pygame.draw.circle(surface, color, center, radius - size.BALL_OUTLINE_THICKNESS)
 
 
-def draw_grid(surface):
+def draw_columns(surface):
     for i in range(size.COLUMNS_COUNT + 1):
         x = size.GRID_LEFT + (i * size.COLUMN_WIDTH)
         pygame.draw.line(
@@ -29,6 +32,25 @@ def draw_grid(surface):
         (size.GRID_RIGHT, size.GRID_BOTTOM),
         size.LINE_THICKNESS,
     )
+
+
+def draw_grid(surface, grid: Grid):
+    for col, stack in enumerate(grid):
+        left = size.GRID_LEFT + size.GRID_LEFT * col
+        bottom = size.GRID_BOTTOM - size.BALL_GAP
+        for i in stack:
+            print(f"{i=}, {colors.BALLS=}")
+            color = colors.BALLS[i]
+            draw_ball(
+                surface,
+                color,
+                (
+                    (left + left + size.COLUMN_WIDTH) / 2,
+                    bottom - (size.BALL_RADIUS + size.BALL_GAP) / 2,
+                ),
+                size.BALL_RADIUS,
+            )
+            bottom -= 2 * (size.BALL_RADIUS) + size.BALL_GAP
 
 
 def draw_guide(surface):
@@ -48,13 +70,11 @@ def draw_guide(surface):
 
 
 def main():
-    # Initialize Pygame
     pygame.init()
-
     screen = pygame.display.set_mode((size.SCREEN_WIDTH, size.SCREEN_HEIGHT))
     pygame.display.set_caption("7 Color Balls - Game Assets")
+    grid = create_grid()
 
-    # Main game loop
     clock = pygame.time.Clock()
     running = True
 
@@ -66,16 +86,8 @@ def main():
         # Clear screen with a neutral dark background so colors pop
         screen.fill(colors.BACKGROUND)
         draw_guide(screen)
-        draw_grid(screen)
-
-        # Calculate spacing to evenly distribute 7 balls across the screen
-        spacing = size.SCREEN_WIDTH // 8
-        y_position = size.SCREEN_HEIGHT // 2
-
-        # Draw all 7 balls
-        for i, color in enumerate(colors.BALLS):
-            x_position = (i + 1) * spacing
-            draw_ball(screen, color, (x_position, y_position), size.BALL_RADIUS)
+        draw_columns(screen)
+        draw_grid(screen, grid)
 
         pygame.display.flip()
         clock.tick(60)
