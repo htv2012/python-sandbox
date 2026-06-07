@@ -6,6 +6,7 @@ from scb.grid import Grid
 
 from . import colors, size
 from .generate import create_grid
+from .logger import logger
 
 
 def draw_ball(surface, color, center, radius):
@@ -76,6 +77,8 @@ def main():
 
     clock = pygame.time.Clock()
     running = True
+
+    logger.debug("Start loop")
 
     while running:
         for event in pygame.event.get():

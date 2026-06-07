@@ -1,9 +1,9 @@
 from pygame import Color
 
-BACKGROUND = Color("seashell4")
-LINE = Color("thistle")
+BACKGROUND = Color("grey35")
+LINE = Color("grey70")
 BALL_OUTLINE = Color("grey70")
-GUIDE = BACKGROUND
+GUIDE = Color("grey40")
 
 
 BALLS = [
