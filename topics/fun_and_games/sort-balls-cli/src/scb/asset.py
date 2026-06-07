@@ -9,4 +9,5 @@ class Asset(enum.StrEnum):
 
     @classmethod
     def balls(cls):
-        return ["🔴", "🟠", "🟡", "🟢", "🔵", "🟣", "🟤"]
+        # return ["🔴", "🟠", "🟡", "🟢", "🔵", "🟣", "🟤"]
+        return list(range(7))

@@ -9,6 +9,9 @@ class Stack:
     def __repr__(self):
         return f"Stack{self.data!r}"
 
+    def __iter__(self):
+        return iter(self.data)
+
     @property
     def is_empty(self) -> bool:
         return len(self.data) == 0

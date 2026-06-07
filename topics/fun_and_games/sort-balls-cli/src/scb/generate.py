@@ -28,9 +28,10 @@ def horizontal_grid() -> Grid:
 
 def random_grid() -> Grid:
     grid = Grid()
+    balls = []
+    for ball in Asset.balls():
+        balls.extend([ball] * CAPACITY)
 
-    balls = "".join(ch * 8 for ch in Asset.balls())
-    balls = list(balls)
     random.shuffle(balls)
     for i, ball in enumerate(balls):
         stack_number = i // CAPACITY
