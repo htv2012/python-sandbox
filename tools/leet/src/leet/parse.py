@@ -27,6 +27,42 @@ def parse_test_case(content: str):
     pass
 
 
+def parse_output(text: str):
+    assert text.startswith("Output: ")
+    text = text.removeprefix("Output: ")
+    text = text.strip()
+    text = text.replace("'", '"')
+    output = json.loads(text)
+    return output
+
+
+def parse_single_line_input(text: str):
+    if not text.startswith("Input: "):
+        return False, None
+
+    text = text.removeprefix(
+        "Input: ",
+    ).strip()
+    tokens = text.split(", ")
+
+    name_value = {}
+    for token in tokens:
+        name, value = token.split(" = ")
+        value = json.loads(value)
+        name_value[name] = value
+
+    return True, name_value
+
+
+def parse_input(text: str):
+    parsers = [parse_single_line_input]
+    for parser in parsers:
+        ok, parsed = parser(text)
+        if ok:
+            return ok, parsed
+    return False, f"Cannot parse: {text!r}"
+
+
 def extract_details(url: str, dump: Optional[str]) -> dict:
     details = {}
 
