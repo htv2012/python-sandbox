@@ -22,7 +22,7 @@ from .testlib import t
             ok=True,
             parsed={"s": "egg", "t": "add"},
         ),
-        t("invalid, input without colon", intext="Input", ok=False, parsed=None),
+        t("invalid, input without colon", intext="Input", ok=False, parsed={}),
     ],
 )
 def test_parse_single_line_input(test_data):

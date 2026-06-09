@@ -1,3 +1,4 @@
+import collections
 import io
 import json
 import re
@@ -23,26 +24,23 @@ def parse_var(text: str):
     return key, value
 
 
-def parse_test_case(content: str):
-    pass
-
-
-def parse_output(text: str):
-    assert text.startswith("Output: ")
-    text = text.removeprefix("Output: ")
-    text = text.strip()
-    text = text.replace("'", '"')
-    output = json.loads(text)
-    return output
+def parse_output(lines: collections.deque):
+    line = lines.popleft()
+    if line.startswith("Output: "):
+        line = line.removeprefix("Output: ")
+        line = line.strip()
+        line = line.replace("'", '"')
+        output = json.loads(line)
+        return True, {"expected": output}
+    lines.appendleft(line)
+    return False, {}
 
 
 def parse_single_line_input(text: str):
     if not text.startswith("Input: "):
-        return False, None
+        return False, {}
 
-    text = text.removeprefix(
-        "Input: ",
-    ).strip()
+    text = text.removeprefix("Input: ").strip()
     tokens = text.split(", ")
 
     name_value = {}
@@ -54,13 +52,43 @@ def parse_single_line_input(text: str):
     return True, name_value
 
 
-def parse_input(text: str):
-    parsers = [parse_single_line_input]
-    for parser in parsers:
-        ok, parsed = parser(text)
-        if ok:
-            return ok, parsed
-    return False, f"Cannot parse: {text!r}"
+# def parse_input(text: str):
+#     parsers = [parse_single_line_input]
+#     for parser in parsers:
+#         ok, parsed = parser(text)
+#         if ok:
+#             return ok, parsed
+#     return False, f"Cannot parse: {text!r}"
+
+
+def parse_test_id(lines: collections.deque):
+    line = lines.popleft()
+    if line.startswith("Example "):
+        test_id = line.strip().removesuffix(":")
+        return True, {"test_id": test_id}
+    lines.appendleft(line)
+    return False, None
+
+
+def parse_test_case(content: str):
+    lines = collections.deque(content.splitlines())
+    data_list = []
+    parsers = [parse_test_id, parse_single_line_input, parse_output]
+    test_data = {}
+
+    while lines:
+        for parser in parsers:
+            ok, parsed = parser(lines)
+            if not ok:
+                continue
+
+            test_data.update(parsed)
+            if "expected" in parsed:
+                data_list.append((test_data))
+                test_data = {}
+            break
+
+    return data_list
 
 
 def extract_details(url: str, dump: Optional[str]) -> dict:
