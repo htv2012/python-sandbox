@@ -1,3 +1,5 @@
+import collections
+
 import pytest
 
 from leet.parse import parse_single_line_input
@@ -26,4 +28,5 @@ from .testlib import t
     ],
 )
 def test_parse_single_line_input(test_data):
-    assert parse_single_line_input(test_data.intext) == (test_data.ok, test_data.parsed)
+    lines = collections.deque([test_data.intext])
+    assert parse_single_line_input(lines) == (test_data.ok, test_data.parsed)

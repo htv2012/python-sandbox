@@ -36,8 +36,10 @@ def parse_output(lines: collections.deque):
     return False, {}
 
 
-def parse_single_line_input(text: str):
+def parse_single_line_input(lines: collections.deque):
+    text = lines.popleft()
     if not text.startswith("Input: "):
+        lines.appendleft(text)
         return False, {}
 
     text = text.removeprefix("Input: ").strip()
@@ -52,15 +54,6 @@ def parse_single_line_input(text: str):
     return True, name_value
 
 
-# def parse_input(text: str):
-#     parsers = [parse_single_line_input]
-#     for parser in parsers:
-#         ok, parsed = parser(text)
-#         if ok:
-#             return ok, parsed
-#     return False, f"Cannot parse: {text!r}"
-
-
 def parse_test_id(lines: collections.deque):
     line = lines.popleft()
     if line.startswith("Example "):
@@ -70,7 +63,7 @@ def parse_test_id(lines: collections.deque):
     return False, None
 
 
-def parse_test_case(content: str):
+def parse_test_cases(content: str):
     lines = collections.deque(content.splitlines())
     data_list = []
     parsers = [parse_test_id, parse_single_line_input, parse_output]
@@ -87,6 +80,8 @@ def parse_test_case(content: str):
                 data_list.append((test_data))
                 test_data = {}
             break
+        else:
+            lines.popleft()
 
     return data_list
 
@@ -140,7 +135,7 @@ def extract_details(url: str, dump: Optional[str]) -> dict:
 
     soup = bs4.BeautifulSoup(question["content"], "html.parser")
     examples = dict(
-        parse_test_case(node) for node in soup.find_all("strong", class_="example")
+        parse_test_cases(node) for node in soup.find_all("strong", class_="example")
     )
 
     var_names = []

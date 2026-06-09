@@ -8,9 +8,9 @@ edit:
 
 ### Perform static analysis
 lint:
-	@uv run ruff check --select I --fix . --quiet
-	@uv run ruff format . --quiet
-	@uv run ruff check . --fix --quiet
+	uv run ruff check --select I --fix . --quiet
+	uv run ruff format . --quiet
+	uv run ruff check . --fix --quiet
 
 ### Run the project
 run: lint
@@ -18,9 +18,10 @@ run: lint
 	mkdir -p /tmp/root
 	uv run leet -r /tmp/root -d /tmp/root/out.json 'https://leetcode.com/problems/implement-stack-using-queues/'
 	tree /tmp/root
+
 ### Run unit tests
 test: lint
-	uv run pytest -s -v
+	uv run pytest -s -vv
 
 ### Clean up generated files
 clean:
