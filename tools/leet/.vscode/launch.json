@@ -1,0 +1,15 @@
+
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "leet",
+      "type": "python",
+      "request": "launch",
+      "module": "uv",
+      "args": ["run", "leet", "-d", "/tmp/145.json", "https://leetcode.com/problems/binary-tree-postorder-traversal/description/"],
+      "console": "integratedTerminal",
+      "justMyCode": true
+    }
+  ]
+}

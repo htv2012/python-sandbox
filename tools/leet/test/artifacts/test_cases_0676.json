@@ -1,0 +1,8 @@
+[
+    {
+        "test_id": "Example 1",
+        "in1": ["MagicDictionary", "buildDict", "search", "search", "search", "search"],
+        "in2": [[], [["hello", "leetcode"]], ["hello"], ["hhllo"], ["hell"], ["leetcoded"]],
+        "expected": [null, null, false, true, false, false]
+    }
+]

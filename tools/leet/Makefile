@@ -1,10 +1,10 @@
 .PHONY: all clean install lab lint py run test
 
 ### Default target(s)
-all: test run
+all: test
 
 edit:
-	$(EDITOR) scb
+	$(EDITOR) leet
 
 ### Perform static analysis
 lint:
@@ -14,11 +14,14 @@ lint:
 
 ### Run the project
 run: lint
-	uv run scb
+	-rm -fr /tmp/root
+	mkdir -p /tmp/root
+	uv run leet -r /tmp/root -d /tmp/root/out.json 'https://leetcode.com/problems/implement-stack-using-queues/'
+	tree /tmp/root
 
 ### Run unit tests
 test: lint
-	uv run pytest -s -v
+	uv run pytest -s -vv
 
 ### Clean up generated files
 clean:
