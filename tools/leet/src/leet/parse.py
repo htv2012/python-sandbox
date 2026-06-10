@@ -5,13 +5,21 @@ import json
 import re
 import urllib
 import urllib.parse
-from typing import Optional
+from typing import Optional, TextIO, TypedDict
 
-import bs4
 import html2text
 import requests
 
 from .data import QUERY
+
+
+class Details(TypedDict, total=False):
+    readme: str
+    project_id: str
+    dir: str
+    code: str
+    test: str
+
 
 NOT_PARSED = {}
 
@@ -122,8 +130,41 @@ def parse_test_cases(content: str):
     return data_list
 
 
-def extract_details(url: str, dump: Optional[str]) -> dict:
-    details = {}
+def write_param(test_case: dict, buf: TextIO):
+    buf.write("        pytest.param(\n")
+    buf.write("            types.SimpleNamespace(\n")
+    for k, v in test_case.items():
+        if k == "test_id":
+            continue
+        buf.write(f"                {k}={v!r},\n")
+    buf.write("            ),\n")
+    buf.write(f"            id={test_case['test_id']!r},\n")
+    buf.write("        ),\n")
+
+
+def write_test(test_cases: list[dict], buf: TextIO):
+    buf.write("\n\n@pytest.mark.parametrize(\n")
+    buf.write('    "test_case",\n')
+    buf.write("    [\n")
+    for test_case in test_cases:
+        write_param(test_case, buf)
+    buf.write("    ]\n")
+    buf.write(")\n")
+    buf.write("def test_solution(fut, test_case):\n")
+    buf.write("    pass\n")
+
+
+def write_script(url: str, test_cases: list[dict], buf: TextIO):
+    buf.write('"""\n')
+    buf.write(f"{url}\n")
+    buf.write('"""\n\n')
+    buf.write("import types\n")
+    buf.write("\nimport pytest\n")
+    write_test(test_cases, buf)
+
+
+def extract_details(url: str, dump: Optional[str]) -> Details:
+    details = Details()
 
     # Download the leetcode data
     slug = extract_slug(url)
@@ -169,36 +210,10 @@ def extract_details(url: str, dump: Optional[str]) -> dict:
             details["code"] = buffer.getvalue()
             break
 
-    soup = bs4.BeautifulSoup(question["content"], "html.parser")
-    examples = dict(
-        parse_test_cases(node) for node in soup.find_all("strong", class_="example")
-    )
-
-    var_names = []
-    for test_case in examples.values():
-        var_names = list(test_case)
-        break
-
-    buffer = io.StringIO()
-    buffer.write('"""\n')
-    buffer.write(f"{url}\n")
-    buffer.write('"""\n\n')
-    buffer.write("import pytest\n\n\n")
-    buffer.write("@pytest.mark.parametrize(\n")
-    buffer.write(f"    {var_names},")
-    buffer.write("    [\n")
-    for test_id, example in examples.items():
-        text = ", ".join(repr(v) for v in example.values())
-        buffer.write(f"        pytest.param({text}, id={test_id!r}),\n")
-    buffer.write("    ],\n")
-    buffer.write(")\n")
-    buffer.write("def test_solution(fut, ")
-    buffer.write(", ".join(var_names))
-    buffer.write("):\n")
-    buffer.write(
-        f"    assert fut({', '.join(v for v in var_names if v != 'expected')}) == expected"
-    )
-    details["test"] = buffer.getvalue()
-    breakpoint()
+    # parse test cases and create the content of the test script
+    test_cases = parse_test_cases(question["content"])
+    buf = io.StringIO()
+    write_script(url, test_cases, buf)
+    details["test"] = buf.getvalue()
 
     return details

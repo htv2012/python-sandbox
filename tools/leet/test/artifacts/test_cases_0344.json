@@ -1,38 +1,12 @@
 [
     {
         "test_id": "Example 1",
-        "expected": [
-            "o",
-            "l",
-            "l",
-            "e",
-            "h"
-        ],
-        "s": [
-            "h",
-            "e",
-            "l",
-            "l",
-            "o"
-        ]
+        "expected": ["o", "l", "l", "e", "h"],
+        "s": ["h", "e", "l", "l", "o"]
     },
     {
         "test_id": "Example 2",
-        "expected": [
-            "h",
-            "a",
-            "n",
-            "n",
-            "a",
-            "H"
-        ],
-        "s": [
-            "H",
-            "a",
-            "n",
-            "n",
-            "a",
-            "h"
-        ]
+        "expected": ["h", "a", "n", "n", "a", "H"],
+        "s": ["H", "a", "n", "n", "a", "h"]
     }
 ]
