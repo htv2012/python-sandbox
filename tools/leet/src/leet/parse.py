@@ -1,5 +1,6 @@
 import collections
 import io
+import itertools
 import json
 import re
 import urllib
@@ -11,6 +12,8 @@ import html2text
 import requests
 
 from .data import QUERY
+
+NOT_PARSED = {}
 
 
 def extract_slug(url):
@@ -36,6 +39,17 @@ def parse_output(lines: collections.deque):
     return False, {}
 
 
+def parse_multi_line_output(lines: collections.deque) -> tuple[bool, dict]:
+    text = lines.popleft()
+    if not (text.strip() == "Output" or text.strip() == "Output:"):
+        lines.appendleft(text)
+        return False, NOT_PARSED
+
+    text = lines.popleft()
+    value = json.loads(text)
+    return True, {"expected": value}
+
+
 def parse_single_line_input(lines: collections.deque):
     text = lines.popleft()
     if not text.startswith("Input: "):
@@ -54,6 +68,23 @@ def parse_single_line_input(lines: collections.deque):
     return True, name_value
 
 
+def parse_multi_line_input(lines: collections.deque) -> tuple[bool, dict]:
+    text = lines.popleft()
+    if not (text.strip() == "Input" or text.strip() == "Input:"):
+        lines.appendleft(text)
+        return False, NOT_PARSED
+
+    counter = itertools.count(1)
+    input_vars = {}
+    while (text := lines.popleft()).strip() not in {"Output", "Output:", ""}:
+        name = f"in{next(counter)}"
+        value = json.loads(text)
+        input_vars[name] = value
+
+    lines.appendleft(text)
+    return True, input_vars
+
+
 def parse_test_id(lines: collections.deque):
     line = lines.popleft()
     if line.startswith("Example "):
@@ -66,21 +97,26 @@ def parse_test_id(lines: collections.deque):
 def parse_test_cases(content: str):
     lines = collections.deque(content.splitlines())
     data_list = []
-    parsers = [parse_test_id, parse_single_line_input, parse_output]
+    parsers = [
+        parse_test_id,
+        parse_single_line_input,
+        parse_multi_line_input,
+        parse_multi_line_output,
+        parse_output,
+    ]
     test_data = {}
 
     while lines:
         for parser in parsers:
             ok, parsed = parser(lines)
-            if not ok:
-                continue
-
-            test_data.update(parsed)
-            if "expected" in parsed:
-                data_list.append((test_data))
-                test_data = {}
-            break
+            if ok:
+                test_data.update(parsed)
+                if "expected" in parsed:
+                    data_list.append((test_data))
+                    test_data = {}
+                break
         else:
+            # Not handled, discard this line
             lines.popleft()
 
     return data_list

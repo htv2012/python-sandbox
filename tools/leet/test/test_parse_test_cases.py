@@ -35,10 +35,13 @@ def create_param(num: int):
 @pytest.mark.parametrize(
     "test_case",
     [
+        create_param(225),
         create_param(344),
         create_param(349),
         create_param(367),
         create_param(374),
+        create_param(676),
+        create_param(3508),
     ],
 )
 def test_parse_test_cases(test_case):
