@@ -3,9 +3,6 @@
 ### Default target(s)
 all: run
 
-edit:
-	$(EDITOR) main.py
-
 ### Perform static analysis
 lint:
 	uv tool run ruff check --select I --fix .

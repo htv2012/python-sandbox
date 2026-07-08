@@ -4,6 +4,8 @@ import itertools
 import pathlib
 
 EMPTY_CELL = "."
+ROW_INDICES = list(range(9))
+COL_INDICES = list(range(9))
 
 
 class SudokuBoard:
@@ -13,9 +15,9 @@ class SudokuBoard:
     def __str__(self):
         buf = io.StringIO()
         buf.write("┌───────┬───────┬───────┐\n")
-        for row in range(9):
+        for row in ROW_INDICES:
             buf.write("│")
-            for col in range(9):
+            for col in COL_INDICES:
                 buf.write(f" {self.board[row, col]}")
                 if col == 2 or col == 5 or col == 8:
                     buf.write(" │")
@@ -44,8 +46,8 @@ class SudokuBoard:
         )
 
     def neighbors(self, row, col):
-        yield from ((row, col2) for col2 in range(9) if col != col2)
-        yield from ((row2, col) for row2 in range(9) if row != row2)
+        yield from ((row, col2) for col2 in COL_INDICES if col != col2)
+        yield from ((row2, col) for row2 in ROW_INDICES if row != row2)
 
         start_row = row // 3 * 3
         start_col = col // 3 * 3
@@ -57,7 +59,7 @@ class SudokuBoard:
     def empty_cells(self):
         return (
             (row, col)
-            for row, col in itertools.product(range(9), range(9))
+            for row, col in itertools.product(ROW_INDICES, COL_INDICES)
             if self.board[row, col] == EMPTY_CELL
         )
 
@@ -90,6 +92,22 @@ def load_contest_format(path: str | pathlib.Path):
 
 
 def load_simple_sudoku_format(path: str | pathlib.Path):
+    """
+    Load puzzles which follow this format:
+        *-----------------------*
+        | . 3 . | 4 . . | . . . |
+        | 9 . 2 | 8 . 6 | 3 . 1 |
+        | . . . | . . . | . 2 . |
+        |-------+-------+-------|
+        | 8 . . | . 6 . | 7 . . |
+        | . 6 . | 2 . 5 | . 9 . |
+        | . . 3 | . 4 . | . . 8 |
+        |-------+-------+-------|
+        | . 7 . | . . . | . . . |
+        | 4 . 8 | 9 . 2 | 5 . 6 |
+        | . . . | . . 8 | . 3 . |
+        *-----------------------*
+    """
     path = pathlib.Path(path)
     assert path.exists()
 
