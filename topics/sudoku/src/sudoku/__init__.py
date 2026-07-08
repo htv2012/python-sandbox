@@ -76,22 +76,37 @@ def load(path: str | pathlib.Path):
     path = pathlib.Path(path)
     assert path.exists()
 
-    if path.suffix == ".ss":
-        return load_simple_sudoku_format(path)
-    elif path.suffix in {".msk", ".sol"}:
-        return load_contest_format(path)
-
-
-def load_contest_format(path: str | pathlib.Path):
-    path = pathlib.Path(path)
-    assert path.exists()
-
     with open(path) as stream:
-        grid = [line.split() for line in stream]
-        return SudokuBoard.from_grid(grid)
+        if path.suffix == ".ss":
+            puzzle = _load_simple_sudoku_format(stream)
+        elif path.suffix in {".msk", ".sol"}:
+            puzzle = _load_contest_format(stream)
+        else:
+            raise ValueError(
+                "Invalid file format, only supports .ss, .msk, and .sol formats"
+            )
+
+    return puzzle
 
 
-def load_simple_sudoku_format(path: str | pathlib.Path):
+def _load_contest_format(lines):
+    """
+    Load puzzles which follow this format:
+         . 3 .  4 . .  . . .
+         9 . 2  8 . 6  3 . 1
+         . . .  . . .  . 2 .
+         8 . .  . 6 .  7 . .
+         . 6 .  2 . 5  . 9 .
+         . . 3  . 4 .  . . 8
+         . 7 .  . . .  . . .
+         4 . 8  9 . 2  5 . 6
+         . . .  . . 8  . 3 .
+    """
+    grid = [line.split() for line in lines]
+    return SudokuBoard.from_grid(grid)
+
+
+def _load_simple_sudoku_format(lines):
     """
     Load puzzles which follow this format:
         *-----------------------*
@@ -108,19 +123,34 @@ def load_simple_sudoku_format(path: str | pathlib.Path):
         | . . . | . . 8 | . 3 . |
         *-----------------------*
     """
-    path = pathlib.Path(path)
-    assert path.exists()
+    grid = [
+        row.split()
+        for line in lines
+        if (row := line.strip().replace("|", ""))
+        and "-" not in row
+        and not line.startswith("#")
+    ]
+    return SudokuBoard.from_grid(grid)
 
-    lines = []
-    with open(path) as stream:
-        for line in stream:
-            line = line.strip().replace("|", "")
-            if not line:
-                continue
-            if "-" in line:
-                continue
-            if line.startswith("#"):
-                continue
-            lines.append(line.split())
 
-    return SudokuBoard.from_grid(lines)
+def dump(puzzle: SudokuBoard, filename: str | pathlib.Path):
+    """Dump (serialize) a Sudoku puzzle, only support *.ss format."""
+    path = pathlib.Path(filename)
+    if path.suffix != ".ss":
+        raise ValueError(f"Expect filename which ends with .ss, not {filename}")
+
+    text = str(puzzle)
+    t = {
+        "┌": "*",
+        "┐": "*",
+        "└": "*",
+        "┘": "*",
+        "┬": "-",
+        "┴": "-",
+        "┼": "+",
+        "│": "|",
+        "─": "-",
+    }
+    for old, new in t.items():
+        text = text.replace(old, new)
+    path.write_text(text + "\n")

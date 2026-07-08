@@ -2,10 +2,10 @@ import sudoku
 
 
 def main():
-    sud = sudoku.load("puzzle1.msk")
-    print(sud)
-    if sud.solve():
-        print(sud)
+    puzzle = sudoku.load("puzzle1.ss")
+    print(puzzle)
+    if puzzle.solve():
+        print(puzzle)
 
 
 if __name__ == "__main__":
