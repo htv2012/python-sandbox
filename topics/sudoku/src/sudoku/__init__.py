@@ -2,6 +2,7 @@ import collections
 import io
 import itertools
 import pathlib
+import re
 
 EMPTY_CELL = "."
 ROW_INDICES = list(range(9))
@@ -71,66 +72,24 @@ class SudokuBoard:
                 me.board[row_number, col_number] = cell
         return me
 
+    @classmethod
+    def from_sequence(cls, sequence):
+        me = cls()
+        seq = iter(sequence)
+        for row_number in ROW_INDICES:
+            for col_number in COL_INDICES:
+                me.board[row_number, col_number] = next(seq)
+        return me
+
 
 def load(path: str | pathlib.Path):
     path = pathlib.Path(path)
     assert path.exists()
 
     with open(path) as stream:
-        if path.suffix == ".ss":
-            puzzle = _load_simple_sudoku_format(stream)
-        elif path.suffix in {".msk", ".sol"}:
-            puzzle = _load_contest_format(stream)
-        else:
-            raise ValueError(
-                "Invalid file format, only supports .ss, .msk, and .sol formats"
-            )
-
+        sequence = re.findall(r"[123456789.]", stream.read())
+    puzzle = SudokuBoard.from_sequence(sequence)
     return puzzle
-
-
-def _load_contest_format(lines):
-    """
-    Load puzzles which follow this format:
-         . 3 .  4 . .  . . .
-         9 . 2  8 . 6  3 . 1
-         . . .  . . .  . 2 .
-         8 . .  . 6 .  7 . .
-         . 6 .  2 . 5  . 9 .
-         . . 3  . 4 .  . . 8
-         . 7 .  . . .  . . .
-         4 . 8  9 . 2  5 . 6
-         . . .  . . 8  . 3 .
-    """
-    grid = [line.split() for line in lines]
-    return SudokuBoard.from_grid(grid)
-
-
-def _load_simple_sudoku_format(lines):
-    """
-    Load puzzles which follow this format:
-        *-----------------------*
-        | . 3 . | 4 . . | . . . |
-        | 9 . 2 | 8 . 6 | 3 . 1 |
-        | . . . | . . . | . 2 . |
-        |-------+-------+-------|
-        | 8 . . | . 6 . | 7 . . |
-        | . 6 . | 2 . 5 | . 9 . |
-        | . . 3 | . 4 . | . . 8 |
-        |-------+-------+-------|
-        | . 7 . | . . . | . . . |
-        | 4 . 8 | 9 . 2 | 5 . 6 |
-        | . . . | . . 8 | . 3 . |
-        *-----------------------*
-    """
-    grid = [
-        row.split()
-        for line in lines
-        if (row := line.strip().replace("|", ""))
-        and "-" not in row
-        and not line.startswith("#")
-    ]
-    return SudokuBoard.from_grid(grid)
 
 
 def dump(puzzle: SudokuBoard, filename: str | pathlib.Path):
