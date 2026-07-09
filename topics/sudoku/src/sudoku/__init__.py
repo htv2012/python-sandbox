@@ -88,6 +88,9 @@ def load(path: str | pathlib.Path):
 
     with open(path) as stream:
         sequence = re.findall(r"[123456789.]", stream.read())
+
+    if (actual := len(sequence)) != 81:
+        raise ValueError(f"Expect 81 values in {path}, got {actual}")
     puzzle = SudokuBoard.from_sequence(sequence)
     return puzzle
 
