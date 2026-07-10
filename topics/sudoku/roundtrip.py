@@ -6,8 +6,10 @@ import sudoku
 
 
 def main():
-    puzzle1 = sudoku.load("puzzle1.ss")
-    sudoku.dump(puzzle1, "out.ss")
+    puzzle = sudoku.load("puzzle1.ss")
+    sudoku.dump(puzzle, "out.ss")
+    puzzle.solve()
+    sudoku.dump(puzzle, "solved.ss")
 
 
 if __name__ == "__main__":
