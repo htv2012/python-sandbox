@@ -71,7 +71,7 @@ class SudokuBoard:
                 if row != row2 and col != col2:
                     yield row2, col2
 
-    def mark_original(self):
+    def save_original(self):
         self.original = dict(self.board)
 
     @property

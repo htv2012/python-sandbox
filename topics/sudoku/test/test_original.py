@@ -3,12 +3,12 @@ import sudoku
 
 
 def test_original_in_tact(puzzle):
-    puzzle.mark_original()
+    puzzle.save_original()
     assert puzzle.original_in_tact
 
 
 def test_original_not_in_tact(puzzle):
-    puzzle.mark_original()
+    puzzle.save_original()
 
     # Alter 3 cells and verify original not in tact
     counter = 0

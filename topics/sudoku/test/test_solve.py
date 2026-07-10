@@ -4,7 +4,7 @@ logger = logging.getLogger()
 
 
 def test_solve(puzzle):
-    puzzle.mark_original()
+    puzzle.save_original()
 
     puzzle.solve()
 
