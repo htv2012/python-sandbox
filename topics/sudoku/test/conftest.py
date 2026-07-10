@@ -14,4 +14,5 @@ def data_dir():
 @pytest.fixture
 def puzzle(data_dir):
     puz = sudoku.load(data_dir / "original.ss")
+    puz.save_original()
     return puz
