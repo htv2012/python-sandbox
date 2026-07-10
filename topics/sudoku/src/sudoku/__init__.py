@@ -4,6 +4,7 @@ import itertools
 import logging
 import pathlib
 import re
+from collections.abc import MutableMapping
 
 logger = logging.getLogger()
 
@@ -11,47 +12,42 @@ EMPTY_CELL = "."
 ROW_INDICES = list(range(9))
 COL_INDICES = list(range(9))
 ALL_INDICES = list(itertools.product(ROW_INDICES, COL_INDICES))
+REPLACEMENT_TABLE = [
+    ("┌", "*"),
+    ("┐", "*"),
+    ("└", "*"),
+    ("┘", "*"),
+    ("┬", "-"),
+    ("┴", "-"),
+    ("┼", "+"),
+    ("│", "|"),
+    ("─", "-"),
+]
 
 
-class SudokuBoard:
+class SudokuBoard(MutableMapping):
     def __init__(self):
         self.board = collections.defaultdict(lambda: EMPTY_CELL)
         self.original = {}
 
-    def __str__(self):
-        buf = io.StringIO()
-        buf.write("┌───────┬───────┬───────┐\n")
-        for row in ROW_INDICES:
-            buf.write("│")
-            for col in COL_INDICES:
-                buf.write(f" {self.board[row, col]}")
-                if col == 2 or col == 5 or col == 8:
-                    buf.write(" │")
-            buf.write("\n")
-            if row == 2 or row == 5:
-                buf.write("│───────┼───────┼───────│\n")
-        buf.write("└───────┴───────┴───────┘")
-        return buf.getvalue()
-
     def solve(self) -> bool:
         for row, col in ALL_INDICES:
-            if self.board[row, col] != EMPTY_CELL:
+            if self[row, col] != EMPTY_CELL:
                 continue
             for candidate in "123456789":
                 if self.conflicted(row, col, candidate):
                     continue
-                self.board[row, col] = candidate
+                self[row, col] = candidate
                 if self.solve():
                     return True
-            self.board[row, col] = EMPTY_CELL
+            self[row, col] = EMPTY_CELL
             return False
         return True
 
     def conflicted(self, row, col, candidate) -> bool:
         """Does this candidate causes a conflict?"""
         return any(
-            self.board[row2, col2] == candidate
-            for row2, col2 in self.neighbors(row, col)
+            self[row2, col2] == candidate for row2, col2 in self.neighbors(row, col)
         )
 
     def neighbors(self, row, col):
@@ -72,32 +68,57 @@ class SudokuBoard:
                     yield row2, col2
 
     def save_original(self):
-        self.original = dict(self.board)
+        self.original = {
+            coord: value for coord, value in self.items() if self[coord] != EMPTY_CELL
+        }
 
     @property
     def original_in_tact(self) -> bool:
         diff = [
-            (row, col)
-            for row, col in ALL_INDICES
-            if not (
-                self.original[row, col] == EMPTY_CELL
-                or self.board[row, col] == self.original[row, col]
-            )
+            (row, col, expected)
+            for (row, col), expected in self.original.items()
+            if self[row, col] != expected
         ]
         if diff:
-            for row, col in diff:
-                logger.debug(
-                    f"diff: {self.board[row, col]=}, {self.original[row, col]=}"
-                )
+            for row, col, expected in diff:
+                logger.debug(f"diff: {self[row, col]=} != {expected}")
         return not diff
 
     @property
     def is_valid(self):
         return all(
-            self.board[row, col] == EMPTY_CELL
-            or not self.conflicted(row, col, self.board[row, col])
+            self[row, col] == EMPTY_CELL
+            or not self.conflicted(row, col, self[row, col])
             for row, col in ALL_INDICES
         )
+
+    # ======================================================================
+    # Support
+    # ======================================================================
+
+    def to_string(self, ascii: bool = False) -> str:
+        buf = io.StringIO()
+        buf.write("┌───────┬───────┬───────┐\n")
+        for row in ROW_INDICES:
+            buf.write("│")
+            for col in COL_INDICES:
+                buf.write(f" {self[row, col]}")
+                if col == 2 or col == 5 or col == 8:
+                    buf.write(" │")
+            buf.write("\n")
+            if row == 2 or row == 5:
+                buf.write("│───────┼───────┼───────│\n")
+        buf.write("└───────┴───────┴───────┘")
+
+        text = buf.getvalue()
+        if ascii:
+            for old, new in REPLACEMENT_TABLE:
+                text = text.replace(old, new)
+
+        return text
+
+    def __str__(self):
+        return self.to_string()
 
     @classmethod
     def from_sequence(cls, sequence):
@@ -111,6 +132,21 @@ class SudokuBoard:
         for row_number, col_number in ALL_INDICES:
             me.board[row_number, col_number] = next(seq)
         return me
+
+    def __len__(self):
+        return len(self.board)
+
+    def __getitem__(self, key):
+        return self.board[key]
+
+    def __setitem__(self, key, value):
+        self.board[key] = value
+
+    def __delitem__(self, key):
+        del self.board[key]
+
+    def __iter__(self):
+        return iter(self.board)
 
 
 def load(path: str | pathlib.Path):
@@ -137,18 +173,5 @@ def dump(puzzle: SudokuBoard, filename: str | pathlib.Path):
     if path.suffix != ".ss":
         raise ValueError(f"Expect filename which ends with .ss, not {filename}")
 
-    text = str(puzzle)
-    replacement_table = [
-        ("┌", "*"),
-        ("┐", "*"),
-        ("└", "*"),
-        ("┘", "*"),
-        ("┬", "-"),
-        ("┴", "-"),
-        ("┼", "+"),
-        ("│", "|"),
-        ("─", "-"),
-    ]
-    for old, new in replacement_table:
-        text = text.replace(old, new)
+    text = puzzle.to_string(ascii=True)
     path.write_text(text + "\n")
