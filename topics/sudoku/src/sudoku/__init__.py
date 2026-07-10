@@ -1,8 +1,11 @@
 import collections
 import io
 import itertools
+import logging
 import pathlib
 import re
+
+logger = logging.getLogger()
 
 EMPTY_CELL = "."
 ROW_INDICES = list(range(9))
@@ -13,6 +16,7 @@ ALL_INDICES = list(itertools.product(ROW_INDICES, COL_INDICES))
 class SudokuBoard:
     def __init__(self):
         self.board = collections.defaultdict(lambda: EMPTY_CELL)
+        self.original = {}
 
     def __str__(self):
         buf = io.StringIO()
@@ -66,6 +70,29 @@ class SudokuBoard:
             for col2 in range(start_col, start_col + 3):
                 if row != row2 and col != col2:
                     yield row2, col2
+
+    def mark_original(self):
+        self.original = dict(self.board)
+
+    @property
+    def original_intact(self) -> bool:
+        for row, col in ALL_INDICES:
+            if self.original[row, col] == EMPTY_CELL:
+                continue
+            if self.board[row, col] != self.original[row, col]:
+                logger.debug(
+                    "Original not intact: {self.board[row, col]=}, {self.original[row, col]=}"
+                )
+                return False
+        return True
+
+    @property
+    def is_valid(self):
+        return all(
+            self.board[row, col] == EMPTY_CELL
+            or not self.conflicted(row, col, self.board[row, col])
+            for row, col in ALL_INDICES
+        )
 
     @classmethod
     def from_sequence(cls, sequence):

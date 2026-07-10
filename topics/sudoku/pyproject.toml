@@ -19,6 +19,13 @@ build-backend = "hatchling.build"
 [dependency-groups]
 dev = [
     "ipython>=9.0.2",
+    "pytest>=9.1.1",
     "ruff>=0.11.2",
     "ty>=0.0.57",
 ]
+
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "DEBUG"
+
