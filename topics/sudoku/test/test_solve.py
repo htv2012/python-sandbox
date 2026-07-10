@@ -1,24 +1,12 @@
 import logging
-import pathlib
-
-import pytest
-
-import sudoku
 
 logger = logging.getLogger()
 
 
-@pytest.fixture
-def data_dir():
-    here = pathlib.Path(__file__).parent
-    return here / "data"
-
-
-def test_solve(data_dir):
-    puzzle = sudoku.load(data_dir / "original.ss")
+def test_solve(puzzle):
     puzzle.mark_original()
 
     puzzle.solve()
 
-    assert puzzle.original_intact
+    assert puzzle.original_in_tact
     assert puzzle.is_valid

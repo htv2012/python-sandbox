@@ -75,16 +75,21 @@ class SudokuBoard:
         self.original = dict(self.board)
 
     @property
-    def original_intact(self) -> bool:
-        for row, col in ALL_INDICES:
-            if self.original[row, col] == EMPTY_CELL:
-                continue
-            if self.board[row, col] != self.original[row, col]:
+    def original_in_tact(self) -> bool:
+        diff = [
+            (row, col)
+            for row, col in ALL_INDICES
+            if not (
+                self.original[row, col] == EMPTY_CELL
+                or self.board[row, col] == self.original[row, col]
+            )
+        ]
+        if diff:
+            for row, col in diff:
                 logger.debug(
-                    "Original not intact: {self.board[row, col]=}, {self.original[row, col]=}"
+                    f"diff: {self.board[row, col]=}, {self.original[row, col]=}"
                 )
-                return False
-        return True
+        return not diff
 
     @property
     def is_valid(self):
