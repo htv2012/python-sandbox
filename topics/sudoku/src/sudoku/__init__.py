@@ -1,4 +1,3 @@
-import collections
 import io
 import itertools
 import logging
@@ -27,7 +26,7 @@ REPLACEMENT_TABLE = [
 
 class SudokuBoard(MutableMapping):
     def __init__(self):
-        self.board = collections.defaultdict(lambda: EMPTY_CELL)
+        self.board = dict.fromkeys(ALL_INDICES, EMPTY_CELL)
         self.original = {}
 
     def solve(self) -> bool:
