@@ -12,7 +12,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run main.py
+	uv run main.py hard.msk
 
 ### Run unit tests
 test: lint
