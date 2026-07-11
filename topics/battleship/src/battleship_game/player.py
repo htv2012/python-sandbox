@@ -1,3 +1,7 @@
+import random
+
+from .const import COLS, ROWS
+from .logger import logger
 from .ship_board import ShipBoard
 from .target_board import TargetBoard
 
@@ -55,8 +59,27 @@ class ComputerPlayer(Player):
         pass
 
     def add_ships(self):
-        self.ship_board.add("A1", "A2", "A3")
-        self.ship_board.add("B1", "B2", "B3")
-        self.ship_board.add("C1", "C2", "C3", "C4")
-        self.ship_board.add("D1", "D2", "D3", "D4", "D5")
-        self.ship_board.add("E1", "E2")
+        occupied = set()
+        for ship_id, ship_size in enumerate([3, 3, 4, 5, 2]):
+            conflicted = True
+            while conflicted:
+                direction = random.choice(["vertical", "horizontal"])
+                if direction == "vertical":
+                    row_index = random.randint(0, len(ROWS) - ship_size)
+                    col_index = random.randint(0, len(COLS) - 1)
+                    ship = [
+                        ROWS[row_index + i] + COLS[col_index] for i in range(ship_size)
+                    ]
+                else:
+                    row_index = random.randint(0, len(ROWS) - 1)
+                    col_index = random.randint(0, len(COLS) - ship_size)
+                    ship = [
+                        ROWS[row_index] + COLS[col_index + i] for i in range(ship_size)
+                    ]
+                conflicted = any(coord in occupied for coord in ship)
+                logger.debug("occupied: %r", occupied)
+                logger.debug(
+                    "ship ID: %d, ship: %r, conflicted: %r", ship_id, ship, conflicted
+                )
+
+            self.ship_board.add(*ship)
