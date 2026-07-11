@@ -1,4 +1,4 @@
-from .const import ALL_COORDINATES
+from .const import ALL_COORDINATES, normalize_coordinate
 from .player import ComputerPlayer, HumanPlayer
 
 
@@ -15,6 +15,7 @@ class Game:
         coord = None
         while coord not in ALL_COORDINATES:
             coord = input("Coordinate: ").upper()
+            coord = normalize_coordinate(coord)
 
         result = self.computer.assess(coord)
         print(f"{coord} -> {result}")

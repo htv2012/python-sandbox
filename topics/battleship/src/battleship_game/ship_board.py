@@ -17,6 +17,7 @@ class ShipBoard:
         # TODO: Validate adding ship to empty spaces
         ship_id = next(self.ids)
         for coord in ship:
+            coord = const.normalize_coordinate(coord)
             self.grid[coord] = ship_id
         self.ship[ship_id] = tuple(ship)
         self.health[ship_id] = len(ship)
