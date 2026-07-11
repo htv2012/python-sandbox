@@ -1,38 +1,48 @@
-import contextlib
+import itertools
 
-from .const import ALL_COORDINATES, normalize_coordinate
 from .player import ComputerPlayer, HumanPlayer
 
 
 class Game:
     def __init__(self):
-        self.human = HumanPlayer()
-        self.computer = ComputerPlayer()
+        self.players = [HumanPlayer(), ComputerPlayer()]
 
     def start(self):
-        self.human.add_ships()
-        self.computer.add_ships()
+        for player in self.players:
+            player.add_ships()
+        self.print()
 
-    def human_fire(self):
-        coord = None
-        while coord not in ALL_COORDINATES:
-            coord = input("Coordinate: ").upper()
-            with contextlib.suppress(ValueError):
-                coord = normalize_coordinate(coord)
+        turns = itertools.cycle([(0, 1), (1, 0)])
+        while not self.game_over:
+            sending, receiving = next(turns)
+            sender = self.players[sending]
+            receiver = self.players[receiving]
 
-        result = self.computer.assess(coord)
-        print(f"{coord} -> {result}")
-        self.human.mark(coord, result)
+            coord = sender.move()
+            result = receiver.assess(coord)
+            sender.mark(coord, result)
+            self.print()
+
+        if self.players[0].is_lost:
+            print("You lost")
+        else:
+            print("You won")
 
     @property
     def game_over(self) -> bool:
         """When one of the player wins."""
-        return self.human.is_lost or self.computer.is_lost
+        return any(player.is_lost for player in self.players)
 
     def print(self):
         """Show human ship- and target boards."""
-        sb = str(self.human.ship_board).splitlines()
-        tb = str(self.human.target_board).splitlines()
+        human = self.players[0]
+        sb = str(human.ship_board).splitlines()
+        tb = str(human.target_board).splitlines()
         sep = " " * 8
         for line in zip(sb, tb):
             print(sep.join(line))
+
+
+def main():
+    game = Game()
+    game.start()

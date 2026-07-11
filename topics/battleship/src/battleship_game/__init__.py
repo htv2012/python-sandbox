@@ -8,7 +8,3 @@ __all__ = [
     "ShipBoard",
     "TargetBoard",
 ]
-
-
-def main() -> None:
-    print("Hello from battleship-game!")

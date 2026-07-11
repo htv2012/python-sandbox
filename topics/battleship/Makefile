@@ -1,13 +1,7 @@
 .PHONY: all clean install lab lint py run test
 
-sandbox: lint
-	uv run ipython -i sandbox.py
-
 ### Default target(s)
 all: run
-
-edit:
-	$(EDITOR) battleship-game
 
 ### Perform static analysis
 lint:
@@ -17,7 +11,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run battleship-game
+	uv run battleship
 
 ### Run unit tests
 test: lint

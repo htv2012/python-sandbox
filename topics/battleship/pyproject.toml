@@ -10,7 +10,7 @@ requires-python = ">=3.13"
 dependencies = []
 
 [project.scripts]
-battleship-game = "battleship_game:main"
+battleship = "battleship_game.game:main"
 
 [build-system]
 requires = ["hatchling"]

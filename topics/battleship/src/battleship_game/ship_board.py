@@ -7,15 +7,12 @@ from . import const
 class ShipBoard:
     def __init__(self):
         self.grid = defaultdict(lambda: const.MARK_EMPTY)
+        self.grid = dict.fromkeys(const.ALL_COORDINATES, const.MARK_EMPTY)
         self.health = {}
         self.ship = {}
-        self.ids = iter(const.IDS)
         self.shots_received = 0
 
-    def add(self, *ship):
-        # TODO: Validate each coordinate, flag such coordinate as A13, or X2
-        # TODO: Validate adding ship to empty spaces
-        ship_id = next(self.ids)
+    def add(self, ship_id, ship):
         for coord in ship:
             coord = const.normalize_coordinate(coord)
             self.grid[coord] = ship_id
@@ -38,7 +35,7 @@ class ShipBoard:
 
     @property
     def all_sunk(self):
-        return sum(self.health.values()) == 0
+        return const.hit_count(self.health) == const.SHIP_MAX_HEALTH
 
     def __str__(self):
         buf = io.StringIO()
@@ -59,6 +56,10 @@ class ShipBoard:
 
         shots_fired = f"{self.shots_received} shot(s) received"
         buf.write(shots_fired.ljust(const.BOARD_WIDTH))
+        buf.write("\n")
+
+        damage = f"Hit count: {const.hit_count(self.health)}/{const.SHIP_MAX_HEALTH}"
+        buf.write(damage.ljust(const.BOARD_WIDTH))
         buf.write("\n")
 
         return buf.getvalue()
