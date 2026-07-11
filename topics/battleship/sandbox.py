@@ -1,8 +1,19 @@
-from battleship_game.player import HumanPlayer
+from battleship_game.game import Game
 
-player = HumanPlayer()
-player.add_ships()
-b = player.ship_board
-print(b)
-print()
-print(player.target_board)
+
+def f(coord):
+    game.human.assess(coord)
+
+
+game = Game()
+game.start()
+game.print()
+
+while not game.game_over:
+    game.human_fire()
+    game.print()
+
+if game.human.is_lost:
+    print("You lose!")
+else:
+    print("You won!")

@@ -1,5 +1,9 @@
+import itertools
+
 ROWS = "ABCDEFGHIJ"
 COLS = "1234567890"
+
+ALL_COORDINATES = ["%s%s" % (coord) for coord in itertools.product(ROWS, COLS)]
 IDS = "01234"
 
 MARK_EMPTY = " "

@@ -10,7 +10,7 @@ class ShipBoard:
         self.health = {}
         self.ship = {}
         self.ids = iter(const.IDS)
-        self.shots_count = 0
+        self.shots_received = 0
 
     def add(self, *ship):
         # TODO: Validate each coordinate, flag such coordinate as A13, or X2
@@ -22,7 +22,7 @@ class ShipBoard:
         self.health[ship_id] = len(ship)
 
     def assess(self, coord: str):
-        self.shots_count += 1
+        self.shots_received += 1
         if self.grid[coord] == const.MARK_EMPTY:
             self.grid[coord] = const.MARK_MISS
         if self.grid[coord] in {const.MARK_HIT, const.MARK_MISS, const.MARK_SUNK}:
@@ -34,6 +34,10 @@ class ShipBoard:
             const.MARK_SUNK if self.health[ship_id] == 0 else const.MARK_HIT
         )
         return self.grid[coord]
+
+    @property
+    def all_sunk(self):
+        return sum(self.health.values()) == 0
 
     def __str__(self):
         buf = io.StringIO()
@@ -52,7 +56,7 @@ class ShipBoard:
             else:
                 buf.write("──┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───│\n")
 
-        shots_fired = f"{self.shots_count} shot(s) fired"
+        shots_fired = f"{self.shots_received} shot(s) received"
         buf.write(shots_fired.ljust(const.BOARD_WIDTH))
         buf.write("\n")
 
