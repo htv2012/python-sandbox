@@ -8,8 +8,7 @@ from .target_board import TargetBoard
 
 
 class Player:
-    def __init__(self, name: str = None):
-        self.name = name
+    def __init__(self):
         self.ship_board = ShipBoard()
         self.target_board = TargetBoard()
         self.available_coordinates = set(ALL_COORDINATES)
@@ -39,8 +38,8 @@ class Player:
     def assess(self, coord):
         return self.ship_board.assess(coord)
 
-    def move(self):
-        raise NotImplementedError()
+    def fire(self):
+        raise NotImplementedError("fire")
 
     def mark(self, coord, result):
         """Mark the target board."""
@@ -59,7 +58,7 @@ class HumanPlayer(Player):
             )
         return ship
 
-    def move(self):
+    def fire(self):
         coord = None
         while coord not in self.available_coordinates:
             coord = input("Coordinate: ").upper()
@@ -71,7 +70,7 @@ class HumanPlayer(Player):
 
 
 class ComputerPlayer(Player):
-    def move(self):
+    def fire(self):
         coord = random.choice(tuple(self.available_coordinates))
         self.available_coordinates.remove(coord)
         return coord
