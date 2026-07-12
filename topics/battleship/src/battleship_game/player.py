@@ -61,9 +61,8 @@ class HumanPlayer(Player):
     def fire(self):
         coord = None
         while coord not in self.available_coordinates:
-            coord = input("Coordinate: ").upper()
-            with contextlib.suppress(ValueError):
-                coord = normalize_coordinate(coord)
+            coord = input("Coordinates: ").upper()
+            coord = normalize_coordinate(coord)
 
         self.available_coordinates.remove(coord)
         return coord
