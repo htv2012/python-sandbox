@@ -18,7 +18,7 @@ class Game:
             sender = self.players[sending]
             receiver = self.players[receiving]
 
-            coord = sender.move()
+            coord = sender.fire()
             result = receiver.assess(coord)
             sender.mark(coord, result)
             self.print()

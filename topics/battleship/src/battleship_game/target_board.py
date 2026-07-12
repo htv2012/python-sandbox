@@ -1,6 +1,15 @@
 import io
 
-from .const import ALL_COORDINATES, BOARD_WIDTH, COLS, MARK_EMPTY, ROWS
+from . import (
+    ALL_COORDINATES,
+    BOARD_WIDTH,
+    COLS,
+    MARK_EMPTY,
+    MARK_HIT,
+    MARK_SUNK,
+    ROWS,
+    normalize_coordinate,
+)
 
 
 class TargetBoard:
@@ -9,7 +18,9 @@ class TargetBoard:
         self.shots_count = 0
 
     def mark(self, coord, result):
-        print(f"Mark {coord} as {result}")
+        coord = normalize_coordinate(coord)
+        if coord not in self.grid:
+            raise ValueError(f"Invalid coordinate: {coord}")
         self.grid[coord] = result
         self.shots_count += 1
 
@@ -32,6 +43,12 @@ class TargetBoard:
 
         shots_fired = f"{self.shots_count} shot(s) fired"
         buf.write(shots_fired.ljust(BOARD_WIDTH))
+        buf.write("\n")
+
+        hits = [mark for mark in self.grid.values() if mark in {MARK_HIT, MARK_SUNK}]
+        sunk_count = len([mark for mark in hits if mark == MARK_SUNK])
+        damage = f"Hit count: {len(hits)}, sunk count: {sunk_count}"
+        buf.write(damage.ljust(BOARD_WIDTH))
         buf.write("\n")
 
         return buf.getvalue()
