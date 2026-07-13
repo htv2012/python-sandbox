@@ -11,7 +11,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run battleship
+	uv run battleship --file game1.txt
 
 ### Run unit tests
 test: lint

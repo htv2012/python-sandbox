@@ -20,6 +20,7 @@ BOARD_GAP = 8
 
 
 def normalize_coordinate(coord: str):
+    coord = coord.upper()
     if coord in ALL_COORDINATES:
         return coord
 

@@ -1,30 +1,40 @@
-import itertools
+import argparse
 
 from . import const
 from .player import ComputerPlayer, HumanPlayer
 
 
 class Game:
-    def __init__(self):
-        self.players = [HumanPlayer(), ComputerPlayer()]
+    def __init__(self, filename):
+        self.filename = filename
+        self.human = HumanPlayer()
+        self.computer = ComputerPlayer()
 
-    def start(self):
-        for player in self.players:
-            player.add_ships()
+    def add_ships(self, filename):
+        """Add ships on both sides.
+
+        If filename is supplied, load the coordinates for human.
+        """
+        if filename is not None:
+            self.human.load(filename)
+        else:
+            self.human.add_ships()
+        self.computer.add_ships()
         self.print()
 
-        turns = itertools.cycle([(0, 1), (1, 0)])
+    def start(self):
+        self.add_ships(self.filename)
+
+        shooter, target = self.human, self.computer
         while not self.game_over:
-            sending, receiving = next(turns)
-            sender = self.players[sending]
-            receiver = self.players[receiving]
+            coord = shooter.fire()
+            result = target.assess(coord)
+            shooter.mark(coord, result)
 
-            coord = sender.fire()
-            result = receiver.assess(coord)
-            sender.mark(coord, result)
             self.print()
+            shooter, target = target, shooter
 
-        if self.players[0].is_lost:
+        if self.human.is_lost:
             print("You lost")
         else:
             print("You won")
@@ -32,18 +42,21 @@ class Game:
     @property
     def game_over(self) -> bool:
         """When one of the player wins."""
-        return any(player.is_lost for player in self.players)
+        return self.human.is_lost or self.computer.is_lost
 
     def print(self):
         """Show human ship- and target boards."""
-        human = self.players[0]
-        sb = str(human.ship_board).splitlines()
-        tb = str(human.target_board).splitlines()
+        sb = str(self.human.ship_board).splitlines()
+        tb = str(self.human.target_board).splitlines()
         sep = " " * const.BOARD_GAP
         for line in zip(sb, tb):
             print(sep.join(line))
 
 
 def main():
-    game = Game()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--file")
+    args = parser.parse_args()
+
+    game = Game(args.file)
     game.start()
