@@ -11,7 +11,7 @@ class Player:
         self.target_board = TargetBoard()
         self.available_coordinates = set(const.ALL_COORDINATES)
 
-    def generate_ship(self, ship_id, ship_size) -> list[str]:
+    def generate_ship(self, ship_size) -> list[str]:
         raise NotImplementedError("generate_ship")
 
     def add_ships(self):
@@ -19,7 +19,7 @@ class Player:
         for ship_id, ship_size in zip(const.SHIP_IDS, const.SHIP_SIZES):
             conflicted = True
             while conflicted:
-                ship = self.generate_ship(ship_id, ship_size)
+                ship = self.generate_ship(ship_size)
                 conflicted = any(c in occupied for c in ship)
 
             self.ship_board.add(ship_id, ship)
@@ -41,11 +41,11 @@ class Player:
 
 
 class HumanPlayer(Player):
-    def generate_ship(self, ship_id, ship_size) -> list[str]:
+    def generate_ship(self, ship_size) -> list[str]:
         print(self.ship_board)
         valid = False
         while not valid:
-            ship = input(f"Ship #{ship_id} (size={ship_size}): ").upper().split()
+            ship = input(f"Ship (size={ship_size}): ").upper().split()
             ship = [const.normalize_coordinate(c) for c in ship]
             valid = (len(set(ship)) == ship_size) and all(
                 c in const.ALL_COORDINATES for c in ship
@@ -69,7 +69,7 @@ class ComputerPlayer(Player):
         self.available_coordinates.remove(coord)
         return coord
 
-    def generate_ship(self, ship_id, ship_size) -> list[str]:
+    def generate_ship(self, ship_size) -> list[str]:
         direction = random.choice(["vertical", "horizontal"])
         if direction == "vertical":
             row_index = random.randint(0, len(const.ROWS) - ship_size)
