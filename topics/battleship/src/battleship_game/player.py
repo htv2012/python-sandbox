@@ -17,7 +17,7 @@ class Player:
 
     def add_ships(self):
         occupied = set()
-        for ship_id, ship_size in const.iter_ships():
+        for ship_id, ship_size in zip(const.SHIP_IDS, const.SHIP_SIZES):
             conflicted = True
             while conflicted:
                 ship = self.generate_ship(ship_id, ship_size)
@@ -58,7 +58,7 @@ class HumanPlayer(Player):
         return ship
 
     def fire(self):
-        prompt = " " * const.BOARD_WIDTH + "Coordinates: "
+        prompt = " " * (const.BOARD_WIDTH + const.BOARD_GAP) + "Coordinates: "
         coord = None
         while coord not in self.available_coordinates:
             coord = input(prompt).upper()

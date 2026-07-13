@@ -16,14 +16,7 @@ MARK_MISS = "."
 MARK_SUNK = "X"
 
 BOARD_WIDTH = 43
-
-
-def hit_count(health: dict[int]) -> int:
-    return SHIP_MAX_HEALTH - sum(health.values())
-
-
-def iter_ships():
-    return zip(SHIP_IDS, SHIP_SIZES)
+BOARD_GAP = 8
 
 
 def normalize_coordinate(coord: str):

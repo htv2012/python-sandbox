@@ -1,5 +1,6 @@
 import itertools
 
+from . import const
 from .player import ComputerPlayer, HumanPlayer
 
 
@@ -38,7 +39,7 @@ class Game:
         human = self.players[0]
         sb = str(human.ship_board).splitlines()
         tb = str(human.target_board).splitlines()
-        sep = " " * 8
+        sep = " " * const.BOARD_GAP
         for line in zip(sb, tb):
             print(sep.join(line))
 

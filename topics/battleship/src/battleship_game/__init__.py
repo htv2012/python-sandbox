@@ -11,8 +11,6 @@ from .const import (
     SHIP_IDS,
     SHIP_MAX_HEALTH,
     SHIP_SIZES,
-    hit_count,
-    iter_ships,
     normalize_coordinate,
 )
 from .game import Game
@@ -27,9 +25,7 @@ __all__ = [
     "COLS",
     "ComputerPlayer",
     "Game",
-    "hit_count",
     "HumanPlayer",
-    "iter_ships",
     "MARK_EMPTY",
     "MARK_HIT",
     "MARK_MISS",
