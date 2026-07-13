@@ -14,6 +14,12 @@ class Player:
     def generate_ship(self, ship_size) -> list[str]:
         raise NotImplementedError("generate_ship")
 
+    def load(self, filename):
+        with open(filename) as stream:
+            for ship_id, ship in zip(const.SHIP_IDS, stream)
+            ship = [const.normalize_coordinate(c) for c in ship.split()]
+            self.ship_board.add(ship_id, ship)
+
     def add_ships(self):
         occupied = set()
         for ship_id, ship_size in zip(const.SHIP_IDS, const.SHIP_SIZES):
