@@ -9,10 +9,11 @@ def ljust(text: str):
 
 
 class Board:
+    _board_title = ""
+
     def __init__(self):
         self.grid = dict.fromkeys(const.ALL_COORDINATES, const.MARK_EMPTY)
         self.shots_count = 0
-        self._board_title = ""
 
     @property
     def hits_count(self) -> int:

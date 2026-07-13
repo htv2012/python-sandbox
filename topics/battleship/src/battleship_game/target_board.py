@@ -5,7 +5,7 @@ from .board import Board
 
 
 class TargetBoard(Board):
-    _board_titlle = "TARGET"
+    _board_title = "TARGET"
 
     def mark(self, coord, result):
         coord = normalize_coordinate(coord)
