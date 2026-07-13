@@ -1,26 +1,21 @@
-import io
-from collections import defaultdict
-
-from . import const
+from . import Board, const
 
 
-class ShipBoard:
+class ShipBoard(Board):
+    _board_title = "SHIPS"
+
     def __init__(self):
-        self.grid = defaultdict(lambda: const.MARK_EMPTY)
-        self.grid = dict.fromkeys(const.ALL_COORDINATES, const.MARK_EMPTY)
-        self.health = {}
-        self.ship = {}
-        self.shots_received = 0
+        super().__init__()
+        self.health = {}  # {ship_id: int}
 
     def add(self, ship_id, ship):
         for coord in ship:
             coord = const.normalize_coordinate(coord)
             self.grid[coord] = ship_id
-        self.ship[ship_id] = tuple(ship)
         self.health[ship_id] = len(ship)
 
     def assess(self, coord: str):
-        self.shots_received += 1
+        self.shots_count += 1
         if self.grid[coord] == const.MARK_EMPTY:
             self.grid[coord] = const.MARK_MISS
         if self.grid[coord] in {const.MARK_HIT, const.MARK_MISS, const.MARK_SUNK}:
@@ -35,31 +30,4 @@ class ShipBoard:
 
     @property
     def all_sunk(self):
-        return const.hit_count(self.health) == const.SHIP_MAX_HEALTH
-
-    def __str__(self):
-        buf = io.StringIO()
-        buf.write("SHIPS".ljust(const.BOARD_WIDTH))
-        buf.write("\n\n")
-        buf.write("  │ A │ B │ C │ D │ E │ F │ G │ H │ I │ J │\n")
-        buf.write("──┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───│\n")
-
-        for row in const.ROWS:
-            buf.write(f"{row} │")
-            for col in const.COLS:
-                buf.write(f" {self.grid[row + col]} │")
-            buf.write("\n")
-            if row == "J":
-                buf.write("──┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘\n")
-            else:
-                buf.write("──┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───│\n")
-
-        shots_fired = f"{self.shots_received} shot(s) received"
-        buf.write(shots_fired.ljust(const.BOARD_WIDTH))
-        buf.write("\n")
-
-        damage = f"Hit count: {const.hit_count(self.health)}/{const.SHIP_MAX_HEALTH}"
-        buf.write(damage.ljust(const.BOARD_WIDTH))
-        buf.write("\n")
-
-        return buf.getvalue()
+        return sum(self.health.values()) == 0

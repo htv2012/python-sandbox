@@ -1,7 +1,6 @@
-import contextlib
 import random
 
-from .const import ALL_COORDINATES, COLS, ROWS, iter_ships, normalize_coordinate
+from . import const
 from .logger import logger
 from .ship_board import ShipBoard
 from .target_board import TargetBoard
@@ -11,14 +10,14 @@ class Player:
     def __init__(self):
         self.ship_board = ShipBoard()
         self.target_board = TargetBoard()
-        self.available_coordinates = set(ALL_COORDINATES)
+        self.available_coordinates = set(const.ALL_COORDINATES)
 
     def generate_ship(self, ship_id, ship_size) -> list[str]:
         raise NotImplementedError("generate_ship")
 
     def add_ships(self):
         occupied = set()
-        for ship_id, ship_size in iter_ships():
+        for ship_id, ship_size in const.iter_ships():
             conflicted = True
             while conflicted:
                 ship = self.generate_ship(ship_id, ship_size)
@@ -52,17 +51,18 @@ class HumanPlayer(Player):
         valid = False
         while not valid:
             ship = input(f"Ship #{ship_id} (size={ship_size}): ").upper().split()
-            ship = [normalize_coordinate(c) for c in ship]
+            ship = [const.normalize_coordinate(c) for c in ship]
             valid = (len(set(ship)) == ship_size) and all(
-                c in ALL_COORDINATES for c in ship
+                c in const.ALL_COORDINATES for c in ship
             )
         return ship
 
     def fire(self):
+        prompt = " " * const.BOARD_WIDTH + "Coordinates: "
         coord = None
         while coord not in self.available_coordinates:
-            coord = input("Coordinates: ").upper()
-            coord = normalize_coordinate(coord)
+            coord = input(prompt).upper()
+            coord = const.normalize_coordinate(coord)
 
         self.available_coordinates.remove(coord)
         return coord
@@ -77,11 +77,17 @@ class ComputerPlayer(Player):
     def generate_ship(self, ship_id, ship_size) -> list[str]:
         direction = random.choice(["vertical", "horizontal"])
         if direction == "vertical":
-            row_index = random.randint(0, len(ROWS) - ship_size)
-            col_index = random.randint(0, len(COLS) - 1)
-            ship = [ROWS[row_index + i] + COLS[col_index] for i in range(ship_size)]
+            row_index = random.randint(0, len(const.ROWS) - ship_size)
+            col_index = random.randint(0, len(const.COLS) - 1)
+            ship = [
+                const.ROWS[row_index + i] + const.COLS[col_index]
+                for i in range(ship_size)
+            ]
         else:
-            row_index = random.randint(0, len(ROWS) - 1)
-            col_index = random.randint(0, len(COLS) - ship_size)
-            ship = [ROWS[row_index] + COLS[col_index + i] for i in range(ship_size)]
+            row_index = random.randint(0, len(const.ROWS) - 1)
+            col_index = random.randint(0, len(const.COLS) - ship_size)
+            ship = [
+                const.ROWS[row_index] + const.COLS[col_index + i]
+                for i in range(ship_size)
+            ]
         return ship

@@ -1,3 +1,4 @@
+from .board import Board
 from .const import (
     ALL_COORDINATES,
     BOARD_WIDTH,
@@ -21,6 +22,7 @@ from .target_board import TargetBoard
 
 __all__ = [
     "ALL_COORDINATES",
+    "Board",
     "BOARD_WIDTH",
     "COLS",
     "ComputerPlayer",
