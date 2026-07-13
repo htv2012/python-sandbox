@@ -1,7 +1,6 @@
 import random
 
 from . import const
-from .logger import logger
 from .ship_board import ShipBoard
 from .target_board import TargetBoard
 
@@ -22,10 +21,6 @@ class Player:
             while conflicted:
                 ship = self.generate_ship(ship_id, ship_size)
                 conflicted = any(c in occupied for c in ship)
-
-                logger.debug("occupied: %r", occupied)
-                logger.debug("ship ID: %r, ship: %r", ship_id, ship)
-                logger.debug("conflicted: %r", conflicted)
 
             self.ship_board.add(ship_id, ship)
             occupied.update(ship)
