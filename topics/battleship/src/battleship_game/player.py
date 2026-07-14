@@ -6,6 +6,13 @@ from .board import ShipBoard, TargetBoard
 from .log import logger
 
 
+def is_consecutive(ship: list[str]):
+    ship = sorted([const.normalize_coordinate(c) for c in ship], reverse=True)
+    row_diff = ord(ship[0][0]) - ord(ship[-1][0])
+    col_diff = ord(ship[0][1]) - ord(ship[-1][1])
+    return row_diff + col_diff + 1 == len(ship)
+
+
 class Player:
     def __init__(self):
         self.ship_board = ShipBoard()
@@ -54,8 +61,10 @@ class HumanPlayer(Player):
         while not valid:
             ship = input(f"Ship (size={ship_size}): ").upper().split()
             ship = [const.normalize_coordinate(c) for c in ship]
-            valid = (len(set(ship)) == ship_size) and all(
-                c in const.ALL_COORDINATES for c in ship
+            valid = (
+                len(set(ship)) == ship_size
+                and is_consecutive(ship)
+                and all(c in const.ALL_COORDINATES for c in ship)
             )
         return ship
 
