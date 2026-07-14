@@ -1,9 +1,8 @@
 import random
 
 from . import const
+from .board import ShipBoard, TargetBoard
 from .log import logger
-from .ship_board import ShipBoard
-from .target_board import TargetBoard
 
 
 class Player:

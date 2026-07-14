@@ -1,4 +1,4 @@
-from .board import Board
+from .board import Board, ShipBoard, TargetBoard
 from .const import (
     ALL_COORDINATES,
     BOARD_WIDTH,
@@ -15,8 +15,6 @@ from .const import (
 )
 from .game import Game
 from .player import ComputerPlayer, HumanPlayer, Player
-from .ship_board import ShipBoard
-from .target_board import TargetBoard
 
 __all__ = [
     "ALL_COORDINATES",
