@@ -1,7 +1,7 @@
 [project]
 name = "battleship-game"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0.0"
+description = "A battleship game"
 readme = "README.md"
 authors = [
     { name = "Hai Vu", email = "haivu2004@gmail.com" }
