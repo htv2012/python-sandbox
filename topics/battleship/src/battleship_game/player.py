@@ -3,6 +3,7 @@ import random
 from . import const
 from .ship_board import ShipBoard
 from .target_board import TargetBoard
+from .log import logger
 
 
 class Player:
@@ -35,8 +36,8 @@ class Player:
     def is_lost(self) -> bool:
         return self.ship_board.all_sunk
 
-    def assess(self, coord):
-        return self.ship_board.assess(coord)
+    def report(self, coord):
+        return self.ship_board.report(coord)
 
     def fire(self):
         raise NotImplementedError("fire")
@@ -70,8 +71,38 @@ class HumanPlayer(Player):
 
 
 class ComputerPlayer(Player):
+    def __init__(self):
+        super().__init__()
+        self.candidates = []
+
+    def find_target(self):
+        if self.candidates:
+            target = self.candidates.pop()
+            logger.debug("target picked from candidates list: %r, remainder: %r", target, self.candidates)
+        else:
+            target = random.choice(tuple(self.available_coordinates))
+            logger.debug("target picked randomly: %r", target)
+        return target
+
+    def add_candidates(self, coord):
+        row, col = [ord(x) for x in coord]
+        coords = []
+        for i in range(1, 3):
+            coords.append(chr(row - i) + chr(col))
+            coords.append(chr(row + i) + chr(col))
+            coords.append(chr(row) + chr(col - i))
+            coords.append(chr(row) + chr(col + i))
+        self.candidates.extend(c for c in coords if c in self.available_coordinates)
+        print(f"Hit {coord}, {self.candidates=}")
+
+    def mark(self, coord, result):
+        """Mark the target board."""
+        self.target_board.mark(coord, result)
+        if result == const.MARK_HIT:
+            self.add_candidates(coord)
+
     def fire(self):
-        coord = random.choice(tuple(self.available_coordinates))
+        coord = self.find_target()
         self.available_coordinates.remove(coord)
         return coord
 

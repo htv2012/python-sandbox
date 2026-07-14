@@ -28,7 +28,7 @@ class Game:
         shooter, target = self.human, self.computer
         while not self.game_over:
             coord = shooter.fire()
-            result = target.assess(coord)
+            result = target.report(coord)
             shooter.mark(coord, result)
 
             self.print()

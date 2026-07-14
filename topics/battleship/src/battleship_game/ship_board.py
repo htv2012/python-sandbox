@@ -14,7 +14,7 @@ class ShipBoard(Board):
             self.grid[coord] = ship_id
         self.health[ship_id] = len(ship)
 
-    def assess(self, coord: str):
+    def report(self, coord: str):
         self.shots_count += 1
         if self.grid[coord] == const.MARK_EMPTY:
             self.grid[coord] = const.MARK_MISS
