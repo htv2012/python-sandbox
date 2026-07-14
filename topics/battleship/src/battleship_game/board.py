@@ -41,7 +41,7 @@ class Board:
             for col in const.COLS:
                 buf.write(f" {self.grid[row + col]} │")
             buf.write("\n")
-            if row == "J":
+            if row == const.ROWS[-1]:
                 buf.write("──┴───┴───┴───┴───┴───┴───┴───┴───┴───┴───┘\n")
             else:
                 buf.write("──┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───│\n")

@@ -1,6 +1,6 @@
 import logging
 import sys
-from logging.handlers import RotatingFileHandler
+from logging import FileHandler
 
 
 def create_logger(logger_name="battleship", log_file="/tmp/battleship.log"):
@@ -24,10 +24,8 @@ def create_logger(logger_name="battleship", log_file="/tmp/battleship.log"):
     console_handler.setLevel(logging.INFO)  # Only show INFO and above in console
     console_handler.setFormatter(console_formatter)
 
-    # 4. Create File Handler (Rotates when it hits 5MB, keeps 3 backups)
-    file_handler = RotatingFileHandler(
-        log_file, maxBytes=5 * 1024 * 1024, backupCount=3
-    )
+    # 4. Create File Handler
+    file_handler = FileHandler(log_file, mode="w")
     file_handler.setLevel(logging.DEBUG)  # Log everything to the file
     file_handler.setFormatter(file_formatter)
 
