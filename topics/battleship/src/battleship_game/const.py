@@ -11,9 +11,9 @@ SHIP_SIZES = [3, 3, 4, 5, 2]
 SHIP_MAX_HEALTH = sum(SHIP_SIZES)
 
 MARK_EMPTY = " "
-MARK_HIT = "x"
-MARK_MISS = "."
-MARK_SUNK = "X"
+MARK_HIT = "\u25cf"
+MARK_MISS = "\u25cb"
+MARK_SUNK = "\u26ec"
 
 BOARD_WIDTH = 43
 BOARD_GAP = 8
