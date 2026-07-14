@@ -1,9 +1,9 @@
 import random
 
 from . import const
+from .log import logger
 from .ship_board import ShipBoard
 from .target_board import TargetBoard
-from .log import logger
 
 
 class Player:
@@ -76,12 +76,15 @@ class ComputerPlayer(Player):
         self.candidates = []
 
     def find_target(self):
-        if self.candidates:
+        while self.candidates:
             target = self.candidates.pop()
-            logger.debug("target picked from candidates list: %r, remainder: %r", target, self.candidates)
-        else:
-            target = random.choice(tuple(self.available_coordinates))
-            logger.debug("target picked randomly: %r", target)
+            if target in self.available_coordinates:
+                logger.debug("target picked: %r", target)
+                logger.debug("remaining candidates: %r", self.candidates)
+                return target
+
+        target = random.choice(tuple(self.available_coordinates))
+        logger.debug("target picked randomly: %r", target)
         return target
 
     def add_candidates(self, coord):
@@ -92,8 +95,10 @@ class ComputerPlayer(Player):
             coords.append(chr(row + i) + chr(col))
             coords.append(chr(row) + chr(col - i))
             coords.append(chr(row) + chr(col + i))
-        self.candidates.extend(c for c in coords if c in self.available_coordinates)
-        print(f"Hit {coord}, {self.candidates=}")
+        coords = [c for c in coords if c in self.available_coordinates]
+        logger.debug("Hit %r, will try: %r", coord, coords)
+        logger.debug("Candidates: %r", self.candidates)
+        self.candidates.extend(coords)
 
     def mark(self, coord, result):
         """Mark the target board."""
