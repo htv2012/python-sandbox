@@ -65,14 +65,13 @@ class ShipBoard(Board):
         self.shots_count += 1
         if self.grid[coord] == const.MARK_EMPTY:
             self.grid[coord] = const.MARK_MISS
-        if self.grid[coord] in {const.MARK_HIT, const.MARK_MISS, const.MARK_SUNK}:
-            return self.grid[coord]
-
-        ship_id = self.grid[coord]
-        self.health[ship_id] -= 1
-        self.grid[coord] = (
-            const.MARK_SUNK if self.health[ship_id] == 0 else const.MARK_HIT
-        )
+        # if self.grid[coord] not in {const.MARK_HIT, const.MARK_MISS, const.MARK_SUNK}:
+        elif self.grid[coord] in const.SHIP_IDS:
+            ship_id = self.grid[coord]
+            self.health[ship_id] -= 1
+            self.grid[coord] = (
+                const.MARK_SUNK if self.health[ship_id] == 0 else const.MARK_HIT
+            )
         return self.grid[coord]
 
     @property
