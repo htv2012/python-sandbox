@@ -2,7 +2,7 @@ from . import Board, const
 
 
 class ShipBoard(Board):
-    _board_title = "SHIPS"
+    _board_title = "OUR SHIPS"
 
     def __init__(self):
         super().__init__()

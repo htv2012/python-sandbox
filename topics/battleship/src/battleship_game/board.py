@@ -3,11 +3,6 @@ import io
 from . import const
 
 
-def ljust(text: str):
-    """Left justify a string to the width of the board."""
-    return text.ljust(const.BOARD_WIDTH)
-
-
 class Board:
     _board_title = ""
 
@@ -31,7 +26,7 @@ class Board:
 
     def __str__(self):
         buf = io.StringIO()
-        buf.write(ljust(self._board_title))
+        buf.write(self._board_title.ljust(const.BOARD_WIDTH))
         buf.write("\n\n")
         buf.write("  │ A │ B │ C │ D │ E │ F │ G │ H │ I │ J │\n")
         buf.write("──┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───│\n")
@@ -47,7 +42,7 @@ class Board:
                 buf.write("──┼───┼───┼───┼───┼───┼───┼───┼───┼───┼───│\n")
 
         status = f"Shots: {self.shots_count} | Hits: {self.hits_count} | Sunks: {self.sunks_count}"
-        buf.write(ljust(status))
+        buf.write(status.ljust(const.BOARD_WIDTH))
         buf.write("\n")
 
         return buf.getvalue()

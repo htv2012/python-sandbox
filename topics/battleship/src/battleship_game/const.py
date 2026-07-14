@@ -24,5 +24,9 @@ def normalize_coordinate(coord: str):
     if coord in ALL_COORDINATES:
         return coord
 
-    swapped_order = coord[1] + coord[0]
-    return swapped_order
+    try:
+        swapped_order = coord[1] + coord[0]
+        return swapped_order
+    except (ValueError, IndexError):
+        # too many chars and too few chars, respectively
+        return coord
