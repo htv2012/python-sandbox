@@ -1,3 +1,4 @@
+import itertools
 import random
 
 from . import const
@@ -72,7 +73,8 @@ class HumanPlayer(Player):
 class ComputerPlayer(Player):
     def __init__(self):
         super().__init__()
-        self.candidates = []
+        selector = itertools.cycle([1, 0] * 5 + [0, 1] * 5)
+        self.candidates = list(itertools.compress(const.ALL_COORDINATES, selector))
 
     def find_target(self):
         while self.candidates:
@@ -88,12 +90,18 @@ class ComputerPlayer(Player):
 
     def add_candidates(self, coord):
         row, col = [ord(x) for x in coord]
+
         coords = []
-        for i in range(1, 3):
-            coords.append(chr(row - i) + chr(col))
-            coords.append(chr(row + i) + chr(col))
-            coords.append(chr(row) + chr(col - i))
-            coords.append(chr(row) + chr(col + i))
+        coords.append(chr(row - 2) + chr(col))
+        coords.append(chr(row + 2) + chr(col))
+        coords.append(chr(row) + chr(col - 2))
+        coords.append(chr(row) + chr(col + 2))
+
+        coords.append(chr(row - 1) + chr(col))
+        coords.append(chr(row + 1) + chr(col))
+        coords.append(chr(row) + chr(col - 1))
+        coords.append(chr(row) + chr(col + 1))
+
         coords = [c for c in coords if c in self.available_coordinates]
         logger.debug("Hit %r, will try: %r", coord, coords)
         logger.debug("Candidates: %r", self.candidates)
