@@ -10,7 +10,7 @@ requires-python = ">=3.13"
 dependencies = []
 
 [project.scripts]
-print-tree = "print_tree:main"
+ptree = "print_tree:main"
 
 [build-system]
 requires = ["hatchling"]

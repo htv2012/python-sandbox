@@ -1,3 +1,4 @@
+import argparse
 import collections
 import functools
 import pathlib
@@ -20,7 +21,7 @@ def _(data: list):
 
 
 def _print_fs(path: pathlib.Path):
-    que = collections.deque([(path, "", False)])
+    que = collections.deque([(path, "", path.is_file())])
     while que:
         node, prefix, is_last = que.popleft()
         connector = "└── " if is_last else "├── "
@@ -30,5 +31,19 @@ def _print_fs(path: pathlib.Path):
             print(f"{prefix}{connector}{node.name}")
             files = sorted(node.glob("*"), reverse=True)
             for i, sub_node in enumerate(files):
-                que.appendleft((sub_node, ("    " if i == 0 else "│   ")+prefix, i==0))
+                new_prefix = prefix + ("    " if i == 0 else "│   ")
+                que.appendleft((sub_node, new_prefix, i==0))
+
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("root")
+    options = parser.parse_args()
+
+    root = pathlib.Path(options.root)
+    if not root.is_dir():
+        raise SystemExit(f"{root} is not a directory.")
+    print_tree(root)
+
 
