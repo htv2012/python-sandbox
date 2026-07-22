@@ -5,18 +5,18 @@ import pathlib
 
 
 @functools.singledispatch
-def print_tree(data):
+def print_tree(data, prefix: str = ""):
     raise NotImplementedError(f"Not implemented for type {type(data)}: {data}")
 
 
 @print_tree.register
-def _(data: pathlib.Path):
+def _(data: pathlib.Path, prefix: str = ""):
     print(data.name)
-    _print_fs_dir(data)
+    _print_fs_dir(data, prefix)
 
 
 @print_tree.register
-def _(data: list):
+def _(data: list, prefix: str = ""):
     print(data)
     print("under construction")
 

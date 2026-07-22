@@ -4,7 +4,7 @@
 all: sandbox
 
 sandbox:
-	uv run src/samples/sandbox.py src
+	uv run ptree .
 
 ### Perform static analysis
 lint:
