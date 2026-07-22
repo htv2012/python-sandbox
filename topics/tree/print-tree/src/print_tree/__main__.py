@@ -14,15 +14,17 @@ def main():
     path = pathlib.Path(options.path)
     if path.is_dir():
         print_tree(path)
+        return
+
+    if path.suffix == ".json":
+        with open(path) as stream:
+            data = json.load(stream)
+    elif path.suffix == ".xml":
+        data = ET.parse(path)
     else:
-        if path.suffix == ".json":
-            with open(path) as stream:
-                data = json.load(stream)
-        elif path.suffix == ".xml":
-            data = ET.parse(path)
-        else:
-            raise SystemExit(f"File type not supported: {path}")
-        print_tree(data)
+        raise SystemExit(f"File type not supported: {path}")
+    print_tree(data)
+
 
 if __name__ == "__main__":
     main()
