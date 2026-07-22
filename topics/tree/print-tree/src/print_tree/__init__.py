@@ -9,12 +9,6 @@ def print_tree(data, prefix: str = ""):
 
 
 @print_tree.register
-def _(data: pathlib.Path, prefix: str = ""):
-    print(data.name)
-    _print_fs_dir(data, prefix)
-
-
-@print_tree.register
 def _(data: list, prefix: str = ""):
     count = len(data)
 
@@ -80,8 +74,9 @@ def _(data: ET.Element, prefix: str = ""):
         print_tree(node, prefix + extension)
 
 
-def _print_fs_dir(path: pathlib.Path, prefix: str = ""):
-    entries = sorted(path.iterdir(), key=lambda p: p.name)
+@print_tree.register
+def _(data: pathlib.Path, prefix: str = ""):
+    entries = sorted(data.iterdir(), key=lambda p: p.name)
     count = len(entries)
 
     for i, entry in enumerate(entries):
@@ -91,4 +86,4 @@ def _print_fs_dir(path: pathlib.Path, prefix: str = ""):
 
         if entry.is_dir():
             extension = "    " if is_last else "│   "
-            _print_fs_dir(entry, prefix + extension)
+            print_tree(entry, prefix + extension)
