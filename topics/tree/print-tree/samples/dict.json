@@ -1,0 +1,9 @@
+{
+    "name": "John",
+    "uid": 501,
+    "permissions": {
+        "login": true,
+        "print": true,
+        "admin": false
+    }
+}

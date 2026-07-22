@@ -1,20 +1,18 @@
 .PHONY: all test run lint clean
 
 ### Default target(s)
-all: sandbox
-
-sandbox:
-	uv run ptree .
+all: run
 
 ### Perform static analysis
 lint:
 	uv tool run ruff check --select I --fix .
 	uv tool run ruff format .
 	uv tool run ruff check . --fix
+	uv tool run ty check .
 
 ### Run the project
 run: lint
-	uv run src/samples/fs_tree.py src
+	uv run ptree src
 
 ### Run unit tests
 test: lint

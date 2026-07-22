@@ -15,3 +15,8 @@ ptree = "print_tree:main"
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "ty>=0.0.62",
+]

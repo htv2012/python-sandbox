@@ -1,6 +1,6 @@
 import argparse
-import collections
 import functools
+import json
 import pathlib
 
 
@@ -17,8 +17,35 @@ def _(data: pathlib.Path, prefix: str = ""):
 
 @print_tree.register
 def _(data: list, prefix: str = ""):
-    print(data)
-    print("under construction")
+    count = len(data)
+
+    for i, entry in enumerate(data):
+        is_last = (i == count - 1)
+        connector = "└── " if is_last else "├── "
+
+        if isinstance(entry, (list, dict)):
+            print(f"{prefix}{connector}[{i}]")
+            extension = "    " if is_last else "│   "
+            print_tree(entry, prefix + extension)
+        else:
+            print(f"{prefix}{connector}[{i}]={entry!r}")
+
+
+
+@print_tree.register
+def _(data: dict, prefix: str = ""):
+    count = len(data)
+
+    for i, (key, value) in enumerate(data.items()):
+        is_last = (i == count - 1)
+        connector = "└── " if is_last else "├── "
+
+        if isinstance(value, (list, dict)):
+            print(f"{prefix}{connector}{key}")
+            extension = "    " if is_last else "│   "
+            print_tree(value, prefix + extension)
+        else:
+            print(f"{prefix}{connector}{key}={value!r}")
 
 
 def _print_fs_dir(path: pathlib.Path, prefix: str = ""):
@@ -38,13 +65,19 @@ def _print_fs_dir(path: pathlib.Path, prefix: str = ""):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("root")
+    parser.add_argument("path")
     options = parser.parse_args()
 
-    root = pathlib.Path(options.root)
-    if not root.is_dir():
-        raise SystemExit(f"{root} is not a directory.")
-    print_tree(root)
+    path = pathlib.Path(options.path)
+    if path.is_dir():
+        print_tree(path)
+    else:
+        if path.suffix == ".json":
+            with open(path) as stream:
+                data = json.load(stream)
+        else:
+            raise SystemExit(f"File type not supported: {path}")
+        print_tree(data)
 
 
 if __name__ == "__main__":
