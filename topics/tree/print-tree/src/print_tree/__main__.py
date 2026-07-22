@@ -1,7 +1,10 @@
 import argparse
 import json
 import pathlib
+import tomllib
 import xml.etree.ElementTree as ET
+
+import yaml
 
 from . import print_tree
 
@@ -16,13 +19,19 @@ def main():
         print_tree(path)
         return
 
-    if path.suffix == ".json":
-        with open(path) as stream:
-            data = json.load(stream)
-    elif path.suffix == ".xml":
-        data = ET.parse(path)
-    else:
+    parsers = {
+        ".json": json.load,
+        ".toml": tomllib.load,
+        ".xml": ET.parse,
+        ".yaml": yaml.safe_load,
+        ".yml": yaml.safe_load,
+    }
+    parse = parsers.get(path.suffix)
+    if parse is None:
         raise SystemExit(f"File type not supported: {path}")
+
+    with open(options.path, "rb") as stream:
+        data = parse(stream)
     print_tree(data)
 
 

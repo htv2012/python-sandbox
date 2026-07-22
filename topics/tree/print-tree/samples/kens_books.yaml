@@ -1,0 +1,16 @@
+About:
+  Name: Ken's Books
+  Employees:
+    - Name: Ken Ellis
+      Position: Owner
+    - Name: Anna Kass
+      Position: Sale
+Inventory:
+  - SKU:
+      id: FIC001
+      in_stock: 45
+    Description: Sans Famile
+  - SKU:
+      id: SELF109
+      in_stock: 120
+    Description: Drop Your Worries

@@ -7,7 +7,9 @@ authors = [
     { name = "Hai Vu", email = "haivu2004@gmail.com" }
 ]
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "pyyaml>=6.0.3",
+]
 
 [project.scripts]
 ptree = "print_tree.__main__:main"
@@ -18,5 +20,6 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
+    "ruff>=0.15.22",
     "ty>=0.0.62",
 ]
