@@ -1,7 +1,10 @@
 .PHONY: all test run lint clean
 
 ### Default target(s)
-all: run
+all: sandbox
+
+sandbox:
+	uv run src/samples/sandbox.py src
 
 ### Perform static analysis
 lint:

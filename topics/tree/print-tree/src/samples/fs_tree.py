@@ -9,9 +9,10 @@ options = parser.parse_args()
 
 root = pathlib.Path(options.root)
 assert root.is_dir()
+print_tree(root)
 
-print_tree(
-    nodes=list(root.glob("*")),
-    get_value=lambda p: p.name,
-    get_children=lambda p: list(p.glob("*")),
-)
+# print_tree(
+# nodes=list(root.glob("*")),
+# get_value=lambda p: p.name,
+# get_children=lambda p: list(p.glob("*")),
+# )
