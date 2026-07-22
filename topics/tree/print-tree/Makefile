@@ -5,13 +5,30 @@ all: run
 
 ### Perform static analysis
 lint:
-	uv tool run ruff check --select I --fix .
-	uv tool run ruff format .
-	uv tool run ruff check . --fix
+	uv run ruff check --select I --fix .
+	uv run ruff format .
+	uv run ruff check . --fix
+	uv run ty check .
 
 ### Run the project
 run: lint
-	uv run src/samples/fs_tree.py src
+	uv run ptree src
+	@echo ""
+	@echo "--------------------------------------"
+	@echo ""
+	uv run ptree samples/kens_books.json
+	@echo ""
+	@echo "--------------------------------------"
+	@echo ""
+	uv run ptree samples/kens_books.yaml
+	@echo ""
+	@echo "--------------------------------------"
+	@echo ""
+	uv run ptree samples/kens_books.xml
+	@echo ""
+	@echo "--------------------------------------"
+	@echo ""
+	uv run ptree pyproject.toml
 
 ### Run unit tests
 test: lint

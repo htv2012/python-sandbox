@@ -1,0 +1,25 @@
+{
+    "About": {
+        "Name": "Ken's Books",
+        "Employees": [
+            {
+                "Name": "Ken Ellis",
+                "Position": "Owner"
+            },
+            {
+                "Name": "Anna Kass",
+                "Position": "Sale"
+            }
+        ]
+    },
+    "Inventory": [
+        {
+            "SKU": "FIC001",
+            "Description": "Sans Famile"
+        },
+        {
+            "SKU": "SELF109",
+            "Description": "Drop Your Worries"
+        }
+    ]
+}
