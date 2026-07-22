@@ -13,6 +13,8 @@ lint:
 ### Run the project
 run: lint
 	uv run ptree src
+	uv run ptree samples/kens_books.json
+	uv run ptree samples/kens_books.xml
 
 ### Run unit tests
 test: lint

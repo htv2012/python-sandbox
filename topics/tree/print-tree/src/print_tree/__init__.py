@@ -1,7 +1,6 @@
-import argparse
 import functools
-import json
 import pathlib
+import xml.etree.ElementTree as ET
 
 
 @functools.singledispatch
@@ -20,7 +19,7 @@ def _(data: list, prefix: str = ""):
     count = len(data)
 
     for i, entry in enumerate(data):
-        is_last = (i == count - 1)
+        is_last = i == count - 1
         connector = "└── " if is_last else "├── "
 
         if isinstance(entry, (list, dict)):
@@ -31,13 +30,12 @@ def _(data: list, prefix: str = ""):
             print(f"{prefix}{connector}[{i}]={entry!r}")
 
 
-
 @print_tree.register
 def _(data: dict, prefix: str = ""):
     count = len(data)
 
     for i, (key, value) in enumerate(data.items()):
-        is_last = (i == count - 1)
+        is_last = i == count - 1
         connector = "└── " if is_last else "├── "
 
         if isinstance(value, (list, dict)):
@@ -48,8 +46,42 @@ def _(data: dict, prefix: str = ""):
             print(f"{prefix}{connector}{key}={value!r}")
 
 
+def format_node(node: ET.Element):
+    text = (node.text or "").strip()
+    attributes = ", ".join(f"{k}={v!r}" for k, v in node.items())
+    if attributes:
+        attributes = f"  # {attributes}"
+
+    if text:
+        out = f"{node.tag}={text!r}{attributes}"
+    else:
+        out = f"{node.tag}{attributes}"
+    return out
+
+
+@print_tree.register
+def _(data: ET.ElementTree, prefix: str = ""):
+    root = data.getroot()
+    assert root is not None
+    print(f"{prefix}{format_node(root)}")
+    print_tree(root)
+
+
+@print_tree.register
+def _(data: ET.Element, prefix: str = ""):
+    nodes = list(data)
+    count = len(nodes)
+
+    for i, node in enumerate(nodes):
+        is_last = i == count - 1
+        connector = "└── " if is_last else "├── "
+        extension = "    " if is_last else "│   "
+        print(f"{prefix}{connector}{format_node(node)}")
+        print_tree(node, prefix + extension)
+
+
 def _print_fs_dir(path: pathlib.Path, prefix: str = ""):
-    entries = sorted(path.iterdir(), key=lambda p: p.name.lower())
+    entries = sorted(path.iterdir(), key=lambda p: p.name)
     count = len(entries)
 
     for i, entry in enumerate(entries):
@@ -58,27 +90,5 @@ def _print_fs_dir(path: pathlib.Path, prefix: str = ""):
         print(f"{prefix}{connector}{entry.name}")
 
         if entry.is_dir():
-            # Extend prefix with spaces if this dir was last, otherwise keep the pipe
             extension = "    " if is_last else "│   "
             _print_fs_dir(entry, prefix + extension)
-
-
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("path")
-    options = parser.parse_args()
-
-    path = pathlib.Path(options.path)
-    if path.is_dir():
-        print_tree(path)
-    else:
-        if path.suffix == ".json":
-            with open(path) as stream:
-                data = json.load(stream)
-        else:
-            raise SystemExit(f"File type not supported: {path}")
-        print_tree(data)
-
-
-if __name__ == "__main__":
-    main()
