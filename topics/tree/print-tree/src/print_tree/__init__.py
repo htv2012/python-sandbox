@@ -11,7 +11,8 @@ def print_tree(data):
 
 @print_tree.register
 def _(data: pathlib.Path):
-    _print_fs(data)
+    print(data.name)
+    _print_fs_dir(data)
 
 
 @print_tree.register
@@ -20,20 +21,19 @@ def _(data: list):
     print("under construction")
 
 
-def _print_fs(path: pathlib.Path):
-    que = collections.deque([(path, "", path.is_file())])
-    while que:
-        node, prefix, is_last = que.popleft()
-        connector = "└── " if is_last else "├── "
-        if node.is_file():
-            print(f"{prefix}{connector}{node.name}")
-        else:
-            print(f"{prefix}{connector}{node.name}")
-            files = sorted(node.glob("*"), reverse=True)
-            for i, sub_node in enumerate(files):
-                new_prefix = prefix + ("    " if i == 0 else "│   ")
-                que.appendleft((sub_node, new_prefix, i==0))
+def _print_fs_dir(path: pathlib.Path, prefix: str = ""):
+    entries = sorted(path.iterdir(), key=lambda p: p.name.lower())
+    count = len(entries)
 
+    for i, entry in enumerate(entries):
+        is_last = i == count - 1
+        connector = "└── " if is_last else "├── "
+        print(f"{prefix}{connector}{entry.name}")
+
+        if entry.is_dir():
+            # Extend prefix with spaces if this dir was last, otherwise keep the pipe
+            extension = "    " if is_last else "│   "
+            _print_fs_dir(entry, prefix + extension)
 
 
 def main():
@@ -47,3 +47,5 @@ def main():
     print_tree(root)
 
 
+if __name__ == "__main__":
+    main()
