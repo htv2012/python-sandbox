@@ -1,7 +1,7 @@
 [project]
 name = "print-tree"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0.0"
+description = "Print hierarchical data: directory, XML, or JSON"
 readme = "README.md"
 authors = [
     { name = "Hai Vu", email = "haivu2004@gmail.com" }
