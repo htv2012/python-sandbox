@@ -1,3 +1,4 @@
+import collections
 import functools
 import pathlib
 
@@ -18,17 +19,16 @@ def _(data: list):
     print("under construction")
 
 
-def _print_fs(path: pathlib.Path, prefix: str = ""):
-    if path.is_file():
-        #connector = "└── " if is_last else "├── "
-        connector = "└── "
-        print(f"{prefix}{connector}{path.name}")
-        return
-
-    nodes = list(path.glob("*"))
-    for index, node in enumerate(nodes):
-        is_last = index == len(nodes) - 1
+def _print_fs(path: pathlib.Path):
+    que = collections.deque([(path, "", False)])
+    while que:
+        node, prefix, is_last = que.popleft()
         connector = "└── " if is_last else "├── "
-        print(f"{prefix}{connector}{node.name}")
-        for sub_node in node.glob("*"):
-            _print_fs(sub_node, prefix=prefix + ("    " if is_last else "│   "))
+        if node.is_file():
+            print(f"{prefix}{connector}{node.name}")
+        else:
+            print(f"{prefix}{connector}{node.name}")
+            files = sorted(node.glob("*"), reverse=True)
+            for i, sub_node in enumerate(files):
+                que.appendleft((sub_node, ("    " if i == 0 else "│   ")+prefix, i==0))
+
