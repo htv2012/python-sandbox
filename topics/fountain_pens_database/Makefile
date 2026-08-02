@@ -1,19 +1,38 @@
+.PHONY: all clean install lab lint py run test
+
+### Default target(s)
+all: run
+
+edit:
+	$(EDITOR) pens
+
+### Perform static analysis
+lint:
+	@uv run ruff check --select I --fix . --quiet
+	@uv run ruff format . --quiet
+	@uv run ruff check . --fix --quiet
+
+### Run the project
 run: lint
-	# python3 csv2sqlite.py
-	streamlit run dbui.py
+	uv run pens
 
-lint: format
-	ruff . --fix
+### Run unit tests
+test: lint
+	uv run pytest -s -v
 
-format:
-	ruff check--select I --fix .
-	ruff format .
-
+### Clean up generated files
 clean:
-	-rm data.csv data.sqlite
+	uv clean
+	rm -fr .ruff_cache .venv
 
-download:
-	mv "${HOME}/Downloads/Pens and Papers Collection - Sheet1.csv" ./data.csv
+### Start a Python interpreter
+py:
+	uv run ipython
 
-show:
-	sqlite3 data.sqlite 'select * from pen order by Brand, Model'
+### Start a Jupyter Lab
+lab:
+	uv run jupyter lab
+
+### Install this tool locally
+install:
+	uv tool install --upgrade .
