@@ -4,13 +4,15 @@ import click
 import pandas as pd
 
 from .download import download_gsheet_csv
+from .shell import interactive_shell
 
 
 @click.command
 @click.option("-c", "--category")
 @click.option("-b", "--brand")
 @click.option("-r", "--retailer")
-def main(category, brand, retailer):
+@click.option("-s", "--shell", is_flag=True)
+def main(category, brand, retailer, shell):
     data_file = pathlib.Path("/tmp/pens.csv")
     if not data_file.exists():
         download_gsheet_csv(
@@ -20,6 +22,10 @@ def main(category, brand, retailer):
 
     df = pd.read_csv(data_file)
     df = df.sort_values(["Brand", "Model"])
+    if shell:
+        interactive_shell(df)
+        return
+
     if category:
         df = df[df["Category"] == category]
     if brand:

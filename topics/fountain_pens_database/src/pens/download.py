@@ -28,14 +28,3 @@ def download_gsheet_csv(url: str, output_filename: str, gid: str = "0"):
     # Save to local CSV file
     with open(output_filename, "wb") as f:
         f.write(response.content)
-
-
-def main():
-    download_gsheet_csv(
-        "https://docs.google.com/spreadsheets/d/1kKDbZYSMm44fhUAwhN5-Myqt2jlNfCK52Hp76ifPtu4/edit?gid=0",
-        "data.csv",
-    )
-
-
-if __name__ == "__main__":
-    main()
