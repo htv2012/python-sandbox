@@ -14,7 +14,7 @@ lint:
 
 ### Run the project
 run: lint
-	uv run pens
+	uv run pens -s
 
 ### Run unit tests
 test: lint
