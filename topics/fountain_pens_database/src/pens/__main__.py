@@ -1,3 +1,4 @@
+import csv
 import pathlib
 
 import click
@@ -5,6 +6,21 @@ import pandas as pd
 
 from .download import download_gsheet_csv
 from .shell import interactive_shell
+
+
+def normalize_csv(path: pathlib.Path):
+    with open(path) as stream:
+        reader = csv.DictReader(stream)
+        rows = list(reader)
+
+    for row in rows:
+        row["Price"] = row["Price"].removeprefix("$")
+        row["Country"] = row["Country"] or "Unknown"
+
+    with open(path, "w") as stream:
+        writer = csv.DictWriter(stream, reader.fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
 
 
 @click.command
@@ -20,6 +36,7 @@ def main(category, brand, retailer, shell):
             data_file,
         )
 
+    normalize_csv(data_file)
     df = pd.read_csv(data_file)
     df = df.sort_values(["Brand", "Model"])
     if shell:

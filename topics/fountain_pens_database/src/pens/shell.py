@@ -24,8 +24,7 @@ class Shell(cmd.Cmd):
         self.df = df
 
     def do_pens(self, args_text):
-        df = self.df[self.df["Category"] == "Fountain Pen"]
-        show(df)
+        self.do_ls(f"-p {args_text}")
 
     def do_ls(self, args_text):
         parser = argparse.ArgumentParser()
@@ -40,6 +39,7 @@ class Shell(cmd.Cmd):
         pass
 
     def do_EOF(self, _):
+        print()
         return True
 
     do_q = do_EOF
