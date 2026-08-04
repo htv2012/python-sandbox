@@ -1,26 +1,7 @@
-import csv
-import pathlib
-
 import click
-import pandas as pd
 
-from .download import download_gsheet_csv
+from . import data
 from .shell import interactive_shell
-
-
-def normalize_csv(path: pathlib.Path):
-    with open(path) as stream:
-        reader = csv.DictReader(stream)
-        rows = list(reader)
-
-    for row in rows:
-        row["Price"] = row["Price"].removeprefix("$")
-        row["Country"] = row["Country"] or "Unknown"
-
-    with open(path, "w") as stream:
-        writer = csv.DictWriter(stream, reader.fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
 
 
 @click.command
@@ -29,16 +10,7 @@ def normalize_csv(path: pathlib.Path):
 @click.option("-r", "--retailer")
 @click.option("-s", "--shell", is_flag=True)
 def main(category, brand, retailer, shell):
-    data_file = pathlib.Path("/tmp/pens.csv")
-    if not data_file.exists():
-        download_gsheet_csv(
-            "https://docs.google.com/spreadsheets/d/1kKDbZYSMm44fhUAwhN5-Myqt2jlNfCK52Hp76ifPtu4/edit?gid=0",
-            data_file,
-        )
-
-    normalize_csv(data_file)
-    df = pd.read_csv(data_file)
-    df = df.sort_values(["Brand", "Model"])
+    df = data.read()
     if shell:
         interactive_shell(df)
         return
