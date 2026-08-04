@@ -22,18 +22,37 @@ class Shell(cmd.Cmd):
     def __init__(self, df):
         super().__init__(self)
         self.df = df
+        self.categories = self.df["Category"].dropna().str.lower().unique().tolist()
+        self.columns = self.df.columns.str.lower().tolist()
 
     def do_pens(self, args_text):
         self.do_ls(f"-p {args_text}")
 
     def do_ls(self, args_text):
-        parser = argparse.ArgumentParser()
-        parser.add_argument("-p", "--pens", default=False, action="store_true")
+        parser = argparse.ArgumentParser(exit_on_error=False)
+        # parser.add_argument("-p", "--pens", default=False, action="store_true")
+        parser.add_argument("-c", "--category", choices=self.categories)
+        parser.add_argument(
+            "-p",
+            "--pens",
+            dest="category",
+            action="store_const",
+            const="Fountain Pen",
+        )
+        parser.add_argument(
+            "-s", "--sort", default=[], action="append", choices=self.columns
+        )
         args = parser.parse_args(shlex.split(args_text))
         df = self.df
-        if args.pens:
-            df = self.df[self.df["Category"] == "Fountain Pen"]
+        if args.category:
+            df = df[self.df["Category"] == args.category.title()]
+
+        if not args.sort:
+            args.sort = ["Category", "Brand", "Model"]
+        args.sort = [col.title() for col in args.sort]
+        df = df.sort_values(args.sort)
         show(df)
+        print(args)
 
     def emptyline(self):
         pass
