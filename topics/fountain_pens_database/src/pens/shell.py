@@ -29,8 +29,7 @@ class Shell(cmd.Cmd):
         self.do_ls(f"-p {args_text}")
 
     def do_ls(self, args_text):
-        parser = argparse.ArgumentParser(exit_on_error=False)
-        # parser.add_argument("-p", "--pens", default=False, action="store_true")
+        parser = argparse.ArgumentParser(exit_on_error=False, add_help=False)
         parser.add_argument("-c", "--category", choices=self.categories)
         parser.add_argument(
             "-p",
@@ -42,7 +41,12 @@ class Shell(cmd.Cmd):
         parser.add_argument(
             "-s", "--sort", default=[], action="append", choices=self.columns
         )
-        args = parser.parse_args(shlex.split(args_text))
+        try:
+            args = parser.parse_args(shlex.split(args_text))
+        except argparse.ArgumentError:
+            parser.print_help()
+            return
+
         df = self.df
         if args.category:
             df = df[self.df["Category"] == args.category.title()]
