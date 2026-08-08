@@ -31,6 +31,11 @@ class Shell(cmd.Cmd):
     def do_ls(self, args_text):
         parser = argparse.ArgumentParser(exit_on_error=False, add_help=False)
         parser.add_argument("-c", "--category", choices=self.categories)
+        (
+            parser.add_argument(
+                "-i", "--ink", dest="category", action="store_const", const="Ink"
+            ),
+        )
         parser.add_argument(
             "-p",
             "--pens",
