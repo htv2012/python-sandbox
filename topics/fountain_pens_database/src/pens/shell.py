@@ -25,24 +25,22 @@ class Shell(cmd.Cmd):
         self.categories = self.df["Category"].dropna().str.lower().unique().tolist()
         self.columns = self.df.columns.str.lower().tolist()
 
-    def do_pens(self, args_text):
-        self.do_ls(f"-p {args_text}")
+    def do_pen(self, args_text):
+        """Show my pens. Short hand for ls --category pen"""
+        self.do_ls(f"--category 'fountain pen' {args_text}")
+
+    def do_ink(self, args_text):
+        self.do_ls(f"--category ink {args_text}")
+
+    def do_notebook(self, args_text):
+        self.do_ls(f"--category notebook {args_text}")
+
+    def do_case(self, args_text):
+        self.do_ls(f"--category case {args_text}")
 
     def do_ls(self, args_text):
         parser = argparse.ArgumentParser(exit_on_error=False, add_help=False)
         parser.add_argument("-c", "--category", choices=self.categories)
-        (
-            parser.add_argument(
-                "-i", "--ink", dest="category", action="store_const", const="Ink"
-            ),
-        )
-        parser.add_argument(
-            "-p",
-            "--pens",
-            dest="category",
-            action="store_const",
-            const="Fountain Pen",
-        )
         parser.add_argument(
             "-s", "--sort", default=[], action="append", choices=self.columns
         )
@@ -61,7 +59,6 @@ class Shell(cmd.Cmd):
         args.sort = [col.title() for col in args.sort]
         df = df.sort_values(args.sort)
         show(df)
-        print(args)
 
     def emptyline(self):
         pass
@@ -72,7 +69,10 @@ class Shell(cmd.Cmd):
 
     do_q = do_EOF
     do_exit = do_EOF
-    do_p = do_pens
+    do_p = do_pen
+    do_n = do_notebook
+    do_i = do_ink
+    do_c = do_case
 
 
 def interactive_shell(df):
