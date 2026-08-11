@@ -5,12 +5,13 @@ from .shell import interactive_shell
 
 
 @click.command
+@click.option("-f", "--force-download", is_flag=True, default=False)
 @click.option("-c", "--category")
 @click.option("-b", "--brand")
 @click.option("-r", "--retailer")
 @click.option("-s", "--shell", is_flag=True)
-def main(category, brand, retailer, shell):
-    df = data.read()
+def main(force_download, category, brand, retailer, shell):
+    df = data.read(force_download=force_download)
     if shell:
         interactive_shell(df)
         return

@@ -53,9 +53,14 @@ def normalize_csv(path: pathlib.Path):
         writer.writerows(rows)
 
 
-def read(force: bool = False):
-    """Read the data and return a data frame"""
-    if force or not data_file.exists():
+def read(force_download: bool = False) -> pd.DataFrame:
+    """Read the data and return a data frame.
+
+    :param force_download: If true, force download, default is false
+    :return: A Pandas data frame
+
+    """
+    if force_download or not data_file.exists():
         download_google_sheet(data_url, data_file)
 
     normalize_csv(data_file)
