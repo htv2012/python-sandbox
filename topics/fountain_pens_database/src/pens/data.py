@@ -1,35 +1,22 @@
 import csv
 import pathlib
-import re
 
 import pandas as pd
 import requests
 
 data_file = pathlib.Path("/tmp/pens.csv")
-data_url = "https://docs.google.com/spreadsheets/d/1kKDbZYSMm44fhUAwhN5-Myqt2jlNfCK52Hp76ifPtu4/edit?gid=0"
+sheet_id = "1kKDbZYSMm44fhUAwhN5-Myqt2jlNfCK52Hp76ifPtu4"
 
 
-def download_google_sheet(url: str, output_filename: str, gid: str = "0"):
-    # Extract the Document ID using regex
-    match = re.search(r"/d/([a-zA-Z0-9-_]+)", url)
-    if not match:
-        raise ValueError("Invalid Google Sheet URL format.")
-
-    sheet_id = match.group(1)
-
-    # Check if a specific sheet tab (gid) is included in the URL
-    gid_match = re.search(r"gid=([0-9]+)", url)
-    if gid_match:
-        gid = gid_match.group(1)
-
-    # Construct direct download URL
+def download_google_sheet(sheet_id: str, output_filename: str):
     export_url = (
-        f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv&gid={gid}"
+        f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv&gid=0"
     )
 
     # Download content
     response = requests.get(export_url)
-    response.raise_for_status()  # Check for errors (e.g., 404 or 403)
+    if not response.ok:
+        raise SystemExit("Failed to download data file")
 
     # Save to local CSV file
     with open(output_filename, "wb") as f:
@@ -61,7 +48,7 @@ def read(force_download: bool = False) -> pd.DataFrame:
 
     """
     if force_download or not data_file.exists():
-        download_google_sheet(data_url, data_file)
+        download_google_sheet(sheet_id, data_file)
 
     normalize_csv(data_file)
     df = pd.read_csv(data_file)

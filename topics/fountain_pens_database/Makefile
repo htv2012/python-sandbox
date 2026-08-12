@@ -1,4 +1,4 @@
-.PHONY: all clean install lab lint py run test
+.PHONY: all clean install lab lint py run test debug
 
 ### Default target(s)
 all: run
@@ -36,3 +36,6 @@ lab:
 ### Install this tool locally
 install:
 	uv tool install --upgrade .
+
+debug:
+	PYTHONBREAKPOINT=pudb.set_trace uv run pens
