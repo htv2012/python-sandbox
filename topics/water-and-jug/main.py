@@ -63,16 +63,12 @@ def measure(x, y, target):
 
         amount = min(ax, y - ay)
         if dfs(ax - amount, ay + amount):
-            steps.prepend(
-                ax - amount, ay + amount, f"pour {amount} liters from jug 1 to jug 2"
-            )
+            steps.prepend(ax - amount, ay + amount, "pour jug 1 to jug 2")
             return True
 
         amount = min(ay, x - ax)
         if dfs(ax + amount, ay - amount):
-            steps.prepend(
-                ax + amount, ay - amount, f"pour {amount} liters from jug 2 to jug 1"
-            )
+            steps.prepend(ax + amount, ay - amount, "pour jug 2 to jug 1")
             return True
 
         return False
@@ -99,6 +95,7 @@ def main():
     print(f"Jug 2 can hold {y} liters")
     print(f"We want to measure {target} liters")
     print()
+
     steps = measure(x, y, target)
     print(steps)
     print()
