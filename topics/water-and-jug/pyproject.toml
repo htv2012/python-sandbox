@@ -1,0 +1,23 @@
+[project]
+name = "water-and-jug"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "tabulate>=0.10.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.16.1",
+    "pudb>=2025.1.5",
+    "pytest>=9.1.1",
+    "ruff>=0.16.3",
+]
+
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "DEBUG"
+
