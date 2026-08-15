@@ -9,8 +9,8 @@ class Steps:
     def __init__(self):
         self.data = collections.deque()
 
-    def prepend(self, ax, ay, note):
-        self.data.appendleft({"Jug 1": ax, "Jug 2": ay, "Note": note})
+    def prepend(self, jug1, jug2, note):
+        self.data.appendleft({"Jug 1": jug1, "Jug 2": jug2, "Note": note})
 
     def __str__(self):
         counter = itertools.count()
@@ -34,41 +34,41 @@ class Steps:
             return "Cannot achieve target amount"
 
 
-def measure(x, y, target):
-    def dfs(ax, ay):
-        nonlocal x, y, target, seen, steps
+def measure(jug1_max, jug2_max, target):
+    def dfs(jug1, jug2):
+        nonlocal jug1_max, jug2_max, target, seen, steps
 
-        if (ax, ay) in seen:
+        if (jug1, jug2) in seen:
             return False
-        seen.add((ax, ay))
+        seen.add((jug1, jug2))
 
-        if ax == target or ay == target or (ax + ay) == target:
+        if jug1 == target or jug2 == target or (jug1 + jug2) == target:
             return True
 
-        if dfs(x, ay):
-            steps.prepend(x, ax, "fill jug 1")
+        if dfs(jug1_max, jug2):
+            steps.prepend(jug1_max, jug1, "fill jug 1")
             return True
 
-        if dfs(ax, y):
-            steps.prepend(ax, y, "fill jug 2")
+        if dfs(jug1, jug2_max):
+            steps.prepend(jug1, jug2_max, "fill jug 2")
             return True
 
-        if dfs(0, ay):
-            steps.prepend(0, ay, "empty jug 1")
+        if dfs(0, jug2):
+            steps.prepend(0, jug2, "empty jug 1")
             return True
 
-        if dfs(ax, 0):
-            steps.prepend(ax, 0, "empty jug 2")
+        if dfs(jug1, 0):
+            steps.prepend(jug1, 0, "empty jug 2")
             return True
 
-        amount = min(ax, y - ay)
-        if dfs(ax - amount, ay + amount):
-            steps.prepend(ax - amount, ay + amount, "pour jug 1 to jug 2")
+        amount = min(jug1, jug2_max - jug2)
+        if dfs(jug1 - amount, jug2 + amount):
+            steps.prepend(jug1 - amount, jug2 + amount, "pour jug 1 to jug 2")
             return True
 
-        amount = min(ay, x - ax)
-        if dfs(ax + amount, ay - amount):
-            steps.prepend(ax + amount, ay - amount, "pour jug 2 to jug 1")
+        amount = min(jug2, jug1_max - jug1)
+        if dfs(jug1 + amount, jug2 - amount):
+            steps.prepend(jug1 + amount, jug2 - amount, "pour jug 2 to jug 1")
             return True
 
         return False
@@ -81,22 +81,22 @@ def measure(x, y, target):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("x", type=int)
-    parser.add_argument("y", type=int)
+    parser.add_argument("jug1_max", type=int)
+    parser.add_argument("jug2_max", type=int)
     parser.add_argument("target", type=int)
     args = parser.parse_args()
 
-    x = args.x
-    y = args.y
+    jug1_max = args.jug1_max
+    jug2_max = args.jug2_max
     target = args.target
 
     print()
-    print(f"Jug 1 can hold {x} liters")
-    print(f"Jug 2 can hold {y} liters")
+    print(f"Jug 1 can hold {jug1_max} liters")
+    print(f"Jug 2 can hold {jug2_max} liters")
     print(f"We want to measure {target} liters")
     print()
 
-    steps = measure(x, y, target)
+    steps = measure(jug1_max, jug2_max, target)
     print(steps)
     print()
     print(steps.evaluate(target))
