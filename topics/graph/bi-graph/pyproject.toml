@@ -24,3 +24,9 @@ dev = [
     "ruff>=0.16.3",
     "ty>=0.0.72",
 ]
+
+
+[tool.pytest.ini_options]
+log_cli = false
+log_cli_level = "DEBUG"
+

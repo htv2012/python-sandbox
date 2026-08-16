@@ -1,4 +1,7 @@
 import collections
+import logging
+
+logger = logging.getLogger("bigraph")
 
 
 def normalize_edge(node1, node2):
@@ -26,6 +29,31 @@ class BiGraph:
         self.graph[node1].add(node2)
         self.graph[node2].add(node1)
 
-    def all_paths(self, source, dest):
-        pass
+    def valid_path(self, source, dest):
+        logger.debug(f"{source = }, {dest = }")
 
+        que = collections.deque()
+        que.append(source)
+        seen = set()
+
+        while que:
+            src = que.popleft()
+            logger.debug(f"visit {src}")
+
+            seen.add(src)
+            for mid in self.graph[src]:
+                logger.debug(f"  {mid = }")
+                if mid in seen:
+                    logger.debug(f"  {mid} has been visited, skip")
+                    continue
+
+                if mid == dest:
+                    logger.debug(f"  path found {source} - {mid}")
+                    return True
+
+                logger.debug(f"  enqueue {mid}")
+                que.append(mid)
+
+            logger.debug(f"done {src}")
+
+        return False
