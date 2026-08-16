@@ -1,0 +1,32 @@
+[project]
+name = "bi-graph"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Hai Vu", email = "haivu2004@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[project.scripts]
+bi-graph = "bi_graph:main"
+
+[build-system]
+requires = ["uv_build>=0.9.21,<0.10.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "jupyterlab>=4.6.3",
+    "pudb>=2025.1.5",
+    "pytest>=9.1.1",
+    "ruff>=0.16.3",
+    "ty>=0.0.72",
+]
+
+
+[tool.pytest.ini_options]
+log_cli = false
+log_cli_level = "DEBUG"
+
