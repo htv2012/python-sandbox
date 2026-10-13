@@ -1,15 +1,14 @@
 from decimal import Decimal
 
+from prettytable import PrettyTable, TableStyle
+
 
 def main():
-    print()
-    print("LinkedIn Plans Comparison".center(48))
-    print("=========================".center(48))
-    print()
-
-    for heading in ["Month", "Monthly", "Quarterly", "Anual"]:
-        print(f"{heading:>12}", end="")
-    print()
+    table = PrettyTable()
+    table.set_style(TableStyle.SINGLE_BORDER)
+    table.title = "LinkedIn Plans Comparison"
+    table.field_names = ["Month", "Monthly", "Quarterly", "Anual"]
+    table.align = "r"
 
     monthly_rate = Decimal("29.99")
     quarterly_rate = Decimal("67.48")
@@ -23,12 +22,9 @@ def main():
             q_count += 1
 
         q_cost = q_count * quarterly_rate
+        table.add_row([month, m_cost, q_cost, a_cost])
 
-        print(f"{month:>12}", end="")
-        print(f"{m_cost:>12.2f}", end="")
-        print(f"{q_cost:>12.2f}", end="")
-        print(f"{a_cost:>12.2f}", end="")
-        print()
+    print(table)
 
 
 if __name__ == "__main__":
